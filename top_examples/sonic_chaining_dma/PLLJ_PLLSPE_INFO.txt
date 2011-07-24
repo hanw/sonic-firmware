@@ -1,0 +1,155 @@
+PLL_Name	pll_156:pll_156|altpll:altpll_component|pll_156_altpll:auto_generated|pll1
+PLLJITTER	31
+PLLSPEmax	40
+PLLSPEmin	-40
+
+PLL_Name	pll_644:pll644|altpll:altpll_component|pll_644_altpll:auto_generated|pll1
+PLLJITTER	31
+PLLSPEmax	40
+PLLSPEmin	-40
+
+PLL_Name	refclk~input~INSERTED_REFCLK_DIVIDER
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|altpcierd_reconfig_clk_pll:reconfig_pll|altpll:altpll_component|altpcierd_reconfig_clk_pll_altpll:auto_generated|pll1
+PLLJITTER	33
+PLLSPEmax	40
+PLLSPEmin	-40
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_core:wrapper|altpcie_hip_pipen1b:altpcie_hip_pipen1b_inst|stratix_iv.stratixiv_hssi_pcie_hip
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|central_clk_div0
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|central_clk_div1
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|receive_pma0
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|receive_pma1
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|receive_pma2
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|receive_pma3
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|receive_pma4
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|receive_pma5
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|receive_pma6
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|receive_pma7
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|rx_cdr_pll0
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|rx_cdr_pll1
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|rx_cdr_pll2
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|rx_cdr_pll3
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|rx_cdr_pll4
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|rx_cdr_pll5
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|rx_cdr_pll6
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|rx_cdr_pll7
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_top:core|top_plus:ep_plus|top:epmap|top_serdes:serdes|top_serdes_alt4gxb_80pa:top_serdes_alt4gxb_80pa_component|tx_pll0
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_v1_15:SUT|sonic_pma_v1_01:sonic_pma|altera_xcvr_low_latency_phy:sonic_pma_v1_01_inst|siv_xcvr_low_latency_phy_nr:siv_xcvr_low_latency_phy_nr_inst|alt4gxb:pma_direct|alt4gxb_om79:auto_generated|ch_clk_div0
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_v1_15:SUT|sonic_pma_v1_01:sonic_pma|altera_xcvr_low_latency_phy:sonic_pma_v1_01_inst|siv_xcvr_low_latency_phy_nr:siv_xcvr_low_latency_phy_nr_inst|alt4gxb:pma_direct|alt4gxb_om79:auto_generated|receive_pcs0
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_v1_15:SUT|sonic_pma_v1_01:sonic_pma|altera_xcvr_low_latency_phy:sonic_pma_v1_01_inst|siv_xcvr_low_latency_phy_nr:siv_xcvr_low_latency_phy_nr_inst|alt4gxb:pma_direct|alt4gxb_om79:auto_generated|receive_pma0
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_v1_15:SUT|sonic_pma_v1_01:sonic_pma|altera_xcvr_low_latency_phy:sonic_pma_v1_01_inst|siv_xcvr_low_latency_phy_nr:siv_xcvr_low_latency_phy_nr_inst|alt4gxb:pma_direct|alt4gxb_om79:auto_generated|rx_cdr_pll0
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_v1_15:SUT|sonic_pma_v1_01:sonic_pma|altera_xcvr_low_latency_phy:sonic_pma_v1_01_inst|siv_xcvr_low_latency_phy_nr:siv_xcvr_low_latency_phy_nr_inst|alt4gxb:pma_direct|alt4gxb_om79:auto_generated|transmit_pcs0
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_v1_15:SUT|sonic_pma_v1_01:sonic_pma|altera_xcvr_low_latency_phy:sonic_pma_v1_01_inst|siv_xcvr_low_latency_phy_nr:siv_xcvr_low_latency_phy_nr_inst|alt4gxb:pma_direct|alt4gxb_om79:auto_generated|transmit_pma0
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	sonic_v1_15:SUT|sonic_pma_v1_01:sonic_pma|altera_xcvr_low_latency_phy:sonic_pma_v1_01_inst|siv_xcvr_low_latency_phy_nr:siv_xcvr_low_latency_phy_nr_inst|alt4gxb:pma_direct|alt4gxb_om79:auto_generated|tx_pll0
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+

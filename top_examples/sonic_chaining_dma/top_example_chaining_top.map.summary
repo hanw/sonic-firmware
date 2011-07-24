@@ -1,0 +1,20 @@
+Analysis & Synthesis Status : Successful - Mon Jul 18 09:58:38 2011
+Quartus II Version : 11.0 Build 157 04/27/2011 SP 0.01 SJ Full Version
+Revision Name : top_example_chaining_top
+Top-level Entity Name : sonic_top_wrapper
+Family : Stratix IV
+Logic utilization : N/A
+    Combinational ALUTs : 13,120
+    Memory ALUTs : 0
+    Dedicated logic registers : 19,477
+Total registers : 19477
+Total pins : 53
+Total virtual pins : 0
+Total block memory bits : 5,582,700
+DSP block 18-bit elements : 0
+Total GXB Receiver Channel PCS : 9
+Total GXB Receiver Channel PMA : 9
+Total GXB Transmitter Channel PCS : 9
+Total GXB Transmitter Channel PMA : 9
+Total PLLs : 3
+Total DLLs : 0

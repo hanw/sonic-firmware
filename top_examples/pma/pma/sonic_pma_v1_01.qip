@@ -1,0 +1,35 @@
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01.v] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/altera_xcvr_functions.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/altera_xcvr_low_latency_phy.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_pma_ch_controller_tgx.v] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/tgx_ch_reset_ctrl.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_pma_controller_tgx.v] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_reset_ctrl_lego.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_reset_ctrl_tgx_cdrauto.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_resync.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_csr_common_h.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_csr_common.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_csr_pcs8g_h.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_csr_pcs8g.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_csr_selector.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_mgmt2dec.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/altera_wait_generate.v] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_pma_functions.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/siv_xcvr_low_latency_phy_nr.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_reconfig_h.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_reconfig_siv.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_reconfig_analog.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_reconfig_analog_tgx.v] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_reconfig_offset_cancellation.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_reconfig_offset_cancellation_tgx.v] -library lib_sonic_pma_v1_01
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_reconfig_eyemon.v] -library lib_sonic_pma_v1_01
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_reconfig_eyemon_tgx.v] -library lib_sonic_pma_v1_01
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_reconfig_dfe.v] -library lib_sonic_pma_v1_01
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_reconfig_dfe_tgx.v] -library lib_sonic_pma_v1_01
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_reconfig_basic_tgx.v] -library lib_sonic_pma_v1_01
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_mutex_acq.v] -library lib_sonic_pma_v1_01
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_dprio.v] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_arbiter.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) sonic_pma_v1_01/alt_xcvr_m2s.sv] -library lib_sonic_pma_v1_01
+set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID ipds 
+ 

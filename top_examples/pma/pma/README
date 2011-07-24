@@ -1,0 +1,5 @@
+SoNIC PMA is implemented based on the low_latency_phy megawizard instance, with the following fix:
+1. Fix the bit order in top level design, the wizard generated bit order in opposite. We assume Bit40 is MSB.
+2. Fix the instantiation of alt4gxb to alt_pma_10gbaser_tgx in simulation. Modelsim is not able to find the
+   alt4gxb module in the simulation library. 
+3. 

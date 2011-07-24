@@ -1,0 +1,5 @@
+#comment: An example of PLL TYPE assignment that assigns CMU for TX PLL. To change the type of TX PLL to LC (or ATX) PLL, update PLL_TYPE option accordingly. Note that this assignment is needed for every TX PLL that exist in the design.
+#set_instance_assignment -name PLL_TYPE CMU -to *altera_xcvr_low_latency_phy*sv_xcvr_low_latency_phy_nr*sv_xcvr_10g_custom_native*sv_xcvr_plls*tx_pll
+#set_instance_assignment -name PLL_TYPE ATX -to *altera_xcvr_low_latency_phy*sv_xcvr_low_latency_phy_nr*sv_xcvr_10g_custom_native*sv_xcvr_plls*tx_pll
+#set_instance_assignment -name PLL_TYPE CMU -to *altera_xcvr_low_latency_phy*sv_xcvr_low_latency_phy_nr*sv_xcvr_custom_native*sv_xcvr_plls*tx_pll
+#set_instance_assignment -name PLL_TYPE ATX -to *altera_xcvr_low_latency_phy*sv_xcvr_low_latency_phy_nr*sv_xcvr_custom_native*sv_xcvr_plls*tx_pll

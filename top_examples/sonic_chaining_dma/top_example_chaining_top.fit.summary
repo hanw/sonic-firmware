@@ -1,0 +1,22 @@
+Fitter Status : Successful - Mon Jul 18 10:12:19 2011
+Quartus II Version : 11.0 Build 157 04/27/2011 SP 0.01 SJ Full Version
+Revision Name : top_example_chaining_top
+Top-level Entity Name : sonic_top_wrapper
+Family : Stratix IV
+Device : EP4S100G2F40I2
+Timing Models : Final
+Logic utilization : 13 %
+    Combinational ALUTs : 13,278 / 182,400 ( 7 % )
+    Memory ALUTs : 60 / 91,200 ( < 1 % )
+    Dedicated logic registers : 19,661 / 182,400 ( 11 % )
+Total registers : 19661
+Total pins : 73 / 798 ( 9 % )
+Total virtual pins : 0
+Total block memory bits : 5,581,260 / 14,625,792 ( 38 % )
+DSP block 18-bit elements : 0 / 1,288 ( 0 % )
+Total GXB Receiver Channel PCS : 9 / 24 ( 38 % )
+Total GXB Receiver Channel PMA : 9 / 36 ( 25 % )
+Total GXB Transmitter Channel PCS : 9 / 24 ( 38 % )
+Total GXB Transmitter Channel PMA : 9 / 36 ( 25 % )
+Total PLLs : 3 / 8 ( 38 % )
+Total DLLs : 0 / 4 ( 0 % )
