@@ -4,3 +4,4 @@ top_examples/sonic_chaining_dma/*.smsg
 top_examples/sonic_chaining_dma/*.summary
 top_examples/sonic_chaining_dma/*.done
 top_examples/sonic_chaining_dma/*.bak
+top_examples/.qsys-edit/
