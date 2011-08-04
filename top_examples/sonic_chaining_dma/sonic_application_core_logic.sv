@@ -722,12 +722,10 @@ reg   pci_mem_addr_space_decoder_enable;
  */
 
 	sonic_rx_ctl sonic_rx_buf (
-		.wr_clock(xcvr_rx_clkout),
+		.wr_clock(xcvr_rx_clkout),	//wr_clock should synchronous with 64-bit data
 		.reset(~pma_rx_ready | ~g_rstn),
-//		.reset(1'b1),
-
 		//Avalon read slave port
-		.rd_clock(clk_in),
+		.rd_clock(clk_in),	
 		.rd_address_owords(address_dmawr),
 		.rd_data(readdata_dmawr),
 		// Data read from EP into wrfifo in write_requester.
@@ -754,12 +752,12 @@ reg   pci_mem_addr_space_decoder_enable;
 	sonic_tx_ctl sonic_tx_buf(
 		.reset(~pma_tx_ready | ~g_rstn),
 		//Avalon write port
-		.wr_clock(clk_in),
+		.wr_clock(clk_in),	//clk should sync with writedata
 		.wr_address_owords(address_dmard),
 		.wr_req(write_dmard),
 		.wr_data(writedata_dmard),
 		
-		.rd_clock(xcvr_tx_clkout),
+		.rd_clock(xcvr_tx_clkout),	//rd_clk sync with tx_data
 		.rd_data(xcvr_tx_datain),
 		.tag_cpl(tag_cpl),
 		// prg_reg

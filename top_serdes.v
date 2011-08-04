@@ -7349,4 +7349,4 @@ endmodule
 // Retrieval info: GEN_FILE: TYPE_NORMAL top_serdes.cmp FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL top_serdes.bsf FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL top_serdes_inst.v FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL top_serdes_bb.v TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL top_serdes_bb.v FALSE

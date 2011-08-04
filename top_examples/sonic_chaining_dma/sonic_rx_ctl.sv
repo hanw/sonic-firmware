@@ -106,7 +106,7 @@ module sonic_rx_ctl (
 	logic [31:0] rx_ring_size;
 */
 
-	always @(posedge reset or posedge rd_clock) begin
+	always @(posedge reset or posedge wr_clock) begin
 		if (reset == 1'b1) begin
 			wrena_reg		= 1'b0;
 			wrreq_reg		= 1'b0;		

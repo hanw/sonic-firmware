@@ -113,7 +113,9 @@ module sonic_rx_circular_buffer # (
 		.wrclock(wrclock),
 		.reset(reset),
 		.wrena(wrena),
-		.wrreq(wrreq),
+		.wrreq(wrreq & gearbox_datavalid),	
+						//it should only increment when the data 
+						//write to the fifo is valid.
 		.rdreq(rdreq),
 		.rdena(rdena),
 		.wrusedqwords(wrusedqwords),
