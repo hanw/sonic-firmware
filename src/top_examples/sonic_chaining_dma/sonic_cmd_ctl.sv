@@ -71,6 +71,8 @@ module sonic_cmd_ctl #(
 	// ----------------------------------------------------
 	// Sonic command registers
 	// ----------------------------------------------------
+	wire init;
+
 	wire [63:0] cmd_base_rc;
 	wire		cmd_3dw_rcadd;
 
@@ -362,7 +364,6 @@ module sonic_cmd_ctl #(
 	// ------------------------------------------------------
 	// PCIE backend RC update module. For simplicity, we 
 	// ------------------------------------------------------
-	wire init;
 	
 	sonic_rc_update rc_update(
 		.clk_in(clk_in),

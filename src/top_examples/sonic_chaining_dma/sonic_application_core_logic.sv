@@ -454,6 +454,9 @@ reg   pci_mem_addr_space_decoder_enable;
    wire  tx_rdy_interrupt;
    wire  tx_rdy_command;
 
+	wire [`USED_QWORDS_WIDTH-1:0] rx_ring_wptr;
+	wire dma_fifo_wrreq;
+
    sonic_dma_dt  #(
       .DIRECTION      (`DIRECTION_WRITE),
       .FIFO_WIDTHU    (FIFO_WIDTHU     ),
@@ -676,8 +679,6 @@ reg   pci_mem_addr_space_decoder_enable;
  * for Rx module and command response.
  *
  */
-	wire [`USED_QWORDS_WIDTH-1:0] rx_ring_wptr;
-	wire dma_fifo_wrreq;
 	
 	sonic_irq_ctl sonic_irq (
 		.clk_in(clk_in),
