@@ -1,7 +1,9 @@
-top_examples/sonic_v1_15/
-top_examples/sonic_chaining_dma/*.rpt
-top_examples/sonic_chaining_dma/*.smsg
-top_examples/sonic_chaining_dma/*.summary
-top_examples/sonic_chaining_dma/*.done
-top_examples/sonic_chaining_dma/*.bak
-top_examples/.qsys-edit/
+src/top_examples/sonic_v1_15/
+src/top_examples/sonic_chaining_dma/*.rpt
+src/top_examples/sonic_chaining_dma/*.smsg
+src/top_examples/sonic_chaining_dma/*.summary
+src/top_examples/sonic_chaining_dma/*.done
+src/top_examples/sonic_chaining_dma/*.bak
+src/top_examples/.qsys-edit/
+src/top_examples/sonic_chaining_dma/db/*
+src/pma/sonic_pma_v1_01_sim/
