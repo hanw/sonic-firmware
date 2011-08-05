@@ -392,6 +392,7 @@ module sonic_cmd_ctl #(
 		.byte_dropped_tx(),
 		.byte_dropped_rx(),
 		.rx_ring_wptr(),
+		.tx_ring_wptr(),
 		//VHDL translation_on
 		.cmd_response(response_data),
 		.cmd_error_code(response_error_code)

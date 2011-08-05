@@ -76,8 +76,9 @@ module sonic_irq_ctl (
 	wire		irq_msi_enable;
 	wire		irq_init;
 
-	logic [`USED_QWORDS_WIDTH-1:0] rxusedqwords;
 	logic [31:0] rx_ring_size;
+
+	assign rx_ring_size = 1 << `USED_QWORDS_WIDTH;
 
 	// -----------------------------------------------------------
 	//  rx irq generation
@@ -108,7 +109,7 @@ module sonic_irq_ctl (
 
 		//send the count of current outstanding bytes,
 		//equals the difference between current Wptr and last Mptr.
-		.rx_ring_size(1 << `USED_QWORDS_WIDTH),
+		.rx_ring_size(rx_ring_size),
 		.rx_ring_wptr(rx_ring_wptr),
 		.rx_block_size(rx_block_size),
 		.rdreq(rd_req),

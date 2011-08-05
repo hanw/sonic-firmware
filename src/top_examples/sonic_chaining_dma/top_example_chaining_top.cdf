@@ -6,7 +6,7 @@ JedecChain;
 	P ActionCode(Ign)
 		Device PartName(EPM570) MfrSpec(OpMask(0) SEC_Device(CFI_256MB) Child_OpMask(1 0));
 	P ActionCode(Cfg)
-		Device PartName(EP4S100G2F40) Path("/home/hwang/sonic/projects/sonic_fpga/top_examples/sonic_chaining_dma/") File("top_example_chaining_top.sof") MfrSpec(OpMask(1));
+		Device PartName(EP4S100G2F40) Path("/home/hwang/sonic/projects/sonic_fpga/src/top_examples/sonic_chaining_dma/") File("top_example_chaining_top.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

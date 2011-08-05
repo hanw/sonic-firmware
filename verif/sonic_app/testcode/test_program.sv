@@ -39,7 +39,7 @@
 //SoNIC parameters
 `define IRQ_BASE_ADDRESS_HI 32'h1
 `define IRQ_BASE_ADDRESS_LO 32'h78000000
-`define IRQ_SIZE		32'h400
+`define IRQ_SIZE		32'h1000
 
 //local parameters
 `define LOCAL_DT_MEMORY  32'h2000
@@ -549,7 +549,7 @@ module test_program();
 										
 					@ (`SNK.signal_transaction_received);
 					snk_transaction = snk_pop_transaction();
-					print_transaction(snk_transaction, SINK, j);
+					//print_transaction(snk_transaction, SINK, j);
 
 					// Five type of transaction are received by this thread,
 					// Each transaction should have its own queue and with its
@@ -1082,7 +1082,7 @@ module test_program();
 			for (i = 0; i < transaction.data[9:2]; i++) begin
 				@ (`SNK.signal_transaction_received);
 				dma_wr64_transaction = snk_pop_transaction();
-				print_transaction(dma_wr64_transaction, SINK, j);
+				//print_transaction(dma_wr64_transaction, SINK, j);
 				pending_wr64_queue.push_back(dma_wr64_transaction);
 				print(VERBOSITY_INFO, "push on pending_wr64_queue");
 			end
@@ -1100,7 +1100,7 @@ module test_program();
 			if ((transaction.data[9:2] == 0) && transaction.data[1:0] != 0) begin
 				@(`SNK.signal_transaction_received);
 				dma_wr32_transaction = snk_pop_transaction();
-				print_transaction(dma_wr32_transaction, SINK, j);
+				//print_transaction(dma_wr32_transaction, SINK, j);
 				pending_wr32_queue.push_back(dma_wr32_transaction);
 				print(VERBOSITY_INFO, "push on pending_wr32_queue");
 			end
@@ -1108,7 +1108,7 @@ module test_program();
 				for (i = 0; i < transaction.data[9:2]; i++) begin
 					@ (`SNK.signal_transaction_received);
 					dma_wr32_transaction = snk_pop_transaction();
-					print_transaction(dma_wr32_transaction, SINK, j);
+					//print_transaction(dma_wr32_transaction, SINK, j);
 					pending_wr32_queue.push_back(dma_wr32_transaction);
 					print(VERBOSITY_INFO, "push on pending_wr32_queue");
 				end
