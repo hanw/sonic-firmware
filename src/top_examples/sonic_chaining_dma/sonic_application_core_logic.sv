@@ -724,7 +724,13 @@ reg   pci_mem_addr_space_decoder_enable;
 
 	sonic_rx_ctl sonic_rx_buf (
 		.wr_clock(xcvr_rx_clkout),	//wr_clock should synchronous with 64-bit data
-		.reset(~pma_rx_ready | ~g_rstn),
+		.reset(~pma_rx_ready | ~g_rstn),	//If PMA is not ready, then the rx ring resets.
+//		.reset(~g_rstn),	//FIX: for testing purpose, we remove the reset from pma_rx_ready,
+							//As a result, the interrupt will be generated as
+							//soon as the enable_sfp is set. The ring should
+							//be written constantly, the output data won't be
+							//correct, but the interrupt should work fine.
+
 		//Avalon read slave port
 		.rd_clock(clk_in),	
 		.rd_address_owords(address_dmawr),
