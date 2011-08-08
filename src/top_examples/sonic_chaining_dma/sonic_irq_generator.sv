@@ -72,7 +72,8 @@ module sonic_irq_generator #(
 	enum int unsigned {IDLE_UPD_IRQ = 0, START_TX_UPD_IRQ  = 1, MWR_REQ_UPD_IRQ   = 2,
 				MWR_DV_UPD_IRQ = 3, START_INTR_MSI=4, MWR_INTR_REQ_MSI=5} cstate, nstate;
 
-	reg		rx_dma_req;
+	reg		rx_rc_update_req;
+	reg	[7:0] irq_generated_count;
 
 	// If the difference between msi_ptr and write_ptr is
 	// larger than rx_block_size, we issue another MSI interrupt,
@@ -95,7 +96,7 @@ module sonic_irq_generator #(
 	case (cstate)
 		IDLE_UPD_IRQ:
 		begin
-			if ((init==1'b0) && (rx_dma_req==1'b1))
+			if ((init==1'b0) && (rx_rc_update_req==1'b1))
 				nstate = START_TX_UPD_IRQ;
 			else
 				nstate = IDLE_UPD_IRQ;
@@ -123,10 +124,17 @@ module sonic_irq_generator #(
 
 		MWR_DV_UPD_IRQ:
 		begin
-			if ((tx_ws==1'b0) || (tx_dv==1'b0))
-				nstate = START_INTR_MSI;
-			else
+			if ((tx_ws==1'b0) || (tx_dv==1'b0)) begin
+				if (irq_generated_count == 1) begin
+					nstate = START_INTR_MSI;
+				end 
+				else begin
+					nstate = IDLE_UPD_IRQ;
+				end
+			end
+			else begin
 				nstate = MWR_DV_UPD_IRQ;
+			end
 		end
 
 		START_INTR_MSI:		
@@ -209,12 +217,15 @@ module sonic_irq_generator #(
 	
 	// -------------------------------------------------------
 	// IRQ generation logic 
-	//
+	// It should generate an interrupt after the IRQ is enabled
+	// And should generate no more interrupt, until the SFP is
+	// disabled and enabled again.
 	// -------------------------------------------------------
 	// MSI generation logic
 	always @ (posedge clk_in or posedge reset or posedge init) begin
 		if ((reset == 1'b1) || (init == 1'b1)) begin
-			rx_dma_req <= 0;
+			rx_rc_update_req <= 0;
+			irq_generated_count <= 0;
 			rx_block_size_reg <= {USED_QWORDS_WIDTH{1'b1}};
 			msi_ptr <= 0;
 			msi_offset <= 0;
@@ -240,7 +251,12 @@ module sonic_irq_generator #(
 
 			// Generate MSI based on msi_offset
 			if (temp >= rx_block_size_reg) begin
-				rx_dma_req <= 1;
+				// Only generate irq once.
+				if (irq_generated_count < 2) begin
+					irq_generated_count <= irq_generated_count + 1;
+				end
+				
+				rx_rc_update_req <= 1;
 				msi_offset <= temp; //msi offset must be aligned to qword boundary.
 				temp <= 0;
 				if (msi_ptr + temp >= rx_ring_size)
@@ -249,7 +265,7 @@ module sonic_irq_generator #(
 					msi_ptr <= msi_ptr + temp;
 			end
 			else begin
-				rx_dma_req <= 0;
+				rx_rc_update_req <= 0;
 			end
 		end
 	end

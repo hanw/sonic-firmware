@@ -494,6 +494,8 @@ add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_in
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/app_msi_num
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/app_msi_ack
 add wave -noupdate -divider {IRQ Generator}
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/rx_rc_update_req
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/irq_generated_count
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/dma_write/dma_prg/dt_rc_last_sync
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/dma_write/dma_prg/dt_eplast_ena
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/dma_write/dma_prg/dt_msi
@@ -520,7 +522,6 @@ add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_in
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/temp
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/rx_ring_wptr
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/rx_ring_size
-add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/rx_dma_req
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/rx_block_size_reg
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/rx_block_size
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/reset
