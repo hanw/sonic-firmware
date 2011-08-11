@@ -12,6 +12,14 @@
    element $${FILENAME}
    {
    }
+   element avalon_master_0
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
    element avalon_slave_0
    {
       datum _sortIndex
@@ -151,7 +159,7 @@
  <parameter name="projectName" value="" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1310875194796" />
+ <parameter name="timeStamp" value="1312837353865" />
  <interface name="mm_clk_in" internal="mm_clk.clk_in" type="clock" dir="end" />
  <interface
    name="mm_clk_in_reset"
@@ -234,6 +242,16 @@
    internal="sonic_pma.rx_ready"
    type="conduit"
    dir="end" />
+ <interface
+   name="avalon_master_control"
+   internal="avalon_master_0.control"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="avalon_master_user"
+   internal="avalon_master_0.user"
+   type="conduit"
+   dir="end" />
  <module kind="clock_source" version="11.0" enabled="1" name="mm_clk">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -304,6 +322,19 @@
  <module kind="sonic_pma_v1_01" version="1.0" enabled="1" name="sonic_pma">
   <parameter name="AUTO_PHY_MGMT_CLK_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_PLL_REF_CLK_CLOCK_RATE" value="644153000" />
+ </module>
+ <module kind="avalon_master" version="1.0" enabled="1" name="avalon_master_0">
+  <parameter name="MASTER_DIRECTION" value="1" />
+  <parameter name="DATA_WIDTH" value="32" />
+  <parameter name="ADDRESS_WIDTH" value="32" />
+  <parameter name="BURST_CAPABLE" value="0" />
+  <parameter name="MAXIMUM_BURST_COUNT" value="2" />
+  <parameter name="BURST_COUNT_WIDTH" value="2" />
+  <parameter name="FIFO_DEPTH" value="32" />
+  <parameter name="FIFO_DEPTH_LOG2" value="5" />
+  <parameter name="MEMORY_BASED_FIFO" value="1" />
+  <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="50000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Stratix IV" />
  </module>
  <connection kind="clock" version="11.0" start="mm_clk.clk" end="jtag_master.clk" />
  <connection
@@ -397,4 +428,38 @@
    version="11.0"
    start="ref_clk.clk_reset"
    end="sonic_pma.phy_mgmt_clk_reset" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="mm_clk.clk"
+   end="avalon_master_0.clock_reset" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="mm_clk.clk_reset"
+   end="avalon_master_0.clock_reset_reset" />
+ <connection
+   kind="avalon"
+   version="11.0"
+   start="avalon_master_0.avalon_master"
+   end="mdio.csr">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0800" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="11.0"
+   start="avalon_master_0.avalon_master"
+   end="avalon_slave_0.s0">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x1000" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="11.0"
+   start="avalon_master_0.avalon_master"
+   end="sonic_pma.phy_mgmt">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00050000" />
+ </connection>
 </system>

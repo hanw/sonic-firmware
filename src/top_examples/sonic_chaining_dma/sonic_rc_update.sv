@@ -63,8 +63,8 @@ module sonic_rc_update #(
 	input logic [31:0]		  byte_sent,
 	input logic [31:0]		  byte_dropped_tx,
 	input logic [31:0]		  byte_dropped_rx,
-	input logic [`USED_QWORDS_WIDTH-1:0] rx_ring_wptr,
-	input logic [`TX_WRITE_ADDR_WIDTH-1:0] tx_ring_wptr
+	input logic [`RX_WRITE_ADDR_WIDTH-1:0] rx_ring_wptr,
+	input logic [`TX_READ_ADDR_WIDTH-1:0] tx_ring_rptr
 	);
 	
 	wire reset;
@@ -140,8 +140,8 @@ module sonic_rc_update #(
 		end
 		else if (MODE == `RC_UPD_IRQ_MODE) begin
 			if(intr_data_upd_cycle==1'b1) begin
-				tx_data_reg[127:96]   <= {{(32-`TX_WRITE_ADDR_WIDTH){1'b0}}, tx_ring_wptr};		// wptr in tx buffer
-				tx_data_reg[95:64]    <= {{(32-`USED_QWORDS_WIDTH){1'b0}}, rx_ring_wptr};		    // wptr in rx buffer
+				tx_data_reg[127:96]   <= {{(32-`TX_READ_ADDR_WIDTH){1'b0}}, tx_ring_rptr};		// wptr in tx buffer
+				tx_data_reg[95:64]    <= {{(32-`RX_WRITE_ADDR_WIDTH){1'b0}}, rx_ring_wptr};		    // wptr in rx buffer
 				tx_data_reg[63:32]	  <= byte_sent;			// how many bytes sent
 				tx_data_reg[31:8]	  <= byte_ready;		// how many bytes in rx buffer
 				tx_data_reg[7:4]	  <= 4'b0;				// Reserved

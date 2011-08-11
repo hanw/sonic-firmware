@@ -138,11 +138,15 @@ module sonic_v1_15_id_router
         destid      = sink_data[PKT_DEST_ID_H : PKT_DEST_ID_L];
 
         if (destid == 1) begin
-            src_channel = 'b01;
+            src_channel = 'b001;
         end
 
         if (destid == 2) begin
-            src_channel = 'b10;
+            src_channel = 'b010;
+        end
+
+        if (destid == 3) begin
+            src_channel = 'b100;
         end
 
     end

@@ -574,7 +574,17 @@ module sonic_top_wrapper (
     .rx_parallel_data_data (xcvr_rx_dataout),
     .tx_parallel_data_data (xcvr_tx_datain),
     .rx_clkout_clk  (xcvr_rx_clkout),
-    .tx_clkout_clk  (xcvr_tx_clkout)
+    .tx_clkout_clk  (xcvr_tx_clkout),
+
+	.avalon_master_control_fixed_location (),	// avalon_master_control.fixed_location
+	.avalon_master_control_go             (),   //                      .go
+	.avalon_master_control_write_length   (),   //                      .write_length
+	.avalon_master_control_done           (),   //                      .done
+	.avalon_master_control_write_base     (),   //                      .write_base
+	.avalon_master_user_buffer_input_data (),	//    avalon_master_user.buffer_input_data
+	.avalon_master_user_buffer_full       (),   //                      .buffer_full
+	.avalon_master_user_write_buffer      ()    //                      .write_buffer
+
   );
 
 // MDIO ports connection

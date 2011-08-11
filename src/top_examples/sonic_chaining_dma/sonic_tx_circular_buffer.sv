@@ -31,7 +31,7 @@ module sonic_tx_circular_buffer # (
 		input logic rdena,
 
 		input logic	waitrequest,
-	
+		
 		input logic	tag_cpl,  // triggers the fifo output
 	
 		// clock and reset
@@ -40,12 +40,13 @@ module sonic_tx_circular_buffer # (
 		input logic wrclock,
 
 		output logic [OUTPUT_WIDTH-1:0] data_out,
-
 		// monitor signals	
 		output logic empty,
 		output logic full,
 		output logic almost_full,
-		output logic almost_empty
+		output logic almost_empty,
+
+		output logic [`TX_READ_ADDR_WIDTH-1:0] tx_ring_rptr
 	);
 	
 	localparam WRITE_BYTE_WIDTH	= INPUT_WIDTH/8;
@@ -96,6 +97,7 @@ module sonic_tx_circular_buffer # (
 		.almost_full(almost_full),
 		.rdusedqwords(rdusedqwords),
 		.clock_crossed_wptr(),
+		.clock_crossed_rptr(tx_ring_rptr),
 		.empty(empty),
 		.almost_empty(almost_empty)
 	);

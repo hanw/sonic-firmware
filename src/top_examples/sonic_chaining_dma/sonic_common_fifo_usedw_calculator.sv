@@ -45,7 +45,8 @@ module sonic_common_fifo_usedw_calculator #(
 
 	// information signals calculated (read side)
 	output logic [`USED_QWORDS_WIDTH-1:0] rdusedqwords,
-	output logic [WIDTH-1:0] clock_crossed_wptr,
+	output logic [WIDTH-1:0] clock_crossed_wptr,	//for Rx
+	output logic [WIDTH-1:0] clock_crossed_rptr,	//for Tx
 	output logic empty,
 	output logic almost_empty
 	);
@@ -245,7 +246,8 @@ module sonic_common_fifo_usedw_calculator #(
 
 	// drive output lines from registers
 	assign rdusedqwords = rdusedqwords_reg;
-	assign clock_crossed_wptr = clock_crossed_wrcounter;
+	assign clock_crossed_wptr = clock_crossed_wrcounter;	//For rx
+	assign clock_crossed_rptr = clock_crossed_rdcounter;	//For tx
 	assign empty = empty_reg;
 	assign almost_empty = (QWORD_DEPTH > 1) ? almost_empty_reg : 1'b1;
 

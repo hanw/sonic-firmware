@@ -33,7 +33,9 @@ module sonic_tx_ctl (
 	input  logic			tx_prg_wrena,
 	input  logic [31:0]	    tx_prg_wrdata,
 	input  logic [7:0]      tx_prg_addr,
-	output logic [31:0]     tx_prg_rddata
+	output logic [31:0]     tx_prg_rddata,
+
+	output logic [`TX_READ_ADDR_WIDTH-1:0] tx_ring_rptr
 	);
 	
 	// Signals for circular buffer
@@ -50,7 +52,7 @@ module sonic_tx_ctl (
 		.wrreq(wr_req),
 		.rdena(1'b1),   //TODO: fix
 		.waitrequest(1'b0),	//TODO:fix
-	
+		.tx_ring_rptr (tx_ring_rptr),
 		.tag_cpl(tag_cpl),
 	
 		.reset(reset),

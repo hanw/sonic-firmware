@@ -2,7 +2,7 @@
   (version "1.1")
 )
 (symbol
-  (rect 0 0 336 1632)
+  (rect 0 0 368 1840)
   (text "sonic_v1_15"
     (rect 8 -4 107 16)  
     (font "Arial"
@@ -11,7 +11,7 @@
     )  
   )
   (text "inst"
-    (rect 0 1620 18 1630)  
+    (rect 0 1828 18 1838)  
     (font "Arial"
       (color 255 255 255)    
       (font_size 10)    
@@ -326,7 +326,7 @@
   (port
     (pt 0 600)  
     (input)  
-    (text "user_interface_datain_8[31..0]"
+    (text "user_interface_datain_2[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -343,7 +343,7 @@
   (port
     (pt 0 616)  
     (output)  
-    (text "user_interface_dataout_6[31..0]"
+    (text "user_interface_dataout_4[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -359,8 +359,8 @@
   )
   (port
     (pt 0 632)  
-    (input)  
-    (text "user_interface_datain_7[31..0]"
+    (output)  
+    (text "user_interface_dataout_3[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -376,8 +376,8 @@
   )
   (port
     (pt 0 648)  
-    (output)  
-    (text "user_interface_dataout_11[31..0]"
+    (input)  
+    (text "user_interface_datain_1[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -394,7 +394,7 @@
   (port
     (pt 0 664)  
     (output)  
-    (text "user_interface_dataout_1[31..0]"
+    (text "user_interface_dataout_8[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -411,7 +411,7 @@
   (port
     (pt 0 680)  
     (output)  
-    (text "user_interface_dataout_10[31..0]"
+    (text "user_interface_dataout_13[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -427,8 +427,8 @@
   )
   (port
     (pt 0 696)  
-    (input)  
-    (text "user_interface_datain_0[31..0]"
+    (output)  
+    (text "user_interface_read "
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -444,8 +444,8 @@
   )
   (port
     (pt 0 712)  
-    (input)  
-    (text "user_interface_datain_6[31..0]"
+    (output)  
+    (text "user_interface_dataout_1[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -461,8 +461,8 @@
   )
   (port
     (pt 0 728)  
-    (output)  
-    (text "user_interface_dataout_9[31..0]"
+    (input)  
+    (text "user_interface_datain_5[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -479,7 +479,7 @@
   (port
     (pt 0 744)  
     (input)  
-    (text "user_interface_datain_1[31..0]"
+    (text "user_interface_datain_14[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -495,8 +495,8 @@
   )
   (port
     (pt 0 760)  
-    (output)  
-    (text "user_interface_dataout_15[31..0]"
+    (input)  
+    (text "user_interface_datain_11[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -513,7 +513,7 @@
   (port
     (pt 0 776)  
     (input)  
-    (text "user_interface_datain_2[31..0]"
+    (text "user_interface_datain_3[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -529,8 +529,8 @@
   )
   (port
     (pt 0 792)  
-    (output)  
-    (text "user_interface_byteenable[3..0]"
+    (input)  
+    (text "user_interface_datain_12[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -546,8 +546,8 @@
   )
   (port
     (pt 0 808)  
-    (input)  
-    (text "user_interface_datain_9[31..0]"
+    (output)  
+    (text "user_interface_dataout_15[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -563,8 +563,8 @@
   )
   (port
     (pt 0 824)  
-    (output)  
-    (text "user_interface_write "
+    (input)  
+    (text "user_interface_datain_10[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -580,8 +580,8 @@
   )
   (port
     (pt 0 840)  
-    (output)  
-    (text "user_interface_dataout_14[31..0]"
+    (input)  
+    (text "user_interface_datain_4[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -598,7 +598,7 @@
   (port
     (pt 0 856)  
     (input)  
-    (text "user_interface_datain_15[31..0]"
+    (text "user_interface_datain_7[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -615,7 +615,7 @@
   (port
     (pt 0 872)  
     (output)  
-    (text "user_interface_dataout_8[31..0]"
+    (text "user_interface_dataout_9[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -632,7 +632,7 @@
   (port
     (pt 0 888)  
     (output)  
-    (text "user_interface_dataout_13[31..0]"
+    (text "user_interface_dataout_14[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -648,8 +648,8 @@
   )
   (port
     (pt 0 904)  
-    (input)  
-    (text "user_interface_datain_5[31..0]"
+    (output)  
+    (text "user_interface_write "
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -665,8 +665,8 @@
   )
   (port
     (pt 0 920)  
-    (output)  
-    (text "user_interface_dataout_0[31..0]"
+    (input)  
+    (text "user_interface_datain_0[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -682,8 +682,8 @@
   )
   (port
     (pt 0 936)  
-    (input)  
-    (text "user_interface_datain_3[31..0]"
+    (output)  
+    (text "user_interface_chipselect[15..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -699,8 +699,8 @@
   )
   (port
     (pt 0 952)  
-    (input)  
-    (text "user_interface_datain_10[31..0]"
+    (output)  
+    (text "user_interface_dataout_11[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -716,8 +716,8 @@
   )
   (port
     (pt 0 968)  
-    (output)  
-    (text "user_interface_dataout_5[31..0]"
+    (input)  
+    (text "user_interface_datain_9[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -734,7 +734,7 @@
   (port
     (pt 0 984)  
     (input)  
-    (text "user_interface_datain_13[31..0]"
+    (text "user_interface_datain_6[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -751,7 +751,7 @@
   (port
     (pt 0 1000)  
     (output)  
-    (text "user_interface_dataout_4[31..0]"
+    (text "user_interface_dataout_5[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -767,8 +767,8 @@
   )
   (port
     (pt 0 1016)  
-    (output)  
-    (text "user_interface_dataout_2[31..0]"
+    (input)  
+    (text "user_interface_datain_8[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -784,8 +784,8 @@
   )
   (port
     (pt 0 1032)  
-    (input)  
-    (text "user_interface_datain_4[31..0]"
+    (output)  
+    (text "user_interface_dataout_2[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -802,7 +802,7 @@
   (port
     (pt 0 1048)  
     (output)  
-    (text "user_interface_chipselect[15..0]"
+    (text "user_interface_dataout_7[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -819,7 +819,7 @@
   (port
     (pt 0 1064)  
     (output)  
-    (text "user_interface_dataout_12[31..0]"
+    (text "user_interface_dataout_10[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -835,8 +835,8 @@
   )
   (port
     (pt 0 1080)  
-    (input)  
-    (text "user_interface_datain_12[31..0]"
+    (output)  
+    (text "user_interface_byteenable[3..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -853,7 +853,7 @@
   (port
     (pt 0 1096)  
     (output)  
-    (text "user_interface_dataout_7[31..0]"
+    (text "user_interface_dataout_12[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -870,7 +870,7 @@
   (port
     (pt 0 1112)  
     (input)  
-    (text "user_interface_datain_14[31..0]"
+    (text "user_interface_datain_15[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -886,8 +886,8 @@
   )
   (port
     (pt 0 1128)  
-    (output)  
-    (text "user_interface_dataout_3[31..0]"
+    (input)  
+    (text "user_interface_datain_13[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -904,7 +904,7 @@
   (port
     (pt 0 1144)  
     (output)  
-    (text "user_interface_read "
+    (text "user_interface_dataout_6[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -920,8 +920,8 @@
   )
   (port
     (pt 0 1160)  
-    (input)  
-    (text "user_interface_datain_11[31..0]"
+    (output)  
+    (text "user_interface_dataout_0[31..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -1072,7 +1072,143 @@
     )  
   )
   (port
-    (pt 336 72)  
+    (pt 0 1664)  
+    (input)  
+    (text "avalon_master_control_go "
+      (rect 0 0 1 1)    
+      (font "Arial")    
+    )  
+    (text " "
+      (rect 0 0 1 1)    
+      (font "Arial")    
+    )  
+    (line
+      (pt 0 1664)    
+      (pt 0 1664)    
+      (line_width 0)    
+    )  
+  )
+  (port
+    (pt 0 1680)  
+    (input)  
+    (text "avalon_master_control_fixed_location "
+      (rect 0 0 1 1)    
+      (font "Arial")    
+    )  
+    (text " "
+      (rect 0 0 1 1)    
+      (font "Arial")    
+    )  
+    (line
+      (pt 0 1680)    
+      (pt 0 1680)    
+      (line_width 0)    
+    )  
+  )
+  (port
+    (pt 0 1696)  
+    (output)  
+    (text "avalon_master_control_done "
+      (rect 0 0 1 1)    
+      (font "Arial")    
+    )  
+    (text " "
+      (rect 0 0 1 1)    
+      (font "Arial")    
+    )  
+    (line
+      (pt 0 1696)    
+      (pt 0 1696)    
+      (line_width 0)    
+    )  
+  )
+  (port
+    (pt 0 1712)  
+    (input)  
+    (text "avalon_master_control_write_length[31..0]"
+      (rect 0 0 1 1)    
+      (font "Arial")    
+    )  
+    (text " "
+      (rect 0 0 1 1)    
+      (font "Arial")    
+    )  
+    (line
+      (pt 0 1712)    
+      (pt 0 1712)    
+      (line_width 0)    
+    )  
+  )
+  (port
+    (pt 0 1728)  
+    (input)  
+    (text "avalon_master_control_write_base[31..0]"
+      (rect 0 0 1 1)    
+      (font "Arial")    
+    )  
+    (text " "
+      (rect 0 0 1 1)    
+      (font "Arial")    
+    )  
+    (line
+      (pt 0 1728)    
+      (pt 0 1728)    
+      (line_width 0)    
+    )  
+  )
+  (port
+    (pt 0 1784)  
+    (input)  
+    (text "avalon_master_user_write_buffer "
+      (rect 0 0 1 1)    
+      (font "Arial")    
+    )  
+    (text " "
+      (rect 0 0 1 1)    
+      (font "Arial")    
+    )  
+    (line
+      (pt 0 1784)    
+      (pt 0 1784)    
+      (line_width 0)    
+    )  
+  )
+  (port
+    (pt 0 1800)  
+    (input)  
+    (text "avalon_master_user_buffer_input_data[31..0]"
+      (rect 0 0 1 1)    
+      (font "Arial")    
+    )  
+    (text " "
+      (rect 0 0 1 1)    
+      (font "Arial")    
+    )  
+    (line
+      (pt 0 1800)    
+      (pt 0 1800)    
+      (line_width 0)    
+    )  
+  )
+  (port
+    (pt 0 1816)  
+    (output)  
+    (text "avalon_master_user_buffer_full "
+      (rect 0 0 1 1)    
+      (font "Arial")    
+    )  
+    (text " "
+      (rect 0 0 1 1)    
+      (font "Arial")    
+    )  
+    (line
+      (pt 0 1816)    
+      (pt 0 1816)    
+      (line_width 0)    
+    )  
+  )
+  (port
+    (pt 368 72)  
     (output)  
     (text "tx_clkout_clk "
       (rect 0 0 1 1)    
@@ -1083,13 +1219,13 @@
       (font "Arial")    
     )  
     (line
-      (pt 336 72)    
-      (pt 336 72)    
+      (pt 368 72)    
+      (pt 368 72)    
       (line_width 0)    
     )  
   )
   (port
-    (pt 336 128)  
+    (pt 368 128)  
     (output)  
     (text "rx_clkout_clk "
       (rect 0 0 1 1)    
@@ -1100,13 +1236,13 @@
       (font "Arial")    
     )  
     (line
-      (pt 336 128)    
-      (pt 336 128)    
+      (pt 368 128)    
+      (pt 368 128)    
       (line_width 0)    
     )  
   )
   (port
-    (pt 336 184)  
+    (pt 368 184)  
     (output)  
     (text "rx_parallel_data_data[39..0]"
       (rect 0 0 1 1)    
@@ -1117,14 +1253,14 @@
       (font "Arial")    
     )  
     (line
-      (pt 336 184)    
-      (pt 336 184)    
+      (pt 368 184)    
+      (pt 368 184)    
       (line_width 0)    
     )  
   )
   (drawing
     (text "sonic_v1_15"
-      (rect 258 0 317 12)    
+      (rect 290 0 349 12)    
       (font "Arial"
         (color 128 128 128)      
         (font_size 12)      
@@ -1305,252 +1441,252 @@
         (font_size 14)      
       )    
     )  
-    (text "user_interface_datain_8[32]"
+    (text "user_interface_datain_2[32]"
       (rect 16 592 137 602)    
       (font "Arial"
         (color 48 0 64)      
         (font_size 10)      
       )    
     )  
-    (text "user_interface_dataout_6[32]"
+    (text "user_interface_dataout_4[32]"
       (rect 16 608 142 618)    
       (font "Arial"
         (color 48 0 64)      
         (font_size 10)      
       )    
     )  
-    (text "user_interface_datain_7[32]"
-      (rect 16 624 137 634)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_dataout_11[32]"
-      (rect 16 640 146 650)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_dataout_1[32]"
-      (rect 16 656 142 666)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_dataout_10[32]"
-      (rect 16 672 146 682)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_datain_0[32]"
-      (rect 16 688 137 698)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_datain_6[32]"
-      (rect 16 704 137 714)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_dataout_9[32]"
-      (rect 16 720 142 730)    
+    (text "user_interface_dataout_3[32]"
+      (rect 16 624 142 634)    
       (font "Arial"
         (color 48 0 64)      
         (font_size 10)      
       )    
     )  
     (text "user_interface_datain_1[32]"
-      (rect 16 736 137 746)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_dataout_15[32]"
-      (rect 16 752 146 762)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_datain_2[32]"
-      (rect 16 768 137 778)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_byteenable[4]"
-      (rect 16 784 142 794)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_datain_9[32]"
-      (rect 16 800 137 810)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_write"
-      (rect 16 816 106 826)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_dataout_14[32]"
-      (rect 16 832 146 842)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_datain_15[32]"
-      (rect 16 848 142 858)    
+      (rect 16 640 137 650)    
       (font "Arial"
         (color 48 0 64)      
         (font_size 10)      
       )    
     )  
     (text "user_interface_dataout_8[32]"
-      (rect 16 864 142 874)    
+      (rect 16 656 142 666)    
       (font "Arial"
         (color 48 0 64)      
         (font_size 10)      
       )    
     )  
     (text "user_interface_dataout_13[32]"
-      (rect 16 880 146 890)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_datain_5[32]"
-      (rect 16 896 137 906)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_dataout_0[32]"
-      (rect 16 912 142 922)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_datain_3[32]"
-      (rect 16 928 137 938)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_datain_10[32]"
-      (rect 16 944 142 954)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_dataout_5[32]"
-      (rect 16 960 142 970)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_datain_13[32]"
-      (rect 16 976 142 986)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_dataout_4[32]"
-      (rect 16 992 142 1002)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_dataout_2[32]"
-      (rect 16 1008 142 1018)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_datain_4[32]"
-      (rect 16 1024 137 1034)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_chipselect[16]"
-      (rect 16 1040 146 1050)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_dataout_12[32]"
-      (rect 16 1056 146 1066)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_datain_12[32]"
-      (rect 16 1072 142 1082)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_dataout_7[32]"
-      (rect 16 1088 142 1098)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_datain_14[32]"
-      (rect 16 1104 142 1114)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "user_interface_dataout_3[32]"
-      (rect 16 1120 142 1130)    
+      (rect 16 672 146 682)    
       (font "Arial"
         (color 48 0 64)      
         (font_size 10)      
       )    
     )  
     (text "user_interface_read"
-      (rect 16 1136 101 1146)    
+      (rect 16 688 101 698)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_dataout_1[32]"
+      (rect 16 704 142 714)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_datain_5[32]"
+      (rect 16 720 137 730)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_datain_14[32]"
+      (rect 16 736 142 746)    
       (font "Arial"
         (color 48 0 64)      
         (font_size 10)      
       )    
     )  
     (text "user_interface_datain_11[32]"
+      (rect 16 752 142 762)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_datain_3[32]"
+      (rect 16 768 137 778)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_datain_12[32]"
+      (rect 16 784 142 794)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_dataout_15[32]"
+      (rect 16 800 146 810)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_datain_10[32]"
+      (rect 16 816 142 826)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_datain_4[32]"
+      (rect 16 832 137 842)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_datain_7[32]"
+      (rect 16 848 137 858)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_dataout_9[32]"
+      (rect 16 864 142 874)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_dataout_14[32]"
+      (rect 16 880 146 890)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_write"
+      (rect 16 896 106 906)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_datain_0[32]"
+      (rect 16 912 137 922)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_chipselect[16]"
+      (rect 16 928 146 938)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_dataout_11[32]"
+      (rect 16 944 146 954)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_datain_9[32]"
+      (rect 16 960 137 970)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_datain_6[32]"
+      (rect 16 976 137 986)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_dataout_5[32]"
+      (rect 16 992 142 1002)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_datain_8[32]"
+      (rect 16 1008 137 1018)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_dataout_2[32]"
+      (rect 16 1024 142 1034)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_dataout_7[32]"
+      (rect 16 1040 142 1050)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_dataout_10[32]"
+      (rect 16 1056 146 1066)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_byteenable[4]"
+      (rect 16 1072 142 1082)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_dataout_12[32]"
+      (rect 16 1088 146 1098)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_datain_15[32]"
+      (rect 16 1104 142 1114)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_datain_13[32]"
+      (rect 16 1120 142 1130)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_dataout_6[32]"
+      (rect 16 1136 142 1146)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "user_interface_dataout_0[32]"
       (rect 16 1152 142 1162)    
       (font "Arial"
         (color 48 0 64)      
@@ -1669,43 +1805,113 @@
         (font_size 10)      
       )    
     )  
+    (text "avalon_master_control"
+      (rect 8 1632 140 1646)    
+      (font "Arial"
+        (color 64 0 0)      
+        (font_size 14)      
+      )    
+    )  
+    (text "avalon_master_control_go"
+      (rect 16 1656 124 1666)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "avalon_master_control_fixed_location"
+      (rect 16 1672 178 1682)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "avalon_master_control_done"
+      (rect 16 1688 133 1698)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "avalon_master_control_write_length[32]"
+      (rect 16 1704 187 1714)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "avalon_master_control_write_base[32]"
+      (rect 16 1720 178 1730)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "avalon_master_user"
+      (rect 8 1752 121 1766)    
+      (font "Arial"
+        (color 64 0 0)      
+        (font_size 14)      
+      )    
+    )  
+    (text "avalon_master_user_write_buffer"
+      (rect 16 1776 155 1786)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "avalon_master_user_buffer_input_data[32]"
+      (rect 16 1792 196 1802)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
+    (text "avalon_master_user_buffer_full"
+      (rect 16 1808 151 1818)    
+      (font "Arial"
+        (color 48 0 64)      
+        (font_size 10)      
+      )    
+    )  
     (text "tx_clkout"
-      (rect 270 40 326 54)    
+      (rect 302 40 358 54)    
       (font "Arial"
         (color 64 0 0)      
         (font_size 14)      
       )    
     )  
     (text "tx_clkout_clk"
-      (rect 261 64 319 74)    
+      (rect 293 64 351 74)    
       (font "Arial"
         (color 48 0 64)      
         (font_size 10)      
       )    
     )  
     (text "rx_clkout"
-      (rect 269 96 325 110)    
+      (rect 301 96 357 110)    
       (font "Arial"
         (color 64 0 0)      
         (font_size 14)      
       )    
     )  
     (text "rx_clkout_clk"
-      (rect 261 120 319 130)    
+      (rect 293 120 351 130)    
       (font "Arial"
         (color 48 0 64)      
         (font_size 10)      
       )    
     )  
     (text "rx_parallel_data"
-      (rect 223 152 323 166)    
+      (rect 255 152 355 166)    
       (font "Arial"
         (color 64 0 0)      
         (font_size 14)      
       )    
     )  
     (text "rx_parallel_data_data[40]"
-      (rect 201 176 313 186)    
+      (rect 233 176 345 186)    
       (font "Arial"
         (color 48 0 64)      
         (font_size 10)      
@@ -1713,7 +1919,7 @@
     )  
     (line
       (pt 4 28)    
-      (pt 332 28)    
+      (pt 364 28)    
       (color 240 240 240)    
       (line_width 1)    
     )  
@@ -2540,110 +2746,218 @@
       (line_width 1)    
     )  
     (line
-      (pt 332 36)    
-      (pt 265 36)    
+      (pt 4 1628)    
+      (pt 197 1628)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 265 36)    
-      (pt 257 44)    
+      (pt 197 1628)    
+      (pt 205 1636)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 257 44)    
-      (pt 257 76)    
+      (pt 205 1636)    
+      (pt 205 1732)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 257 76)    
-      (pt 265 84)    
+      (pt 205 1732)    
+      (pt 197 1740)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 265 84)    
-      (pt 332 84)    
+      (pt 197 1740)    
+      (pt 4 1740)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 336 72)    
-      (pt 324 72)    
+      (pt 0 1664)    
+      (pt 12 1664)    
       (color 96 0 128)    
       (line_width 1)    
     )  
     (line
-      (pt 332 92)    
-      (pt 265 92)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 265 92)    
-      (pt 257 100)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 257 100)    
-      (pt 257 132)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 257 132)    
-      (pt 265 140)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 265 140)    
-      (pt 332 140)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 336 128)    
-      (pt 324 128)    
+      (pt 0 1680)    
+      (pt 12 1680)    
       (color 96 0 128)    
       (line_width 1)    
     )  
     (line
-      (pt 332 148)    
-      (pt 205 148)    
+      (pt 0 1696)    
+      (pt 12 1696)    
+      (color 96 0 128)    
+      (line_width 1)    
+    )  
+    (line
+      (pt 0 1712)    
+      (pt 12 1712)    
+      (color 96 0 128)    
+      (line_width 1)    
+    )  
+    (line
+      (pt 0 1728)    
+      (pt 12 1728)    
+      (color 96 0 128)    
+      (line_width 1)    
+    )  
+    (line
+      (pt 4 1748)    
+      (pt 213 1748)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 205 148)    
-      (pt 197 156)    
+      (pt 213 1748)    
+      (pt 221 1756)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 197 156)    
-      (pt 197 188)    
+      (pt 221 1756)    
+      (pt 221 1820)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 197 188)    
-      (pt 205 196)    
+      (pt 221 1820)    
+      (pt 213 1828)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 205 196)    
-      (pt 332 196)    
+      (pt 213 1828)    
+      (pt 4 1828)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 336 184)    
-      (pt 324 184)    
+      (pt 0 1784)    
+      (pt 12 1784)    
+      (color 96 0 128)    
+      (line_width 1)    
+    )  
+    (line
+      (pt 0 1800)    
+      (pt 12 1800)    
+      (color 96 0 128)    
+      (line_width 1)    
+    )  
+    (line
+      (pt 0 1816)    
+      (pt 12 1816)    
+      (color 96 0 128)    
+      (line_width 1)    
+    )  
+    (line
+      (pt 364 36)    
+      (pt 297 36)    
+      (color 240 240 240)    
+      (line_width 2)    
+    )  
+    (line
+      (pt 297 36)    
+      (pt 289 44)    
+      (color 240 240 240)    
+      (line_width 2)    
+    )  
+    (line
+      (pt 289 44)    
+      (pt 289 76)    
+      (color 240 240 240)    
+      (line_width 2)    
+    )  
+    (line
+      (pt 289 76)    
+      (pt 297 84)    
+      (color 240 240 240)    
+      (line_width 2)    
+    )  
+    (line
+      (pt 297 84)    
+      (pt 364 84)    
+      (color 240 240 240)    
+      (line_width 2)    
+    )  
+    (line
+      (pt 368 72)    
+      (pt 356 72)    
+      (color 96 0 128)    
+      (line_width 1)    
+    )  
+    (line
+      (pt 364 92)    
+      (pt 297 92)    
+      (color 240 240 240)    
+      (line_width 2)    
+    )  
+    (line
+      (pt 297 92)    
+      (pt 289 100)    
+      (color 240 240 240)    
+      (line_width 2)    
+    )  
+    (line
+      (pt 289 100)    
+      (pt 289 132)    
+      (color 240 240 240)    
+      (line_width 2)    
+    )  
+    (line
+      (pt 289 132)    
+      (pt 297 140)    
+      (color 240 240 240)    
+      (line_width 2)    
+    )  
+    (line
+      (pt 297 140)    
+      (pt 364 140)    
+      (color 240 240 240)    
+      (line_width 2)    
+    )  
+    (line
+      (pt 368 128)    
+      (pt 356 128)    
+      (color 96 0 128)    
+      (line_width 1)    
+    )  
+    (line
+      (pt 364 148)    
+      (pt 237 148)    
+      (color 240 240 240)    
+      (line_width 2)    
+    )  
+    (line
+      (pt 237 148)    
+      (pt 229 156)    
+      (color 240 240 240)    
+      (line_width 2)    
+    )  
+    (line
+      (pt 229 156)    
+      (pt 229 188)    
+      (color 240 240 240)    
+      (line_width 2)    
+    )  
+    (line
+      (pt 229 188)    
+      (pt 237 196)    
+      (color 240 240 240)    
+      (line_width 2)    
+    )  
+    (line
+      (pt 237 196)    
+      (pt 364 196)    
+      (color 240 240 240)    
+      (line_width 2)    
+    )  
+    (line
+      (pt 368 184)    
+      (pt 356 184)    
       (color 96 0 128)    
       (line_width 1)    
     )  

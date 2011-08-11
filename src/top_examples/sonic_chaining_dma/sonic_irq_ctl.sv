@@ -58,10 +58,10 @@ module sonic_irq_ctl (
 	input logic				rd_req,
 	
 	// TX info
-	input logic [`TX_WRITE_ADDR_WIDTH-1:0]	tx_ring_wptr,
+	input logic [`TX_READ_ADDR_WIDTH-1:0]	tx_ring_rptr,
 
 	// RX info
-	input logic [`USED_QWORDS_WIDTH-1:0]	rx_ring_wptr,
+	input logic [`RX_WRITE_ADDR_WIDTH-1:0]	rx_ring_wptr,
 	output logic [31:0]						rx_block_size,
 
 	// prg_reg
@@ -115,7 +115,7 @@ module sonic_irq_ctl (
 		.rdreq(rd_req),
 
 		//Tx info
-		.tx_ring_wptr(tx_ring_wptr),
+		.tx_ring_rptr(tx_ring_rptr),
 
 		// prg_reg
 		.irq_base_rc(irq_base_rc),

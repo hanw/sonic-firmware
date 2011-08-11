@@ -1,6 +1,8 @@
 src/top_examples/.qsys-edit/
 src/top_examples/pma/sonic_pma_v1_01_sim/
 src/top_examples/sonic_v1_15/
+src/top_examples/sonic_v1_15/simulation/
+src/top_examples/sonic_v1_15.html
 src/top_examples/sonic_chaining_dma/*.rpt
 src/top_examples/sonic_chaining_dma/*.smsg
 src/top_examples/sonic_chaining_dma/*.summary

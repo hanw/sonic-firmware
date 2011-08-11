@@ -123,6 +123,7 @@ module sonic_rx_circular_buffer # (
 		.almost_full(almost_full),
 		.rdusedqwords(rdusedqwords),
 		.clock_crossed_wptr(rx_ring_wptr),
+		.clock_crossed_rptr(),
 		.empty(empty),
 		.almost_empty(almost_empty)
 	);

@@ -195,7 +195,7 @@ localparam FIFO_WIDTHU        = 6;  // Width of FIFO counters
 localparam FIFO_DEPTH         = 64; // Depth of descriptor FIFOs (DMA read and DMA Write)
 localparam RC_SLAVE_USETAG    = 0;  // when set (1) the RC Slave uses the TAG 2
 localparam DMA_READ_PRIORITY  = 1;
-localparam DMA_WRITE_PRIORITY = 2;
+localparam DMA_WRITE_PRIORITY = 1;
 localparam CNT_50MS           =(CLK_250_APP==0)?24'h5F5E10:24'hBEBC20;
 
 // Legacy interrupt signals
@@ -454,7 +454,8 @@ reg   pci_mem_addr_space_decoder_enable;
    wire  tx_rdy_interrupt;
    wire  tx_rdy_command;
 
-	wire [`USED_QWORDS_WIDTH-1:0] rx_ring_wptr;
+	wire [`RX_WRITE_ADDR_WIDTH-1:0] rx_ring_wptr;
+	wire [`TX_READ_ADDR_WIDTH-1:0] tx_ring_rptr;
 	wire dma_fifo_wrreq;
 
    sonic_dma_dt  #(
@@ -710,7 +711,7 @@ reg   pci_mem_addr_space_decoder_enable;
 		.irq_prg_rddata(rc_slave_irq_prg_rddata),
 		.rx_ring_wptr (rx_ring_wptr),
 		.rx_block_size(rx_block_size),
-		.tx_ring_wptr(address_dmard)
+		.tx_ring_rptr(tx_ring_rptr)
 	);
 
 
@@ -771,7 +772,9 @@ reg   pci_mem_addr_space_decoder_enable;
 		.tx_prg_wrena(tx_ctl_prg_wrena),
 		.tx_prg_wrdata(tx_ctl_prg_wrdata),
 		.tx_prg_addr(tx_ctl_prg_addr),
-		.tx_prg_rddata(rc_slave_tx_prg_rddata)
+		.tx_prg_rddata(rc_slave_tx_prg_rddata),
+
+		.tx_ring_rptr (tx_ring_rptr)
 	);
 	
 //------------------------------------------------------------

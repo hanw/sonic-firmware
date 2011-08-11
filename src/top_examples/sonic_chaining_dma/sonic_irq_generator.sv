@@ -54,11 +54,11 @@ module sonic_irq_generator #(
 	// Rx buffer usedw
 	input [31:0]					rx_block_size,
 	input [31:0]					rx_ring_size,
-	input [USED_QWORDS_WIDTH-1:0]	rx_ring_wptr,
+	input [`RX_WRITE_ADDR_WIDTH-1:0]	rx_ring_wptr,
 	input							rdreq,
 
 	// Tx buffer info
-	input [`TX_WRITE_ADDR_WIDTH-1:0] tx_ring_wptr,
+	input [`TX_READ_ADDR_WIDTH-1:0] tx_ring_rptr,
 
 	// Register Interface
 	input logic [63:0]	irq_base_rc,
@@ -207,7 +207,7 @@ module sonic_irq_generator #(
 		.byte_dropped_tx(32'h0),
 		.byte_dropped_rx(32'h0),
 		.rx_ring_wptr(rx_ring_wptr),
-		.tx_ring_wptr(tx_ring_wptr)
+		.tx_ring_rptr(tx_ring_rptr)
 	);
 	defparam rc_update.START_TX = START_TX_UPD_IRQ,
 			 rc_update.MWR_REQ = MWR_REQ_UPD_IRQ,
