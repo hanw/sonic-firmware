@@ -169,6 +169,60 @@ add wave -noupdate /top/tb/sonic_application_top_testbench_inst/sonic_applicatio
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_prg_reg/sonic_cmd_prg_wrdata_reg
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_prg_reg/sonic_cmd_prg_wrdata
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_prg_reg/sonic_cmd_prg_addr
+add wave -noupdate -divider {Cmd ctl}
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/USEDW_WIDTH
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/tx_ws
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/tx_sel
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/tx_req
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/tx_ready_others
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/tx_ready
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/tx_err
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/tx_dv
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/tx_dfr
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/tx_desc
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/tx_data
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/tx_busy
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/tx_ack
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/soft_resetn
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/rx_block_size
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/rstn
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/RING_SIZE
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/response_error_code
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/response_data
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/RESP_DATA_OWORDS
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/RESP_DATA_DWORDS
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/reset
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/nstate
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/mux_prg_wrena
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/mux_prg_wrdata
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/mux_prg_addr
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/local_prg_wrena
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/local_prg_wrdata
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/local_prg_addr
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/irq_prg_wrena
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/irq_prg_wrdata
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/irq_prg_addr
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/init
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/enable_sfp2
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/enable_sfp1
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cstate
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_type_reg
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_type
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_prg_wrena
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_prg_wrdata
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_prg_rddata
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_prg_addr
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_param2_reg
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_param2
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_param1_reg
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_param1
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_param0_reg
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_param0
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_done
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_cycle
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_base_rc
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/cmd_3dw_rcadd
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_cmd/clk_in
 add wave -noupdate -divider {TX CTRL}
 add wave -noupdate /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_tx_buf/wr_clock
 add wave -noupdate /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_tx_buf/rd_clock
@@ -461,7 +515,6 @@ add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_in
 add wave -noupdate -divider IRQ_REG
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/tx_ws
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/tx_sel
-add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/tx_ring_wptr
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/tx_req
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/tx_ready_others
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/tx_ready
@@ -508,7 +561,6 @@ add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_in
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/USE_MSI
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/tx_ws
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/tx_sel
-add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/tx_ring_wptr
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/tx_req
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/tx_ready_others
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/tx_ready
@@ -520,6 +572,7 @@ add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_in
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/tx_busy
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/tx_ack
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/temp
+add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/tx_ring_rptr
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/rx_ring_wptr
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/rx_ring_size
 add wave -noupdate -radix hexadecimal /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/sonic_irq/irq_gen/rx_block_size_reg
@@ -1119,7 +1172,7 @@ add wave -noupdate /top/tb/sonic_application_top_testbench_inst/sonic_applicatio
 add wave -noupdate /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/tx_desc_fmt_type
 add wave -noupdate /top/tb/sonic_application_top_testbench_inst/sonic_application_top_0/app/chaining_dma_arb/cpl_err0_r
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {15813253 ps} 0}
+WaveRestoreCursors {{Cursor 1} {19766566 ps} 0}
 configure wave -namecolwidth 226
 configure wave -valuecolwidth 324
 configure wave -justifyvalue left

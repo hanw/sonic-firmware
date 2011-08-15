@@ -249,10 +249,7 @@ module sonic_cmd_ctl #(
 	always @ (posedge clk_in) begin
 		if (cstate == EXECUTE) begin
 			if (cmd_type_reg == `SONIC_CMD_RESET) begin
-				for (int i = 0; i < 4; i++) begin
-					soft_resetn <= 1'b0;
-				end
-				soft_resetn <= 1'b1;
+				soft_resetn <= 1'b0;
 			end
 		end
 		else begin

@@ -414,20 +414,30 @@ module test_program();
 		write_dword_ram (32'h908, 32'h0);
 		write_dword_ram (32'h90C, 32'h0);
 
-		write_dword_ram (32'h910, 32'h22000);
+		write_dword_ram (32'h910, 32'h2400);
 		write_dword_ram (32'h914, 32'h0);
 		write_dword_ram (32'h918, 32'h1);
 		write_dword_ram (32'h91C, 32'h8df0);
 
-		write_dword_ram (32'h920, 32'h1000);
-		write_dword_ram (32'h924, 32'h4000);
+		write_dword_ram (32'h920, 32'h400);
+		write_dword_ram (32'h924, 32'h800);
 		write_dword_ram (32'h928, 32'h1);
 		write_dword_ram (32'h92C, 32'hA000);
 
-		write_dword_ram (32'h930, 32'h31000);
-		write_dword_ram (32'h934, 32'h4000);
+		write_dword_ram (32'h930, 32'h00);
+		write_dword_ram (32'h934, 32'h1C00);
 		write_dword_ram (32'h938, 32'h1);
 		write_dword_ram (32'h93C, 32'h20ef0);
+
+		write_dword_ram (32'h940, 32'h400);
+		write_dword_ram (32'h944, 32'h2000);
+		write_dword_ram (32'h948, 32'h1);
+		write_dword_ram (32'h94C, 32'h20ef0);
+
+		write_dword_ram (32'h950, 32'h1000);
+		write_dword_ram (32'h954, 32'h400);
+		write_dword_ram (32'h958, 32'h1);
+		write_dword_ram (32'h95C, 32'h20ef0);
 
 		write_dword_ram (64'h178000000, 0);
 		write_dword_ram (64'h178000004, 0);
@@ -469,7 +479,7 @@ module test_program();
 	event start_dma_rd_test;
 	event start_dma_wr_test;
 	event idle;
-
+	
 	initial
 		begin
 		set_verbosity(`VERBOSITY);
@@ -486,6 +496,17 @@ module test_program();
 		`PMA_RX_READY.set_export(1);
 
 		fork: test_threads
+
+			reset_thread: begin
+				#50000
+				cur_cmd = `CMD_RESET;
+				issue_command_no_argument(cur_cmd);
+				while (1)
+				begin
+					@(idle);
+				end
+			end
+	
 			source_data_thread: begin
 				command_init();
 
@@ -499,6 +520,7 @@ module test_program();
 
 				// Start DMA test by sending DMA RD to SoNIC.
 				start_dma_rd();
+				
 //				start_dma_wr();
 				// Main Loop
 				while(1)
@@ -794,7 +816,7 @@ module test_program();
 	task start_dma_rd ();
 		//set dma_descriptor
 		tlp_mem_wr_32 m = new;
-		int n_dma = 3;
+		int n_dma = 5;
 		int ctrl_dword = 32'h60000 + n_dma;
 
 		m.tlp.length = 1;

@@ -64,8 +64,9 @@ module sonic_irq_ctl (
 	input logic [`RX_WRITE_ADDR_WIDTH-1:0]	rx_ring_wptr,
 	output logic [31:0]						rx_block_size,
 
+	// Force Flush RC values
+	input logic				force_flush_rc,
 	// prg_reg
-
 	input logic				irq_prg_wrena,
 	input logic [31:0]		irq_prg_wrdata,
 	input logic [7:0]		irq_prg_addr,
@@ -120,7 +121,10 @@ module sonic_irq_ctl (
 		// prg_reg
 		.irq_base_rc(irq_base_rc),
 		.enable_sfp(enable_sfp),
-		.irq_msi_enable(irq_msi_enable)
+		.irq_msi_enable(irq_msi_enable),
+
+		//flush RC
+		.force_flush_rc(force_flush_rc)
 	);
 	defparam irq_gen.USED_QWORDS_WIDTH = `USED_QWORDS_WIDTH,
 			 irq_gen.USE_MSI	 = 1'b1;

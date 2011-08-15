@@ -186,7 +186,7 @@ module sonic_application_core_logic #(
 wire g_rstn;
 wire sw_rstn;
 
-assign g_rstn = hw_rstn & sw_rstn;
+assign g_rstn = hw_rstn ;//& sw_rstn;
 
 // RTL Implementation static parameter
 localparam AVALON_BYTE_WIDTH = AVALON_WDATA/8;  // for epmem byte enables
@@ -631,7 +631,7 @@ reg   pci_mem_addr_space_decoder_enable;
 
 	sonic_cmd_ctl sonic_cmd (
 		.clk_in(clk_in),
-		.rstn(g_rstn),
+		.rstn(hw_rstn),
 		// cmd module register intf
 		.cmd_prg_wrena(cmd_prg_wrena),
 		.cmd_prg_wrdata(rc_slave_prg_wrdata),		
@@ -681,9 +681,10 @@ reg   pci_mem_addr_space_decoder_enable;
  *
  */
 	
+
 	sonic_irq_ctl sonic_irq (
 		.clk_in(clk_in),
-		.reset(~g_rstn),
+		.reset(~hw_rstn),
 		.tx_req(tx_req_interrupt),
 		.tx_ack(tx_ack0),
 		.tx_desc(tx_desc_interrupt),
@@ -711,9 +712,9 @@ reg   pci_mem_addr_space_decoder_enable;
 		.irq_prg_rddata(rc_slave_irq_prg_rddata),
 		.rx_ring_wptr (rx_ring_wptr),
 		.rx_block_size(rx_block_size),
-		.tx_ring_rptr(tx_ring_rptr)
+		.tx_ring_rptr(tx_ring_rptr),
+		.force_flush_rc(~sw_rstn)
 	);
-
 
 /*
  *
@@ -725,7 +726,7 @@ reg   pci_mem_addr_space_decoder_enable;
 
 	sonic_rx_ctl sonic_rx_buf (
 		.wr_clock(xcvr_rx_clkout),	//wr_clock should synchronous with 64-bit data
-		.reset(~pma_rx_ready | ~g_rstn),	//If PMA is not ready, then the rx ring resets.
+		.reset(~pma_rx_ready | ~hw_rstn | ~sw_rstn),	//If PMA is not ready, then the rx ring resets.
 //		.reset(~g_rstn),	//FIX: for testing purpose, we remove the reset from pma_rx_ready,
 							//As a result, the interrupt will be generated as
 							//soon as the enable_sfp is set. The ring should
@@ -758,7 +759,7 @@ reg   pci_mem_addr_space_decoder_enable;
 	wire		tag_cpl;
 
 	sonic_tx_ctl sonic_tx_buf(
-		.reset(~pma_tx_ready | ~g_rstn),
+		.reset(~pma_tx_ready | ~hw_rstn | ~sw_rstn),
 		//Avalon write port
 		.wr_clock(clk_in),	//clk should sync with writedata
 		.wr_address_owords(address_dmard),

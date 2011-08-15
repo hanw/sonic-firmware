@@ -63,7 +63,10 @@ module sonic_irq_generator #(
 	// Register Interface
 	input logic [63:0]	irq_base_rc,
 	input logic			enable_sfp,
-	input logic			irq_msi_enable
+	input logic			irq_msi_enable,
+
+	// Trigger to flush RC values
+	input logic			force_flush_rc
 	);
 
 	localparam INTR_DATA_DWORDS  = 4;
@@ -96,7 +99,7 @@ module sonic_irq_generator #(
 	case (cstate)
 		IDLE_UPD_IRQ:
 		begin
-			if ((init==1'b0) && (rx_rc_update_req==1'b1))
+			if ((init==1'b0) && (rx_rc_update_req==1'b1 || force_flush_rc==1'b1))
 				nstate = START_TX_UPD_IRQ;
 			else
 				nstate = IDLE_UPD_IRQ;
