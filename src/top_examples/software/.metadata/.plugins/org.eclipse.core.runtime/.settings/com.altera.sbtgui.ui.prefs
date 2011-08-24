@@ -1,0 +1,5 @@
+#Fri Aug 19 16:17:23 EDT 2011
+newSoftwareExampleWizardPage.defaultLocation=/home/hwang/sonic/projects/sonic_fpga/src/top_examples/software/sonic_app
+newSoftwareExampleWizardPage.sopcinfoFile=/home/hwang/sonic/projects/sonic_fpga/src/top_examples/sonic_v1_15.sopcinfo
+eclipse.preferences.version=1
+newSoftwareExampleWizardPage2.newBspLocation=/home/hwang/sonic/projects/sonic_fpga/src/top_examples/software/sonic_app_bsp

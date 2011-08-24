@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_jtag_master_p2b_adapter.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_jtag_master_b2p_adapter.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_avalon_packets_to_master.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_avalon_st_packets_to_bytes.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_avalon_st_bytes_to_packets.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_jtag_master_timing_adt.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_avalon_st_jtag_interface.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_jtag_dc_streaming.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_jtag_sld_node.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_jtag_streaming.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_pli_streaming.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_avalon_st_clock_crosser.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_avalon_st_pipeline_base.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_avalon_st_idle_remover.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_avalon_st_idle_inserter.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/libbytestream_pli.so"
+   type="OTHER" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_merlin_arbitrator.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_rsp_xbar_mux_002.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_merlin_arbitrator.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_rsp_xbar_mux.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_rsp_xbar_demux_002.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_rsp_xbar_demux.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_merlin_arbitrator.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_cmd_xbar_mux_002.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_merlin_arbitrator.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_cmd_xbar_mux.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_cmd_xbar_demux_002.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_cmd_xbar_demux.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_reset_controller.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_reset_synchronizer.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_merlin_traffic_limiter.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_avalon_st_pipeline_base.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_id_router_002.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_id_router.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_addr_router_002.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_addr_router.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_avalon_sc_fifo.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_merlin_slave_agent.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_merlin_burst_uncompressor.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_merlin_master_agent.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_merlin_slave_translator.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_merlin_master_translator.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/nios_top_wrapper.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_pma_v1_01.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/avalon_mm_slave.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/interrupt_logic.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_avalon_mm_bridge.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_jtag_master.v"
+   type="VERILOG" />
+ <file
+   path="sonic_v1_15/simulation/submodules/altera_eth_mdio.v"
+   type="VERILOG" />
+ <file path="sonic_v1_15/simulation/sonic_v1_15.v" type="VERILOG" />
+ <topLevel name="sonic_v1_15" />
+ <deviceFamily name="Stratix IV" />
+</simPackage>
