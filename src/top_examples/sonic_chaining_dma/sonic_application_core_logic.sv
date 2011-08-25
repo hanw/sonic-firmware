@@ -724,9 +724,27 @@ reg   pci_mem_addr_space_decoder_enable;
  *
  */
 
+	reg rx_ctl_reset;
+ 
+	always @(posedge clk_in) begin
+		if (pma_rx_ready == 1'b0) begin
+			rx_ctl_reset <= 1;
+		end
+		else if(hw_rstn == 1'b0) begin
+			rx_ctl_reset <= 1;
+		end
+		else if(sw_rstn == 1'b0) begin
+			rx_ctl_reset <= 1;
+		end
+		else begin
+			rx_ctl_reset <= 0;
+		end
+	end
+
 	sonic_rx_ctl sonic_rx_buf (
 		.wr_clock(xcvr_rx_clkout),	//wr_clock should synchronous with 64-bit data
-		.reset(~pma_rx_ready | ~hw_rstn | ~sw_rstn),	//If PMA is not ready, then the rx ring resets.
+//		.reset(~pma_rx_ready | ~hw_rstn | ~sw_rstn),
+		.reset(rx_ctl_reset),	//If PMA is not ready, then the rx ring resets.
 //		.reset(~g_rstn),	//FIX: for testing purpose, we remove the reset from pma_rx_ready,
 							//As a result, the interrupt will be generated as
 							//soon as the enable_sfp is set. The ring should
@@ -758,8 +776,25 @@ reg   pci_mem_addr_space_decoder_enable;
 	wire [7:0]  tx_ctl_prg_addr;
 	wire		tag_cpl;
 
+	reg tx_ctl_reset;
+	always @(posedge clk_in) begin
+		if (pma_tx_ready == 1'b0) begin
+			tx_ctl_reset <= 1'b1;
+		end
+		else if (hw_rstn == 1'b0) begin
+			tx_ctl_reset <= 1'b1;
+		end
+		else if (sw_rstn == 1'b0) begin
+			tx_ctl_reset <= 1'b1;
+		end
+		else begin
+			tx_ctl_reset <= 1'b0;
+		end
+	end
+
 	sonic_tx_ctl sonic_tx_buf(
-		.reset(~pma_tx_ready | ~hw_rstn | ~sw_rstn),
+//		.reset(~pma_tx_ready | ~hw_rstn | ~sw_rstn),
+		.reset(tx_ctl_reset),
 		//Avalon write port
 		.wr_clock(clk_in),	//clk should sync with writedata
 		.wr_address_owords(address_dmard),

@@ -157,8 +157,8 @@ module avalon_mm_slave (
 	input [8:0] slave_address;
 	input slave_read;
 	input slave_write;
-	output wire [DATA_WIDTH-1:0] slave_readdata;
-	input [DATA_WIDTH-1:0] slave_writedata;
+	output wire [31:0] slave_readdata;
+	input [31:0] slave_writedata;
 	input [(DATA_WIDTH/8)-1:0] slave_byteenable;
 	output wire slave_irq;
 

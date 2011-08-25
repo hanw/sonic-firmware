@@ -149,7 +149,7 @@ begin
         master_read <= 1'b0;
         master_write_data <= {32{1'b0}};
         master_address <= 3'h0;        
-        write_read_control <= 1'b0; // 1 for write, 0 for read
+        write_read_control = 1'b0; // 1 for write, 0 for read
         set_busy <= 1'b0;
         state <= IDLE_STATE;
         req_and_use_mutex <= 1'b0;

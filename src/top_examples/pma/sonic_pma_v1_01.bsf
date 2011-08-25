@@ -2,7 +2,7 @@
   (version "1.1")
 )
 (symbol
-  (rect 0 0 344 848)
+  (rect 0 0 344 792)
   (text "sonic_pma_v1_01"
     (rect 8 -4 143 16)  
     (font "Arial"
@@ -11,7 +11,7 @@
     )  
   )
   (text "inst"
-    (rect 0 836 18 846)  
+    (rect 0 780 18 790)  
     (font "Arial"
       (color 255 255 255)    
       (font_size 10)    
@@ -224,7 +224,7 @@
   (port
     (pt 0 544)  
     (output)  
-    (text "tx_serial_data[1..0]"
+    (text "tx_serial_data "
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -241,7 +241,7 @@
   (port
     (pt 0 600)  
     (input)  
-    (text "rx_serial_data[1..0]"
+    (text "rx_serial_data "
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -258,7 +258,7 @@
   (port
     (pt 0 656)  
     (output)  
-    (text "rx_is_lockedtoref[1..0]"
+    (text "rx_is_lockedtoref "
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -275,7 +275,7 @@
   (port
     (pt 0 712)  
     (output)  
-    (text "rx_is_lockedtodata[1..0]"
+    (text "rx_is_lockedtodata "
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -307,23 +307,6 @@
     )  
   )
   (port
-    (pt 0 824)  
-    (input)  
-    (text "tx_parallel_data1[39..0]"
-      (rect 0 0 1 1)    
-      (font "Arial")    
-    )  
-    (text " "
-      (rect 0 0 1 1)    
-      (font "Arial")    
-    )  
-    (line
-      (pt 0 824)    
-      (pt 0 824)    
-      (line_width 0)    
-    )  
-  )
-  (port
     (pt 344 72)  
     (output)  
     (text "tx_clkout0 "
@@ -343,7 +326,7 @@
   (port
     (pt 344 128)  
     (output)  
-    (text "tx_clkout1 "
+    (text "rx_clkout0 "
       (rect 0 0 1 1)    
       (font "Arial")    
     )  
@@ -360,40 +343,6 @@
   (port
     (pt 344 184)  
     (output)  
-    (text "rx_clkout0 "
-      (rect 0 0 1 1)    
-      (font "Arial")    
-    )  
-    (text " "
-      (rect 0 0 1 1)    
-      (font "Arial")    
-    )  
-    (line
-      (pt 344 184)    
-      (pt 344 184)    
-      (line_width 0)    
-    )  
-  )
-  (port
-    (pt 344 240)  
-    (output)  
-    (text "rx_clkout1 "
-      (rect 0 0 1 1)    
-      (font "Arial")    
-    )  
-    (text " "
-      (rect 0 0 1 1)    
-      (font "Arial")    
-    )  
-    (line
-      (pt 344 240)    
-      (pt 344 240)    
-      (line_width 0)    
-    )  
-  )
-  (port
-    (pt 344 296)  
-    (output)  
     (text "rx_parallel_data0[39..0]"
       (rect 0 0 1 1)    
       (font "Arial")    
@@ -403,25 +352,8 @@
       (font "Arial")    
     )  
     (line
-      (pt 344 296)    
-      (pt 344 296)    
-      (line_width 0)    
-    )  
-  )
-  (port
-    (pt 344 352)  
-    (output)  
-    (text "rx_parallel_data1[39..0]"
-      (rect 0 0 1 1)    
-      (font "Arial")    
-    )  
-    (text " "
-      (rect 0 0 1 1)    
-      (font "Arial")    
-    )  
-    (line
-      (pt 344 352)    
-      (pt 344 352)    
+      (pt 344 184)    
+      (pt 344 184)    
       (line_width 0)    
     )  
   )
@@ -573,8 +505,8 @@
         (font_size 14)      
       )    
     )  
-    (text "tx_serial_data[2]"
-      (rect 16 536 92 546)    
+    (text "tx_serial_data"
+      (rect 16 536 79 546)    
       (font "Arial"
         (color 48 0 64)      
         (font_size 10)      
@@ -587,8 +519,8 @@
         (font_size 14)      
       )    
     )  
-    (text "rx_serial_data[2]"
-      (rect 16 592 92 602)    
+    (text "rx_serial_data"
+      (rect 16 592 79 602)    
       (font "Arial"
         (color 48 0 64)      
         (font_size 10)      
@@ -601,8 +533,8 @@
         (font_size 14)      
       )    
     )  
-    (text "rx_is_lockedtoref[2]"
-      (rect 16 648 106 658)    
+    (text "rx_is_lockedtoref"
+      (rect 16 648 92 658)    
       (font "Arial"
         (color 48 0 64)      
         (font_size 10)      
@@ -615,8 +547,8 @@
         (font_size 14)      
       )    
     )  
-    (text "rx_is_lockedtodata[2]"
-      (rect 16 704 110 714)    
+    (text "rx_is_lockedtodata"
+      (rect 16 704 97 714)    
       (font "Arial"
         (color 48 0 64)      
         (font_size 10)      
@@ -636,20 +568,6 @@
         (font_size 10)      
       )    
     )  
-    (text "tx_parallel_data1"
-      (rect 8 792 115 806)    
-      (font "Arial"
-        (color 64 0 0)      
-        (font_size 14)      
-      )    
-    )  
-    (text "tx_parallel_data1[40]"
-      (rect 16 816 110 826)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
     (text "tx_clkout0"
       (rect 270 40 333 54)    
       (font "Arial"
@@ -664,71 +582,29 @@
         (font_size 10)      
       )    
     )  
-    (text "tx_clkout1"
-      (rect 270 96 333 110)    
+    (text "rx_clkout0"
+      (rect 269 96 332 110)    
       (font "Arial"
         (color 64 0 0)      
         (font_size 14)      
       )    
     )  
-    (text "tx_clkout1"
+    (text "rx_clkout0"
       (rect 281 120 326 130)    
       (font "Arial"
         (color 48 0 64)      
         (font_size 10)      
       )    
     )  
-    (text "rx_clkout0"
-      (rect 269 152 332 166)    
-      (font "Arial"
-        (color 64 0 0)      
-        (font_size 14)      
-      )    
-    )  
-    (text "rx_clkout0"
-      (rect 281 176 326 186)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "rx_clkout1"
-      (rect 269 208 332 222)    
-      (font "Arial"
-        (color 64 0 0)      
-        (font_size 14)      
-      )    
-    )  
-    (text "rx_clkout1"
-      (rect 281 232 326 242)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
     (text "rx_parallel_data0"
-      (rect 223 264 330 278)    
+      (rect 223 152 330 166)    
       (font "Arial"
         (color 64 0 0)      
         (font_size 14)      
       )    
     )  
     (text "rx_parallel_data0[40]"
-      (rect 230 288 324 298)    
-      (font "Arial"
-        (color 48 0 64)      
-        (font_size 10)      
-      )    
-    )  
-    (text "rx_parallel_data1"
-      (rect 223 320 330 334)    
-      (font "Arial"
-        (color 64 0 0)      
-        (font_size 14)      
-      )    
-    )  
-    (text "rx_parallel_data1[40]"
-      (rect 230 344 324 354)    
+      (rect 230 176 324 186)    
       (font "Arial"
         (color 48 0 64)      
         (font_size 10)      
@@ -1203,42 +1079,6 @@
       (line_width 1)    
     )  
     (line
-      (pt 4 788)    
-      (pt 116 788)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 116 788)    
-      (pt 124 796)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 124 796)    
-      (pt 124 828)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 124 828)    
-      (pt 116 836)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 116 836)    
-      (pt 4 836)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 0 824)    
-      (pt 12 824)    
-      (color 96 0 128)    
-      (line_width 1)    
-    )  
-    (line
       (pt 340 36)    
       (pt 274 36)    
       (color 240 240 240)    
@@ -1276,30 +1116,30 @@
     )  
     (line
       (pt 340 92)    
-      (pt 274 92)    
+      (pt 273 92)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 274 92)    
-      (pt 266 100)    
+      (pt 273 92)    
+      (pt 265 100)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 266 100)    
-      (pt 266 132)    
+      (pt 265 100)    
+      (pt 265 132)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 266 132)    
-      (pt 274 140)    
+      (pt 265 132)    
+      (pt 273 140)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 274 140)    
+      (pt 273 140)    
       (pt 340 140)    
       (color 240 240 240)    
       (line_width 2)    
@@ -1312,30 +1152,30 @@
     )  
     (line
       (pt 340 148)    
-      (pt 273 148)    
+      (pt 227 148)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 273 148)    
-      (pt 265 156)    
+      (pt 227 148)    
+      (pt 219 156)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 265 156)    
-      (pt 265 188)    
+      (pt 219 156)    
+      (pt 219 188)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 265 188)    
-      (pt 273 196)    
+      (pt 219 188)    
+      (pt 227 196)    
       (color 240 240 240)    
       (line_width 2)    
     )  
     (line
-      (pt 273 196)    
+      (pt 227 196)    
       (pt 340 196)    
       (color 240 240 240)    
       (line_width 2)    
@@ -1343,114 +1183,6 @@
     (line
       (pt 344 184)    
       (pt 332 184)    
-      (color 96 0 128)    
-      (line_width 1)    
-    )  
-    (line
-      (pt 340 204)    
-      (pt 273 204)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 273 204)    
-      (pt 265 212)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 265 212)    
-      (pt 265 244)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 265 244)    
-      (pt 273 252)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 273 252)    
-      (pt 340 252)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 344 240)    
-      (pt 332 240)    
-      (color 96 0 128)    
-      (line_width 1)    
-    )  
-    (line
-      (pt 340 260)    
-      (pt 227 260)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 227 260)    
-      (pt 219 268)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 219 268)    
-      (pt 219 300)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 219 300)    
-      (pt 227 308)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 227 308)    
-      (pt 340 308)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 344 296)    
-      (pt 332 296)    
-      (color 96 0 128)    
-      (line_width 1)    
-    )  
-    (line
-      (pt 340 316)    
-      (pt 227 316)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 227 316)    
-      (pt 219 324)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 219 324)    
-      (pt 219 356)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 219 356)    
-      (pt 227 364)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 227 364)    
-      (pt 340 364)    
-      (color 240 240 240)    
-      (line_width 2)    
-    )  
-    (line
-      (pt 344 352)    
-      (pt 332 352)    
       (color 96 0 128)    
       (line_width 1)    
     )  

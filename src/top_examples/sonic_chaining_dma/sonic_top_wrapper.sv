@@ -487,6 +487,7 @@ module sonic_top_wrapper (
     assign user_datain_0 = {23'h0,sfp2_mod, sfp1_mod, sfp1_tx_fault, sfp2_tx_fault, lane2_prwdn, lane1_prwdn,
                                   sfp2_tx_disable, sfp1_tx_disable, sfp2_rate_sel, sfp1_rate_sel, phy_reset_n};
     assign user_datain_1 = {21'h0, test_out_icm_crossed, set_compliance_mode, 1'b0};
+//    assign user_datain_1 = {21'h0, 9'h0, set_compliance_mode, 1'b0};
 
 	 // clock crosser for test_out_icm
 	 sonic_common_gray_clock_crosser test_out_crosser (
@@ -574,17 +575,9 @@ module sonic_top_wrapper (
     .rx_parallel_data_data (xcvr_rx_dataout),
     .tx_parallel_data_data (xcvr_tx_datain),
     .rx_clkout_clk  (xcvr_rx_clkout),
-    .tx_clkout_clk  (xcvr_tx_clkout),
+    .tx_clkout_clk  (xcvr_tx_clkout)
 
-	.avalon_master_control_fixed_location (),	// avalon_master_control.fixed_location
-	.avalon_master_control_go             (),   //                      .go
-	.avalon_master_control_write_length   (),   //                      .write_length
-	.avalon_master_control_done           (),   //                      .done
-	.avalon_master_control_write_base     (),   //                      .write_base
-	.avalon_master_user_buffer_input_data (),	//    avalon_master_user.buffer_input_data
-	.avalon_master_user_buffer_full       (),   //                      .buffer_full
-	.avalon_master_user_write_buffer      ()    //                      .write_buffer
-
+   // .nios_base_ext_ctrl_in_export (4'h0)
   );
 
 // MDIO ports connection

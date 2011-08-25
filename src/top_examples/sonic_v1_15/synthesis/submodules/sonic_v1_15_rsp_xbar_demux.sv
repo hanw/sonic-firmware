@@ -30,7 +30,7 @@
 //   output_name:         sonic_v1_15_rsp_xbar_demux
 //   ST_DATA_W:           85
 //   ST_CHANNEL_W:        3
-//   NUM_OUTPUTS:         3
+//   NUM_OUTPUTS:         2
 //   VALID_WIDTH:         1
 // ------------------------------------------
 
@@ -69,13 +69,6 @@ module sonic_v1_15_rsp_xbar_demux
     output reg                      src1_endofpacket,
     input                           src1_ready,
 
-    output reg                      src2_valid,
-    output reg [85-1    : 0] src2_data, // ST_DATA_W=85
-    output reg [3-1 : 0] src2_channel, // ST_CHANNEL_W=3
-    output reg                      src2_startofpacket,
-    output reg                      src2_endofpacket,
-    input                           src2_ready,
-
 
     // -------------------
     // Clock & Reset
@@ -87,7 +80,7 @@ module sonic_v1_15_rsp_xbar_demux
 
 );
 
-    localparam NUM_OUTPUTS = 3;
+    localparam NUM_OUTPUTS = 2;
     wire [NUM_OUTPUTS - 1 : 0] ready_vector;
 
     // -------------------
@@ -108,13 +101,6 @@ module sonic_v1_15_rsp_xbar_demux
 
         src1_valid         = sink_channel[1] && sink_valid;
 
-        src2_data          = sink_data;
-        src2_startofpacket = sink_startofpacket;
-        src2_endofpacket   = sink_endofpacket;
-        src2_channel       = sink_channel >> NUM_OUTPUTS;
-
-        src2_valid         = sink_channel[2] && sink_valid;
-
     end
 
     // -------------------
@@ -122,7 +108,6 @@ module sonic_v1_15_rsp_xbar_demux
     // -------------------
     assign ready_vector[0] = src0_ready;
     assign ready_vector[1] = src1_ready;
-    assign ready_vector[2] = src2_ready;
     assign sink_ready = |(sink_channel & ready_vector);
 
 endmodule

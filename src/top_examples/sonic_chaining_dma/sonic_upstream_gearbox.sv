@@ -156,7 +156,7 @@ module sonic_upstream_gearbox #(
 			S4: begin 
 				sr1[31:0]	<= sr0[31:0];
 				sr1[63:32]	<= data_in[31:0];
-				sr0[7:0]	<= data_in[7:0];
+				sr0[7:0]	<= data_in[39:32];
 				sr0[63:8]	<= 0;
 				valid		<= 1;
 			end

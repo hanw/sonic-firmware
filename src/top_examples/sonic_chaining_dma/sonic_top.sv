@@ -660,7 +660,34 @@ module sonic_top (
       .rstn (srstn)
     );
 
+  // Synchronizer for pma_tx_ready and pma_rx_ready
+  // as they goes across the clock domain of xcvr 
+  // to the clock domain of pld_clk.
+/*
+	wire pma_tx_ready_crossed;
+	sonic_common_gray_clock_crosser tx_ready_crosser (
+		.inclock (xcvr_tx_clkout),
+		.outclock (pld_clk),
+		.inena (1'b1),
+		.outena (1'b1),
+		.reset (~reset_n),
+		.data (pma_tx_ready),
+		.q(pma_tx_ready_crossed)
+	);
+	defparam tx_ready_crosser.WIDTH=1;
 
+	wire pma_rx_ready_crossed;
+	sonic_common_gray_clock_crosser rx_ready_crosser (
+		.inclock (xcvr_rx_clkout),
+		.outclock (pld_clk),
+		.inena (1'b1),
+		.outena (1'b1),
+		.reset (~reset_n),
+		.data (pma_rx_ready),
+		.q(pma_rx_ready_crossed)
+	);
+	defparam rx_ready_crosser.WIDTH=1;
+*/
   sonic_application_streaming_port app
     (
       .aer_msi_num (open_aer_msi_num),
@@ -682,6 +709,8 @@ module sonic_top (
 	  .xcvr_tx_datain(xcvr_tx_datain),
 	  .pma_tx_ready(pma_tx_ready),
 	  .pma_rx_ready(pma_rx_ready),
+//	  .pma_tx_ready(pma_tx_ready_crossed),
+//	  .pma_rx_ready(pma_rx_ready_crossed),
       .clk_in (pld_clk),
       .cpl_err (cpl_err_in),
       .cpl_pending (cpl_pending_icm),

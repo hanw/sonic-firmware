@@ -52,7 +52,7 @@
    path="sonic_v1_15/simulation/submodules/altera_merlin_arbitrator.sv"
    type="SYSTEM_VERILOG" />
  <file
-   path="sonic_v1_15/simulation/submodules/sonic_v1_15_rsp_xbar_mux_002.sv"
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_rsp_xbar_mux_001.sv"
    type="SYSTEM_VERILOG" />
  <file
    path="sonic_v1_15/simulation/submodules/altera_merlin_arbitrator.sv"
@@ -70,16 +70,10 @@
    path="sonic_v1_15/simulation/submodules/altera_merlin_arbitrator.sv"
    type="SYSTEM_VERILOG" />
  <file
-   path="sonic_v1_15/simulation/submodules/sonic_v1_15_cmd_xbar_mux_002.sv"
-   type="SYSTEM_VERILOG" />
- <file
-   path="sonic_v1_15/simulation/submodules/altera_merlin_arbitrator.sv"
-   type="SYSTEM_VERILOG" />
- <file
    path="sonic_v1_15/simulation/submodules/sonic_v1_15_cmd_xbar_mux.sv"
    type="SYSTEM_VERILOG" />
  <file
-   path="sonic_v1_15/simulation/submodules/sonic_v1_15_cmd_xbar_demux_002.sv"
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_cmd_xbar_demux_001.sv"
    type="SYSTEM_VERILOG" />
  <file
    path="sonic_v1_15/simulation/submodules/sonic_v1_15_cmd_xbar_demux.sv"
@@ -103,7 +97,7 @@
    path="sonic_v1_15/simulation/submodules/sonic_v1_15_id_router.sv"
    type="SYSTEM_VERILOG" />
  <file
-   path="sonic_v1_15/simulation/submodules/sonic_v1_15_addr_router_002.sv"
+   path="sonic_v1_15/simulation/submodules/sonic_v1_15_addr_router_001.sv"
    type="SYSTEM_VERILOG" />
  <file
    path="sonic_v1_15/simulation/submodules/sonic_v1_15_addr_router.sv"
@@ -126,9 +120,6 @@
  <file
    path="sonic_v1_15/simulation/submodules/altera_merlin_master_translator.sv"
    type="SYSTEM_VERILOG" />
- <file
-   path="sonic_v1_15/simulation/submodules/nios_top_wrapper.v"
-   type="VERILOG" />
  <file
    path="sonic_v1_15/simulation/submodules/sonic_pma_v1_01.v"
    type="VERILOG" />

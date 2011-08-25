@@ -37,6 +37,7 @@ module write_master (
 	reset,
 	
 	// control inputs and outputs
+/*
 	control_fixed_location,
 	control_write_base,
 	control_write_length,
@@ -47,7 +48,13 @@ module write_master (
 	user_write_buffer,
 	user_buffer_data,
 	user_buffer_full,
-	
+*/	
+	// control & status registers (CSR) slave
+	avs_csr_address,
+	avs_csr_readdata,
+	avs_csr_write,
+	avs_csr_writedata,
+
 	// master inputs and outputs
 	master_address,
 	master_write,
@@ -64,23 +71,20 @@ module write_master (
 	parameter FIFODEPTH_LOG2 = 5;
 	parameter FIFOUSEMEMORY = 1;  // set to 0 to use LEs instead
 	
-	
+	localparam AVL_CONTROL			= 4'h0;
+	localparam AVL_STATUS			= 4'h1;
+	localparam AVL_WRITE_ADDR_BASE	= 4'h3;
+	localparam AVL_USER_DATA		= 4'h4;
+	localparam AVL_WRITE_BUFFER		= 4'h5;
 	
 	input clk;
 	input reset;
-	
-	// control inputs and outputs
-	input control_fixed_location;  // this only makes sense to enable when MAXBURSTCOUNT = 1
-	input [ADDRESSWIDTH-1:0] control_write_base;
-	input [ADDRESSWIDTH-1:0] control_write_length;
-	input control_go;
-	output wire control_done;
-	
-	// user logic inputs and outputs
-	input user_write_buffer;
-	input [DATAWIDTH-1:0] user_buffer_data;
-	output wire user_buffer_full;
-	
+
+	// control and status register
+	input [3:0]				avs_csr_address;
+	input						avs_csr_write;
+	input [31:0]		avs_csr_writedata;
+	output reg [31:0] 	avs_csr_readdata;
 	// master inputs and outputs
 	input master_waitrequest;
 	output wire [ADDRESSWIDTH-1:0] master_address;
@@ -88,6 +92,16 @@ module write_master (
 	output wire [BYTEENABLEWIDTH-1:0] master_byteenable;
 	output wire [DATAWIDTH-1:0] master_writedata;
 
+	reg control_fixed_location;  // this only makes sense to enable when MAXBURSTCOUNT = 1
+	reg [ADDRESSWIDTH-1:0] control_write_base;
+	reg [ADDRESSWIDTH-1:0] control_write_length;
+	reg control_go;
+	wire control_done;
+	
+	// user logic inputs and outputs
+	reg user_write_buffer;
+	reg [DATAWIDTH-1:0] user_buffer_data;
+	wire user_buffer_full;
 	
 	// internal control signals
 	reg control_fixed_location_d1;
@@ -97,7 +111,73 @@ module write_master (
 	wire read_fifo;
     wire user_buffer_empty;
 
+	// write control of write address register
+	always @ (posedge clk or posedge reset)
+	begin
+		if (reset == 1) begin
+			control_write_base <= 32'h0;
+		end
+		else begin
+			if (avs_csr_write == 1) begin
+				case (avs_csr_address)
+					AVL_WRITE_ADDR_BASE:
+						control_write_base <= {avs_csr_writedata[31:2],2'b00};
+					AVL_USER_DATA:
+						user_buffer_data <= avs_csr_writedata;
+				endcase
+			end
+		end
+	end
 
+	always @ (posedge clk)
+	begin
+		control_fixed_location <= 1;
+		control_write_length <= 4;
+	end
+
+	// write control of go flag
+	// note that this is a pulsed signal rather than a registered control bit
+//	always @ (posedge clk or posedge avs_csr_write) begin
+	always @ (posedge clk) begin
+		if ((avs_csr_write == 1) && (avs_csr_address == AVL_CONTROL)) begin
+			control_go <= avs_csr_writedata[0];
+		end
+		else begin
+			control_go <= 0;
+		end
+	end
+
+	// write control of fifo
+//	always @ (posedge clk or posedge avs_csr_write) begin
+	always @ (posedge clk) begin
+		if ((avs_csr_write == 1) && (avs_csr_address == AVL_WRITE_BUFFER)) begin
+			user_write_buffer <= avs_csr_writedata[0];
+		end
+		else begin
+			user_write_buffer <= 0;
+		end
+	end
+
+	reg [DATAWIDTH-1:0] csr_status;
+	
+	always @ (posedge clk or posedge reset) begin
+		if (reset == 1) begin
+			csr_status <= 32'h0;
+		end
+		else begin
+			csr_status <= {{29{1'b0}}, user_buffer_full, user_buffer_empty, control_done};
+		end
+	end
+
+	// readdata mux
+	always @ (avs_csr_address or csr_status or control_write_base) begin
+		case (avs_csr_address)
+			AVL_WRITE_ADDR_BASE:
+				avs_csr_readdata <= control_write_base;
+			default:
+				avs_csr_readdata <= csr_status;
+		endcase
+	end
 
 	// registering the control_fixed_location bit
 	always @ (posedge clk or posedge reset)

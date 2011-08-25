@@ -13,8 +13,16 @@ src/top_examples/sonic_chaining_dma/incremental_db/
 src/top_examples/sonic_chaining_dma/top_example_chaining_top.jdi
 src/top_examples/sonic_chaining_dma/top_example_chaining_top.pin
 src/top_examples/sonic_chaining_dma/top_example_chaining_top.map.smsg
+src/top_examples/misc/avalon_mm_master/.qsys_edit/
+src/top_examples/plls/greybox_tmp/
+src/top_examples/sonic_chaining_dma/bugfix*
+src/top_examples/sonic_chaining_dma/greybox_tmp/
+src/top_examples/sonic_chaining_dma/testbench/work/
+src/top_examples/nios/software/
+src/top_examples/software/.metadata/
 verif/sonic_app/.qsys_edit/
 verif/sonic_app/sonic_application_top_testbench/testbench/.qsys_edit/
 verif/sonic_app/testcode/work/
 verif/sonic_app/testcode/transcript
 verif/sonic_app/testcode/vsim.wlf
+

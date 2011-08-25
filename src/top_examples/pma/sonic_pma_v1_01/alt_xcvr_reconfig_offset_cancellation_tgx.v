@@ -176,7 +176,7 @@ begin
         master_read <= 1'b0;
         master_write_data <= {32{1'b0}};
         master_address <= 3'h0;        
-        write_read_control <= 1'b0; // 1 for write, 0 for read
+        write_read_control = 1'b0; // 1 for write, 0 for read
         set_busy <= 1'b0;
         state <= IDLE_STATE;
         offset_cancellation_readdata[31:0] <= {32{1'b0}};
@@ -184,7 +184,7 @@ begin
         req_and_use_mutex <= 1'b0;
         wait_phy_addr_ready <= 1'b0;
         alt_cal_dprio_busy_int<= 1'b0;
-        offset_cancellation_done <= 1'b0;
+        offset_cancellation_done = 1'b0;
     end
     else begin
         if(offset_cancellation_read == 1'b1)

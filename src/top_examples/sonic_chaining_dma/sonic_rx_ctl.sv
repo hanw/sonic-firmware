@@ -119,16 +119,41 @@ module sonic_rx_ctl (
 		end
 	end
 
+	reg rx_circular_buf_rdreq;
+	always @(posedge rd_clock) begin
+		if ((rd_req == 1'b1) && (rx_empty == 1'b0)) begin
+			rx_circular_buf_rdreq <= 1'b1;
+		end
+		else begin
+			rx_circular_buf_rdreq <= 1'b0;
+		end
+	end
+
+	reg rx_circular_buf_reset;
+	always @(posedge rd_clock or posedge reset) begin
+		if(reset == 1'b1) begin
+			rx_circular_buf_reset <= 1'b1;
+		end
+		else if(enable_sfp == 1'b0) begin
+			rx_circular_buf_reset <= 1'b1;
+		end
+		else begin
+			rx_circular_buf_reset <= 1'b0;
+		end
+	end
+
 	// sonic circular buffer on rx path
 	sonic_rx_circular_buffer ep_rx_dpram (
 		.read_data		(rd_data),	
 		.rd_address_owords	(rd_address_owords),	
 		.rdena			(rdena),				 
-		.rdreq			(rd_req & ~rx_empty),	//TODO: fix corner case				 
+//		.rdreq			(rd_req & ~rx_empty),	//TODO: fix corner case
+		.rdreq			(rx_circular_buf_rdreq),
 		.rdusedqwords	(rxusedqwords),
 		.rx_ring_wptr	(rx_ring_wptr),
 		.waitrequest	(),				 
-		.reset			(reset | ~enable_sfp),  //reset sonic_rx_buffer if sfp not enabled.		
+//		.reset			(reset | ~enable_sfp),  //reset sonic_rx_buffer if sfp not enabled.		
+		.reset			(rx_circular_buf_reset),
 //		.reset			(1'b1),  //Hold rx circular buffer in reset, so we could debug other components.		
 		.rdclock		(rd_clock),	
 		.wrclock		(wr_clock),	

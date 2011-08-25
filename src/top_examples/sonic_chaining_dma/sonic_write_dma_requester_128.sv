@@ -1037,7 +1037,8 @@ module sonic_write_dma_requester_128  # (
 
 	assign dma_fifo_wrreq = wr_fifo_wrreq;
 
-	assign wr_fifo_wrreq = wrreq_d[2];
+//	assign wr_fifo_wrreq = wrreq_d[2];
+	assign wr_fifo_wrreq = wrreq_d[1];	//Han: reduced one clock cycle of latency.
 	// wrreq_d is a delay on th write fifo buffer which reflects the
 	// memeory latency
 	always @ (posedge clk_in) begin
@@ -1221,8 +1222,9 @@ module sonic_write_dma_requester_128  # (
 		 begin
 			if (init==1'b1)
 			   nstate = DT_FIFO;
-			else if ((tx_sel==1'b1) &&		//Make update wait for arbitration. Han Wang
-					 (tx_ws ==1'b0) && (tx_ready_dmard==1'b0))
+			//else if ((tx_sel==1'b1) &&	(tx_ws ==1'b0) && (tx_ready_dmard==1'b0))	//Added this line for wait for arbitration. However it creates a deadlock on the bus
+																					//When Write is trying to send DT update to RC and at the same time, Read is ready.
+			else if ((tx_sel==1'b1) &&	(tx_ws ==1'b0)) // added bus arbitration request. Han Wang.	
 			   nstate = MWR_REQ_UPD_DT;
 			else
 			   nstate = START_TX_UPD_DT;

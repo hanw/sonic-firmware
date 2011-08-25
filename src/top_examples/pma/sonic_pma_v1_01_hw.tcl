@@ -35,7 +35,7 @@ set_module_property TOP_LEVEL_HDL_MODULE sonic_pma_v1_01
 set_module_property INSTANTIATE_IN_SYSTEM_MODULE true
 set_module_property EDITABLE true
 set_module_property ANALYZE_HDL TRUE
-set_module_property STATIC_TOP_LEVEL_MODULE_NAME ""
+set_module_property STATIC_TOP_LEVEL_MODULE_NAME "sonic_pma_v1_01"
 set_module_property FIX_110_VIP_PATH false
 # | 
 # +-----------------------------------
