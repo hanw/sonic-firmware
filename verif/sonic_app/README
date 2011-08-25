@@ -1,0 +1,3 @@
+Modified altera_avalon_st_source_bfm to include bardec0 and be0.
+If generated the testbench with qsys, msim_setup.tcl and testbench will be overwritten.
+Revert them after regeneration.

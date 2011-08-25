@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags=""
+   categories="" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element nios_base_inst
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+   element nios_base_inst_clk_clk_in_bfm
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+   element nios_base_inst_clk_clk_in_reset_bfm
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+   }
+   element nios_base_inst_ext_ctrl_in_bfm
+   {
+      datum _sortIndex
+      {
+         value = "5";
+         type = "int";
+      }
+   }
+   element nios_base_inst_read_master_bfm
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
+   element nios_base_inst_write_master_bfm
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="deviceFamily" value="STRATIXIV" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="maxAdditionalLatency" value="1" />
+ <parameter name="projectName" value="" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="1" />
+ <parameter name="timeStamp" value="1313854536092" />
+ <module kind="nios_base" version="1.0" enabled="1" name="nios_base_inst">
+  <parameter name="AUTO_GENERATION_ID" value="0" />
+  <parameter name="AUTO_UNIQUE_ID" value="nios_base_inst" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Stratix IV" />
+  <parameter name="AUTO_CLK_CLK_IN_CLOCK_RATE" value="0" />
+  <parameter name="AUTO_CLK_CLK_IN_CLOCK_DOMAIN" value="1" />
+  <parameter name="AUTO_CLK_CLK_IN_RESET_DOMAIN" value="1" />
+ </module>
+ <module
+   kind="altera_avalon_clock_source"
+   version="11.0"
+   enabled="1"
+   name="nios_base_inst_clk_clk_in_bfm">
+  <parameter name="CLOCK_RATE" value="50" />
+ </module>
+ <module
+   kind="altera_avalon_reset_source"
+   version="11.0"
+   enabled="1"
+   name="nios_base_inst_clk_clk_in_reset_bfm">
+  <parameter name="ASSERT_HIGH_RESET" value="0" />
+  <parameter name="INITIAL_RESET_CYCLES" value="50" />
+ </module>
+ <module
+   kind="altera_avalon_mm_slave_bfm"
+   version="11.0"
+   enabled="1"
+   name="nios_base_inst_read_master_bfm">
+  <parameter name="AV_ADDRESS_W" value="32" />
+  <parameter name="AV_SYMBOL_W" value="8" />
+  <parameter name="AV_NUMSYMBOLS" value="4" />
+  <parameter name="AV_BURSTCOUNT_W" value="1" />
+  <parameter name="AV_READRESPONSE_W" value="1" />
+  <parameter name="AV_WRITERESPONSE_W" value="1" />
+  <parameter name="USE_READ" value="1" />
+  <parameter name="USE_WRITE" value="0" />
+  <parameter name="USE_ADDRESS" value="1" />
+  <parameter name="USE_BYTE_ENABLE" value="1" />
+  <parameter name="USE_BURSTCOUNT" value="0" />
+  <parameter name="USE_READ_DATA" value="1" />
+  <parameter name="USE_READ_DATA_VALID" value="1" />
+  <parameter name="USE_WRITE_DATA" value="0" />
+  <parameter name="USE_BEGIN_TRANSFER" value="0" />
+  <parameter name="USE_BEGIN_BURST_TRANSFER" value="0" />
+  <parameter name="USE_ARBITERLOCK" value="0" />
+  <parameter name="USE_LOCK" value="0" />
+  <parameter name="USE_DEBUGACCESS" value="0" />
+  <parameter name="USE_WAIT_REQUEST" value="1" />
+  <parameter name="USE_TRANSACTIONID" value="0" />
+  <parameter name="USE_WRITERESPONSE" value="0" />
+  <parameter name="USE_READRESPONSE" value="0" />
+  <parameter name="USE_CLKEN" value="0" />
+  <parameter name="ASSERT_HIGH_RESET" value="1" />
+  <parameter name="ASSERT_HIGH_WAITREQUEST" value="1" />
+  <parameter name="ASSERT_HIGH_READ" value="1" />
+  <parameter name="ASSERT_HIGH_WRITE" value="1" />
+  <parameter name="ASSERT_HIGH_BYTEENABLE" value="1" />
+  <parameter name="ASSERT_HIGH_READDATAVALID" value="1" />
+  <parameter name="ASSERT_HIGH_ARBITERLOCK" value="1" />
+  <parameter name="ASSERT_HIGH_LOCK" value="1" />
+  <parameter name="AV_BURST_LINEWRAP" value="0" />
+  <parameter name="AV_BURST_BNDR_ONLY" value="0" />
+  <parameter name="AV_MAX_PENDING_READS" value="1" />
+  <parameter name="AV_FIX_READ_LATENCY" value="0" />
+  <parameter name="AV_READ_WAIT_TIME" value="1" />
+  <parameter name="AV_WRITE_WAIT_TIME" value="0" />
+  <parameter name="REGISTER_WAITREQUEST" value="0" />
+  <parameter name="AV_REGISTERINCOMINGSIGNALS" value="0" />
+  <parameter name="ADDRESS_UNITS" value="SYMBOLS" />
+ </module>
+ <module
+   kind="altera_avalon_mm_slave_bfm"
+   version="11.0"
+   enabled="1"
+   name="nios_base_inst_write_master_bfm">
+  <parameter name="AV_ADDRESS_W" value="32" />
+  <parameter name="AV_SYMBOL_W" value="8" />
+  <parameter name="AV_NUMSYMBOLS" value="4" />
+  <parameter name="AV_BURSTCOUNT_W" value="1" />
+  <parameter name="AV_READRESPONSE_W" value="1" />
+  <parameter name="AV_WRITERESPONSE_W" value="1" />
+  <parameter name="USE_READ" value="0" />
+  <parameter name="USE_WRITE" value="1" />
+  <parameter name="USE_ADDRESS" value="1" />
+  <parameter name="USE_BYTE_ENABLE" value="1" />
+  <parameter name="USE_BURSTCOUNT" value="0" />
+  <parameter name="USE_READ_DATA" value="0" />
+  <parameter name="USE_READ_DATA_VALID" value="0" />
+  <parameter name="USE_WRITE_DATA" value="1" />
+  <parameter name="USE_BEGIN_TRANSFER" value="0" />
+  <parameter name="USE_BEGIN_BURST_TRANSFER" value="0" />
+  <parameter name="USE_ARBITERLOCK" value="0" />
+  <parameter name="USE_LOCK" value="0" />
+  <parameter name="USE_DEBUGACCESS" value="0" />
+  <parameter name="USE_WAIT_REQUEST" value="1" />
+  <parameter name="USE_TRANSACTIONID" value="0" />
+  <parameter name="USE_WRITERESPONSE" value="0" />
+  <parameter name="USE_READRESPONSE" value="0" />
+  <parameter name="USE_CLKEN" value="0" />
+  <parameter name="ASSERT_HIGH_RESET" value="1" />
+  <parameter name="ASSERT_HIGH_WAITREQUEST" value="1" />
+  <parameter name="ASSERT_HIGH_READ" value="1" />
+  <parameter name="ASSERT_HIGH_WRITE" value="1" />
+  <parameter name="ASSERT_HIGH_BYTEENABLE" value="1" />
+  <parameter name="ASSERT_HIGH_READDATAVALID" value="1" />
+  <parameter name="ASSERT_HIGH_ARBITERLOCK" value="1" />
+  <parameter name="ASSERT_HIGH_LOCK" value="1" />
+  <parameter name="AV_BURST_LINEWRAP" value="0" />
+  <parameter name="AV_BURST_BNDR_ONLY" value="0" />
+  <parameter name="AV_MAX_PENDING_READS" value="0" />
+  <parameter name="AV_FIX_READ_LATENCY" value="0" />
+  <parameter name="AV_READ_WAIT_TIME" value="1" />
+  <parameter name="AV_WRITE_WAIT_TIME" value="0" />
+  <parameter name="REGISTER_WAITREQUEST" value="0" />
+  <parameter name="AV_REGISTERINCOMINGSIGNALS" value="0" />
+  <parameter name="ADDRESS_UNITS" value="SYMBOLS" />
+ </module>
+ <module
+   kind="altera_conduit_bfm"
+   version="11.0"
+   enabled="1"
+   name="nios_base_inst_ext_ctrl_in_bfm">
+  <parameter name="SIGNAL_ROLES" value="export" />
+  <parameter name="SIGNAL_WIDTHS" value="4" />
+  <parameter name="SIGNAL_DIRECTIONS" value="output" />
+ </module>
+ <connection
+   kind="clock"
+   version="11.0"
+   start="nios_base_inst_clk_clk_in_bfm.clk"
+   end="nios_base_inst.clk_clk_in" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="nios_base_inst_clk_clk_in_bfm.clk"
+   end="nios_base_inst_clk_clk_in_reset_bfm.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="nios_base_inst_clk_clk_in_reset_bfm.reset"
+   end="nios_base_inst.clk_clk_in_reset" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="nios_base_inst_clk_clk_in_bfm.clk"
+   end="nios_base_inst_read_master_bfm.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="nios_base_inst_clk_clk_in_reset_bfm.reset"
+   end="nios_base_inst_read_master_bfm.clk_reset" />
+ <connection
+   kind="avalon"
+   version="11.0"
+   start="nios_base_inst.read_master"
+   end="nios_base_inst_read_master_bfm.s0">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+ </connection>
+ <connection
+   kind="clock"
+   version="11.0"
+   start="nios_base_inst_clk_clk_in_bfm.clk"
+   end="nios_base_inst_write_master_bfm.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="nios_base_inst_clk_clk_in_reset_bfm.reset"
+   end="nios_base_inst_write_master_bfm.clk_reset" />
+ <connection
+   kind="avalon"
+   version="11.0"
+   start="nios_base_inst.write_master"
+   end="nios_base_inst_write_master_bfm.s0">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="11.0"
+   start="nios_base_inst_ext_ctrl_in_bfm.conduit"
+   end="nios_base_inst.ext_ctrl_in">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+</system>
