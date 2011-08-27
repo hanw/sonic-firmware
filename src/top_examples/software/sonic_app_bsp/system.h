@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios_base_cpu' in SOPC Builder design 'sonic_v1_15'
  * SOPC Builder design path: ../../sonic_v1_15.sopcinfo
  *
- * Generated: Sat Aug 20 13:07:18 EDT 2011
+ * Generated: Fri Aug 26 09:37:36 EDT 2011
  */
 
 /*
@@ -319,7 +319,7 @@
 #define NIOS_BASE_SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define NIOS_BASE_SYSID_NAME "/dev/nios_base_sysid"
 #define NIOS_BASE_SYSID_SPAN 8
-#define NIOS_BASE_SYSID_TIMESTAMP 1313858706
+#define NIOS_BASE_SYSID_TIMESTAMP 1314327916
 #define NIOS_BASE_SYSID_TYPE "altera_avalon_sysid_qsys"
 
 #endif /* __SYSTEM_H_ */

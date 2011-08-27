@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Aug 20, 2011 1:07:17 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1313860037842</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Aug 26, 2011 5:30:40 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1314394240684</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>/home/hwang/sonic/projects/sonic_fpga/src/top_examples/software/sonic_app_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>../../sonic_v1_15.sopcinfo</SopcDesignFile>

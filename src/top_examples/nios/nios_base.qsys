@@ -60,14 +60,6 @@
          type = "int";
       }
    }
-   element avalon_read_master.csr
-   {
-      datum baseAddress
-      {
-         value = "256";
-         type = "long";
-      }
-   }
    element avalon_write_master.csr
    {
       datum _tags
@@ -78,6 +70,14 @@
       datum baseAddress
       {
          value = "512";
+         type = "long";
+      }
+   }
+   element avalon_read_master.csr
+   {
+      datum baseAddress
+      {
+         value = "256";
          type = "long";
       }
    }
@@ -121,19 +121,19 @@
          type = "String";
       }
    }
-   element onchip_ram.s1
-   {
-      datum baseAddress
-      {
-         value = "131072";
-         type = "long";
-      }
-   }
    element sys_clk_timer.s1
    {
       datum baseAddress
       {
          value = "270400";
+         type = "long";
+      }
+   }
+   element onchip_ram.s1
+   {
+      datum baseAddress
+      {
+         value = "131072";
          type = "long";
       }
    }
@@ -174,7 +174,7 @@
  <parameter name="projectName" value="" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1313854345802" />
+ <parameter name="timeStamp" value="1314387266182" />
  <interface name="clk_clk_in" internal="clk.clk_in" type="clock" dir="end">
   <port name="clk" internal="in_clk" />
  </interface>

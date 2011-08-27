@@ -28,10 +28,10 @@
 // ------------------------------------------
 // Generation parameters:
 //   output_name:         sonic_v1_15_cmd_xbar_demux
-//   ST_DATA_W:           85
-//   ST_CHANNEL_W:        3
+//   ST_DATA_W:           87
+//   ST_CHANNEL_W:        4
 //   NUM_OUTPUTS:         3
-//   VALID_WIDTH:         3
+//   VALID_WIDTH:         4
 // ------------------------------------------
 
 //------------------------------------------
@@ -45,9 +45,9 @@ module sonic_v1_15_cmd_xbar_demux
     // -------------------
     // Sink
     // -------------------
-    input  [3-1      : 0]   sink_valid,
-    input  [85-1    : 0]   sink_data, // ST_DATA_W=85
-    input  [3-1 : 0]   sink_channel, // ST_CHANNEL_W=3
+    input  [4-1      : 0]   sink_valid,
+    input  [87-1    : 0]   sink_data, // ST_DATA_W=87
+    input  [4-1 : 0]   sink_channel, // ST_CHANNEL_W=4
     input                         sink_startofpacket,
     input                         sink_endofpacket,
     output                        sink_ready,
@@ -56,22 +56,22 @@ module sonic_v1_15_cmd_xbar_demux
     // Sources 
     // -------------------
     output reg                      src0_valid,
-    output reg [85-1    : 0] src0_data, // ST_DATA_W=85
-    output reg [3-1 : 0] src0_channel, // ST_CHANNEL_W=3
+    output reg [87-1    : 0] src0_data, // ST_DATA_W=87
+    output reg [4-1 : 0] src0_channel, // ST_CHANNEL_W=4
     output reg                      src0_startofpacket,
     output reg                      src0_endofpacket,
     input                           src0_ready,
 
     output reg                      src1_valid,
-    output reg [85-1    : 0] src1_data, // ST_DATA_W=85
-    output reg [3-1 : 0] src1_channel, // ST_CHANNEL_W=3
+    output reg [87-1    : 0] src1_data, // ST_DATA_W=87
+    output reg [4-1 : 0] src1_channel, // ST_CHANNEL_W=4
     output reg                      src1_startofpacket,
     output reg                      src1_endofpacket,
     input                           src1_ready,
 
     output reg                      src2_valid,
-    output reg [85-1    : 0] src2_data, // ST_DATA_W=85
-    output reg [3-1 : 0] src2_channel, // ST_CHANNEL_W=3
+    output reg [87-1    : 0] src2_data, // ST_DATA_W=87
+    output reg [4-1 : 0] src2_channel, // ST_CHANNEL_W=4
     output reg                      src2_startofpacket,
     output reg                      src2_endofpacket,
     input                           src2_ready,

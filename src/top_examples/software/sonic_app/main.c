@@ -16,8 +16,8 @@
 #define ST_RESET	4
 
 // Debug message level
-int msglevel = 10;
-int state = ST_INIT;
+int msglevel = 4;
+int state = ST_IDLE;
 
 
 /* Declare a global variable to hold the edge capture value. */
@@ -130,11 +130,21 @@ void execute () {
 int main()
 {
 	pmesg(1, "Welcome to SoNIC Nios firmware!\n");
+
     init_pio();
 
-    unsigned int val;
-    val = avalon_mm_read(0xC000);
-    printf("read 0x%x\n", val);
+    unsigned int tmp;
+    tmp = read_mdio(0x0);
+    pmesg (3, "PMA/PMD reg 0x0 = 0x%x\n", tmp);
+
+    tmp = read_mdio(0x1);
+    pmesg (3, "PMA/PMD reg 0x1 = 0x%x\n", tmp);
+
+    tmp = read_mdio(0x2);
+    pmesg (3, "PMA/PMD reg 0x2 = 0x%x\n", tmp);
+
+    tmp = read_mdio(0x8);
+    pmesg (3, "PMA/PMD reg 0x8 = 0x%x\n", tmp);
 
 	while(1){
 		execute();

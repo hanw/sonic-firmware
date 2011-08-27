@@ -31,7 +31,8 @@ module test_program();
 		`READ_MASTER.init();
 		`WRITE_MASTER.init();
 		`READ_MASTER.set_interface_wait_time(1,0);
-
+        #4250000
+        ->irq_start;
     end
 
 	always @(`READ_MASTER.signal_command_received)
@@ -58,7 +59,6 @@ module test_program();
 		begin
 		  data = 32'hdeadbeaf;
 		  slave_set_and_push_response(data, `READ_LATENCY);
-		  ->irq_start;
 		end
 	end
 			
@@ -76,6 +76,17 @@ module test_program();
 		  $sformat(message, "%m: Master %s request from address %h ", convert_to_str(request), address);
 		  print(VERBOSITY_INFO, message);	
 		end	
+
+        //slave BFM response
+		if (request==REQ_WRITE)
+		begin
+		  internal_mem[address] = data;
+		end
+		else if (request==REQ_READ)
+		begin
+		  data = 32'hdeadbeaf;
+		  slave_set_and_push_response(data, `READ_LATENCY);
+		end
 	end
 
 	always @(irq_start)
@@ -85,7 +96,7 @@ module test_program();
 		`PIO_CTRL.set_export(4'h1);
 		#500;
 		`PIO_CTRL.set_export(4'h0);
-
+    /*
 		#500
 		`PIO_CTRL.set_export(4'h2);
 		#500;
@@ -95,7 +106,7 @@ module test_program();
 		`PIO_CTRL.set_export(4'h4);
 		#500;
 		`PIO_CTRL.set_export(4'h0);
-
+    */
 		$sformat (message, "Generate IRQ!");
 		print(VERBOSITY_INFO, message);
 	end

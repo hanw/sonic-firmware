@@ -70,7 +70,7 @@
  <parameter name="projectName" value="" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1313854536092" />
+ <parameter name="timeStamp" value="1314387311975" />
  <module kind="nios_base" version="1.0" enabled="1" name="nios_base_inst">
   <parameter name="AUTO_GENERATION_ID" value="0" />
   <parameter name="AUTO_UNIQUE_ID" value="nios_base_inst" />

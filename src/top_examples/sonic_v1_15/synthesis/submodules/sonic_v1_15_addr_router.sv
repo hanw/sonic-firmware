@@ -34,8 +34,8 @@ module sonic_v1_15_addr_router_default_decode
      parameter DEFAULT_CHANNEL = 1,
                DEFAULT_DESTID = 2 
    )
-  (output [83 - 82 : 0] default_destid,
-   output [3-1 : 0] default_src_channel
+  (output [85 - 83 : 0] default_destid,
+   output [4-1 : 0] default_src_channel
   );
 
   assign default_destid = DEFAULT_DESTID;
@@ -61,7 +61,7 @@ module sonic_v1_15_addr_router
     // Command Sink (Input)
     // -------------------
     input                       sink_valid,
-    input  [85-1 : 0]    sink_data,
+    input  [87-1 : 0]    sink_data,
     input                       sink_startofpacket,
     input                       sink_endofpacket,
     output                      sink_ready,
@@ -70,8 +70,8 @@ module sonic_v1_15_addr_router
     // Command Source (Output)
     // -------------------
     output                          src_valid,
-    output reg [85-1    : 0] src_data,
-    output reg [3-1 : 0] src_channel,
+    output reg [87-1    : 0] src_data,
+    output reg [4-1 : 0] src_channel,
     output                          src_startofpacket,
     output                          src_endofpacket,
     input                           src_ready
@@ -82,10 +82,10 @@ module sonic_v1_15_addr_router
     // -------------------------------------------------------
     localparam PKT_ADDR_H = 67;
     localparam PKT_ADDR_L = 36;
-    localparam PKT_DEST_ID_H = 83;
-    localparam PKT_DEST_ID_L = 82;
-    localparam ST_DATA_W = 85;
-    localparam ST_CHANNEL_W = 3;
+    localparam PKT_DEST_ID_H = 85;
+    localparam PKT_DEST_ID_L = 83;
+    localparam ST_DATA_W = 87;
+    localparam ST_CHANNEL_W = 4;
     localparam DECODER_TYPE = 0;
 
     localparam PKT_ADDR_W = PKT_ADDR_H-PKT_ADDR_L + 1;
@@ -123,7 +123,7 @@ module sonic_v1_15_addr_router
     assign src_endofpacket   = sink_endofpacket;
 
     wire [PKT_DEST_ID_W-1:0] default_destid;
-    wire [3-1 : 0] default_src_channel;
+    wire [4-1 : 0] default_src_channel;
 
     sonic_v1_15_addr_router_default_decode the_default_decode(
       .default_destid (default_destid),

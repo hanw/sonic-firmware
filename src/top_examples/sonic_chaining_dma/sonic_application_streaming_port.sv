@@ -156,6 +156,9 @@ module sonic_application_streaming_port #(
 	output [39:0] xcvr_tx_datain,
 	input		pma_tx_ready,
 	input		pma_rx_ready,
+	output		reset_nios,
+	output		set_lpbk,
+	output		unset_lpbk,
 
 	input clk_in  ,
 	input rstn
@@ -729,7 +732,10 @@ module sonic_application_streaming_port #(
 			.xcvr_tx_datain(xcvr_tx_datain),
 			.pma_tx_ready(pma_tx_ready),
 			.pma_rx_ready(pma_rx_ready),
-			
+			.reset_nios(reset_nios),		
+			.set_lpbk(set_lpbk),
+			.unset_lpbk(unset_lpbk),
+
             .rx_req0    (rx_req0),
             .rx_ack0    (rx_ack0),
             .rx_data0   (rx_data0),

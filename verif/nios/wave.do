@@ -2,7 +2,6 @@ onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate -divider {Read Master}
 add wave -noupdate /test_top/tb/nios_base_inst/avalon_read_master/avs_csr_write_reg
-add wave -noupdate -radix hexadecimal /test_top/tb/nios_base_inst/avalon_read_master/avs_csr_address_reg
 add wave -noupdate /test_top/tb/nios_base_inst/avalon_read_master/avs_csr_read
 add wave -noupdate -radix hexadecimal /test_top/tb/nios_base_inst/avalon_read_master/avs_csr_write
 add wave -noupdate -radix hexadecimal /test_top/tb/nios_base_inst/avalon_read_master/avs_csr_address
@@ -43,6 +42,7 @@ add wave -noupdate -radix hexadecimal /test_top/tb/nios_base_inst/avalon_read_ma
 add wave -noupdate -radix hexadecimal /test_top/tb/nios_base_inst/avalon_read_master/control_fixed_location
 add wave -noupdate -divider {Write Master}
 add wave -noupdate -radix hexadecimal /test_top/tb/nios_base_inst/avalon_write_master/clk
+add wave -noupdate /test_top/tb/nios_base_inst/avalon_read_master/avs_csr_read
 add wave -noupdate -radix hexadecimal /test_top/tb/nios_base_inst/avalon_write_master/avs_csr_write
 add wave -noupdate -radix hexadecimal /test_top/tb/nios_base_inst/avalon_write_master/avs_csr_writedata
 add wave -noupdate -radix hexadecimal /test_top/tb/nios_base_inst/avalon_write_master/avs_csr_readdata
@@ -109,4 +109,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {233509500 ps}
+WaveRestoreZoom {0 ps} {1723229550 ps}

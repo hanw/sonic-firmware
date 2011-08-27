@@ -35,7 +35,10 @@ module sonic_cmd_ctl #(
 	output reg	soft_resetn,
 	output reg	enable_sfp1,
 	output reg	enable_sfp2,
-	
+	output reg  reset_nios,
+	output reg  set_lpbk,
+	output reg  unset_lpbk,
+
 	//	PCIe backend transmit transmit section
 	output                    tx_req,
 	input                     tx_ack,
@@ -227,6 +230,15 @@ module sonic_cmd_ctl #(
 					if (cmd_cycle == 2) begin
 						cmd_done <= 1'b1;
 					end
+				`SONIC_CMD_SFP_LPBK_ON,	// arbitrary long wait because Nios is SLOW!
+				`SONIC_CMD_SFP_LPBK_OFF:	// arbitrary long wait because Nios is SLOW!
+					if (cmd_cycle == 5000) begin
+						cmd_done <= 1'b1;
+					end
+				`SONIC_CMD_INIT_NETLOGIC:	// generate a pulse of 500, return a response after 5000.
+					if (cmd_cycle == 5000) begin
+						cmd_done <= 1'b1;
+					end
 				default:
 					cmd_done <= 1'b1;
 			endcase
@@ -284,6 +296,46 @@ module sonic_cmd_ctl #(
 	end
 
 	always @ (posedge clk_in) begin
+		if (reset == 1'b1) begin
+			set_lpbk <= 1'b0;
+			unset_lpbk <= 1'b0;
+		end
+		else if (cstate == EXECUTE) begin
+			if (cmd_type_reg == `SONIC_CMD_SFP_LPBK_ON) begin
+				set_lpbk <= 1'b1;
+				unset_lpbk <= 1'b0;
+			end
+			else if (cmd_type_reg == `SONIC_CMD_SFP_LPBK_OFF) begin
+				set_lpbk <= 1'b0;
+				unset_lpbk <= 1'b1;
+			end
+		end
+		else begin
+			set_lpbk <= set_lpbk;
+			unset_lpbk <= unset_lpbk;
+		end
+	end
+
+	always @ (posedge clk_in) begin
+		if (reset == 1'b1) begin
+			reset_nios <= 1'b0;
+		end
+		else if (cstate == EXECUTE) begin
+			if (cmd_type_reg == `SONIC_CMD_INIT_NETLOGIC) begin
+				if (cmd_cycle < 500) begin	//generate a short pulse to Nios
+					reset_nios <= 1'b1;
+				end
+				else begin
+					reset_nios <= 1'b0;
+				end
+			end
+		end	
+		else begin
+			reset_nios <= reset_nios;
+		end
+	end
+
+	always @ (posedge clk_in) begin
 		if (cstate == EXECUTE) begin
 			if (cmd_type_reg == `SONIC_CMD_SET_ADDR_IRQ) begin
 				if ((cmd_cycle == 1) || (cmd_cycle==2)) begin
@@ -327,6 +379,9 @@ module sonic_cmd_ctl #(
 			`SONIC_CMD_NONE,
 			`SONIC_CMD_GET_RX_OFFSET,
 			`SONIC_CMD_GET_TX_OFFSET,
+			`SONIC_CMD_SFP_LPBK_ON,
+			`SONIC_CMD_SFP_LPBK_OFF,
+			`SONIC_CMD_INIT_NETLOGIC,
 			`SONIC_CMD_START_SFP1,
 			`SONIC_CMD_STOP_SFP1,
 			`SONIC_CMD_START_SFP2,

@@ -81,8 +81,8 @@ module write_master (
 	input reset;
 
 	// control and status register
-	input [3:0]				avs_csr_address;
-	input						avs_csr_write;
+	input [3:0]			avs_csr_address;
+	input				avs_csr_write;
 	input [31:0]		avs_csr_writedata;
 	output reg [31:0] 	avs_csr_readdata;
 	// master inputs and outputs
@@ -121,7 +121,8 @@ module write_master (
 			if (avs_csr_write == 1) begin
 				case (avs_csr_address)
 					AVL_WRITE_ADDR_BASE:
-						control_write_base <= {avs_csr_writedata[31:2],2'b00};
+                        // write address is for 32-bit dwords.
+						control_write_base <= avs_csr_writedata;
 					AVL_USER_DATA:
 						user_buffer_data <= avs_csr_writedata;
 				endcase
@@ -171,12 +172,13 @@ module write_master (
 
 	// readdata mux
 	always @ (avs_csr_address or csr_status or control_write_base) begin
-		case (avs_csr_address)
-			AVL_WRITE_ADDR_BASE:
-				avs_csr_readdata <= control_write_base;
-			default:
-				avs_csr_readdata <= csr_status;
-		endcase
+	//always @ (posedge clk or posedge reset) begin
+        case (avs_csr_address)
+            AVL_WRITE_ADDR_BASE:
+                avs_csr_readdata <= control_write_base;
+            default:
+                avs_csr_readdata <= csr_status;
+        endcase
 	end
 
 	// registering the control_fixed_location bit

@@ -41,7 +41,7 @@ module  nios_base_sysid
 
 
 	assign
-		readdata = {1'b0, address, {2{(~ address)}}, 1'b1, {2{address}}, 1'b0, (~ address), 1'b1, 1'b0, (~ address), 1'b1, {3{address}}, {2{1'b1}}, (~ address), 1'b1, (~ address), 1'b1, {2{(~ address)}}, 1'b0, (~ address), address, {2{(~ address)}}, address, 1'b1, (~ address)};
+		readdata = {1'b0, address, {2{(~ address)}}, 1'b1, {2{address}}, 1'b0, (~ address), 1'b1, 1'b0, 1'b1, (~ address), {3{address}}, {4{1'b1}}, (~ address), 1'b1, (~ address), 1'b1, 1'b0, 1'b1, 1'b0, (~ address), 1'b1, address, 1'b1, (~ address)};
 endmodule //nios_base_sysid
 //synopsys translate_on
 //VALID FILE

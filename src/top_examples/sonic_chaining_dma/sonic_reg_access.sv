@@ -58,7 +58,7 @@ module sonic_reg_access   (
 	input [31:0]      dma_wr_prg_rddata,
 	input [31:0]	  irq_prg_rddata,
 	input [31:0]	  cmd_prg_rddata,
-	
+
 	input [15:0]      rx_ecrc_bad_cnt,
 	input [63:0]      read_dma_status,
 	input [63:0]      write_dma_status,
@@ -104,6 +104,7 @@ module sonic_reg_access   (
 	localparam ADDR_MSW     = 4'h0;
 	localparam ADDR_LSW     = 4'h4;
 
+	
 	reg [31:0] err_status_reg;
 	reg [63:0] read_dma_status_reg;
 	reg [63:0] write_dma_status_reg;
@@ -186,7 +187,7 @@ module sonic_reg_access   (
 			dma_wr_prg_wrena	<= ((reg_wr_ena_reg==1'b1) & (reg_wr_addr_reg[7:4] == DMA_WRITE_PRG)) ? 1'b1 : 1'b0;
 			irq_prg_wrena		<= ((reg_wr_ena_reg==1'b1) & (reg_wr_addr_reg[7:4] == RX_IRQ))? 1'b1: 1'b0;
 			cmd_prg_wrena		<= ((reg_wr_ena_reg==1'b1) & ((reg_wr_addr_reg[7:4] == COMMAND) || (reg_wr_addr_reg[7:4] == CMD_RESP)))?1'b1: 1'b0;
-				
+
 			//-----------
 			// REG READ
 			//-----------

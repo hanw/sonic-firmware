@@ -86,6 +86,10 @@ module sonic_top (
 		xcvr_tx_datain,
 		pma_tx_ready,
 		pma_rx_ready,
+		reset_nios,
+		set_lpbk,
+		unset_lpbk,
+
 		 clk250_out,
 	   clk500_out,
 	   core_clk_out,
@@ -218,7 +222,9 @@ module sonic_top (
 	output [39:0] xcvr_tx_datain;
 	input		pma_tx_ready;
 	input		pma_rx_ready;
-	
+	output wire	reset_nios;
+	output wire	set_lpbk;
+	output wire	unset_lpbk;
 	
   input            free_100MHz;
   input            local_rstn;
@@ -709,6 +715,9 @@ module sonic_top (
 	  .xcvr_tx_datain(xcvr_tx_datain),
 	  .pma_tx_ready(pma_tx_ready),
 	  .pma_rx_ready(pma_rx_ready),
+	  .reset_nios(reset_nios),
+	  .set_lpbk(set_lpbk),
+	  .unset_lpbk(unset_lpbk),
 //	  .pma_tx_ready(pma_tx_ready_crossed),
 //	  .pma_rx_ready(pma_rx_ready_crossed),
       .clk_in (pld_clk),

@@ -142,6 +142,9 @@ module sonic_application_core_logic #(
 	output [39:0] xcvr_tx_datain,
 	input		pma_tx_ready,
 	input		pma_rx_ready,
+	output		reset_nios,
+	output		set_lpbk,
+	output		unset_lpbk,
 
 	// Receive section channel 0
 	output       rx_ack0  ,
@@ -622,6 +625,7 @@ reg   pci_mem_addr_space_decoder_enable;
 	wire [7:0]		cmd_ctl_irq_prg_addr;
 	wire [31:0]		rx_block_size;
 
+
 	wire			enable_sfp1;
 
 /*
@@ -641,6 +645,9 @@ reg   pci_mem_addr_space_decoder_enable;
 		.soft_resetn(sw_rstn),
 		.enable_sfp1(enable_sfp1),
 		.enable_sfp2(),
+		.reset_nios(reset_nios),
+		.set_lpbk(set_lpbk),
+		.unset_lpbk(unset_lpbk),
 		// PCIe backend
 		.tx_req(tx_req_command),
 		.tx_ack(tx_ack0),

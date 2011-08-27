@@ -109,7 +109,8 @@ module latency_aware_read_master (
 	// filter the noise on csr bus
 	reg			avs_csr_read_reg;
 	reg			avs_csr_write_reg;
-	reg [3:0]	avs_csr_address_reg;
+	reg [3:0]	avs_csr_read_address_reg;
+	reg [3:0]	avs_csr_write_address_reg;
 
 	always @ (posedge clk or posedge reset) begin
 		if (reset == 1) begin
@@ -123,12 +124,21 @@ module latency_aware_read_master (
 	end
 
 //	always @ (posedge clk or posedge avs_csr_read or posedge avs_csr_write or posedge reset) begin
-	always @ (posedge avs_csr_read or posedge avs_csr_write or posedge reset) begin
+	always @ (posedge avs_csr_read or posedge reset) begin
 		if (reset == 1) begin
-			avs_csr_address_reg <= 0;
+			avs_csr_read_address_reg <= 0;
 		end
 		else begin
-			avs_csr_address_reg <= avs_csr_address;
+			avs_csr_read_address_reg <= avs_csr_address;
+		end
+	end
+
+	always @ (posedge avs_csr_write or posedge reset) begin
+		if (reset == 1'b1) begin
+			avs_csr_write_address_reg <= 0;
+		end
+		else begin
+			avs_csr_write_address_reg <= avs_csr_address;
 		end
 	end
 
@@ -140,9 +150,10 @@ module latency_aware_read_master (
 		end
 		else begin
 			if (avs_csr_write_reg == 1) begin
-				case (avs_csr_address_reg)
+				case (avs_csr_write_address_reg)
 					AVL_READ_ADDR_BASE:
-						control_read_base <= {avs_csr_writedata[31:2],2'b00};
+                        // read address points to 32bit dword.
+						control_read_base <= avs_csr_writedata;
 				endcase
 			end
 		end
@@ -158,7 +169,7 @@ module latency_aware_read_master (
 	// note that this is a pulsed signal rather than a registered control bit
 	//always @ (posedge clk or posedge avs_csr_write_reg) begin
 	always @ (posedge clk) begin
-		if ((avs_csr_write_reg == 1) && (avs_csr_address_reg == AVL_CONTROL)) begin
+		if ((avs_csr_write_reg == 1) && (avs_csr_write_address_reg == AVL_CONTROL)) begin
 			control_go <= avs_csr_writedata[0];
 		end
 		else begin
@@ -191,7 +202,7 @@ module latency_aware_read_master (
 	
 	// readdata mux
 	always @ (posedge avs_csr_read_reg or posedge reset) begin
-		case (avs_csr_address_reg)
+		case (avs_csr_read_address_reg)
 			AVL_READ_ADDR_BASE:
 				avs_csr_readdata <= control_read_base;
 			AVL_USER_DATA:

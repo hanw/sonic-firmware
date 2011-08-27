@@ -152,7 +152,8 @@ module latency_aware_read_master (
 			if (avs_csr_write_reg == 1) begin
 				case (avs_csr_write_address_reg)
 					AVL_READ_ADDR_BASE:
-						control_read_base <= {avs_csr_writedata[31:2],2'b00};
+                        // read address points to 32bit dword.
+						control_read_base <= avs_csr_writedata;
 				endcase
 			end
 		end

@@ -36,23 +36,6 @@ unsigned int rd32 (unsigned int base_address, unsigned int sub_base_address, uns
 	return value;
 }
 
-void stats (){
-
-}
-
-void read_pma_controller(){
-
-}
-
-void read_pma_reset_controller() {
-
-}
-
-void read_pma_ch_controller () {
-
-
-}
-
 /*==============================================================================
   Writing to dev_prt_phy_address register (16 bits) of address 0x80 (0x20 on the slave)
     Bit [4:0] : phydev_address = clause 22 PHYAD / clause 45 DEVAD (device address)
@@ -69,7 +52,7 @@ unsigned int read_mdio (unsigned int address) {
 
 	wr32 (MDIO_BASE_ADDR, MDIO_CSR_ADDR_CL45, 0, mdio_reg_value);
 
-	pmesg(10, "Read dev_prt_phy_add register 0x%x = 0x%x\n", MDIO_CSR_ADDR_CL45, rd32(MDIO_BASE_ADDR, MDIO_CSR_ADDR_CL45, 0));
+	pmesg(10, "Write dev_prt_phy_add register 0x%x = 0x%x\n", MDIO_CSR_ADDR_CL45, rd32(MDIO_BASE_ADDR, MDIO_CSR_ADDR_CL45, 0));
 
 	ret_val = rd32(MDIO_BASE_ADDR, MDIO_RW_ADDR, 0);
 	pmesg(10, "Read PMA/PMD control register 0x%x = 0x%x\n", MDIO_RW_ADDR, ret_val);

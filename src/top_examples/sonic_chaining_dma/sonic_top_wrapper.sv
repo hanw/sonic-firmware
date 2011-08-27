@@ -310,7 +310,10 @@ module sonic_top_wrapper (
 	wire [39:0] xcvr_tx_datain;
 	wire		pma_tx_ready;
 	wire		pma_rx_ready;
-	
+	wire		reset_nios;
+	wire		set_lpbk;
+	wire		unset_lpbk;
+
   sonic_top core
     (
       .core_clk_out (clk_out_buf),
@@ -390,6 +393,9 @@ module sonic_top_wrapper (
 		.xcvr_tx_datain(xcvr_tx_datain),
 		.pma_tx_ready(pma_tx_ready),
 		.pma_rx_ready(pma_rx_ready),
+		.reset_nios(reset_nios),
+		.set_lpbk(set_lpbk),
+		.unset_lpbk(unset_lpbk),
       .tx_out0 (tx_out0),
       .tx_out1 (tx_out1),
       .tx_out2 (tx_out2),
@@ -575,9 +581,9 @@ module sonic_top_wrapper (
     .rx_parallel_data_data (xcvr_rx_dataout),
     .tx_parallel_data_data (xcvr_tx_datain),
     .rx_clkout_clk  (xcvr_rx_clkout),
-    .tx_clkout_clk  (xcvr_tx_clkout)
+    .tx_clkout_clk  (xcvr_tx_clkout),
 
-   // .nios_base_ext_ctrl_in_export (4'h0)
+    .nios_base_ext_export ({1'b0, unset_lpbk, set_lpbk, reset_nios})
   );
 
 // MDIO ports connection

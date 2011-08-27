@@ -37,5 +37,7 @@ void netlogic_init();
 void ext_xcvr_reset();
 void set_pma_loopback();
 void unset_pma_loopback();
+unsigned int read_mdio (unsigned int address);
+void write_mdio (unsigned int address, unsigned int value);
 
 #endif /* ROUTINES_H_ */

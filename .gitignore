@@ -8,7 +8,9 @@ src/top_examples/sonic_chaining_dma/*.smsg
 src/top_examples/sonic_chaining_dma/*.summary
 src/top_examples/sonic_chaining_dma/*.done
 src/top_examples/sonic_chaining_dma/*.bak
+src/top_examples/sonic_chaining_dma/*.map
 src/top_examples/sonic_chaining_dma/db/*
+src/top_examples/sonic_chaining_dma/PLLJ_PLLSPE_INFO.txt
 src/top_examples/sonic_chaining_dma/incremental_db/
 src/top_examples/sonic_chaining_dma/top_example_chaining_top.jdi
 src/top_examples/sonic_chaining_dma/top_example_chaining_top.pin
@@ -25,4 +27,5 @@ verif/sonic_app/sonic_application_top_testbench/testbench/.qsys_edit/
 verif/sonic_app/testcode/work/
 verif/sonic_app/testcode/transcript
 verif/sonic_app/testcode/vsim.wlf
-
+verif/nios/modelsim.ini
+verif/nios_base*

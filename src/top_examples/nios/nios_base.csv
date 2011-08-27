@@ -1,12 +1,12 @@
-# system info nios_base on 2011.08.20.11:35:34
+# system info nios_base on 2011.08.26.15:35:10
 system_info:
 name,value
 DEVICE,
 DEVICE_FAMILY,Stratix IV
-GENERATION_ID,1313854502
+GENERATION_ID,1314387278
 #
 #
-# Files generated for nios_base on 2011.08.20.11:35:34
+# Files generated for nios_base on 2011.08.26.15:35:10
 files:
 filepath,kind,attributes,module,is_top
 nios_base/simulation/nios_base.v,VERILOG,,nios_base,true

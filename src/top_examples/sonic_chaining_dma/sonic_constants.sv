@@ -118,7 +118,9 @@
 `define SONIC_CMD_START_SFP1		32'h21
 `define SONIC_CMD_STOP_SFP2			32'h22
 `define SONIC_CMD_START_SFP2		32'h23
-`define SONIC_CMD_LOOPBACK_MODE		32'h24
+`define SONIC_CMD_SFP_LPBK_ON		32'h24
+`define SONIC_CMD_SFP_LPBK_OFF		32'h25
+`define SONIC_CMD_INIT_NETLOGIC	32'h26
 // -----------------------------------------------
 // RC update mode
 // -----------------------------------------------
