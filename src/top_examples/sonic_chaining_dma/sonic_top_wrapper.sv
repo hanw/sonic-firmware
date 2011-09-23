@@ -41,6 +41,8 @@ module sonic_top_wrapper (
 		  usr_sw,
 		  tx_serial_data_0,
 		  rx_serial_data_0,
+		  tx_serial_data_1,
+		  rx_serial_data_1,
 		 // outputs:
 		  L0_led,
 		  alive_led,
@@ -102,6 +104,8 @@ module sonic_top_wrapper (
 
   output				tx_serial_data_0;
   input				rx_serial_data_0;
+  output				tx_serial_data_1;
+  input				rx_serial_data_1;
   
   input				 clk_200MHz;
   input            free_100MHz;
@@ -304,10 +308,10 @@ module sonic_top_wrapper (
       .test_in_5_hip (test_in_5_hip)
     );
 	 
- 	wire		xcvr_rx_clkout;
-	wire		xcvr_tx_clkout;
-	wire [39:0] xcvr_rx_dataout;
-	wire [39:0] xcvr_tx_datain;
+ 	wire [1:0]		xcvr_rx_clkout;
+	wire [1:0]		xcvr_tx_clkout;
+	wire [79:0] xcvr_rx_dataout;
+	wire [79:0] xcvr_tx_datain;
 	wire		pma_tx_ready;
 	wire		pma_rx_ready;
 	wire		reset_nios;
@@ -568,8 +572,8 @@ module sonic_top_wrapper (
     .mm_pipeline_bridge_byteenable(),
 
     // Only one channel atm.
-    .tx_serial_data_export(tx_serial_data_0),
-    .rx_serial_data_export(rx_serial_data_0),
+    .tx_serial_data_export({tx_serial_data_1, tx_serial_data_0}),
+    .rx_serial_data_export({rx_serial_data_1, rx_serial_data_0}),
 
     .pll_locked_export                (),                //         pll_locked.export
     .rx_is_lockedtoref_export         (),         //  rx_is_lockedtoref.export
@@ -578,10 +582,14 @@ module sonic_top_wrapper (
      // Interface with SoNIC PCIe app
     .rx_ready_export    (pma_rx_ready),
     .tx_ready_export    (pma_tx_ready),
-    .rx_parallel_data_data (xcvr_rx_dataout),
-    .tx_parallel_data_data (xcvr_tx_datain),
-    .rx_clkout_clk  (xcvr_rx_clkout),
-    .tx_clkout_clk  (xcvr_tx_clkout),
+    .rx_parallel_data_data (xcvr_rx_dataout[39:0]),
+    .tx_parallel_data_data (xcvr_tx_datain[39:0]),
+    .rx_clkout_clk  (xcvr_rx_clkout[0]),
+    .tx_clkout_clk  (xcvr_tx_clkout[0]),
+    .rx_parallel_data1_data (xcvr_rx_dataout[79:40]),
+    .tx_parallel_data1_data (xcvr_tx_datain[79:40]),
+    .rx_clkout_1_clk  (xcvr_rx_clkout[1]),
+    .tx_clkout_1_clk  (xcvr_tx_clkout[1]),
 
     .nios_base_ext_export ({1'b0, unset_lpbk, set_lpbk, reset_nios})
   );

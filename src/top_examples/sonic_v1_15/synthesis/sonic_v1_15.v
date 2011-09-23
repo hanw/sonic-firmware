@@ -3,60 +3,64 @@
 
 `timescale 1 ps / 1 ps
 module sonic_v1_15 (
-		input  wire        rx_serial_data_export,            //     rx_serial_data.export
-		output wire        rx_is_lockedtodata_export,        // rx_is_lockedtodata.export
+		output wire [39:0] rx_parallel_data1_data,           //  rx_parallel_data1.data
+		output wire        rx_clkout_1_clk,                  //        rx_clkout_1.clk
+		input  wire [1:0]  rx_serial_data_export,            //     rx_serial_data.export
+		output wire [1:0]  rx_is_lockedtodata_export,        // rx_is_lockedtodata.export
 		input  wire [3:0]  nios_base_ext_export,             //      nios_base_ext.export
 		output wire        rx_clkout_clk,                    //          rx_clkout.clk
+		output wire        tx_clkout_1_clk,                  //        tx_clkout_1.clk
 		input  wire        ref_clk_in_reset_reset_n,         //   ref_clk_in_reset.reset_n
-		output wire        rx_is_lockedtoref_export,         //  rx_is_lockedtoref.export
+		output wire [1:0]  rx_is_lockedtoref_export,         //  rx_is_lockedtoref.export
 		input  wire        ref_clk_in_clk,                   //         ref_clk_in.clk
-		output wire        tx_serial_data_export,            //     tx_serial_data.export
-		input  wire        mdio_mdio_in,                     //               mdio.mdio_in
-		output wire        mdio_mdio_oen,                    //                   .mdio_oen
-		output wire        mdio_mdc,                         //                   .mdc
+		output wire [1:0]  tx_serial_data_export,            //     tx_serial_data.export
+		output wire        mdio_mdio_oen,                    //               mdio.mdio_oen
 		output wire        mdio_mdio_out,                    //                   .mdio_out
-		output wire [39:0] rx_parallel_data_data,            //   rx_parallel_data.data
+		input  wire        mdio_mdio_in,                     //                   .mdio_in
+		output wire        mdio_mdc,                         //                   .mdc
 		input  wire        mm_clk_in_reset_reset_n,          //    mm_clk_in_reset.reset_n
+		output wire [39:0] rx_parallel_data_data,            //   rx_parallel_data.data
 		output wire        tx_ready_export,                  //           tx_ready.export
-		output wire [15:0] user_interface_chipselect,        //     user_interface.chipselect
-		output wire [31:0] user_interface_dataout_14,        //                   .dataout_14
-		output wire [31:0] user_interface_dataout_5,         //                   .dataout_5
-		output wire [31:0] user_interface_dataout_9,         //                   .dataout_9
-		output wire [31:0] user_interface_dataout_15,        //                   .dataout_15
-		output wire [31:0] user_interface_dataout_0,         //                   .dataout_0
-		input  wire [31:0] user_interface_datain_0,          //                   .datain_0
-		output wire [31:0] user_interface_dataout_8,         //                   .dataout_8
-		output wire [31:0] user_interface_dataout_6,         //                   .dataout_6
-		output wire [31:0] user_interface_dataout_11,        //                   .dataout_11
-		output wire [31:0] user_interface_dataout_4,         //                   .dataout_4
-		input  wire [31:0] user_interface_datain_13,         //                   .datain_13
-		output wire [31:0] user_interface_dataout_1,         //                   .dataout_1
-		input  wire [31:0] user_interface_datain_1,          //                   .datain_1
-		input  wire [31:0] user_interface_datain_3,          //                   .datain_3
-		output wire [31:0] user_interface_dataout_2,         //                   .dataout_2
-		input  wire [31:0] user_interface_datain_6,          //                   .datain_6
-		input  wire [31:0] user_interface_datain_14,         //                   .datain_14
+		output wire        user_interface_write,             //     user_interface.write
+		output wire        user_interface_read,              //                   .read
 		input  wire [31:0] user_interface_datain_8,          //                   .datain_8
-		input  wire [31:0] user_interface_datain_7,          //                   .datain_7
 		input  wire [31:0] user_interface_datain_15,         //                   .datain_15
-		input  wire [31:0] user_interface_datain_12,         //                   .datain_12
-		input  wire [31:0] user_interface_datain_10,         //                   .datain_10
-		output wire [31:0] user_interface_dataout_10,        //                   .dataout_10
-		output wire [31:0] user_interface_dataout_12,        //                   .dataout_12
-		output wire [3:0]  user_interface_byteenable,        //                   .byteenable
+		input  wire [31:0] user_interface_datain_0,          //                   .datain_0
 		output wire [31:0] user_interface_dataout_13,        //                   .dataout_13
 		input  wire [31:0] user_interface_datain_2,          //                   .datain_2
-		output wire        user_interface_read,              //                   .read
-		output wire        user_interface_write,             //                   .write
-		output wire [31:0] user_interface_dataout_3,         //                   .dataout_3
-		input  wire [31:0] user_interface_datain_4,          //                   .datain_4
-		input  wire [31:0] user_interface_datain_11,         //                   .datain_11
-		input  wire [31:0] user_interface_datain_5,          //                   .datain_5
-		input  wire [31:0] user_interface_datain_9,          //                   .datain_9
 		output wire [31:0] user_interface_dataout_7,         //                   .dataout_7
+		input  wire [31:0] user_interface_datain_7,          //                   .datain_7
+		output wire [31:0] user_interface_dataout_9,         //                   .dataout_9
+		output wire [31:0] user_interface_dataout_15,        //                   .dataout_15
+		input  wire [31:0] user_interface_datain_1,          //                   .datain_1
+		output wire [31:0] user_interface_dataout_8,         //                   .dataout_8
+		output wire [31:0] user_interface_dataout_14,        //                   .dataout_14
+		output wire [31:0] user_interface_dataout_3,         //                   .dataout_3
+		output wire [15:0] user_interface_chipselect,        //                   .chipselect
+		input  wire [31:0] user_interface_datain_9,          //                   .datain_9
+		input  wire [31:0] user_interface_datain_10,         //                   .datain_10
+		input  wire [31:0] user_interface_datain_5,          //                   .datain_5
+		output wire [31:0] user_interface_dataout_11,        //                   .dataout_11
+		output wire [31:0] user_interface_dataout_1,         //                   .dataout_1
+		input  wire [31:0] user_interface_datain_13,         //                   .datain_13
+		input  wire [31:0] user_interface_datain_12,         //                   .datain_12
+		input  wire [31:0] user_interface_datain_4,          //                   .datain_4
+		output wire [31:0] user_interface_dataout_4,         //                   .dataout_4
+		input  wire [31:0] user_interface_datain_14,         //                   .datain_14
+		output wire [31:0] user_interface_dataout_6,         //                   .dataout_6
+		output wire [31:0] user_interface_dataout_2,         //                   .dataout_2
+		input  wire [31:0] user_interface_datain_11,         //                   .datain_11
+		input  wire [31:0] user_interface_datain_3,          //                   .datain_3
+		output wire [3:0]  user_interface_byteenable,        //                   .byteenable
+		output wire [31:0] user_interface_dataout_5,         //                   .dataout_5
+		input  wire [31:0] user_interface_datain_6,          //                   .datain_6
+		output wire [31:0] user_interface_dataout_10,        //                   .dataout_10
+		output wire [31:0] user_interface_dataout_12,        //                   .dataout_12
+		output wire [31:0] user_interface_dataout_0,         //                   .dataout_0
 		input  wire [39:0] tx_parallel_data_data,            //   tx_parallel_data.data
 		output wire        rx_ready_export,                  //           rx_ready.export
 		input  wire        mm_clk_in_clk,                    //          mm_clk_in.clk
+		input  wire [39:0] tx_parallel_data1_data,           //  tx_parallel_data1.data
 		output wire        pll_locked_export,                //         pll_locked.export
 		output wire        mm_pipeline_bridge_waitrequest,   // mm_pipeline_bridge.waitrequest
 		output wire [31:0] mm_pipeline_bridge_readdata,      //                   .readdata
@@ -693,7 +697,11 @@ module sonic_v1_15 (
 		.rx_clkout0           (rx_clkout_clk),                                                 //        rx_clkout_0.clk
 		.phy_mgmt_clk_reset   (rst_controller_002_reset_out_reset),                            // phy_mgmt_clk_reset.reset
 		.rx_parallel_data0    (rx_parallel_data_data),                                         //  rx_parallel_data0.data
-		.tx_parallel_data0    (tx_parallel_data_data)                                          //  tx_parallel_data0.data
+		.tx_parallel_data0    (tx_parallel_data_data),                                         //  tx_parallel_data0.data
+		.rx_parallel_data1    (rx_parallel_data1_data),                                        //  rx_parallel_data1.data
+		.tx_parallel_data1    (tx_parallel_data1_data),                                        //  tx_parallel_data1.data
+		.tx_clkout1           (tx_clkout_1_clk),                                               //        tx_clkout_1.clk
+		.rx_clkout1           (rx_clkout_1_clk)                                                //        rx_clkout_1.clk
 	);
 
 	sonic_v1_15_nios_base nios_base (

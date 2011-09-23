@@ -216,10 +216,10 @@ module sonic_top (
   output           txelecidle6_ext;
   output           txelecidle7_ext;
   
-	input		xcvr_rx_clkout;
-	input		xcvr_tx_clkout;
-	input  [39:0] xcvr_rx_dataout;
-	output [39:0] xcvr_tx_datain;
+	input	[1:0]	xcvr_rx_clkout;
+	input	[1:0]	xcvr_tx_clkout;
+	input  [79:0] xcvr_rx_dataout;
+	output [79:0] xcvr_tx_datain;
 	input		pma_tx_ready;
 	input		pma_rx_ready;
 	output wire	reset_nios;
@@ -421,10 +421,10 @@ module sonic_top (
   wire             txelecidle6_ext;
   wire             txelecidle7_ext;
   
- 	wire		xcvr_rx_clkout;
-	wire		xcvr_tx_clkout;
-	wire [39:0] xcvr_rx_dataout;
-	wire [39:0] xcvr_tx_datain;
+ 	wire [1:0]		xcvr_rx_clkout;
+	wire [1:0]		xcvr_tx_clkout;
+	wire [79:0] xcvr_rx_dataout;
+	wire [79:0] xcvr_tx_datain;
 	wire		pma_tx_ready;
 	wire		pma_rx_ready;
 	

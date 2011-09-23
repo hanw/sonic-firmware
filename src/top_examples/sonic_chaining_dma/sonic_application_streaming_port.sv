@@ -1,4 +1,4 @@
-// /**
+//**
 //  * This Verilog HDL file is used for simulation and synthesis in
 //  * the chaining DMA design example. It manage the interface between the
 //  * chaining DMA and the Avalon Streaming ports
@@ -150,10 +150,10 @@ module sonic_application_streaming_port #(
 	output[9:0] pm_data,
 	input test_sim,
 
-	input 		xcvr_rx_clkout,
-	input 		xcvr_tx_clkout,
-	input  [39:0] xcvr_rx_dataout,
-	output [39:0] xcvr_tx_datain,
+	input [1:0]		xcvr_rx_clkout,
+	input [1:0]		xcvr_tx_clkout,
+	input  [79:0] xcvr_rx_dataout,
+	output [79:0] xcvr_tx_datain,
 	input		pma_tx_ready,
 	input		pma_rx_ready,
 	output		reset_nios,
@@ -726,10 +726,10 @@ module sonic_application_streaming_port #(
             .clk_in (clk_in),
             .hw_rstn (rstn),  
 			
-			.xcvr_rx_clkout(xcvr_rx_clkout),
-			.xcvr_tx_clkout(xcvr_tx_clkout),
-			.xcvr_rx_dataout(xcvr_rx_dataout),
-			.xcvr_tx_datain(xcvr_tx_datain),
+			.xcvr_rx_clkout(xcvr_rx_clkout[0]),
+			.xcvr_tx_clkout(xcvr_tx_clkout[0]),
+			.xcvr_rx_dataout(xcvr_rx_dataout[39:0]),
+			.xcvr_tx_datain(xcvr_tx_datain[39:0]),
 			.pma_tx_ready(pma_tx_ready),
 			.pma_rx_ready(pma_rx_ready),
 			.reset_nios(reset_nios),		

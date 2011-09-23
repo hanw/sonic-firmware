@@ -104,19 +104,6 @@
          type = "int";
       }
    }
-   element avalon_slave_0.s0
-   {
-      datum _lockedAddress
-      {
-         value = "1";
-         type = "boolean";
-      }
-      datum baseAddress
-      {
-         value = "4096";
-         type = "long";
-      }
-   }
    element mm_pipeline_bridge.s0
    {
       datum _lockedAddress
@@ -127,6 +114,19 @@
       datum baseAddress
       {
          value = "0";
+         type = "long";
+      }
+   }
+   element avalon_slave_0.s0
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "4096";
          type = "long";
       }
    }
@@ -159,7 +159,7 @@
  <parameter name="projectName" value="" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1314235993417" />
+ <parameter name="timeStamp" value="1316812571721" />
  <interface name="mm_clk_in" internal="mm_clk.clk_in" type="clock" dir="end" />
  <interface
    name="mm_clk_in_reset"
@@ -248,6 +248,26 @@
    internal="nios_base.ext_ctrl_in"
    type="conduit"
    dir="end" />
+ <interface
+   name="rx_parallel_data1"
+   internal="sonic_pma.rx_parallel_data1"
+   type="avalon_streaming"
+   dir="start" />
+ <interface
+   name="tx_parallel_data1"
+   internal="sonic_pma.tx_parallel_data1"
+   type="avalon_streaming"
+   dir="end" />
+ <interface
+   name="tx_clkout_1"
+   internal="sonic_pma.tx_clkout_1"
+   type="clock"
+   dir="start" />
+ <interface
+   name="rx_clkout_1"
+   internal="sonic_pma.rx_clkout_1"
+   type="clock"
+   dir="start" />
  <module kind="clock_source" version="11.0" enabled="1" name="mm_clk">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -324,8 +344,8 @@
   <parameter name="AUTO_UNIQUE_ID" value="nios_base" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Stratix IV" />
   <parameter name="AUTO_CLK_CLK_IN_CLOCK_RATE" value="50000000" />
-  <parameter name="AUTO_CLK_CLK_IN_CLOCK_DOMAIN" value="2" />
-  <parameter name="AUTO_CLK_CLK_IN_RESET_DOMAIN" value="2" />
+  <parameter name="AUTO_CLK_CLK_IN_CLOCK_DOMAIN" value="1" />
+  <parameter name="AUTO_CLK_CLK_IN_RESET_DOMAIN" value="1" />
  </module>
  <connection kind="clock" version="11.0" start="mm_clk.clk" end="jtag_master.clk" />
  <connection
