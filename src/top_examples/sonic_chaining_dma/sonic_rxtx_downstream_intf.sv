@@ -50,7 +50,8 @@ module sonic_rxtx_downstream_intf #(
    parameter AVALON_ST_128   = 0,
    parameter AVALON_WDATA    = 64,
    parameter AVALON_BE_WIDTH = 8,
-   parameter MEM_ADDR_WIDTH  = 10
+   parameter MEM_ADDR_WIDTH  = 10,
+   parameter PORT_NUM = 0
    ) (
    input                         clk_in,
    input                         rstn,
@@ -162,7 +163,8 @@ module sonic_rxtx_downstream_intf #(
 
    // this module responds to BAR0/1/4/5 downstream requests
   // assign rx_bar_hit_n  = (rx_desc[133] | rx_desc[132] | rx_desc[129] | rx_desc[128]) ? 1'b1 : 1'b0;
-   assign rx_bar_hit_n  = 1'b1;    // service all downstream requests
+   //assign rx_bar_hit_n  = 1'b1;    // service all downstream requests
+   assign rx_bar_hit_n = ((rx_desc[133] | rx_desc[132] | rx_desc[131]) & (PORT_NUM == 1)) || ((rx_desc[129] | rx_desc[128] | rx_desc[130]) & (PORT_NUM == 0));
    assign rx_is_rdreq_n = ((rx_desc[126]==1'b0) & (rx_desc[124:120] == `TLP_TYPE_READ))  ? 1'b1 : 1'b0;
    assign rx_is_wrreq_n = ((rx_desc[126]==1'b1) & (rx_desc[124:120] == `TLP_TYPE_WRITE)) ? 1'b1 : 1'b0;
    assign rx_is_msg_n   = (rx_desc[125:123] == 3'b110) ? 1'b1 : 1'b0;
@@ -184,7 +186,7 @@ module sonic_rxtx_downstream_intf #(
           rx_sel_epmem     <= 1'b0;
           sel_ctl_sts       <= 1'b0;
           rx_do_cpl        <= 1'b0;
-        num_dw_to_read   <= 0 ;
+          num_dw_to_read   <= 0 ;
       end
       else begin
           case (cstate_rx)

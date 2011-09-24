@@ -38,7 +38,8 @@ module sonic_rc_slave #(
 	parameter AVALON_WDATA          = 128,
 	parameter AVALON_WADDR          = 12,
 	parameter AVALON_ST_128         = 0,
-	parameter AVALON_BYTE_WIDTH     = AVALON_WDATA/8
+	parameter AVALON_BYTE_WIDTH     = AVALON_WDATA/8,
+    parameter PORT_NUM = 0
 	) (
 
 	input           clk_in,
@@ -103,7 +104,8 @@ module sonic_rc_slave #(
 	  .AVALON_ST_128    (AVALON_ST_128),
 	  .AVALON_WDATA     (AVALON_WDATA),
 	  .AVALON_BE_WIDTH  (AVALON_BYTE_WIDTH),
-	  .MEM_ADDR_WIDTH   (AVALON_WADDR)
+	  .MEM_ADDR_WIDTH   (AVALON_WADDR),
+      .PORT_NUM         (PORT_NUM)
 	  ) sonic_rxtx_mem_intf (
 	  .clk_in       (clk_in),
 	  .rstn         (rstn),
