@@ -1394,20 +1394,20 @@ endmodule
 // Retrieval info:      <PRIVATE name = "p_pcie_bar_size_bar_1" value="N/A"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_bar_size_bar_2" value="256 KBytes - 18 bits"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_bar_size_bar_3" value="256 KBytes - 18 bits"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "p_pcie_bar_size_bar_4" value="N/A"  type="STRING"  enable="1" />
+// Retrieval info:      <PRIVATE name = "p_pcie_bar_size_bar_4" value="256 MBytes - 28 bits"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_bar_size_bar_5" value="N/A"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_bar_type_bar_0" value="64-bit Prefetchable Memory"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_bar_type_bar_1" value="N/A"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_bar_type_bar_2" value="32-bit Non-Prefetchable Memory"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_bar_type_bar_3" value="32-bit Non-Prefetchable Memory"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "p_pcie_bar_type_bar_4" value="Disable this and all higher BARs"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "p_pcie_bar_type_bar_5" value="Disable this and all higher BARs"  type="STRING"  enable="1" />
+// Retrieval info:      <PRIVATE name = "p_pcie_bar_type_bar_4" value="64-bit Prefetchable Memory"  type="STRING"  enable="1" />
+// Retrieval info:      <PRIVATE name = "p_pcie_bar_type_bar_5" value="N/A"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_bar_used_bar_0" value="1"  type="BOOLEAN"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_bar_used_bar_1" value="1"  type="BOOLEAN"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_bar_used_bar_2" value="1"  type="BOOLEAN"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_bar_used_bar_3" value="1"  type="BOOLEAN"  enable="1" />
-// Retrieval info:      <PRIVATE name = "p_pcie_bar_used_bar_4" value="0"  type="BOOLEAN"  enable="1" />
-// Retrieval info:      <PRIVATE name = "p_pcie_bar_used_bar_5" value="0"  type="BOOLEAN"  enable="1" />
+// Retrieval info:      <PRIVATE name = "p_pcie_bar_used_bar_4" value="1"  type="BOOLEAN"  enable="1" />
+// Retrieval info:      <PRIVATE name = "p_pcie_bar_used_bar_5" value="1"  type="BOOLEAN"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_channel_number" value="0"  type="INTEGER"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_chk_io" value="0"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_class_code" value="0xFF0000"  type="STRING"  enable="1" />
@@ -1587,8 +1587,8 @@ endmodule
 // Retrieval info:      <PRIVATE name = "uiPCIBar1Type" value="N/A"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "uiPCIBar2Type" value="32-bit Non-Prefetchable Memory"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "uiPCIBar3Type" value="32-bit Non-Prefetchable Memory"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "uiPCIBar4Type" value="Disable this and all higher BARs"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "uiPCIBar5Type" value="Disable this and all higher BARs"  type="STRING"  enable="1" />
+// Retrieval info:      <PRIVATE name = "uiPCIBar4Type" value="64-bit Prefetchable Memory"  type="STRING"  enable="1" />
+// Retrieval info:      <PRIVATE name = "uiPCIBar5Type" value="N/A"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "uiPCIBarTable" value="false"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "uiPCIBusArbiter" value="external"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "uiPCIDeviceMode" value="masterTarget"  type="STRING"  enable="1" />

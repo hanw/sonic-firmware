@@ -27,6 +27,7 @@
 ./altpcierd_cplerr_lmi.v
 ./altpcierd_tl_cfg_sample.v
 ./altpcierd_cdma_ast_rx_128.v
+./altpcierd_reconfig_clk_pll.v
 ./sonic_dpram_async_128_64.v
 ./altpcierd_compliance_test.v
 ./altpcierd_cpld_rx_buffer.v
@@ -35,5 +36,13 @@
 ./altpcierd_cdma_ast_tx_128.v
 ./sonic_application_top.sv
 ./sonic_top.sv
+./sonic_arbiter_one.v
+./sonic_single_port_logic.sv
 ./sonic_application_core_logic.sv
 ./sonic_application_streaming_port.sv
+./top_plus.v
+./top_rs_hip.v
+../../top.v
+../../top_serdes.v
+../../top_core.vo
+

@@ -229,7 +229,7 @@ module sonic_application_core_logic #(
     wire [7:0]  tx_rdy_p1;
     wire [7:0]  tx_rdy_p0;
 
-    assign arbiter_req = { 8'h0, tx_rdy_p0 };
+    assign arbiter_req = { tx_rdy_p1, tx_rdy_p0 };
     
     wire pci_tx_idle;
     wire pci_tx_idle_p0_tx_sel;

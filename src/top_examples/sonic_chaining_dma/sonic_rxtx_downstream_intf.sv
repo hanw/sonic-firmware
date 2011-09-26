@@ -164,7 +164,9 @@ module sonic_rxtx_downstream_intf #(
    // this module responds to BAR0/1/4/5 downstream requests
   // assign rx_bar_hit_n  = (rx_desc[133] | rx_desc[132] | rx_desc[129] | rx_desc[128]) ? 1'b1 : 1'b0;
    //assign rx_bar_hit_n  = 1'b1;    // service all downstream requests
-   assign rx_bar_hit_n = ((rx_desc[133] | rx_desc[132] | rx_desc[131]) & (PORT_NUM == 1)) || ((rx_desc[129] | rx_desc[128] | rx_desc[130]) & (PORT_NUM == 0));
+
+   //assign rx_bar_hit_n = ((rx_desc[133] | rx_desc[132] | rx_desc[131]) & (PORT_NUM == 1)) || ((rx_desc[129] | rx_desc[128] | rx_desc[130]) & (PORT_NUM == 0));
+   assign rx_bar_hit_n = ((rx_desc[132] | rx_desc[133] |rx_desc[131]) & (PORT_NUM == 1)) || ((rx_desc[130] | rx_desc[128] | rx_desc[129]) & (PORT_NUM == 0));
    assign rx_is_rdreq_n = ((rx_desc[126]==1'b0) & (rx_desc[124:120] == `TLP_TYPE_READ))  ? 1'b1 : 1'b0;
    assign rx_is_wrreq_n = ((rx_desc[126]==1'b1) & (rx_desc[124:120] == `TLP_TYPE_WRITE)) ? 1'b1 : 1'b0;
    assign rx_is_msg_n   = (rx_desc[125:123] == 3'b110) ? 1'b1 : 1'b0;
@@ -202,7 +204,7 @@ module sonic_rxtx_downstream_intf #(
                       rx_do_cpl       <= rx_is_rdreq_n;
                       rx_start_write  <= rx_is_wrreq_n;
                       rx_hold_length  <= rx_desc[105:96];
-                      sel_ctl_sts     <= (rx_desc[131] | rx_desc[130]) ? 1'b1 : 1'b0;   // bar 2/3
+                      sel_ctl_sts     <= (rx_desc[131] & (PORT_NUM == 1)) || (rx_desc[130] & (PORT_NUM == 0));
                       rx_sel_epmem    <= (rx_desc[134] | rx_desc[133] | rx_desc[132] | rx_desc[129] | rx_desc[128]) ? 1'b1 : 1'b0;   // bar 0/1, 4/5/6
                   end
                   else begin
@@ -282,8 +284,11 @@ module sonic_rxtx_downstream_intf #(
               end
               RX_WAIT_END_CPL: begin
                   // Wait for TX side to finish sending the CPL
-                  if (cstate_tx == TX_IDLE)
+                  rx_do_cpl <= 1'b0;    //Han: Clear rx_do_cpl to prevent tx_ready goes high.
+
+                  if (cstate_tx == TX_IDLE) begin
                       cstate_rx <= RX_IDLE;
+                  end
                   else
                       cstate_rx <= cstate_rx;
               end
