@@ -1,0 +1,94 @@
+%
+% Verilator HOWTO
+%
+Verilator converts verilog code to C++/SystemC, such as it could to simulated.
+Note that verilator is not a simulatorr, just a compiler.
+
+Verilator reads the specified verilog code, lints lit and optionally add
+coverage and waveform tracing code. It outputs .cpp and .h files.
+The files are then compiled with C++. The user writes a little C++ wrapper
+file, which instantiates the top level module, and passes this filename on
+the command line. These C files are compiled in C++, and linked with the 
+verilated files. The resulting executable will perform the actual simulation.
+
+verilator <file.v> 
+
+It is much easier to use a test suite during development to track down bugs
+than debugging the RTL simulations. 
+
+To use verilator in DejaGNU workflow.
+1) verilator <file.v> to generate the <file.cpp> file
+2) modify the DejaGNU workflow to compile the <file.cpp> file.
+3) runtest on the compile binary, and compare the generated output with 
+   with expected results.
+4) output summary
+
+In the root 'test' directory, we have a Makefile that call the 'runtest' command.
+The 'runtest' command will traverse through the sub-directories, and executes
+all the *.exp files. 
+
+Outline of dg.exp
+-----------------
+load_lib legup.exp
+
+cd select
+set test "select"
+set gxexepcted {reg: v0 = 0x00000000000000}
+
+run-test-gx $test $gxexpected
+
+cd ..
+
+Outline of Makefile
+-------------------
+NAME=select
+LEVEL = ..
+include $(LEVEL)/Makefile.common
+
+Outline of Makefile.common
+--------------------------
+all commands that needed by all example makefiles
+include Makefile.config
+
+site.exp
+--------
+tell where the 'srcdir' is
+tell where the 'objdir' is
+
+
+
+%
+% DejaGNU Test Framework
+%
+1) compile the verilog to C++
+2) write a testcase in SystemC
+3) check for errors
+4) check for expected output
+
+We use a standard DejaGNU framework with in the GNU autoconf/automake/libtool structure.
+
+File Organization
+-----------------
+Each test program has its own directory under test-code. This builds the test program.
+If necessary it copies data files to the main build/testsuite directory.
+
+Each test then has a DejaGNU expect script in **.test and libsim.test, which loads and
+runs the test. Support script procedures are in lib/**.exp
+
+Working test
+------------
+
+%
+% Test Vectors
+%
+1) Write behavior Verilog code
+2) Run with testcase in SystemC
+3) Generate test vector (expected)
+
+%
+% External Environment
+%
+Preferably, we use the DesignWare TLM library from Synopsys to develop
+the interface between SoNIC hardware and the underlying PCIe engine.
+
+

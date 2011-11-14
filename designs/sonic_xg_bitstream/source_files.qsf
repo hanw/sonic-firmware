@@ -1,0 +1,106 @@
+#-----------------------------------------------------------------------------------------
+# Copyright 2011 Cornell University. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without modification, are
+# permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this list of
+# conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice, this list
+# of conditions and the following disclaimer in the documentation and/or other materials
+# provided with the distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY CORNELL UNIVERSITY ''AS IS'' AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+# FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+# ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+# NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# The views and conclusions contained in the software and documentation are those of the
+# authors and should not be interpreted as representing official policies, either expressed
+# or implied, of Cornell University.
+#------------------------------------------------------------------------------------------
+#
+# File Name: source_files.qsf
+# Note: Tcl script for including source files into Quartus Project.
+#
+# QIP file: set_global_assignment -name QIP_FILE <path-to-the-file>
+# SDC file: set_global_assignment -name SDC_FILE <path-to-the-file>
+# HEX file: set_global_assignment -name HEX_FILE <path-to-the-file>
+# VHDL file: set_global_assignment -name VHDL_FILE <path-to-the-file>
+# VERILOG file: set_global_assignment -name VERILOG_FILE <path-to-the-file>
+# SYSTEMVERILOG file: set_global_assignment -name SYSTEMVERILOG_FILE <path-to-the-file>
+# SIGNALTAP file: set_global_assignment -name SIGNALTAP_FILE <path-to-the-file>
+
+# Path relative to the QPF file
+set PROJECT_ROOT ../../..
+
+# Verilog Files
+set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/lib/sonic/pcie/top_serdes.v
+set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_rs_serdes.v
+set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_hip_pipen1b.v
+set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/lib/sonic/pcie/ip_compiler_for_pci_express-library/pciexp_dcram.v
+set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_reconfig_4sgx.v
+set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_bitstream/top_plus.v
+set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_bitstream/top_rs_hip.v
+set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_bitstream/top_example_chaining_pipen1b.v
+set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_bitstream/altpcierd_cdma_ast_msi.v
+set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_bitstream/altpcierd_cdma_ast_tx_128.v
+set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_bitstream/altpcierd_cdma_ast_rx_128.v
+
+# System Verilog Files
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/dma/sonic_read_dma_requester_128.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/dma/sonic_write_dma_requester_128.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/dma/sonic_dma_descriptor.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/dma/sonic_dma_prg_reg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/dma/sonic_dma_dt.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/sonic_cmd_ctl.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/sonic_cmd_prg_reg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/sonic_common_fifo_usedw_calculator.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/sonic_arbiter_one.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/sonic_common_logic_vector_delay.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/sonic_common_signal_clock_crosser.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/sonic_constants.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/eth/sonic_downstream_gearbox.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/eth/sonic_upstream_gearbox.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_bitstream/sonic_application_core_logic.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_bitstream/sonic_application_streaming_port.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_bitstream/sonic_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_bitstream/sonic_top_wrapper.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_bitstream/sonic_single_port_logic.sv
+
+# VHDL Files
+set_global_assignment -name VHDL_FILE $PROJECT_ROOT/lib/shared/sonic_common_gray_clock_crosser.vhd
+set_global_assignment -name VHDL_FILE $PROJECT_ROOT/lib/shared/sonic_common_package.vhd
+
+# QIP Files
+set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/plls/pll_644.qip
+set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/plls/pll_156.qip
+set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/ram/sonic_dpram_async_64_128.qip
+set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/ram/sonic_dpram_async_128_64.qip
+set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/pcie/top.qip
+set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/xcvr_xg/pma/sonic_pma_v1_01.qip
+set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/xcvr_xg/nios/nios_base/synthesis/nios_base.qip
+set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/xcvr_xg/sonic_v1_15/synthesis/sonic_v1_15.qip
+set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/xcvr_xg/sonic_v1_15/synthesis/submodules/altera_xcvr_10gbaser_assignment.qip
+set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/xcvr_xg/sonic_v1_15/synthesis/sonic_v1_15.qip
+set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/software/sonic_app/mem_init/meminit.qip
+
+# SDC Files
+set_global_assignment -name SDC_FILE $PROJECT_ROOT/lib/sonic/pcie/top.sdc
+set_global_assignment -name SDC_FILE $PROJECT_ROOT/project_files/sonic_quartus/top_example_chaining_top.sdc
+set_global_assignment -name SDC_FILE $PROJECT_ROOT/lib/sonic/xcvr_xg/sonic_v1_15/synthesis/submodules/altera_avalon_dc_fifo.sdc
+set_global_assignment -name SDC_FILE $PROJECT_ROOT/lib/sonic/xcvr_xg/sonic_v1_15/synthesis/submodules/alt_10gbaser_phy.sdc
+set_global_assignment -name SDC_FILE $PROJECT_ROOT/lib/sonic/xcvr_xg/sonic_v1_15/synthesis/submodules/altera_reset_controller.sdc
+set_global_assignment -name SDC_FILE $PROJECT_ROOT/lib/sonic/xcvr_xg/sonic_v1_15/synthesis/submodules/altera_avalon_st_jtag_interface.sdc
+
+# STP Files
+
+
+# HEX Files
+set_global_assignment -name HEX_FILE $PROJECT_ROOT/lib/sonic/software/sonic_app/mem_init/nios_base_onchip_ram.hex

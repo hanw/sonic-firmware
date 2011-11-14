@@ -1,0 +1,102 @@
+# Modified from Legup project from UToronto
+# Commands:
+# make verilator
+# 	compile .v to .cpp
+# make exe
+# 	compile .cpp to executable
+# make sim
+# 	compile and simulate
+# make cmp
+# 	compile and compare the variable watch output with verilator output
+# make cleanall
+# 	clean all generated files
+#
+# This makefile is included by all example makefiles
+# Commands:
+# make
+# 	compile .c to .v
+# make watch
+#	compile and compare variable watch output with modelsim output
+# make v
+# 	compile and simulate with modelsim 
+# make p
+# 	setup quartus project (create .qsf and .qpf)
+# make q
+# 	run quartus_map
+# make f
+# 	full quartus compile
+# make s (TODO)
+# 	post-synthesis netlist simulation (simulation)
+# make gprof
+#	Run gprof on benchmark 10,000,000 times (not be feasible for JPEG)
+# make clean
+#	clean up non-Quartus generated files
+# make cleanall
+#	clean up all generated files
+
+# This makefile defines make all to work on multiple source files
+
+# Assume all .c files are independent source files
+ifndef SRCS
+	SRCS = $(shell ls *.c)
+endif
+
+# By default, name the output files by the directory name
+ifndef NAME
+	NAME = $(shell basename `pwd`)
+endif
+
+# Each .c file will be compiled to its own .bc file
+ifdef LINK
+	OBJS = $(SRCS:.c=.hw.bc)
+	TIGEROBJS = $(SRCS:.c=.sw.bc)
+endif
+
+include $(LEVEL)/Makefile.config
+
+# compile $NAME.sv to V$NAME.cpp
+# compile .sv file to .cpp file using verilator
+# testbench is in sim_main.cpp in c++
+verilator:
+	verilator -Wall --trace --cc $(SRC_DIR)/$(NAME) --Wno-lint --exe sim_main.cpp
+
+# compile generated .cpp file to executable
+exe:
+	make -j -f V$(NAME).mk V$(NAME)
+
+# set $OVERRIDE if you'd like to change the 'all' target.
+# see phi/Makefile
+$(OVERRIDE)all: $(OBJS)
+	echo "make all"
+
+# A very simple dependency check, any .h file change will ensure all .bc files will be recompiled
+# also, any .c file change will only ensure its corresponding .bc file will be recompiled
+%.hw.bc: %.c *.h
+	# produces pre-link time optimization binary bitcode per source file
+	$(FRONT_END) $< -emit-llvm -c $(CFLAG) -o $@
+	# produces textual bitcode per bitcode file
+	$(LLVM_HOME)llvm-dis $@
+
+%.sw.bc: %.c *.h
+	# produces pre-link time optimization binary bitcode per source file
+	$(FRONT_END) $< -emit-llvm -c $(CFLAG) -o $@ -I $(LEVEL)/../tiger/tool_source/lib
+
+clean: 
+	rm -rf *.ll *.mif $(VFILE) *.smsg *.ver lli.txt sim.txt *_hw.tcl legup_sopc.tcl legup_wrappers.c work transcript *.log functions.list t_wave.do obj_dir
+	
+# be careful: removes Quartus and Modelsim files
+cleanall: clean
+	rm -rf db *.done incremental_db *.pin *.pof *.qpf *.qsf *.rpt *.smsg *.sof *.summary transcript *.wlf work tiger *.bc *.list *.txt 
+	rm -rf $(LEVEL)/testrun.*
+	rm -rf $(PROC_DIR)/work
+	rm -rf $(PROC_DIR)/verilog_libs
+
+# dependency targets
+
+$(VFILE):
+	make all
+
+$(NAME).o:
+	make tiger
+
+.PHONY : $(OVERRIDE)all watch v p q f tiger tiger_prof tigersim tigersim_prof gprof emul emulwatch emultest emultrace cleantiger clean cleanall hierarchy hybrid functionslist hybridwatch hybridwatch_hw benchmarkfiles
