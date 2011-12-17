@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags=""
+   categories="System" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element $${FILENAME}
+   {
+   }
+   element clk_in
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+   element sonic_rx_monitor
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+   element sonic_tx_monitor
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="deviceFamily" value="STRATIXIV" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="maxAdditionalLatency" value="1" />
+ <parameter name="projectName" value="" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="1" />
+ <parameter name="timeStamp" value="1323239350248" />
+ <interface name="clk_in" internal="clk_in.clk_in" type="clock" dir="end" />
+ <interface name="reset" internal="clk_in.clk_in_reset" type="reset" dir="end" />
+ <interface
+   name="sonic_rx_monitor_src"
+   internal="sonic_rx_monitor.src"
+   type="avalon_streaming"
+   dir="start" />
+ <interface
+   name="sonic_rx_monitor_sink"
+   internal="sonic_rx_monitor.sink"
+   type="avalon_streaming"
+   dir="end" />
+ <interface
+   name="sonic_tx_monitor_src"
+   internal="sonic_tx_monitor.src"
+   type="avalon_streaming"
+   dir="start" />
+ <interface
+   name="sonic_tx_monitor_sink"
+   internal="sonic_tx_monitor.sink"
+   type="avalon_streaming"
+   dir="end" />
+ <module kind="clock_source" version="11.0" enabled="1" name="clk_in">
+  <parameter name="clockFrequency" value="250000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+  <parameter name="inputClockFrequency" value="0" />
+  <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module
+   kind="altera_avalon_st_monitor"
+   version="11.0"
+   enabled="1"
+   name="sonic_rx_monitor">
+  <parameter name="USE_PACKET" value="1" />
+  <parameter name="USE_CHANNEL" value="0" />
+  <parameter name="USE_ERROR" value="1" />
+  <parameter name="USE_READY" value="1" />
+  <parameter name="USE_VALID" value="1" />
+  <parameter name="USE_EMPTY" value="1" />
+  <parameter name="ST_SYMBOL_W" value="32" />
+  <parameter name="ST_NUMSYMBOLS" value="4" />
+  <parameter name="ST_CHANNEL_W" value="1" />
+  <parameter name="ST_ERROR_W" value="1" />
+  <parameter name="ST_READY_LATENCY" value="0" />
+  <parameter name="ST_BEATSPERCYCLE" value="1" />
+  <parameter name="ST_MAX_CHANNELS" value="0" />
+  <parameter name="ST_MAX_PACKET_SIZE" value="1000" />
+ </module>
+ <module
+   kind="altera_avalon_st_monitor"
+   version="11.0"
+   enabled="1"
+   name="sonic_tx_monitor">
+  <parameter name="USE_PACKET" value="1" />
+  <parameter name="USE_CHANNEL" value="0" />
+  <parameter name="USE_ERROR" value="1" />
+  <parameter name="USE_READY" value="1" />
+  <parameter name="USE_VALID" value="1" />
+  <parameter name="USE_EMPTY" value="1" />
+  <parameter name="ST_SYMBOL_W" value="32" />
+  <parameter name="ST_NUMSYMBOLS" value="4" />
+  <parameter name="ST_CHANNEL_W" value="1" />
+  <parameter name="ST_ERROR_W" value="1" />
+  <parameter name="ST_READY_LATENCY" value="0" />
+  <parameter name="ST_BEATSPERCYCLE" value="1" />
+  <parameter name="ST_MAX_CHANNELS" value="0" />
+  <parameter name="ST_MAX_PACKET_SIZE" value="1000" />
+ </module>
+ <connection
+   kind="clock"
+   version="11.0"
+   start="clk_in.clk"
+   end="sonic_rx_monitor.clk" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="clk_in.clk"
+   end="sonic_tx_monitor.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="clk_in.clk_reset"
+   end="sonic_tx_monitor.clk_reset" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="clk_in.clk_reset"
+   end="sonic_rx_monitor.clk_reset" />
+</system>

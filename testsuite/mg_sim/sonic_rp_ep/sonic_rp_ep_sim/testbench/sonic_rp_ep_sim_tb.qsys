@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags=""
+   categories="" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element sonic_rp_ep_sim_inst
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+   element sonic_rp_ep_sim_inst_clk_0_bfm
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+   }
+   element sonic_rp_ep_sim_inst_clk_bfm
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+   element sonic_rp_ep_sim_inst_reset_0_bfm
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
+      }
+   }
+   element sonic_rp_ep_sim_inst_reset_bfm
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
+   element sonic_rp_ep_sim_inst_xcvr_rx_dataout_bfm
+   {
+      datum _sortIndex
+      {
+         value = "6";
+         type = "int";
+      }
+   }
+   element sonic_rp_ep_sim_inst_xcvr_tx_datain_bfm
+   {
+      datum _sortIndex
+      {
+         value = "5";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="deviceFamily" value="STRATIXIV" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="maxAdditionalLatency" value="1" />
+ <parameter name="projectName" value="" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="1" />
+ <parameter name="timeStamp" value="1323243422775" />
+ <module
+   kind="sonic_rp_ep_sim"
+   version="1.0"
+   enabled="1"
+   name="sonic_rp_ep_sim_inst">
+  <parameter name="AUTO_GENERATION_ID" value="0" />
+  <parameter name="AUTO_UNIQUE_ID">sonic_rp_ep_sim_inst</parameter>
+  <parameter name="AUTO_DEVICE_FAMILY" value="Stratix IV" />
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="0" />
+  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="2" />
+  <parameter name="AUTO_CLK_RESET_DOMAIN" value="2" />
+  <parameter name="AUTO_CLK_0_CLOCK_RATE" value="0" />
+  <parameter name="AUTO_CLK_0_CLOCK_DOMAIN" value="1" />
+  <parameter name="AUTO_CLK_0_RESET_DOMAIN" value="1" />
+ </module>
+ <module
+   kind="altera_avalon_clock_source"
+   version="11.0"
+   enabled="1"
+   name="sonic_rp_ep_sim_inst_clk_bfm">
+  <parameter name="CLOCK_RATE" value="250" />
+ </module>
+ <module
+   kind="altera_avalon_clock_source"
+   version="11.0"
+   enabled="1"
+   name="sonic_rp_ep_sim_inst_clk_0_bfm">
+  <parameter name="CLOCK_RATE" value="156" />
+ </module>
+ <module
+   kind="altera_avalon_reset_source"
+   version="11.0"
+   enabled="1"
+   name="sonic_rp_ep_sim_inst_reset_bfm">
+  <parameter name="ASSERT_HIGH_RESET" value="0" />
+  <parameter name="INITIAL_RESET_CYCLES" value="50" />
+ </module>
+ <module
+   kind="altera_avalon_reset_source"
+   version="11.0"
+   enabled="1"
+   name="sonic_rp_ep_sim_inst_reset_0_bfm">
+  <parameter name="ASSERT_HIGH_RESET" value="0" />
+  <parameter name="INITIAL_RESET_CYCLES" value="50" />
+ </module>
+ <module
+   kind="altera_avalon_st_sink_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_rp_ep_sim_inst_xcvr_tx_datain_bfm">
+  <parameter name="USE_PACKET" value="0" />
+  <parameter name="USE_CHANNEL" value="0" />
+  <parameter name="USE_ERROR" value="0" />
+  <parameter name="USE_READY" value="0" />
+  <parameter name="USE_VALID" value="0" />
+  <parameter name="USE_EMPTY" value="0" />
+  <parameter name="ST_SYMBOL_W" value="40" />
+  <parameter name="ST_NUMSYMBOLS" value="1" />
+  <parameter name="ST_CHANNEL_W" value="1" />
+  <parameter name="ST_ERROR_W" value="1" />
+  <parameter name="ST_READY_LATENCY" value="0" />
+  <parameter name="ST_BEATSPERCYCLE" value="1" />
+  <parameter name="ST_MAX_CHANNELS" value="0" />
+ </module>
+ <module
+   kind="altera_avalon_st_source_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_rp_ep_sim_inst_xcvr_rx_dataout_bfm">
+  <parameter name="USE_PACKET" value="0" />
+  <parameter name="USE_CHANNEL" value="0" />
+  <parameter name="USE_ERROR" value="0" />
+  <parameter name="USE_READY" value="0" />
+  <parameter name="USE_VALID" value="0" />
+  <parameter name="USE_EMPTY" value="0" />
+  <parameter name="ST_SYMBOL_W" value="40" />
+  <parameter name="ST_NUMSYMBOLS" value="1" />
+  <parameter name="ST_CHANNEL_W" value="1" />
+  <parameter name="ST_ERROR_W" value="1" />
+  <parameter name="ST_READY_LATENCY" value="0" />
+  <parameter name="ST_BEATSPERCYCLE" value="1" />
+  <parameter name="ST_MAX_CHANNELS" value="0" />
+ </module>
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_rp_ep_sim_inst_clk_bfm.clk"
+   end="sonic_rp_ep_sim_inst.clk" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_rp_ep_sim_inst_clk_0_bfm.clk"
+   end="sonic_rp_ep_sim_inst.clk_0" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_rp_ep_sim_inst_clk_bfm.clk"
+   end="sonic_rp_ep_sim_inst_reset_bfm.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="sonic_rp_ep_sim_inst_reset_bfm.reset"
+   end="sonic_rp_ep_sim_inst.reset" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_rp_ep_sim_inst_clk_bfm.clk"
+   end="sonic_rp_ep_sim_inst_reset_0_bfm.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="sonic_rp_ep_sim_inst_reset_0_bfm.reset"
+   end="sonic_rp_ep_sim_inst.reset_0" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_rp_ep_sim_inst_clk_0_bfm.clk"
+   end="sonic_rp_ep_sim_inst_xcvr_tx_datain_bfm.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="sonic_rp_ep_sim_inst_reset_bfm.reset"
+   end="sonic_rp_ep_sim_inst_xcvr_tx_datain_bfm.clk_reset" />
+ <connection
+   kind="avalon_streaming"
+   version="11.0"
+   start="sonic_rp_ep_sim_inst.xcvr_tx_datain"
+   end="sonic_rp_ep_sim_inst_xcvr_tx_datain_bfm.sink" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_rp_ep_sim_inst_clk_0_bfm.clk"
+   end="sonic_rp_ep_sim_inst_xcvr_rx_dataout_bfm.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="sonic_rp_ep_sim_inst_reset_bfm.reset"
+   end="sonic_rp_ep_sim_inst_xcvr_rx_dataout_bfm.clk_reset" />
+ <connection
+   kind="avalon_streaming"
+   version="11.0"
+   start="sonic_rp_ep_sim_inst_xcvr_rx_dataout_bfm.src"
+   end="sonic_rp_ep_sim_inst.xcvr_rx_dataout" />
+</system>

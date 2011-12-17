@@ -28,7 +28,7 @@
 //Phy type: Stratix IV GX Hard IP 
 //Number of Lanes: 8
 //Ref Clk Freq: 100Mhz
-//Number of VCs: 1
+//Number of VCs: 2
 module top (
              // inputs:
               app_int_sts,
@@ -70,7 +70,9 @@ module top (
               rx_in6,
               rx_in7,
               rx_st_mask0,
+              rx_st_mask1,
               rx_st_ready0,
+              rx_st_ready1,
               rxdata0_ext,
               rxdata1_ext,
               rxdata2_ext,
@@ -114,11 +116,17 @@ module top (
               srst,
               test_in,
               tx_st_data0,
+              tx_st_data1,
               tx_st_empty0,
+              tx_st_empty1,
               tx_st_eop0,
+              tx_st_eop1,
               tx_st_err0,
+              tx_st_err1,
               tx_st_sop0,
+              tx_st_sop1,
               tx_st_valid0,
+              tx_st_valid1,
 
              // outputs:
               app_int_ack,
@@ -127,38 +135,55 @@ module top (
               clk500_out,
               core_clk_out,
               derr_cor_ext_rcv0,
+              derr_cor_ext_rcv1,
               derr_cor_ext_rpl,
               derr_rpl,
               dlup_exit,
               hotrst_exit,
               ko_cpl_spc_vc0,
+              ko_cpl_spc_vc1,
               l2_exit,
               lane_act,
               lmi_ack,
               lmi_dout,
               ltssm,
               npd_alloc_1cred_vc0,
+              npd_alloc_1cred_vc1,
               npd_cred_vio_vc0,
+              npd_cred_vio_vc1,
               nph_alloc_1cred_vc0,
+              nph_alloc_1cred_vc1,
               nph_cred_vio_vc0,
+              nph_cred_vio_vc1,
               pme_to_sr,
               powerdown_ext,
               r2c_err0,
+              r2c_err1,
               rate_ext,
               rc_pll_locked,
               rc_rx_digitalreset,
               reconfig_fromgxb,
               reset_status,
               rx_fifo_empty0,
+              rx_fifo_empty1,
               rx_fifo_full0,
+              rx_fifo_full1,
               rx_st_bardec0,
+              rx_st_bardec1,
               rx_st_be0,
+              rx_st_be1,
               rx_st_data0,
+              rx_st_data1,
               rx_st_empty0,
+              rx_st_empty1,
               rx_st_eop0,
+              rx_st_eop1,
               rx_st_err0,
+              rx_st_err1,
               rx_st_sop0,
+              rx_st_sop1,
               rx_st_valid0,
+              rx_st_valid1,
               rxpolarity0_ext,
               rxpolarity1_ext,
               rxpolarity2_ext,
@@ -175,10 +200,15 @@ module top (
               tl_cfg_sts,
               tl_cfg_sts_wr,
               tx_cred0,
+              tx_cred1,
               tx_fifo_empty0,
+              tx_fifo_empty1,
               tx_fifo_full0,
+              tx_fifo_full1,
               tx_fifo_rdptr0,
+              tx_fifo_rdptr1,
               tx_fifo_wrptr0,
+              tx_fifo_wrptr1,
               tx_out0,
               tx_out1,
               tx_out2,
@@ -188,6 +218,7 @@ module top (
               tx_out6,
               tx_out7,
               tx_st_ready0,
+              tx_st_ready1,
               txcompl0_ext,
               txcompl1_ext,
               txcompl2_ext,
@@ -230,38 +261,55 @@ module top (
   output           clk500_out;
   output           core_clk_out;
   output           derr_cor_ext_rcv0;
+  output           derr_cor_ext_rcv1;
   output           derr_cor_ext_rpl;
   output           derr_rpl;
   output           dlup_exit;
   output           hotrst_exit;
   output  [ 19: 0] ko_cpl_spc_vc0;
+  output  [ 19: 0] ko_cpl_spc_vc1;
   output           l2_exit;
   output  [  3: 0] lane_act;
   output           lmi_ack;
   output  [ 31: 0] lmi_dout;
   output  [  4: 0] ltssm;
   output           npd_alloc_1cred_vc0;
+  output           npd_alloc_1cred_vc1;
   output           npd_cred_vio_vc0;
+  output           npd_cred_vio_vc1;
   output           nph_alloc_1cred_vc0;
+  output           nph_alloc_1cred_vc1;
   output           nph_cred_vio_vc0;
+  output           nph_cred_vio_vc1;
   output           pme_to_sr;
   output  [  1: 0] powerdown_ext;
   output           r2c_err0;
+  output           r2c_err1;
   output           rate_ext;
   output           rc_pll_locked;
   output           rc_rx_digitalreset;
   output  [ 33: 0] reconfig_fromgxb;
   output           reset_status;
   output           rx_fifo_empty0;
+  output           rx_fifo_empty1;
   output           rx_fifo_full0;
+  output           rx_fifo_full1;
   output  [  7: 0] rx_st_bardec0;
+  output  [  7: 0] rx_st_bardec1;
   output  [ 15: 0] rx_st_be0;
+  output  [ 15: 0] rx_st_be1;
   output  [127: 0] rx_st_data0;
+  output  [127: 0] rx_st_data1;
   output           rx_st_empty0;
+  output           rx_st_empty1;
   output           rx_st_eop0;
+  output           rx_st_eop1;
   output           rx_st_err0;
+  output           rx_st_err1;
   output           rx_st_sop0;
+  output           rx_st_sop1;
   output           rx_st_valid0;
+  output           rx_st_valid1;
   output           rxpolarity0_ext;
   output           rxpolarity1_ext;
   output           rxpolarity2_ext;
@@ -271,17 +319,22 @@ module top (
   output           rxpolarity6_ext;
   output           rxpolarity7_ext;
   output           suc_spd_neg;
-  output  [  8: 0] test_out;
+  output  [ 63: 0] test_out;
   output  [  3: 0] tl_cfg_add;
   output  [ 31: 0] tl_cfg_ctl;
   output           tl_cfg_ctl_wr;
   output  [ 52: 0] tl_cfg_sts;
   output           tl_cfg_sts_wr;
   output  [ 35: 0] tx_cred0;
+  output  [ 35: 0] tx_cred1;
   output           tx_fifo_empty0;
+  output           tx_fifo_empty1;
   output           tx_fifo_full0;
+  output           tx_fifo_full1;
   output  [  3: 0] tx_fifo_rdptr0;
+  output  [  3: 0] tx_fifo_rdptr1;
   output  [  3: 0] tx_fifo_wrptr0;
+  output  [  3: 0] tx_fifo_wrptr1;
   output           tx_out0;
   output           tx_out1;
   output           tx_out2;
@@ -291,6 +344,7 @@ module top (
   output           tx_out6;
   output           tx_out7;
   output           tx_st_ready0;
+  output           tx_st_ready1;
   output           txcompl0_ext;
   output           txcompl1_ext;
   output           txcompl2_ext;
@@ -363,7 +417,9 @@ module top (
   input            rx_in6;
   input            rx_in7;
   input            rx_st_mask0;
+  input            rx_st_mask1;
   input            rx_st_ready0;
+  input            rx_st_ready1;
   input   [  7: 0] rxdata0_ext;
   input   [  7: 0] rxdata1_ext;
   input   [  7: 0] rxdata2_ext;
@@ -407,11 +463,17 @@ module top (
   input            srst;
   input   [ 39: 0] test_in;
   input   [127: 0] tx_st_data0;
+  input   [127: 0] tx_st_data1;
   input            tx_st_empty0;
+  input            tx_st_empty1;
   input            tx_st_eop0;
+  input            tx_st_eop1;
   input            tx_st_err0;
+  input            tx_st_err1;
   input            tx_st_sop0;
+  input            tx_st_sop1;
   input            tx_st_valid0;
+  input            tx_st_valid1;
 
   wire             app_int_ack;
   wire             app_msi_ack;
@@ -420,6 +482,7 @@ module top (
   wire             core_clk_in;
   wire             core_clk_out;
   wire             derr_cor_ext_rcv0;
+  wire             derr_cor_ext_rcv1;
   wire             derr_cor_ext_rpl;
   wire             derr_rpl;
   wire             detect_mask_rxdrst;
@@ -451,15 +514,20 @@ module top (
   wire    [  7: 0] hip_tx_clkout;
   wire             hotrst_exit;
   wire    [ 19: 0] ko_cpl_spc_vc0;
+  wire    [ 19: 0] ko_cpl_spc_vc1;
   wire             l2_exit;
   wire    [  3: 0] lane_act;
   wire             lmi_ack;
   wire    [ 31: 0] lmi_dout;
   wire    [  4: 0] ltssm;
   wire             npd_alloc_1cred_vc0;
+  wire             npd_alloc_1cred_vc1;
   wire             npd_cred_vio_vc0;
+  wire             npd_cred_vio_vc1;
   wire             nph_alloc_1cred_vc0;
+  wire             nph_alloc_1cred_vc1;
   wire             nph_cred_vio_vc0;
+  wire             nph_cred_vio_vc1;
   wire             open_CraIrq_o;
   wire    [ 31: 0] open_CraReadData_o;
   wire             open_CraWaitRequest_o;
@@ -476,6 +544,7 @@ module top (
   wire             open_rc_rx_analogreset;
   wire             open_rc_tx_digitalreset;
   wire             open_rx_st_sop0_p1;
+  wire             open_rx_st_sop1_p1;
   wire             pclk_central;
   wire             pclk_central_serdes;
   wire             pclk_ch0;
@@ -507,6 +576,7 @@ module top (
   wire    [  1: 0] powerdown7_int;
   wire    [  1: 0] powerdown_ext;
   wire             r2c_err0;
+  wire             r2c_err1;
   wire             rate_ext;
   wire             rate_int;
   wire    [  7: 0] rateswitch;
@@ -523,7 +593,9 @@ module top (
   wire    [  7: 0] rx_cruclk;
   wire             rx_digitalreset_serdes;
   wire             rx_fifo_empty0;
+  wire             rx_fifo_empty1;
   wire             rx_fifo_full0;
+  wire             rx_fifo_full1;
   wire    [  7: 0] rx_freqlocked;
   wire    [  7: 0] rx_freqlocked_byte;
   wire    [  7: 0] rx_in;
@@ -532,13 +604,21 @@ module top (
   wire    [  7: 0] rx_signaldetect;
   wire    [  7: 0] rx_signaldetect_byte;
   wire    [  7: 0] rx_st_bardec0;
+  wire    [  7: 0] rx_st_bardec1;
   wire    [ 15: 0] rx_st_be0;
+  wire    [ 15: 0] rx_st_be1;
   wire    [127: 0] rx_st_data0;
+  wire    [127: 0] rx_st_data1;
   wire             rx_st_empty0;
+  wire             rx_st_empty1;
   wire             rx_st_eop0;
+  wire             rx_st_eop1;
   wire             rx_st_err0;
+  wire             rx_st_err1;
   wire             rx_st_sop0;
+  wire             rx_st_sop1;
   wire             rx_st_valid0;
+  wire             rx_st_valid1;
   wire    [ 63: 0] rxdata;
   wire    [ 63: 0] rxdata_pcs;
   wire    [  7: 0] rxdatak;
@@ -567,7 +647,7 @@ module top (
   wire    [  7: 0] rxvalid;
   wire    [  7: 0] rxvalid_pcs;
   wire             suc_spd_neg;
-  wire    [  8: 0] test_out;
+  wire    [ 63: 0] test_out;
   wire    [ 63: 0] test_out_int;
   wire    [  3: 0] tl_cfg_add;
   wire    [ 31: 0] tl_cfg_ctl;
@@ -575,11 +655,16 @@ module top (
   wire    [ 52: 0] tl_cfg_sts;
   wire             tl_cfg_sts_wr;
   wire    [ 35: 0] tx_cred0;
+  wire    [ 35: 0] tx_cred1;
   wire    [  7: 0] tx_deemph;
   wire             tx_fifo_empty0;
+  wire             tx_fifo_empty1;
   wire             tx_fifo_full0;
+  wire             tx_fifo_full1;
   wire    [  3: 0] tx_fifo_rdptr0;
+  wire    [  3: 0] tx_fifo_rdptr1;
   wire    [  3: 0] tx_fifo_wrptr0;
+  wire    [  3: 0] tx_fifo_wrptr1;
   wire    [ 23: 0] tx_margin;
   wire    [  7: 0] tx_out;
   wire             tx_out0;
@@ -591,6 +676,7 @@ module top (
   wire             tx_out6;
   wire             tx_out7;
   wire             tx_st_ready0;
+  wire             tx_st_ready1;
   wire    [  7: 0] txcompl;
   wire             txcompl0_ext;
   wire             txcompl0_int;
@@ -678,7 +764,7 @@ module top (
   wire             txelecidle7_ext;
   wire             txelecidle7_int;
   wire             use_c4gx_serdes;
-  assign test_out = {lane_act,ltssm};
+  assign test_out = test_out_int;
   assign txdetectrx_ext = txdetectrx0_ext;
   assign powerdown_ext = powerdown0_ext;
   assign rxdata[7 : 0] = pipe_mode_int ? rxdata0_ext : rxdata_pcs[7 : 0];
@@ -842,6 +928,7 @@ module top (
   assign rxpolarity7_ext = pipe_mode_int ? rxpolarity7_int : 0;
   assign powerdown7_ext = pipe_mode_int ? powerdown7_int : 0;
   assign ko_cpl_spc_vc0 = 20'h1c070;
+  assign ko_cpl_spc_vc1 = 20'h1c070;
   assign rx_in[0] = rx_in0;
   assign tx_out0 = tx_out[0];
   assign rx_in[1] = rx_in1;
@@ -880,6 +967,26 @@ module top (
   assign rx_signaldetect_byte[7 : 0] = rx_signaldetect[7 : 0];
   assign detect_mask_rxdrst = 1'b0;
   assign core_clk_in = 1'b0;
+  assign gnd_AvlClk_i = 1'b0;
+  assign gnd_Rstn_i = 1'b0;
+  assign gnd_TxsChipSelect_i = 1'b0;
+  assign gnd_TxsRead_i = 1'b0;
+  assign gnd_TxsWrite_i = 1'b0;
+  assign gnd_TxsWriteData_i = 1'b0;
+  assign gnd_TxsBurstCount_i = 1'b0;
+  assign gnd_TxsAddress_i = 1'b0;
+  assign gnd_TxsByteEnable_i = 1'b0;
+  assign gnd_RxmWaitRequest_i = 1'b0;
+  assign gnd_RxmReadData_i = 1'b0;
+  assign gnd_RxmReadDataValid_i = 1'b0;
+  assign gnd_RxmIrq_i = 1'b0;
+  assign gnd_RxmIrqNum_i = 1'b0;
+  assign gnd_CraChipSelect_i = 1'b0;
+  assign gnd_CraRead = 1'b0;
+  assign gnd_CraWrite = 1'b0;
+  assign gnd_CraWriteData_i = 1'b0;
+  assign gnd_CraAddress_i = 1'b0;
+  assign gnd_CraByteEnable_i = 1'b0;
   assign gnd_AvlClk_i = 1'b0;
   assign gnd_Rstn_i = 1'b0;
   assign gnd_TxsChipSelect_i = 1'b0;
@@ -1010,6 +1117,7 @@ module top (
       .cpl_pending (cpl_pending),
       .crst (crst),
       .derr_cor_ext_rcv0 (derr_cor_ext_rcv0),
+      .derr_cor_ext_rcv1 (derr_cor_ext_rcv1),
       .derr_cor_ext_rpl (derr_cor_ext_rpl),
       .derr_rpl (derr_rpl),
       .dl_ltssm (ltssm),
@@ -1027,9 +1135,13 @@ module top (
       .lmi_rden (lmi_rden),
       .lmi_wren (lmi_wren),
       .npd_alloc_1cred_vc0 (npd_alloc_1cred_vc0),
+      .npd_alloc_1cred_vc1 (npd_alloc_1cred_vc1),
       .npd_cred_vio_vc0 (npd_cred_vio_vc0),
+      .npd_cred_vio_vc1 (npd_cred_vio_vc1),
       .nph_alloc_1cred_vc0 (nph_alloc_1cred_vc0),
+      .nph_alloc_1cred_vc1 (nph_alloc_1cred_vc1),
       .nph_cred_vio_vc0 (nph_cred_vio_vc0),
+      .nph_cred_vio_vc1 (nph_cred_vio_vc1),
       .npor (npor),
       .pclk_central (pclk_central),
       .pclk_ch0 (pclk_ch0),
@@ -1058,6 +1170,7 @@ module top (
       .powerdown6_ext (powerdown6_int),
       .powerdown7_ext (powerdown7_int),
       .r2c_err0 (r2c_err0),
+      .r2c_err1 (r2c_err1),
       .rate_ext (rate_int),
       .rc_areset (rc_areset),
       .rc_gxb_powerdown (open_gxb_powerdown),
@@ -1069,20 +1182,35 @@ module top (
       .rc_tx_digitalreset (open_rc_tx_digitalreset),
       .reset_status (reset_status),
       .rx_fifo_empty0 (rx_fifo_empty0),
+      .rx_fifo_empty1 (rx_fifo_empty1),
       .rx_fifo_full0 (rx_fifo_full0),
+      .rx_fifo_full1 (rx_fifo_full1),
       .rx_st_bardec0 (rx_st_bardec0),
+      .rx_st_bardec1 (rx_st_bardec1),
       .rx_st_be0 (rx_st_be0[7 : 0]),
       .rx_st_be0_p1 (rx_st_be0[15 : 8]),
+      .rx_st_be1 (rx_st_be1[7 : 0]),
+      .rx_st_be1_p1 (rx_st_be1[15 : 8]),
       .rx_st_data0 (rx_st_data0[63 : 0]),
       .rx_st_data0_p1 (rx_st_data0[127 : 64]),
+      .rx_st_data1 (rx_st_data1[63 : 0]),
+      .rx_st_data1_p1 (rx_st_data1[127 : 64]),
       .rx_st_eop0 (rx_st_empty0),
       .rx_st_eop0_p1 (rx_st_eop0),
+      .rx_st_eop1 (rx_st_empty1),
+      .rx_st_eop1_p1 (rx_st_eop1),
       .rx_st_err0 (rx_st_err0),
+      .rx_st_err1 (rx_st_err1),
       .rx_st_mask0 (rx_st_mask0),
+      .rx_st_mask1 (rx_st_mask1),
       .rx_st_ready0 (rx_st_ready0),
+      .rx_st_ready1 (rx_st_ready1),
       .rx_st_sop0 (rx_st_sop0),
       .rx_st_sop0_p1 (open_rx_st_sop0_p1),
+      .rx_st_sop1 (rx_st_sop1),
+      .rx_st_sop1_p1 (open_rx_st_sop1_p1),
       .rx_st_valid0 (rx_st_valid0),
+      .rx_st_valid1 (rx_st_valid1),
       .rxdata0_ext (rxdata[7 : 0]),
       .rxdata1_ext (rxdata[15 : 8]),
       .rxdata2_ext (rxdata[23 : 16]),
@@ -1141,21 +1269,35 @@ module top (
       .tl_cfg_sts (tl_cfg_sts),
       .tl_cfg_sts_wr (tl_cfg_sts_wr),
       .tx_cred0 (tx_cred0),
+      .tx_cred1 (tx_cred1),
       .tx_deemph (tx_deemph),
       .tx_fifo_empty0 (tx_fifo_empty0),
+      .tx_fifo_empty1 (tx_fifo_empty1),
       .tx_fifo_full0 (tx_fifo_full0),
+      .tx_fifo_full1 (tx_fifo_full1),
       .tx_fifo_rdptr0 (tx_fifo_rdptr0),
+      .tx_fifo_rdptr1 (tx_fifo_rdptr1),
       .tx_fifo_wrptr0 (tx_fifo_wrptr0),
+      .tx_fifo_wrptr1 (tx_fifo_wrptr1),
       .tx_margin (tx_margin),
       .tx_st_data0 (tx_st_data0[63 : 0]),
       .tx_st_data0_p1 (tx_st_data0[127 : 64]),
+      .tx_st_data1 (tx_st_data1[63 : 0]),
+      .tx_st_data1_p1 (tx_st_data1[127 : 64]),
       .tx_st_eop0 (tx_st_empty0),
       .tx_st_eop0_p1 (tx_st_eop0),
+      .tx_st_eop1 (tx_st_empty1),
+      .tx_st_eop1_p1 (tx_st_eop1),
       .tx_st_err0 (tx_st_err0),
+      .tx_st_err1 (tx_st_err1),
       .tx_st_ready0 (tx_st_ready0),
+      .tx_st_ready1 (tx_st_ready1),
       .tx_st_sop0 (tx_st_sop0),
       .tx_st_sop0_p1 (1'b0),
+      .tx_st_sop1 (tx_st_sop1),
+      .tx_st_sop1_p1 (1'b0),
       .tx_st_valid0 (tx_st_valid0),
+      .tx_st_valid1 (tx_st_valid1),
       .txcompl0_ext (txcompl0_int),
       .txcompl1_ext (txcompl1_int),
       .txcompl2_ext (txcompl2_int),
@@ -1245,7 +1387,7 @@ endmodule
 // Retrieval info:     <NAMESPACE name = "parameterization">
 // Retrieval info:      <PRIVATE name = "p_pcie_phy" value="Stratix IV GX"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_port_type" value="Native Endpoint"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "p_pcie_tag_supported" value="32"  type="INTEGER"  enable="1" />
+// Retrieval info:      <PRIVATE name = "p_pcie_tag_supported" value="64"  type="INTEGER"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_msi_message_requested" value="4"  type="INTEGER"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_low_priority_virtual_channels" value="0"  type="INTEGER"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_retry_fifo_depth" value="64"  type="INTEGER"  enable="1" />
@@ -1516,7 +1658,7 @@ endmodule
 // Retrieval info:      <PRIVATE name = "p_pcie_subsystem_vendor_id" value="0x5BDE"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_surprise_down_error_support" value="0"  type="BOOLEAN"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_target_performance_preset" value="Maximum"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "p_pcie_test_out_width" value="9 bits"  type="STRING"  enable="1" />
+// Retrieval info:      <PRIVATE name = "p_pcie_test_out_width" value="64 bits"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_threshold_for_L0s_entry" value="8192 ns"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_total_header_credit_vc0" value="216"  type="INTEGER"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_total_header_credit_vc1" value="0"  type="INTEGER"  enable="1" />
@@ -1529,7 +1671,7 @@ endmodule
 // Retrieval info:      <PRIVATE name = "p_pcie_variation_name" value="top_core"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_vendor_id" value="0x1172"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "p_pcie_version" value="2.0"  type="STRING"  enable="1" />
-// Retrieval info:      <PRIVATE name = "p_pcie_virutal_channels" value="1"  type="INTEGER"  enable="1" />
+// Retrieval info:      <PRIVATE name = "p_pcie_virutal_channels" value="2"  type="INTEGER"  enable="1" />
 // Retrieval info:      <PRIVATE name = "pref_nonp_independent" value="false"  type="STRING"  enable="1" />
 // Retrieval info:      <PRIVATE name = "translationTableSizeInfo" value="The bridge reserves a contiguous Avalon address range to access
 // Retrieval info: PCIe devices. This Avalon address range is segmented into one or

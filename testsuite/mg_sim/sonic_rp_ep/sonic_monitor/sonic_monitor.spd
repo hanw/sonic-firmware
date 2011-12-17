@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="sonic_monitor/simulation/submodules/altera_reset_controller.v"
+   type="VERILOG" />
+ <file
+   path="sonic_monitor/simulation/submodules/altera_reset_synchronizer.v"
+   type="VERILOG" />
+ <file
+   path="sonic_monitor/simulation/submodules/verbosity_pkg.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/simulation/submodules/altera_avalon_st_monitor_assertion.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/simulation/submodules/altera_avalon_st_monitor_coverage.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/simulation/submodules/altera_avalon_st_monitor_transactions.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/simulation/submodules/altera_avalon_st_monitor.sv"
+   type="SYSTEM_VERILOG" />
+ <file path="sonic_monitor/simulation/sonic_monitor.v" type="VERILOG" />
+ <topLevel name="sonic_monitor" />
+ <deviceFamily name="Stratix IV" />
+</simPackage>

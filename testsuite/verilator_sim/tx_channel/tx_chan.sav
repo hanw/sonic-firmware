@@ -1,0 +1,118 @@
+[timestart] 538
+[size] 1680 965
+[pos] -1 -24
+*-3.067383 543 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
+[treeopen] TOP.v.
+[treeopen] TOP.v.tx_cbuf.
+[treeopen] TOP.v.tx_cbuf.tx_cbuf.
+@22
+TOP.v.data_in[127:0]
+TOP.v.data_out[39:0]
+@28
+TOP.v.enable_sfp
+TOP.v.gearbox_rdreq
+TOP.v.rd_clock
+TOP.v.reset
+TOP.v.tag_cpl
+@22
+TOP.v.tx_cbuf_data_out[65:0]
+TOP.v.tx_ring_rptr[13:0]
+TOP.v.wr_address[12:0]
+@28
+TOP.v.wr_clock
+TOP.v.wrreq
+TOP.v.xcvr_tx_ready
+@200
+-gearbox
+@28
+TOP.v.gearbox.clk_in
+@22
+TOP.v.gearbox.data_in[65:0]
+TOP.v.gearbox.data_out[39:0]
+@28
+TOP.v.gearbox.rd_req
+TOP.v.gearbox.rd_req_out
+TOP.v.gearbox.rd_req_r
+TOP.v.gearbox.rd_req_rr
+TOP.v.gearbox.rd_req_rrr
+TOP.v.gearbox.rd_req_r4
+TOP.v.gearbox.rd_req_r5
+TOP.v.gearbox.reset
+@22
+TOP.v.gearbox.sr0[65:0]
+TOP.v.gearbox.sr1[65:0]
+TOP.v.gearbox.state[6:0]
+TOP.v.gearbox.state_r[6:0]
+TOP.v.gearbox.state_rr[6:0]
+TOP.v.gearbox.state_r3[6:0]
+TOP.v.gearbox.state_r4[6:0]
+@23
+TOP.v.gearbox.state_r5[6:0]
+@200
+-tx_cbuf
+@28
+TOP.v.tx_cbuf.gearbox_ena
+@22
+TOP.v.tx_cbuf.curr_page[4:0]
+TOP.v.tx_cbuf.data_in[127:0]
+TOP.v.tx_cbuf.data_out[65:0]
+@28
+TOP.v.tx_cbuf.page_ready
+@22
+TOP.v.tx_cbuf.prev_page[4:0]
+@28
+TOP.v.tx_cbuf.rd_clock
+@22
+TOP.v.tx_cbuf.rd_cpld_qword_count[13:0]
+@28
+TOP.v.tx_cbuf.rd_ready
+TOP.v.tx_cbuf.rd_tag_cpl
+TOP.v.tx_cbuf.rdreq
+@22
+TOP.v.tx_cbuf.rdusedqwords[13:0]
+@28
+TOP.v.tx_cbuf.reset
+TOP.v.tx_cbuf.rx_almost_empty
+TOP.v.tx_cbuf.rx_almost_full
+TOP.v.tx_cbuf.rx_cbuf_rdena
+TOP.v.tx_cbuf.rx_cbuf_rdreq
+TOP.v.tx_cbuf.rx_cbuf_wrena
+TOP.v.tx_cbuf.rx_empty
+TOP.v.tx_cbuf.rx_full
+TOP.v.tx_cbuf.tag_cpl
+@22
+TOP.v.tx_cbuf.tx_ring_rptr[13:0]
+TOP.v.tx_cbuf.wr_address[12:0]
+@28
+TOP.v.tx_cbuf.wr_clock
+TOP.v.tx_cbuf.wrena
+TOP.v.tx_cbuf.wrreq
+@22
+TOP.v.tx_cbuf.wrusedqwords[13:0]
+@200
+-Circular buffer
+@22
+TOP.v.tx_cbuf.tx_cbuf.data_in[127:0]
+TOP.v.tx_cbuf.tx_cbuf.data_out[65:0]
+TOP.v.tx_cbuf.tx_cbuf.dout_data[63:0]
+@28
+TOP.v.tx_cbuf.tx_cbuf.dout_sync[1:0]
+@22
+TOP.v.tx_cbuf.tx_cbuf.rd_address[13:0]
+@28
+TOP.v.tx_cbuf.tx_cbuf.rd_clk
+TOP.v.tx_cbuf.tx_cbuf.rdena
+TOP.v.tx_cbuf.tx_cbuf.rdreq
+TOP.v.tx_cbuf.tx_cbuf.reset
+@22
+TOP.v.tx_cbuf.tx_cbuf.wr_address[12:0]
+TOP.v.tx_cbuf.tx_cbuf.wr_address_data[12:0]
+TOP.v.tx_cbuf.tx_cbuf.wr_address_sync[7:0]
+@28
+TOP.v.tx_cbuf.tx_cbuf.wr_clk
+TOP.v.tx_cbuf.tx_cbuf.wren_data
+TOP.v.tx_cbuf.tx_cbuf.wren_sync
+TOP.v.tx_cbuf.tx_cbuf.wrreq
+[pattern_trace] 1
+[pattern_trace] 0

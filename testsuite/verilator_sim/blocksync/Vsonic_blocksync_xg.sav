@@ -1,0 +1,27 @@
+[timestart] 24910
+[size] 1680 965
+[pos] -1 -24
+*-13.005569 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
+@28
+TOP.v.block_lock
+TOP.v.clk
+@22
+TOP.v.data_in[65:0]
+TOP.v.offset[7:0]
+@28
+TOP.v.reset
+@22
+TOP.v.rx_b1[65:0]
+TOP.v.rx_b2[65:0]
+TOP.v.rx_coded[65:0]
+TOP.v.sh_cnt[31:0]
+TOP.v.sh_invalid_cnt[31:0]
+@28
+TOP.v.sh_valid
+TOP.v.slip_done
+TOP.v.state[2:0]
+TOP.v.test_sh
+TOP.v.valid
+[pattern_trace] 1
+[pattern_trace] 0

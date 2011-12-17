@@ -20,7 +20,8 @@
 
 module sonic_irq_generator #(
 	parameter USED_QWORDS_WIDTH = 13,
-	parameter USE_MSI = 1'b1
+	parameter USE_MSI = 1'b1,
+			     parameter PORT_NUM = 0
 	) (
 	input			clk_in,
 	input			reset,
@@ -215,7 +216,8 @@ module sonic_irq_generator #(
 	defparam rc_update.START_TX = START_TX_UPD_IRQ,
 			 rc_update.MWR_REQ = MWR_REQ_UPD_IRQ,
 			 rc_update.MWR_DV = MWR_DV_UPD_IRQ,
-			 rc_update.MODE = `RC_UPD_IRQ_MODE;
+			 rc_update.MODE = `RC_UPD_IRQ_MODE,
+	  rc_update.PORT_NUM = PORT_NUM;
 
 	
 	// -------------------------------------------------------

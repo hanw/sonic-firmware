@@ -1,0 +1,21 @@
+# system info sonic_rp_ep_sim on 2011.12.04.23:09:45
+system_info:
+name,value
+DEVICE,
+DEVICE_FAMILY,Stratix IV
+GENERATION_ID,1323058184
+#
+#
+# Files generated for sonic_rp_ep_sim on 2011.12.04.23:09:45
+files:
+filepath,kind,attributes,module,is_top
+sonic_rp_ep_sim/simulation/sonic_rp_ep_sim.v,VERILOG,,sonic_rp_ep_sim,true
+sonic_rp_ep_sim/simulation/submodules/sonic_fast_sim_top.sv,SYSTEM_VERILOG,,sonic_fast_sim_top,false
+sonic_rp_ep_sim/simulation/submodules/altera_reset_controller.v,VERILOG,,altera_reset_controller,false
+sonic_rp_ep_sim/simulation/submodules/altera_reset_synchronizer.v,VERILOG,,altera_reset_controller,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+sonic_rp_ep_sim.sonic_rp_ep_top_0,sonic_fast_sim_top
+sonic_rp_ep_sim.rst_controller,altera_reset_controller

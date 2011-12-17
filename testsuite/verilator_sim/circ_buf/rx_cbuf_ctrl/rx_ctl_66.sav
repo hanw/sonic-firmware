@@ -1,0 +1,98 @@
+[timestart] 0
+[size] 1680 1027
+[pos] -1 -24
+*-4.538178 11 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
+[treeopen] TOP.v.
+[treeopen] TOP.v.rx_cbuf.
+@22
+TOP.v.data_in[65:0]
+TOP.v.data_out[127:0]
+TOP.v.rd_address[12:0]
+@28
+TOP.v.rd_clock
+TOP.v.rd_used_qwords
+TOP.v.rdena
+TOP.v.rdreq
+TOP.v.reset
+TOP.v.rx_almost_empty
+TOP.v.rx_almost_full
+TOP.v.rx_cbuf_rdena
+TOP.v.rx_cbuf_wrena
+TOP.v.rx_empty
+TOP.v.rx_full
+TOP.v.wr_clock
+TOP.v.wrena
+TOP.v.wrreq
+@200
+-cbuf
+@22
+TOP.v.rx_cbuf.data_in[65:0]
+TOP.v.rx_cbuf.data_in_r[65:0]
+TOP.v.rx_cbuf.data_in_rr[65:0]
+TOP.v.rx_cbuf.data_out[127:0]
+@28
+TOP.v.rx_cbuf.data_out_sel
+@22
+TOP.v.rx_cbuf.data_ring_data_out[127:0]
+TOP.v.rx_cbuf.rd_address[12:0]
+@28
+TOP.v.rx_cbuf.rd_clk
+TOP.v.rx_cbuf.reset
+@22
+TOP.v.rx_cbuf.sync_ring_data_out[127:0]
+TOP.v.rx_cbuf.sync_ring_rd_address[8:0]
+TOP.v.rx_cbuf.wr_address[13:0]
+@28
+TOP.v.rx_cbuf.wr_clk
+@29
+TOP.v.rx_cbuf.wrena
+@28
+TOP.v.rx_cbuf.wrreq
+@200
+-usedw
+@28
+TOP.v.usedw_calc.almost_empty
+TOP.v.usedw_calc.almost_empty_reg
+TOP.v.usedw_calc.almost_full
+TOP.v.usedw_calc.almost_full_reg
+@22
+TOP.v.usedw_calc.clock_crossed_rdcounter[13:0]
+TOP.v.usedw_calc.clock_crossed_rdcounter_prev[13:0]
+TOP.v.usedw_calc.clock_crossed_rptr[13:0]
+TOP.v.usedw_calc.clock_crossed_wptr[13:0]
+TOP.v.usedw_calc.clock_crossed_wrcounter[13:0]
+TOP.v.usedw_calc.clock_crossed_wrcounter_prev[13:0]
+@28
+TOP.v.usedw_calc.empty
+TOP.v.usedw_calc.empty_reg
+TOP.v.usedw_calc.full
+TOP.v.usedw_calc.full_reg
+TOP.v.usedw_calc.rdclock
+@22
+TOP.v.usedw_calc.rdcounter[13:0]
+@28
+TOP.v.usedw_calc.rdena
+TOP.v.usedw_calc.rdreq
+@22
+TOP.v.usedw_calc.rdusedqwords[13:0]
+TOP.v.usedw_calc.rdusedqwords_reg[13:0]
+TOP.v.usedw_calc.reads_this_write_cycle[13:0]
+TOP.v.usedw_calc.reads_this_write_cycle_delay[13:0]
+@28
+TOP.v.usedw_calc.reset
+TOP.v.usedw_calc.wrclock
+@22
+TOP.v.usedw_calc.wrcounter[13:0]
+@28
+TOP.v.usedw_calc.wrena
+@22
+TOP.v.usedw_calc.writes_this_read_cycle[13:0]
+TOP.v.usedw_calc.writes_this_read_cycle_delay[13:0]
+@28
+TOP.v.usedw_calc.wrreq
+@22
+TOP.v.usedw_calc.wrusedqwords[13:0]
+TOP.v.usedw_calc.wrusedqwords_reg[13:0]
+[pattern_trace] 1
+[pattern_trace] 0

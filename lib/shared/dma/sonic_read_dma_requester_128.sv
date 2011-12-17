@@ -64,7 +64,8 @@ module sonic_read_dma_requester_128  # (
    parameter RC_64BITS_ADDR  = 0,
    parameter AVALON_BYTE_WIDTH = AVALON_WDATA/8,
    parameter DT_EP_ADDR_SPEC   = 2,                  // Descriptor Table's EP Address is specified as:  3=QW Address,  2=DW Address, 1= W Address, 0= Byte Addr.
-   parameter  CDMA_AST_RXWS_LATENCY = 2                 // response time fo rx_data to rx_ws
+   parameter  CDMA_AST_RXWS_LATENCY = 2,                 // response time fo rx_data to rx_ws
+					parameter PORT_NUM = 0
 
    )
    (
@@ -161,7 +162,8 @@ module sonic_read_dma_requester_128  # (
 //    endfunction
 // VHDL translation_off
 
-
+   localparam TLP_TC_CLASS = (PORT_NUM == 0) ? 0 : 5;
+   
    // Parameter for TX State machine
    localparam DT_FIFO           =0 , // Ready for next Descriptor FIFO (DT)
               DT_FIFO_RD_QW0    =1 , // read First  QWORD
@@ -711,7 +713,7 @@ module sonic_read_dma_requester_128  # (
    assign tx_desc[124:120] = (ep_lastupd_cycle==1'b1)?`TLP_TYPE_WRITE:
                                                       `TLP_TYPE_READ;
    assign tx_desc[119]     = `RESERVED_1BIT     ;
-   assign tx_desc[118:116] = `TLP_TC_DEFAULT    ;
+   assign tx_desc[118:116] = TLP_TC_CLASS    ;
    assign tx_desc[115:112] = `RESERVED_4BIT     ;
    assign tx_desc[111]     = `TLP_TD_DEFAULT    ;
    assign tx_desc[110]     = `TLP_EP_DEFAULT    ;

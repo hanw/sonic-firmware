@@ -191,7 +191,8 @@ module sonic_dma_dt #(
    parameter DISPLAY_SM      =1 ,
    parameter DT_EP_ADDR_SPEC = 0,    // Descriptor Table's EP Address is specified as:  3=QW Address,  2=DW Address, 1= W Address, 0= Byte Addr.
    parameter AVALON_BYTE_WIDTH = AVALON_WDATA/8,   // for epmem byte enables
-   parameter CDMA_AST_RXWS_LATENCY = 2
+   parameter CDMA_AST_RXWS_LATENCY = 2,
+		      parameter PORT_NUM = 0
    )(
    input clk_in,
    input rstn ,
@@ -459,7 +460,8 @@ generate
             .MAX_PAYLOAD    (MAX_PAYLOAD),
             .AVALON_WADDR   (AVALON_WADDR),
             .AVALON_WDATA   (AVALON_WDATA),
-            .DT_EP_ADDR_SPEC (DT_EP_ADDR_SPEC)
+            .DT_EP_ADDR_SPEC (DT_EP_ADDR_SPEC),
+					 .PORT_NUM(PORT_NUM)
             )
             write_requester_128
             (
@@ -543,7 +545,8 @@ generate
             .INTENDED_DEVICE_FAMILY (INTENDED_DEVICE_FAMILY),
             .RC_SLAVE_USETAG (RC_SLAVE_USETAG),
             .DT_EP_ADDR_SPEC (DT_EP_ADDR_SPEC),
-            .CDMA_AST_RXWS_LATENCY (CDMA_AST_RXWS_LATENCY)
+            .CDMA_AST_RXWS_LATENCY (CDMA_AST_RXWS_LATENCY),
+					.PORT_NUM(PORT_NUM)
             )
             read_requester_128
             (

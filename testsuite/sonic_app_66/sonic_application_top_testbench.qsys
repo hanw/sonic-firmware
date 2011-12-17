@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags=""
+   categories="System" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element $${FILENAME}
+   {
+   }
+   element clk
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+   element sonic_application_top_0
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="deviceFamily" value="STRATIXIV" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="maxAdditionalLatency" value="1" />
+ <parameter name="projectName" value="" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="1" />
+ <parameter name="timeStamp" value="1310580196705" />
+ <interface
+   name="legacy_irq"
+   internal="sonic_application_top_0.legacy_irq"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="msi_irq"
+   internal="sonic_application_top_0.msi_irq"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="err_desc"
+   internal="sonic_application_top_0.err_desc"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="pex_msi_num"
+   internal="sonic_application_top_0.pex_msi_num"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="rx_st"
+   internal="sonic_application_top_0.rx_st"
+   type="avalon_streaming"
+   dir="end" />
+ <interface
+   name="tx_st"
+   internal="sonic_application_top_0.tx_st"
+   type="avalon_streaming"
+   dir="start" />
+ <interface
+   name="rx_st_misc"
+   internal="sonic_application_top_0.rx_st_component_specific"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="cpl_err"
+   internal="sonic_application_top_0.cpl_err"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="cpl_pending"
+   internal="sonic_application_top_0.cpl_pending"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="tl_cfg"
+   internal="sonic_application_top_0.tl_cfg_app_interface"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="tx_st_cred"
+   internal="sonic_application_top_0.tx_stream_cred0"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="tx_st_fifo_empty"
+   internal="sonic_application_top_0.tx_stream_fifo_empty"
+   type="conduit"
+   dir="end" />
+ <interface name="phy_ready" internal="sonic_application_top_0.phy_ready" />
+ <interface
+   name="xcvr_rx_clkout"
+   internal="sonic_application_top_0.xcvr_rx_clkout"
+   type="clock"
+   dir="end" />
+ <interface
+   name="xcvr_tx_clkout"
+   internal="sonic_application_top_0.xcvr_tx_clkout"
+   type="clock"
+   dir="end" />
+ <interface
+   name="cfg_linkcsr"
+   internal="sonic_application_top_0.cfg_linkcsr"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="gen2_speed"
+   internal="sonic_application_top_0.gen2_speed"
+   type="conduit"
+   dir="end" />
+ <interface name="clk" internal="clk.clk_in" type="clock" dir="end" />
+ <interface name="reset" internal="clk.clk_in_reset" type="reset" dir="end" />
+ <interface name="reset_n" internal="sonic_application_top_0.rstn" />
+ <interface
+   name="pma_tx_ready"
+   internal="sonic_application_top_0.pma_tx_ready"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="pma_rx_ready"
+   internal="sonic_application_top_0.pma_rx_ready"
+   type="conduit"
+   dir="end" />
+ <module
+   kind="sonic_application_top"
+   version="1.0"
+   enabled="1"
+   name="sonic_application_top_0">
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="250000000" />
+  <parameter name="AUTO_XCVR_RX_CLKOUT_CLOCK_RATE" value="0" />
+  <parameter name="AUTO_XCVR_TX_CLKOUT_CLOCK_RATE" value="0" />
+ </module>
+ <module kind="clock_source" version="11.0" enabled="1" name="clk">
+  <parameter name="clockFrequency" value="250000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+  <parameter name="inputClockFrequency" value="0" />
+  <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <connection
+   kind="clock"
+   version="11.0"
+   start="clk.clk"
+   end="sonic_application_top_0.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="clk.clk_reset"
+   end="sonic_application_top_0.reset_n" />
+ <connection
+   kind="conduit"
+   version="11.0"
+   start="sonic_application_top_0.xcvr_tx_datain"
+   end="sonic_application_top_0.xcvr_rx_dataout">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+</system>

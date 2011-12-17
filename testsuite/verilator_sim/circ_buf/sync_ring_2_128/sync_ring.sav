@@ -1,0 +1,40 @@
+[timestart] 0
+[size] 1680 965
+[pos] -1 -24
+*-6.184424 129 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
+[treeopen] TOP.v.
+@28
+TOP.data_in[1:0]
+@22
+TOP.data_out[127:0]
+TOP.v.rd_address[8:0]
+@23
+TOP.v.wr_address[13:0]
+@28
+TOP.rd_clock
+TOP.wr_clock
+@200
+-bothalf
+@28
+TOP.v.bot_half.data[1:0]
+TOP.v.bot_half.inclock
+TOP.v.bot_half.outclock
+@22
+TOP.v.bot_half.q[63:0]
+TOP.v.bot_half.sub_wire0[63:0]
+@28
+TOP.v.bot_half.wren
+@200
+-tophalf
+@28
+TOP.v.top_half.data[1:0]
+TOP.v.top_half.inclock
+TOP.v.top_half.outclock
+@22
+TOP.v.top_half.q[63:0]
+TOP.v.top_half.sub_wire0[63:0]
+@28
+TOP.v.top_half.wren
+[pattern_trace] 1
+[pattern_trace] 0

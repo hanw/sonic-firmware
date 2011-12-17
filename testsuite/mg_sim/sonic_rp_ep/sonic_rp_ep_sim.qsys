@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags=""
+   categories="System" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element $${FILENAME}
+   {
+   }
+   element clk_156
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+   }
+   element clk_250
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+   element sonic_rp_ep_top_0
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="deviceFamily" value="STRATIXIV" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="maxAdditionalLatency" value="1" />
+ <parameter name="projectName" value="" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="1" />
+ <parameter name="timeStamp" value="1323243406297" />
+ <interface name="clk" internal="clk_250.clk_in" type="clock" dir="end" />
+ <interface name="reset" internal="clk_250.clk_in_reset" type="reset" dir="end" />
+ <interface name="clk_0" internal="clk_156.clk_in" type="clock" dir="end" />
+ <interface name="reset_0" internal="clk_156.clk_in_reset" type="reset" dir="end" />
+ <interface
+   name="xcvr_tx_datain"
+   internal="sonic_rp_ep_top_0.tx_datain"
+   type="avalon_streaming"
+   dir="start" />
+ <interface
+   name="xcvr_rx_dataout"
+   internal="sonic_rp_ep_top_0.rx_dataout"
+   type="avalon_streaming"
+   dir="end" />
+ <module kind="clock_source" version="11.0" enabled="1" name="clk_250">
+  <parameter name="clockFrequency" value="250000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+  <parameter name="inputClockFrequency" value="0" />
+  <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module
+   kind="sonic_rp_ep_top"
+   version="1.0"
+   enabled="1"
+   name="sonic_rp_ep_top_0">
+  <parameter name="AUTO_PLD_CLK_CLOCK_RATE" value="250000000" />
+  <parameter name="AUTO_RX_CLKOUT_CLOCK_RATE" value="156000000" />
+  <parameter name="AUTO_TX_CLKOUT_CLOCK_RATE" value="156000000" />
+ </module>
+ <module kind="clock_source" version="11.0" enabled="1" name="clk_156">
+  <parameter name="clockFrequency" value="156000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+  <parameter name="inputClockFrequency" value="0" />
+  <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <connection
+   kind="clock"
+   version="11.0"
+   start="clk_250.clk"
+   end="sonic_rp_ep_top_0.pld_clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="clk_250.clk_reset"
+   end="sonic_rp_ep_top_0.rstn" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="clk_156.clk"
+   end="sonic_rp_ep_top_0.tx_clkout" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="clk_156.clk"
+   end="sonic_rp_ep_top_0.rx_clkout" />
+</system>

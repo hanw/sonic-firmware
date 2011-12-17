@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>Report</title>
+  <style type="text/css">
+body { font-family:arial ;}
+a { text-decoration:underline ; color:#003000 ;}
+a:hover { text-decoration:underline ; color:0030f0 ;}
+td { padding : 5px ;}
+table.topTitle { width:100% ;}
+table.topTitle td.l { text-align:left ; font-weight: bold ; font-size:30px ;}
+table.topTitle td.r { text-align:right ; font-weight: bold ; font-size:16px ;}
+table.blueBar { width : 100% ; border-spacing : 0px ;}
+table.blueBar td { background:#0036ff ; font-size:12px ; color : white ; text-align : left ; font-weight : bold ;}
+table.blueBar td.l { text-align : left ;}
+table.blueBar td.r { text-align : right ;}
+table.items { width:100% ; border-collapse:collapse ;}
+table.items td.label { font-weight:bold ; font-size:16px ; vertical-align:top ;}
+table.items td.mono { font-family:courier ; font-size:12px ; white-space:pre ;}
+div.label { font-weight:bold ; font-size:16px ; vertical-align:top ; text-align:center ;}
+table.grid { border-collapse:collapse ;}
+table.grid td { border:1px solid #bbb ; font-size:12px ;}
+body { font-family:arial ;}
+table.x { font-family:courier ; border-collapse:collapse ; padding:2px ;}
+table.x td { border:1px solid #bbb ;}
+td.tableTitle { font-weight:bold ; text-align:center ;}
+table.grid { border-collapse:collapse ;}
+table.grid td { border:1px solid #bbb ;}
+table.grid td.tableTitle { font-weight:bold ; text-align:center ;}
+table.mmap { border-collapse:collapse ; text-size:11px ; border:1px solid #d8d8d8 ;}
+table.mmap td { border-color:#d8d8d8 ; border-width:1px ; border-style:solid ;}
+table.mmap td.empty { border-style:none ; background-color:#f0f0f0 ;}
+table.mmap td.slavemodule { text-align:left ; font-size:11px ; border-style:solid solid none solid ;}
+table.mmap td.slavem { text-align:right ; font-size:9px ; font-style:italic ; border-style:none solid none solid ;}
+table.mmap td.slaveb { text-align:right ; font-size:9px ; font-style:italic ; border-style:none solid solid solid ;}
+table.mmap td.mastermodule { text-align:center ; font-size:11px ; border-style:solid solid none solid ;}
+table.mmap td.masterlr { text-align:center ; font-size:9px ; font-style:italic ; border-style:none solid solid solid ;}
+table.mmap td.masterl { text-align:center ; font-size:9px ; font-style:italic ; border-style:none none solid solid ;}
+table.mmap td.masterm { text-align:center ; font-size:9px ; font-style:italic ; border-style:none none solid none ;}
+table.mmap td.masterr { text-align:center ; font-size:9px ; font-style:italic ; border-style:none solid solid none ;}
+table.mmap td.addr { font-family:courier ; font-size:9px ; text-align:right ;}
+table.connectionboxes { border-collapse:separate ; border-spacing:0px ; font-family:arial ;}
+table.connectionboxes td.from { border-bottom:1px solid black ; font-size:9px ; font-style:italic ; vertical-align:bottom ; text-align:left ;}
+table.connectionboxes td.to { font-size:9px ; font-style:italic ; vertical-align:top ; text-align:right ;}
+table.connectionboxes td.lefthandwire { border-bottom:1px solid black ; font-size:9px ; font-style:italic ; vertical-align:bottom ; text-align:right ;}
+table.connectionboxes td.righthandwire { border-bottom:1px solid black ; font-size:9px ; font-style:italic ; vertical-align:bottom ; text-align:left ;}
+table.connectionboxes td.righthandlabel { font-size:11px ; vertical-align:bottom ; text-align:left ;}
+table.connectionboxes td.neighbor { padding:3px ; border:1px solid black ; font-size: 11px ; background:#e8e8e8 ; vertical-align:center ; text-align:center ;}
+table.connectionboxes td.main { padding:8px ; border:1px solid black ; font-size: 14px ; font-weight:bold ; background:#ffffff ; vertical-align:center ; text-align:center ;}
+.parametersbox { border:1px solid #d0d0d0 ; display:inline-block ; max-height:160px ; overflow:auto ; width:360px ; font-size:10px ;}
+.flowbox { display:inline-block ;}
+.parametersbox table { font-size:10px ;}
+td.parametername { font-style:italic ;}
+td.parametervalue { font-weight:bold ;}
+div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; border-top:1px solid #707070 ; border-bottom:1px solid #707070 ; padding:20px ; margin:20px ; width:auto ;}</style>
+ </head>
+ <body>
+  <table class="topTitle">
+   <tr>
+    <td class="l">sonic_monitor_tb</td>
+    <td class="r">sonic_monitor_tb
+     <br/>1.0
+     <br/>
+    </td>
+   </tr>
+  </table>
+  <table class="blueBar">
+   <tr>
+    <td class="l">2011.12.07.02:31:03</td>
+    <td class="r">Generation Report</td>
+   </tr>
+  </table>
+  <table class="items">
+   <tr>
+    <td class="label">Output Directory</td>
+    <td class="mono">/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/</td>
+   </tr>
+   <tr>
+    <td class="label">Files</td>
+    <td class="mono">/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/sonic_monitor_tb.v (16622 bytes VERILOG)
+     <br/>
+     <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/sonic_monitor_tb_sonic_monitor_inst.v (8160 bytes VERILOG)
+     <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/verbosity_pkg.sv (6970 bytes SYSTEM_VERILOG)
+     <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_avalon_st_monitor_assertion.sv (23914 bytes SYSTEM_VERILOG)
+     <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_avalon_st_monitor_coverage.sv (68163 bytes SYSTEM_VERILOG)
+     <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_avalon_st_monitor_transactions.sv (16262 bytes SYSTEM_VERILOG)
+     <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_avalon_st_monitor.sv (12008 bytes SYSTEM_VERILOG)
+     <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_reset_controller.v (3482 bytes VERILOG)
+     <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_reset_synchronizer.v (3477 bytes VERILOG)
+     <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_avalon_clock_source.sv (3125 bytes SYSTEM_VERILOG)
+     <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_avalon_reset_source.sv (3347 bytes SYSTEM_VERILOG)
+     <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/avalon_utilities_pkg.sv (2589 bytes SYSTEM_VERILOG)
+     <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_avalon_st_sink_bfm.sv (17812 bytes SYSTEM_VERILOG)
+     <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_avalon_st_source_bfm.sv (32033 bytes SYSTEM_VERILOG)
+     <br/>
+    </td>
+   </tr>
+   <tr>
+    <td class="label">Instantiations</td>
+    <td class="mono">
+     <table class="grid">
+      <tr>
+       <td><b>sonic_monitor_tb</b>
+        <br/>sonic_monitor_tb v1.0</td>
+       <td><b>sonic_monitor_tb_sonic_monitor_inst</b> as sonic_monitor_inst
+        <br/><b>altera_avalon_clock_source</b> as sonic_monitor_inst_clk_in_bfm
+        <br/><b>altera_avalon_reset_source</b> as sonic_monitor_inst_reset_bfm
+        <br/><b>altera_avalon_st_sink_bfm</b> as sonic_monitor_inst_sonic_rx_monitor_src_bfm, sonic_monitor_inst_sonic_tx_monitor_src_bfm
+        <br/><b>altera_avalon_st_source_bfm</b> as sonic_monitor_inst_sonic_rx_monitor_sink_bfm, sonic_monitor_inst_sonic_tx_monitor_sink_bfm
+        <br/>
+       </td>
+      </tr>
+      <tr>
+       <td><b>sonic_monitor_tb_sonic_monitor_inst</b>
+        <br/>sonic_monitor v1.0</td>
+       <td><b>altera_avalon_st_monitor</b> as sonic_rx_monitor, sonic_tx_monitor
+        <br/><b>altera_reset_controller</b> as rst_controller
+        <br/>
+       </td>
+      </tr>
+      <tr>
+       <td><b>altera_avalon_clock_source</b>
+        <br/>altera_avalon_clock_source v11.0</td>
+       <td></td>
+      </tr>
+      <tr>
+       <td><b>altera_avalon_reset_source</b>
+        <br/>altera_avalon_reset_source v11.0</td>
+       <td></td>
+      </tr>
+      <tr>
+       <td><b>altera_avalon_st_sink_bfm</b>
+        <br/>altera_avalon_st_sink_bfm v11.0</td>
+       <td></td>
+      </tr>
+      <tr>
+       <td><b>altera_avalon_st_source_bfm</b>
+        <br/>altera_avalon_st_source_bfm v11.0</td>
+       <td></td>
+      </tr>
+      <tr>
+       <td><b>altera_avalon_st_monitor</b>
+        <br/>altera_avalon_st_monitor v11.0</td>
+       <td></td>
+      </tr>
+      <tr>
+       <td><b>altera_reset_controller</b>
+        <br/>altera_reset_controller v11.0</td>
+       <td></td>
+      </tr>
+     </table>
+    </td>
+   </tr>
+  </table>
+  <div style="width:100% ;  height:10px"> </div>
+  <div class="label">Generation Messages</div>
+  <div style="white-space:pre ; font-family:courier">2011.12.07.02:31:02 [Debug] sonic_monitor_tb.sonic_monitor_inst.sonic_rx_monitor: <b>add_interface_port</b>: Added reset port <b>reset</b> to <b>clk_reset</b> instead of <b>clk</b>
+2011.12.07.02:31:02 [Info] sonic_monitor_tb.sonic_monitor_inst.sonic_rx_monitor: Use Channels set to zero - omitting channel ports
+2011.12.07.02:31:02 [Debug] sonic_monitor_tb.sonic_monitor_inst.sonic_rx_monitor: Timing: VAL:1/0.000s ELA:1/0.002s
+2011.12.07.02:31:02 [Debug] sonic_monitor_tb.sonic_monitor_inst.sonic_tx_monitor: <b>add_interface_port</b>: Added reset port <b>reset</b> to <b>clk_reset</b> instead of <b>clk</b>
+2011.12.07.02:31:02 [Info] sonic_monitor_tb.sonic_monitor_inst.sonic_tx_monitor: Use Channels set to zero - omitting channel ports
+2011.12.07.02:31:02 [Debug] sonic_monitor_tb.sonic_monitor_inst.sonic_tx_monitor: Timing: VAL:1/0.001s ELA:1/0.002s
+2011.12.07.02:31:02 [Info] sonic_monitor_tb.sonic_monitor_inst_clk_in_bfm: Elaborate: altera_clock_source
+2011.12.07.02:31:02 [Info] sonic_monitor_tb.sonic_monitor_inst_clk_in_bfm:            $Revision: #2 $
+2011.12.07.02:31:02 [Info] sonic_monitor_tb.sonic_monitor_inst_clk_in_bfm:            $Date: 2011/04/13 $
+2011.12.07.02:30:58 [Debug] sonic_monitor_tb.altera_avalon_clock_source: Setting TOP_LEVEL_HDL_MODULE has no effect when a generation callback is defined
+2011.12.07.02:30:58 [Debug] sonic_monitor_tb.altera_avalon_clock_source: If TOP_LEVEL_HDL_MODULE is defined then TOP_LEVEL_HDL_FILE should indicate which file that module is found in
+2011.12.07.02:30:58 [Debug] sonic_monitor_tb.altera_avalon_clock_source: When a generate simulation callback is defined a synthesis generation callback should also be defined
+2011.12.07.02:31:02 [Debug] sonic_monitor_tb.sonic_monitor_inst_clk_in_bfm: Timing: VAL:1/0.000s ELA:1/0.000s
+2011.12.07.02:31:02 [Info] sonic_monitor_tb.sonic_monitor_inst_reset_bfm: Elaborate: altera_reset_source
+2011.12.07.02:31:02 [Info] sonic_monitor_tb.sonic_monitor_inst_reset_bfm:            $Revision: #2 $
+2011.12.07.02:31:02 [Info] sonic_monitor_tb.sonic_monitor_inst_reset_bfm:            $Date: 2011/04/13 $
+2011.12.07.02:31:02 [Info] sonic_monitor_tb.sonic_monitor_inst_reset_bfm: Reset is negatively asserted.
+2011.12.07.02:30:58 [Debug] sonic_monitor_tb.altera_avalon_reset_source: Setting TOP_LEVEL_HDL_MODULE has no effect when a generation callback is defined
+2011.12.07.02:30:58 [Debug] sonic_monitor_tb.altera_avalon_reset_source: If TOP_LEVEL_HDL_MODULE is defined then TOP_LEVEL_HDL_FILE should indicate which file that module is found in
+2011.12.07.02:30:58 [Debug] sonic_monitor_tb.altera_avalon_reset_source: When a generate simulation callback is defined a synthesis generation callback should also be defined
+2011.12.07.02:31:02 [Debug] sonic_monitor_tb.sonic_monitor_inst_reset_bfm: Timing: VAL:1/0.000s ELA:1/0.001s
+2011.12.07.02:31:02 [Debug] sonic_monitor_tb.sonic_monitor_inst_sonic_rx_monitor_src_bfm: <b>add_interface_port</b>: Added reset port <b>reset</b> to <b>clk_reset</b> instead of <b>clk</b>
+2011.12.07.02:31:02 [Info] sonic_monitor_tb.sonic_monitor_inst_sonic_rx_monitor_src_bfm: Use Channels set to zero - omitting sink_channel port
+2011.12.07.02:31:02 [Debug] sonic_monitor_tb.sonic_monitor_inst_sonic_rx_monitor_src_bfm: Timing: VAL:1/0.000s ELA:1/0.002s
+2011.12.07.02:31:02 [Debug] sonic_monitor_tb.sonic_monitor_inst_sonic_rx_monitor_sink_bfm: <b>add_interface_port</b>: Added reset port <b>reset</b> to <b>clk_reset</b> instead of <b>clk</b>
+2011.12.07.02:31:02 [Info] sonic_monitor_tb.sonic_monitor_inst_sonic_rx_monitor_sink_bfm: Use Channels set to zero - omitting src_channel port
+2011.12.07.02:31:02 [Debug] sonic_monitor_tb.sonic_monitor_inst_sonic_rx_monitor_sink_bfm: Timing: VAL:1/0.000s ELA:1/0.001s
+2011.12.07.02:31:02 [Debug] sonic_monitor_tb.sonic_monitor_inst_sonic_tx_monitor_src_bfm: <b>add_interface_port</b>: Added reset port <b>reset</b> to <b>clk_reset</b> instead of <b>clk</b>
+2011.12.07.02:31:02 [Info] sonic_monitor_tb.sonic_monitor_inst_sonic_tx_monitor_src_bfm: Use Channels set to zero - omitting sink_channel port
+2011.12.07.02:31:02 [Debug] sonic_monitor_tb.sonic_monitor_inst_sonic_tx_monitor_src_bfm: Timing: VAL:1/0.000s ELA:1/0.001s
+2011.12.07.02:31:02 [Debug] sonic_monitor_tb.sonic_monitor_inst_sonic_tx_monitor_sink_bfm: <b>add_interface_port</b>: Added reset port <b>reset</b> to <b>clk_reset</b> instead of <b>clk</b>
+2011.12.07.02:31:02 [Info] sonic_monitor_tb.sonic_monitor_inst_sonic_tx_monitor_sink_bfm: Use Channels set to zero - omitting src_channel port
+2011.12.07.02:31:02 [Debug] sonic_monitor_tb.sonic_monitor_inst_sonic_tx_monitor_sink_bfm: Timing: VAL:1/0.001s ELA:1/0.001s
+2011.12.07.02:31:02 [Info] sonic_monitor_tb: Generating <b>sonic_monitor_tb</b> "<b>sonic_monitor_tb</b>" for SIM_VERILOG
+2011.12.07.02:31:02 [Debug] sonic_monitor_tb: queue size: 0 starting:sonic_monitor_tb "sonic_monitor_tb"
+2011.12.07.02:31:02 [Debug] Transform: PipelineBridgeSwap
+2011.12.07.02:31:02 [Info] pipeline_bridge_swap_transform: After transform: <b>7</b> modules, <b>15</b> connections
+2011.12.07.02:31:02 [Debug] Transform: ClockCrossingBridgeSwap
+2011.12.07.02:31:02 [Debug] Transform: QsysBetaIPSwap
+2011.12.07.02:31:02 [Debug] Transform: CustomInstructionTransform
+2011.12.07.02:31:02 [Info] No custom instruction connections, skipping transform 
+2011.12.07.02:31:02 [Debug] Transform: TristateConduitUpgradeTransform
+2011.12.07.02:31:02 [Debug] Transform: TranslatorTransform
+2011.12.07.02:31:02 [Info] No Avalon connections, skipping transform 
+2011.12.07.02:31:02 [Debug] Transform: DomainTransform
+2011.12.07.02:31:02 [Debug] Transform: RouterTransform
+2011.12.07.02:31:02 [Debug] Transform: TrafficLimiterTransform
+2011.12.07.02:31:02 [Debug] Transform: BurstTransform
+2011.12.07.02:31:02 [Debug] Transform: ResetAdaptation
+2011.12.07.02:31:02 [Debug] Transform: NetworkToSwitchTransform
+2011.12.07.02:31:02 [Debug] Transform: WidthTransform
+2011.12.07.02:31:03 [Debug] Transform: RouterTableTransform
+2011.12.07.02:31:03 [Debug] Transform: ClockCrossingTransform
+2011.12.07.02:31:03 [Debug] Transform: PipelineTransform
+2011.12.07.02:31:03 [Debug] Transform: TrafficLimiterUpdateTransform
+2011.12.07.02:31:03 [Debug] Transform: InterruptMapperTransform
+2011.12.07.02:31:03 [Debug] Transform: InterruptSyncTransform
+2011.12.07.02:31:03 [Debug] Transform: InterruptFanoutTransform
+2011.12.07.02:31:03 [Debug] sonic_monitor_tb: "<b>sonic_monitor_tb</b>" reuses <b>sonic_monitor</b> "<b>submodules/sonic_monitor_tb_sonic_monitor_inst</b>"
+2011.12.07.02:31:03 [Debug] sonic_monitor_tb: "<b>sonic_monitor_tb</b>" reuses <b>altera_avalon_clock_source</b> "<b>submodules/altera_avalon_clock_source</b>"
+2011.12.07.02:31:03 [Debug] sonic_monitor_tb: "<b>sonic_monitor_tb</b>" reuses <b>altera_avalon_reset_source</b> "<b>submodules/altera_avalon_reset_source</b>"
+2011.12.07.02:31:03 [Debug] sonic_monitor_tb: "<b>sonic_monitor_tb</b>" reuses <b>altera_avalon_st_sink_bfm</b> "<b>submodules/altera_avalon_st_sink_bfm</b>"
+2011.12.07.02:31:03 [Debug] sonic_monitor_tb: "<b>sonic_monitor_tb</b>" reuses <b>altera_avalon_st_source_bfm</b> "<b>submodules/altera_avalon_st_source_bfm</b>"
+2011.12.07.02:31:03 [Debug] sonic_monitor_tb: "<b>sonic_monitor_tb</b>" reuses <b>altera_avalon_st_sink_bfm</b> "<b>submodules/altera_avalon_st_sink_bfm</b>"
+2011.12.07.02:31:03 [Debug] sonic_monitor_tb: "<b>sonic_monitor_tb</b>" reuses <b>altera_avalon_st_source_bfm</b> "<b>submodules/altera_avalon_st_source_bfm</b>"
+2011.12.07.02:31:03 [Debug] sonic_monitor_tb: queue size: 6 starting:sonic_monitor "submodules/sonic_monitor_tb_sonic_monitor_inst"
+2011.12.07.02:31:03 [Debug] Transform: PipelineBridgeSwap
+2011.12.07.02:31:03 [Info] pipeline_bridge_swap_transform: After transform: <b>3</b> modules, <b>4</b> connections
+2011.12.07.02:31:03 [Debug] Transform: ClockCrossingBridgeSwap
+2011.12.07.02:31:03 [Debug] Transform: QsysBetaIPSwap
+2011.12.07.02:31:03 [Debug] Transform: CustomInstructionTransform
+2011.12.07.02:31:03 [Info] No custom instruction connections, skipping transform 
+2011.12.07.02:31:03 [Debug] Transform: TristateConduitUpgradeTransform
+2011.12.07.02:31:03 [Debug] Transform: TranslatorTransform
+2011.12.07.02:31:03 [Info] No Avalon connections, skipping transform 
+2011.12.07.02:31:03 [Debug] Transform: DomainTransform
+2011.12.07.02:31:03 [Debug] Transform: RouterTransform
+2011.12.07.02:31:03 [Debug] Transform: TrafficLimiterTransform
+2011.12.07.02:31:03 [Debug] Transform: BurstTransform
+2011.12.07.02:31:03 [Debug] Transform: ResetAdaptation
+2011.12.07.02:31:03 [Progress] min: 0
+2011.12.07.02:31:03 [Progress] max: 1
+2011.12.07.02:31:03 [Progress] current: 1
+2011.12.07.02:31:03 [Info] reset_adaptation_transform: After transform: <b>4</b> modules, <b>6</b> connections
+2011.12.07.02:31:03 [Debug] Transform: NetworkToSwitchTransform
+2011.12.07.02:31:03 [Debug] Transform: WidthTransform
+2011.12.07.02:31:03 [Debug] Transform: RouterTableTransform
+2011.12.07.02:31:03 [Debug] Transform: ClockCrossingTransform
+2011.12.07.02:31:03 [Debug] Transform: PipelineTransform
+2011.12.07.02:31:03 [Debug] Transform: TrafficLimiterUpdateTransform
+2011.12.07.02:31:03 [Debug] Transform: InterruptMapperTransform
+2011.12.07.02:31:03 [Debug] Transform: InterruptSyncTransform
+2011.12.07.02:31:03 [Debug] Transform: InterruptFanoutTransform
+2011.12.07.02:31:03 [Debug] sonic_monitor_inst: "<b>sonic_monitor_inst</b>" reuses <b>altera_avalon_st_monitor</b> "<b>submodules/altera_avalon_st_monitor</b>"
+2011.12.07.02:31:03 [Debug] sonic_monitor_inst: "<b>sonic_monitor_inst</b>" reuses <b>altera_avalon_st_monitor</b> "<b>submodules/altera_avalon_st_monitor</b>"
+2011.12.07.02:31:03 [Debug] sonic_monitor_inst: "<b>sonic_monitor_inst</b>" reuses <b>altera_reset_controller</b> "<b>submodules/altera_reset_controller</b>"
+2011.12.07.02:31:03 [Info] sonic_monitor_inst: "<b>sonic_monitor_tb</b>" instantiated <b>sonic_monitor</b> "<b>sonic_monitor_inst</b>"
+2011.12.07.02:31:03 [Debug] sonic_monitor_tb: queue size: 8 starting:altera_avalon_clock_source "submodules/altera_avalon_clock_source"
+2011.12.07.02:31:03 [Info] sonic_monitor_inst_clk_in_bfm: "<b>sonic_monitor_tb</b>" instantiated <b>altera_avalon_clock_source</b> "<b>sonic_monitor_inst_clk_in_bfm</b>"
+2011.12.07.02:31:03 [Debug] sonic_monitor_tb: queue size: 7 starting:altera_avalon_reset_source "submodules/altera_avalon_reset_source"
+2011.12.07.02:31:03 [Info] sonic_monitor_inst_reset_bfm: "<b>sonic_monitor_tb</b>" instantiated <b>altera_avalon_reset_source</b> "<b>sonic_monitor_inst_reset_bfm</b>"
+2011.12.07.02:31:03 [Info] Reusing file <b>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/verbosity_pkg.sv</b>
+2011.12.07.02:31:03 [Debug] sonic_monitor_tb: queue size: 6 starting:altera_avalon_st_sink_bfm "submodules/altera_avalon_st_sink_bfm"
+2011.12.07.02:31:03 [Info] sonic_monitor_inst_sonic_rx_monitor_src_bfm: "<b>sonic_monitor_tb</b>" instantiated <b>altera_avalon_st_sink_bfm</b> "<b>sonic_monitor_inst_sonic_rx_monitor_src_bfm</b>"
+2011.12.07.02:31:03 [Info] Reusing file <b>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/verbosity_pkg.sv</b>
+2011.12.07.02:31:03 [Debug] sonic_monitor_tb: queue size: 5 starting:altera_avalon_st_source_bfm "submodules/altera_avalon_st_source_bfm"
+2011.12.07.02:31:03 [Info] sonic_monitor_inst_sonic_rx_monitor_sink_bfm: "<b>sonic_monitor_tb</b>" instantiated <b>altera_avalon_st_source_bfm</b> "<b>sonic_monitor_inst_sonic_rx_monitor_sink_bfm</b>"
+2011.12.07.02:31:03 [Info] Reusing file <b>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/avalon_utilities_pkg.sv</b>
+2011.12.07.02:31:03 [Info] Reusing file <b>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/verbosity_pkg.sv</b>
+2011.12.07.02:31:03 [Debug] sonic_monitor_tb: queue size: 2 starting:altera_avalon_st_monitor "submodules/altera_avalon_st_monitor"
+2011.12.07.02:31:03 [Info] sonic_rx_monitor: "<b>sonic_monitor_inst</b>" instantiated <b>altera_avalon_st_monitor</b> "<b>sonic_rx_monitor</b>"
+2011.12.07.02:31:03 [Info] Reusing file <b>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor/testsuite/mg_sim/sonic_rp_ep/sonic_monitor/sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/verbosity_pkg.sv</b>
+2011.12.07.02:31:03 [Debug] sonic_monitor_tb: queue size: 0 starting:altera_reset_controller "submodules/altera_reset_controller"
+2011.12.07.02:31:03 [Info] rst_controller: "<b>sonic_monitor_inst</b>" instantiated <b>altera_reset_controller</b> "<b>rst_controller</b>"
+2011.12.07.02:31:03 [Info] sonic_monitor_tb: Done <b>sonic_monitor_tb</b>" with 8 modules, 25 files, 414244 bytes
+</div>
+  <div style="width:100% ; background:#eee ; height:10px"> </div>
+ </body>
+</html>

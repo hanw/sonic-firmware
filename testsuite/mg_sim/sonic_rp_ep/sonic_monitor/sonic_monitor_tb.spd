@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_reset_controller.v"
+   type="VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_reset_synchronizer.v"
+   type="VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/verbosity_pkg.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_avalon_st_monitor_assertion.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_avalon_st_monitor_coverage.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_avalon_st_monitor_transactions.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_avalon_st_monitor.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/avalon_utilities_pkg.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/verbosity_pkg.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_avalon_st_source_bfm.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/avalon_utilities_pkg.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/verbosity_pkg.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_avalon_st_sink_bfm.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/verbosity_pkg.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_avalon_reset_source.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/verbosity_pkg.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/altera_avalon_clock_source.sv"
+   type="SYSTEM_VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/submodules/sonic_monitor_tb_sonic_monitor_inst.v"
+   type="VERILOG" />
+ <file
+   path="sonic_monitor/testbench/sonic_monitor_tb/simulation/sonic_monitor_tb.v"
+   type="VERILOG" />
+ <topLevel name="sonic_monitor_tb" />
+ <deviceFamily name="Stratix IV" />
+</simPackage>

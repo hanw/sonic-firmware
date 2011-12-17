@@ -1,0 +1,70 @@
+[timestart] 3945
+[size] 1680 965
+[pos] -1 -24
+*-4.693164 4020 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TOP.
+[treeopen] TOP.v.
+[treeopen] TOP.v.sync_ring.
+@22
+TOP.v.data_in[127:0]
+TOP.v.data_out[65:0]
+TOP.v.dout_data[63:0]
+@28
+TOP.v.dout_sync[1:0]
+TOP.v.rd_clk
+TOP.v.rdena
+TOP.v.rdreq
+TOP.v.reset
+@22
+TOP.v.wr_address[12:0]
+TOP.v.wr_address_data[12:0]
+@28
+TOP.v.wr_clk
+TOP.v.wren_data
+TOP.v.wren_sync
+TOP.v.wrreq
+@200
+-data ring
+@22
+TOP.v.data_ring.data[127:0]
+TOP.v.data_ring.q[63:0]
+TOP.v.data_ring.rdaddress[13:0]
+@28
+TOP.v.data_ring.rdclock
+TOP.v.data_ring.rden
+@22
+TOP.v.data_ring.sub_wire0[63:0]
+TOP.v.data_ring.wraddress[12:0]
+@28
+TOP.v.data_ring.wrclock
+TOP.v.data_ring.wren
+@200
+-gen_rd_addr
+@22
+TOP.v.gen_rd_addr.addr_out[13:0]
+@28
+TOP.v.gen_rd_addr.clk_in
+TOP.v.gen_rd_addr.ena
+TOP.v.gen_rd_addr.incr
+@22
+TOP.v.gen_rd_addr.next_address[13:0]
+@28
+TOP.v.gen_rd_addr.reset
+@200
+-sync ring
+@22
+TOP.v.sync_ring.data_in[127:0]
+@28
+TOP.v.sync_ring.data_out[1:0]
+TOP.v.sync_ring.data_out_ls[1:0]
+TOP.v.sync_ring.data_out_ms[1:0]
+TOP.v.sync_ring.data_sel
+TOP.v.sync_ring.rd_clock
+TOP.v.sync_ring.wr_clock
+TOP.v.sync_ring.wren
+@23
+TOP.v.sync_ring.mapped_read_address[12:0]
+@22
+TOP.v.sync_ring.rd_address[13:0]
+[pattern_trace] 1
+[pattern_trace] 0

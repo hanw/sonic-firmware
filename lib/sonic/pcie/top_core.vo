@@ -26,7 +26,7 @@
 
 //synopsys translate_off
 
-//synthesis_resources = altsyncram 1 lut 88 mux21 102 oper_add 6 oper_less_than 8 stratixiv_hssi_pcie_hip 1 
+//synthesis_resources = altsyncram 1 lut 126 mux21 204 oper_add 12 oper_less_than 16 stratixiv_hssi_pcie_hip 1 
 `timescale 1 ps / 1 ps
 module  top_core
 	( 
@@ -56,6 +56,7 @@ module  top_core
 	CraWriteData_i,
 	crst,
 	derr_cor_ext_rcv0,
+	derr_cor_ext_rcv1,
 	derr_cor_ext_rpl,
 	derr_rpl,
 	dl_ltssm,
@@ -76,9 +77,13 @@ module  top_core
 	lmi_rden,
 	lmi_wren,
 	npd_alloc_1cred_vc0,
+	npd_alloc_1cred_vc1,
 	npd_cred_vio_vc0,
+	npd_cred_vio_vc1,
 	nph_alloc_1cred_vc0,
+	nph_alloc_1cred_vc1,
 	nph_cred_vio_vc0,
+	nph_cred_vio_vc1,
 	npor,
 	pclk_central,
 	pclk_ch0,
@@ -107,6 +112,7 @@ module  top_core
 	powerdown6_ext,
 	powerdown7_ext,
 	r2c_err0,
+	r2c_err1,
 	rate_ext,
 	rc_areset,
 	rc_gxb_powerdown,
@@ -119,20 +125,35 @@ module  top_core
 	reset_status,
 	Rstn_i,
 	rx_fifo_empty0,
+	rx_fifo_empty1,
 	rx_fifo_full0,
+	rx_fifo_full1,
 	rx_st_bardec0,
+	rx_st_bardec1,
 	rx_st_be0,
 	rx_st_be0_p1,
+	rx_st_be1,
+	rx_st_be1_p1,
 	rx_st_data0,
 	rx_st_data0_p1,
+	rx_st_data1,
+	rx_st_data1_p1,
 	rx_st_eop0,
 	rx_st_eop0_p1,
+	rx_st_eop1,
+	rx_st_eop1_p1,
 	rx_st_err0,
+	rx_st_err1,
 	rx_st_mask0,
+	rx_st_mask1,
 	rx_st_ready0,
+	rx_st_ready1,
 	rx_st_sop0,
 	rx_st_sop0_p1,
+	rx_st_sop1,
+	rx_st_sop1_p1,
 	rx_st_valid0,
+	rx_st_valid1,
 	rxdata0_ext,
 	rxdata1_ext,
 	rxdata2_ext,
@@ -205,21 +226,35 @@ module  top_core
 	tl_cfg_sts,
 	tl_cfg_sts_wr,
 	tx_cred0,
+	tx_cred1,
 	tx_deemph,
 	tx_fifo_empty0,
+	tx_fifo_empty1,
 	tx_fifo_full0,
+	tx_fifo_full1,
 	tx_fifo_rdptr0,
+	tx_fifo_rdptr1,
 	tx_fifo_wrptr0,
+	tx_fifo_wrptr1,
 	tx_margin,
 	tx_st_data0,
 	tx_st_data0_p1,
+	tx_st_data1,
+	tx_st_data1_p1,
 	tx_st_eop0,
 	tx_st_eop0_p1,
+	tx_st_eop1,
+	tx_st_eop1_p1,
 	tx_st_err0,
+	tx_st_err1,
 	tx_st_ready0,
+	tx_st_ready1,
 	tx_st_sop0,
 	tx_st_sop0_p1,
+	tx_st_sop1,
+	tx_st_sop1_p1,
 	tx_st_valid0,
+	tx_st_valid1,
 	txcompl0_ext,
 	txcompl1_ext,
 	txcompl2_ext,
@@ -298,6 +333,7 @@ module  top_core
 	input   [31:0]  CraWriteData_i;
 	input   crst;
 	output   derr_cor_ext_rcv0;
+	output   derr_cor_ext_rcv1;
 	output   derr_cor_ext_rpl;
 	output   derr_rpl;
 	output   [4:0]  dl_ltssm;
@@ -318,9 +354,13 @@ module  top_core
 	input   lmi_rden;
 	input   lmi_wren;
 	output   npd_alloc_1cred_vc0;
+	output   npd_alloc_1cred_vc1;
 	output   npd_cred_vio_vc0;
+	output   npd_cred_vio_vc1;
 	output   nph_alloc_1cred_vc0;
+	output   nph_alloc_1cred_vc1;
 	output   nph_cred_vio_vc0;
+	output   nph_cred_vio_vc1;
 	input   npor;
 	input   pclk_central;
 	input   pclk_ch0;
@@ -349,6 +389,7 @@ module  top_core
 	output   [1:0]  powerdown6_ext;
 	output   [1:0]  powerdown7_ext;
 	output   r2c_err0;
+	output   r2c_err1;
 	output   rate_ext;
 	input   rc_areset;
 	output   rc_gxb_powerdown;
@@ -361,20 +402,35 @@ module  top_core
 	output   reset_status;
 	input   Rstn_i;
 	output   rx_fifo_empty0;
+	output   rx_fifo_empty1;
 	output   rx_fifo_full0;
+	output   rx_fifo_full1;
 	output   [7:0]  rx_st_bardec0;
+	output   [7:0]  rx_st_bardec1;
 	output   [7:0]  rx_st_be0;
 	output   [7:0]  rx_st_be0_p1;
+	output   [7:0]  rx_st_be1;
+	output   [7:0]  rx_st_be1_p1;
 	output   [63:0]  rx_st_data0;
 	output   [63:0]  rx_st_data0_p1;
+	output   [63:0]  rx_st_data1;
+	output   [63:0]  rx_st_data1_p1;
 	output   rx_st_eop0;
 	output   rx_st_eop0_p1;
+	output   rx_st_eop1;
+	output   rx_st_eop1_p1;
 	output   rx_st_err0;
+	output   rx_st_err1;
 	input   rx_st_mask0;
+	input   rx_st_mask1;
 	input   rx_st_ready0;
+	input   rx_st_ready1;
 	output   rx_st_sop0;
 	output   rx_st_sop0_p1;
+	output   rx_st_sop1;
+	output   rx_st_sop1_p1;
 	output   rx_st_valid0;
+	output   rx_st_valid1;
 	input   [7:0]  rxdata0_ext;
 	input   [7:0]  rxdata1_ext;
 	input   [7:0]  rxdata2_ext;
@@ -447,21 +503,35 @@ module  top_core
 	output   [52:0]  tl_cfg_sts;
 	output   tl_cfg_sts_wr;
 	output   [35:0]  tx_cred0;
+	output   [35:0]  tx_cred1;
 	output   [7:0]  tx_deemph;
 	output   tx_fifo_empty0;
+	output   tx_fifo_empty1;
 	output   tx_fifo_full0;
+	output   tx_fifo_full1;
 	output   [3:0]  tx_fifo_rdptr0;
+	output   [3:0]  tx_fifo_rdptr1;
 	output   [3:0]  tx_fifo_wrptr0;
+	output   [3:0]  tx_fifo_wrptr1;
 	output   [23:0]  tx_margin;
 	input   [63:0]  tx_st_data0;
 	input   [63:0]  tx_st_data0_p1;
+	input   [63:0]  tx_st_data1;
+	input   [63:0]  tx_st_data1_p1;
 	input   tx_st_eop0;
 	input   tx_st_eop0_p1;
+	input   tx_st_eop1;
+	input   tx_st_eop1_p1;
 	input   tx_st_err0;
+	input   tx_st_err1;
 	output   tx_st_ready0;
+	output   tx_st_ready1;
 	input   tx_st_sop0;
 	input   tx_st_sop0_p1;
+	input   tx_st_sop1;
+	input   tx_st_sop1_p1;
 	input   tx_st_valid0;
+	input   tx_st_valid1;
 	output   txcompl0_ext;
 	output   txcompl1_ext;
 	output   txcompl2_ext;
@@ -515,293 +585,480 @@ module  top_core
 	output   use_pcie_reconfig;
 	output   wake_oen;
 
-	reg	n1i00i35;
-	reg	n1i00i36;
-	reg	n1i01l37;
-	reg	n1i01l38;
-	reg	n1i0ii33;
-	reg	n1i0ii34;
-	reg	n1i0il31;
-	reg	n1i0il32;
-	reg	n1i0iO29;
-	reg	n1i0iO30;
-	reg	n1i0li27;
-	reg	n1i0li28;
-	reg	n1i0ll25;
-	reg	n1i0ll26;
-	reg	n1i0lO23;
-	reg	n1i0lO24;
-	reg	n1i0Oi21;
-	reg	n1i0Oi22;
-	reg	n1i0Ol19;
-	reg	n1i0Ol20;
-	reg	n1i1il49;
-	reg	n1i1il50;
-	reg	n1i1iO47;
-	reg	n1i1iO48;
-	reg	n1i1li45;
-	reg	n1i1li46;
-	reg	n1i1ll43;
-	reg	n1i1ll44;
-	reg	n1i1lO41;
-	reg	n1i1lO42;
-	reg	n1i1Ol39;
-	reg	n1i1Ol40;
-	reg	n1ii0O15;
-	reg	n1ii0O16;
-	reg	n1ii1l17;
-	reg	n1ii1l18;
-	reg	n1iiil13;
-	reg	n1iiil14;
-	reg	n1iili11;
-	reg	n1iili12;
-	reg	n1iilO10;
-	reg	n1iilO9;
-	reg	n1il0O5;
-	reg	n1il0O6;
-	reg	n1il1l7;
-	reg	n1il1l8;
-	reg	n1ilil3;
-	reg	n1ilil4;
-	reg	n1illi1;
-	reg	n1illi2;
-	reg	n0110l;
-	reg	n1lOlO;
-	wire	wire_n0110i_CLRN;
-	reg	n1lili;
-	reg	n1lilO;
-	reg	n1lill_clk_prev;
-	wire	wire_n1lill_CLRN;
-	wire	wire_n1lill_PRN;
-	reg	n1li0i;
-	reg	n1li0l;
-	reg	n1li0O;
-	reg	n1liii;
-	reg	n1liil;
-	reg	n1liiO;
-	reg	n1liOi;
-	reg	n1liOl;
-	reg	n1liOO;
-	reg	n1ll0i;
-	reg	n1ll0l;
-	reg	n1ll0O;
-	reg	n1ll1i;
-	reg	n1ll1l;
-	reg	n1ll1O;
-	reg	n1llii;
-	reg	n1llil;
-	reg	n1lliO;
-	reg	n1llli;
-	reg	n1llll;
-	reg	n1lllO;
-	reg	n1llOi;
-	reg	n1llOl;
-	reg	n1llOO;
-	reg	n1lO0i;
-	reg	n1lO0l;
-	reg	n1lO0O;
-	reg	n1lO1i;
-	reg	n1lO1l;
-	reg	n1lO1O;
-	reg	n1lOii;
-	reg	n1lOil;
-	reg	n1lOiO;
-	reg	n1lOll;
-	reg	n1lOli_clk_prev;
-	wire	wire_n1lOli_CLRN;
-	wire	wire_n1lOli_PRN;
-	wire	wire_n0110O_dataout;
-	wire	wire_n0111i_dataout;
-	wire	wire_n0111l_dataout;
-	wire	wire_n011ii_dataout;
-	wire	wire_n011iO_dataout;
-	wire	wire_n011li_dataout;
-	wire	wire_n1iOll_dataout;
-	wire	wire_n1iOlO_dataout;
-	wire	wire_n1iOOi_dataout;
-	wire	wire_n1iOOl_dataout;
-	wire	wire_n1iOOO_dataout;
-	wire	wire_n1l00i_dataout;
-	wire	wire_n1l00l_dataout;
-	wire	wire_n1l00O_dataout;
-	wire	wire_n1l01i_dataout;
-	wire	wire_n1l01l_dataout;
-	wire	wire_n1l01O_dataout;
-	wire	wire_n1l0ii_dataout;
-	wire	wire_n1l0il_dataout;
-	wire	wire_n1l0iO_dataout;
-	wire	wire_n1l0li_dataout;
-	wire	wire_n1l0ll_dataout;
-	wire	wire_n1l0lO_dataout;
-	wire	wire_n1l10i_dataout;
-	wire	wire_n1l10l_dataout;
-	wire	wire_n1l10O_dataout;
-	wire	wire_n1l11i_dataout;
-	wire	wire_n1l11l_dataout;
-	wire	wire_n1l11O_dataout;
-	wire	wire_n1l1ii_dataout;
-	wire	wire_n1l1il_dataout;
-	wire	wire_n1l1iO_dataout;
-	wire	wire_n1l1li_dataout;
-	wire	wire_n1l1ll_dataout;
-	wire	wire_n1lOOi_dataout;
-	wire	wire_n1lOOl_dataout;
-	wire	wire_n1lOOO_dataout;
-	wire	wire_n1O00i_dataout;
-	wire	wire_n1O00l_dataout;
-	wire	wire_n1O00O_dataout;
-	wire	wire_n1O01i_dataout;
-	wire	wire_n1O01l_dataout;
-	wire	wire_n1O01O_dataout;
-	wire	wire_n1O0ii_dataout;
-	wire	wire_n1O0il_dataout;
-	wire	wire_n1O0iO_dataout;
-	wire	wire_n1O0li_dataout;
-	wire	wire_n1O0ll_dataout;
-	wire	wire_n1O0lO_dataout;
-	wire	wire_n1O0Oi_dataout;
-	wire	wire_n1O0Ol_dataout;
-	wire	wire_n1O0OO_dataout;
-	wire	wire_n1O10i_dataout;
-	wire	wire_n1O10l_dataout;
-	wire	wire_n1O10O_dataout;
-	wire	wire_n1O11i_dataout;
-	wire	wire_n1O11l_dataout;
-	wire	wire_n1O11O_dataout;
-	wire	wire_n1O1ii_dataout;
-	wire	wire_n1O1il_dataout;
-	wire	wire_n1O1iO_dataout;
-	wire	wire_n1O1li_dataout;
-	wire	wire_n1O1ll_dataout;
-	wire	wire_n1O1lO_dataout;
-	wire	wire_n1O1Oi_dataout;
-	wire	wire_n1O1Ol_dataout;
-	wire	wire_n1O1OO_dataout;
-	wire	wire_n1Oi0i_dataout;
-	wire	wire_n1Oi0l_dataout;
-	wire	wire_n1Oi0O_dataout;
-	wire	wire_n1Oi1i_dataout;
-	wire	wire_n1Oi1l_dataout;
-	wire	wire_n1Oi1O_dataout;
-	wire	wire_n1Oiil_dataout;
-	wire	wire_n1OiiO_dataout;
-	wire	wire_n1Oili_dataout;
-	wire	wire_n1Ol0i_dataout;
-	wire	wire_n1Ol0l_dataout;
-	wire	wire_n1Ol0O_dataout;
-	wire	wire_n1Ol1i_dataout;
-	wire	wire_n1Ol1l_dataout;
-	wire	wire_n1Ol1O_dataout;
-	wire	wire_n1Olii_dataout;
-	wire	wire_n1Olil_dataout;
-	wire	wire_n1OliO_dataout;
-	wire	wire_n1Olli_dataout;
-	wire	wire_n1Olll_dataout;
-	wire	wire_n1OllO_dataout;
-	wire	wire_n1OlOl_dataout;
-	wire	wire_n1OlOO_dataout;
-	wire	wire_n1OO0i_dataout;
-	wire	wire_n1OO0l_dataout;
-	wire	wire_n1OO0O_dataout;
-	wire	wire_n1OO1i_dataout;
-	wire	wire_n1OO1l_dataout;
-	wire	wire_n1OO1O_dataout;
-	wire	wire_n1OOil_dataout;
-	wire	wire_n1OOiO_dataout;
-	wire	wire_n1OOll_dataout;
-	wire	wire_n1OOlO_dataout;
-	wire	wire_n1OOOl_dataout;
-	wire	wire_n1OOOO_dataout;
-	wire  [4:0]   wire_n1l0Oi_o;
-	wire  [7:0]   wire_n1l0OO_o;
-	wire  [4:0]   wire_n1l1lO_o;
-	wire  [11:0]   wire_n1l1Ol_o;
-	wire  [11:0]   wire_n1OlOi_o;
-	wire  [7:0]   wire_n1OOii_o;
-	wire  wire_n1l0Ol_o;
-	wire  wire_n1l1Oi_o;
-	wire  wire_n1li1l_o;
-	wire  wire_n1li1O_o;
-	wire  wire_n1Oiii_o;
-	wire  wire_n1Oill_o;
-	wire  wire_n1OOli_o;
-	wire  wire_n1OOOi_o;
-	wire  wire_n010il_coreclkout;
-	wire  wire_n010il_derrcorextrcv0;
-	wire  wire_n010il_derrcorextrpl;
-	wire  wire_n010il_derrrpl;
-	wire  [4:0]   wire_n010il_dlltssm;
-	wire  wire_n010il_dlupexit;
-	wire  [23:0]   wire_n010il_eidleinfersel;
-	wire  wire_n010il_ev128ns;
-	wire  wire_n010il_ev1us;
-	wire  [1:0]   wire_n010il_extraclkout;
-	wire  [14:0]   wire_n010il_extraout;
-	wire  wire_n010il_gen2rate;
-	wire  wire_n010il_hotrstexit;
-	wire  [3:0]   wire_n010il_intstatus;
-	wire  wire_n010il_l2exit;
-	wire  [3:0]   wire_n010il_laneact;
-	wire  wire_n010il_lmiack;
-	wire  [31:0]   wire_n010il_lmidout;
-	wire  [15:0]   wire_n010il_powerdown;
-	wire  wire_n010il_resetstatus;
-	wire  [7:0]   wire_n010il_rxbardecvc0;
-	wire  [7:0]   wire_n010il_rxbevc00;
-	wire  [7:0]   wire_n010il_rxbevc01;
-	wire  [63:0]   wire_n010il_rxdatavc00;
-	wire  [63:0]   wire_n010il_rxdatavc01;
-	wire  wire_n010il_rxeopvc00;
-	wire  wire_n010il_rxeopvc01;
-	wire  wire_n010il_rxerrvc0;
-	wire  wire_n010il_rxfifoemptyvc0;
-	wire  wire_n010il_rxfifofullvc0;
-	wire  [7:0]   wire_n010il_rxpolarity;
-	wire  wire_n010il_rxsopvc00;
-	wire  wire_n010il_rxsopvc01;
-	wire  wire_n010il_rxvalidvc0;
-	wire  wire_n010il_serrout;
-	wire  wire_n010il_swdnwake;
-	wire  wire_n010il_swuphotrst;
-	wire  [63:0]   wire_n010il_testout;
-	wire  wire_n010il_tlappintaack;
-	wire  wire_n010il_tlappmsiack;
-	wire  [3:0]   wire_n010il_tlcfgadd;
-	wire  [31:0]   wire_n010il_tlcfgctl;
-	wire  wire_n010il_tlcfgctlwr;
-	wire  [52:0]   wire_n010il_tlcfgsts;
-	wire  wire_n010il_tlcfgstswr;
-	wire  wire_n010il_tlpmetosr;
-	wire  [7:0]   wire_n010il_txcompl;
-	wire  [35:0]   wire_n010il_txcredvc0;
-	wire  [63:0]   wire_n010il_txdata;
-	wire  [7:0]   wire_n010il_txdatak;
-	wire  [7:0]   wire_n010il_txdeemph;
-	wire  [7:0]   wire_n010il_txdetectrx;
-	wire  [7:0]   wire_n010il_txelecidle;
-	wire  wire_n010il_txfifoemptyvc0;
-	wire  wire_n010il_txfifofullvc0;
-	wire  [3:0]   wire_n010il_txfifordpvc0;
-	wire  [3:0]   wire_n010il_txfifowrpvc0;
-	wire  [23:0]   wire_n010il_txmargin;
-	wire  wire_n010il_txreadyvc0;
-	wire  wire_n010il_wakeoen;
-	wire  n1i00O;
-	wire  n1i01i;
-	wire  n1i10O;
-	wire  n1i1ii;
-	wire  n1ii0i;
-	wire  n1ii0l;
-	wire  n1ii1i;
-	wire  n1ii1O;
-	wire  n1iiOl;
-	wire  n1iiOO;
-	wire  n1il0i;
-	wire  n1il0l;
-	wire  n1il1i;
-	wire  n1ilOl;
+	reg	nllOO1O49;
+	reg	nllOO1O50;
+	reg	nlO100i21;
+	reg	nlO100i22;
+	reg	nlO100O19;
+	reg	nlO100O20;
+	reg	nlO101i27;
+	reg	nlO101i28;
+	reg	nlO101l25;
+	reg	nlO101l26;
+	reg	nlO101O23;
+	reg	nlO101O24;
+	reg	nlO10il17;
+	reg	nlO10il18;
+	reg	nlO10iO15;
+	reg	nlO10iO16;
+	reg	nlO10Oi13;
+	reg	nlO10Oi14;
+	reg	nlO10OO11;
+	reg	nlO10OO12;
+	reg	nlO110i43;
+	reg	nlO110i44;
+	reg	nlO111l47;
+	reg	nlO111l48;
+	reg	nlO111O45;
+	reg	nlO111O46;
+	reg	nlO11ii41;
+	reg	nlO11ii42;
+	reg	nlO11li39;
+	reg	nlO11li40;
+	reg	nlO11ll37;
+	reg	nlO11ll38;
+	reg	nlO11lO35;
+	reg	nlO11lO36;
+	reg	nlO11Oi33;
+	reg	nlO11Oi34;
+	reg	nlO11Ol31;
+	reg	nlO11Ol32;
+	reg	nlO11OO29;
+	reg	nlO11OO30;
+	reg	nlO1i1O10;
+	reg	nlO1i1O9;
+	reg	nlO1iiO7;
+	reg	nlO1iiO8;
+	reg	nlO1ill5;
+	reg	nlO1ill6;
+	reg	nlO1iOi3;
+	reg	nlO1iOi4;
+	reg	nlO1iOO1;
+	reg	nlO1iOO2;
+	reg	n11i1i;
+	reg	nlO0O1l;
+	reg	nlOiOiO;
+	reg	nlOO0il;
+	reg	n110OO_clk_prev;
+	wire	wire_n110OO_CLRN;
+	wire	wire_n110OO_PRN;
+	reg	nlO00OO;
+	reg	nlO0i1l;
+	reg	nlO0i1i_clk_prev;
+	wire	wire_nlO0i1i_CLRN;
+	reg	nlO00iO;
+	reg	nlO00li;
+	reg	nlO00ll;
+	reg	nlO00lO;
+	reg	nlO00Oi;
+	reg	nlO00Ol;
+	reg	nlO0i0i;
+	reg	nlO0i0l;
+	reg	nlO0i0O;
+	reg	nlO0i1O;
+	reg	nlO0iii;
+	reg	nlO0iil;
+	reg	nlO0iiO;
+	reg	nlO0ili;
+	reg	nlO0ill;
+	reg	nlO0ilO;
+	reg	nlO0iOi;
+	reg	nlO0iOl;
+	reg	nlO0iOO;
+	reg	nlO0l0i;
+	reg	nlO0l0l;
+	reg	nlO0l0O;
+	reg	nlO0l1i;
+	reg	nlO0l1l;
+	reg	nlO0l1O;
+	reg	nlO0lii;
+	reg	nlO0lil;
+	reg	nlO0liO;
+	reg	nlO0lli;
+	reg	nlO0lll;
+	reg	nlO0llO;
+	reg	nlO0lOi;
+	reg	nlO0lOl;
+	reg	nlO0O1i;
+	reg	nlOlO0O;
+	reg	nlOlOil;
+	wire	wire_nlOlOii_PRN;
+	reg	nlOllOO;
+	reg	nlOlO0i;
+	reg	nlOlO0l;
+	reg	nlOlO1i;
+	reg	nlOlO1l;
+	reg	nlOlO1O;
+	reg	nlOlOiO;
+	reg	nlOlOli;
+	reg	nlOlOll;
+	reg	nlOlOlO;
+	reg	nlOlOOi;
+	reg	nlOlOOl;
+	reg	nlOlOOO;
+	reg	nlOO00i;
+	reg	nlOO00l;
+	reg	nlOO01i;
+	reg	nlOO01l;
+	reg	nlOO01O;
+	reg	nlOO0ii;
+	reg	nlOO10i;
+	reg	nlOO10l;
+	reg	nlOO10O;
+	reg	nlOO11i;
+	reg	nlOO11l;
+	reg	nlOO11O;
+	reg	nlOO1ii;
+	reg	nlOO1il;
+	reg	nlOO1iO;
+	reg	nlOO1li;
+	reg	nlOO1ll;
+	reg	nlOO1lO;
+	reg	nlOO1Oi;
+	reg	nlOO1Ol;
+	reg	nlOO1OO;
+	wire	wire_nlOO00O_CLRN;
+	wire	wire_n1100i_dataout;
+	wire	wire_n1100l_dataout;
+	wire	wire_n1101i_dataout;
+	wire	wire_n1101l_dataout;
+	wire	wire_n110ii_dataout;
+	wire	wire_n110il_dataout;
+	wire	wire_n110li_dataout;
+	wire	wire_n110ll_dataout;
+	wire	wire_n110lO_dataout;
+	wire	wire_n110Oi_dataout;
+	wire	wire_n1110i_dataout;
+	wire	wire_n1110l_dataout;
+	wire	wire_n1110O_dataout;
+	wire	wire_n1111i_dataout;
+	wire	wire_n1111l_dataout;
+	wire	wire_n1111O_dataout;
+	wire	wire_n111ii_dataout;
+	wire	wire_n111il_dataout;
+	wire	wire_n111li_dataout;
+	wire	wire_n111ll_dataout;
+	wire	wire_n111lO_dataout;
+	wire	wire_n111Oi_dataout;
+	wire	wire_n111Ol_dataout;
+	wire	wire_n111OO_dataout;
+	wire	wire_n11i0l_dataout;
+	wire	wire_n11i0O_dataout;
+	wire	wire_n11i1l_dataout;
+	wire	wire_n11i1O_dataout;
+	wire	wire_nlO001i_dataout;
+	wire	wire_nlO001l_dataout;
+	wire	wire_nlO010O_dataout;
+	wire	wire_nlO011i_dataout;
+	wire	wire_nlO01ii_dataout;
+	wire	wire_nlO01il_dataout;
+	wire	wire_nlO01iO_dataout;
+	wire	wire_nlO01li_dataout;
+	wire	wire_nlO01ll_dataout;
+	wire	wire_nlO01lO_dataout;
+	wire	wire_nlO01Oi_dataout;
+	wire	wire_nlO01Ol_dataout;
+	wire	wire_nlO01OO_dataout;
+	wire	wire_nlO0O0i_dataout;
+	wire	wire_nlO0O0l_dataout;
+	wire	wire_nlO0O0O_dataout;
+	wire	wire_nlO0O1O_dataout;
+	wire	wire_nlO0Oii_dataout;
+	wire	wire_nlO0Oil_dataout;
+	wire	wire_nlO0OiO_dataout;
+	wire	wire_nlO0Oli_dataout;
+	wire	wire_nlO0Oll_dataout;
+	wire	wire_nlO0OlO_dataout;
+	wire	wire_nlO0OOi_dataout;
+	wire	wire_nlO0OOl_dataout;
+	wire	wire_nlO0OOO_dataout;
+	wire	wire_nlO1O0i_dataout;
+	wire	wire_nlO1O0l_dataout;
+	wire	wire_nlO1O0O_dataout;
+	wire	wire_nlO1O1i_dataout;
+	wire	wire_nlO1O1l_dataout;
+	wire	wire_nlO1O1O_dataout;
+	wire	wire_nlO1Oii_dataout;
+	wire	wire_nlO1Oil_dataout;
+	wire	wire_nlO1OiO_dataout;
+	wire	wire_nlO1Oli_dataout;
+	wire	wire_nlO1Oll_dataout;
+	wire	wire_nlO1OlO_dataout;
+	wire	wire_nlO1OOi_dataout;
+	wire	wire_nlO1OOl_dataout;
+	wire	wire_nlO1OOO_dataout;
+	wire	wire_nlOi00i_dataout;
+	wire	wire_nlOi00l_dataout;
+	wire	wire_nlOi00O_dataout;
+	wire	wire_nlOi01i_dataout;
+	wire	wire_nlOi01l_dataout;
+	wire	wire_nlOi01O_dataout;
+	wire	wire_nlOi0ii_dataout;
+	wire	wire_nlOi0il_dataout;
+	wire	wire_nlOi0iO_dataout;
+	wire	wire_nlOi0li_dataout;
+	wire	wire_nlOi0ll_dataout;
+	wire	wire_nlOi0Oi_dataout;
+	wire	wire_nlOi0Ol_dataout;
+	wire	wire_nlOi0OO_dataout;
+	wire	wire_nlOi10i_dataout;
+	wire	wire_nlOi10l_dataout;
+	wire	wire_nlOi10O_dataout;
+	wire	wire_nlOi11i_dataout;
+	wire	wire_nlOi11l_dataout;
+	wire	wire_nlOi11O_dataout;
+	wire	wire_nlOi1ii_dataout;
+	wire	wire_nlOi1il_dataout;
+	wire	wire_nlOi1iO_dataout;
+	wire	wire_nlOi1li_dataout;
+	wire	wire_nlOi1ll_dataout;
+	wire	wire_nlOi1lO_dataout;
+	wire	wire_nlOi1Oi_dataout;
+	wire	wire_nlOi1Ol_dataout;
+	wire	wire_nlOi1OO_dataout;
+	wire	wire_nlOii0O_dataout;
+	wire	wire_nlOiiii_dataout;
+	wire	wire_nlOiiil_dataout;
+	wire	wire_nlOiiiO_dataout;
+	wire	wire_nlOiili_dataout;
+	wire	wire_nlOiill_dataout;
+	wire	wire_nlOiilO_dataout;
+	wire	wire_nlOiiOi_dataout;
+	wire	wire_nlOiiOl_dataout;
+	wire	wire_nlOiiOO_dataout;
+	wire	wire_nlOil0i_dataout;
+	wire	wire_nlOil0l_dataout;
+	wire	wire_nlOil0O_dataout;
+	wire	wire_nlOil1i_dataout;
+	wire	wire_nlOil1l_dataout;
+	wire	wire_nlOilii_dataout;
+	wire	wire_nlOilil_dataout;
+	wire	wire_nlOiliO_dataout;
+	wire	wire_nlOilli_dataout;
+	wire	wire_nlOilll_dataout;
+	wire	wire_nlOilOi_dataout;
+	wire	wire_nlOilOl_dataout;
+	wire	wire_nlOiO0i_dataout;
+	wire	wire_nlOiO0l_dataout;
+	wire	wire_nlOiO0O_dataout;
+	wire	wire_nlOiO1i_dataout;
+	wire	wire_nlOiO1l_dataout;
+	wire	wire_nlOiOii_dataout;
+	wire	wire_nlOiOli_dataout;
+	wire	wire_nlOiOll_dataout;
+	wire	wire_nlOiOOi_dataout;
+	wire	wire_nlOiOOl_dataout;
+	wire	wire_nlOl0ii_dataout;
+	wire	wire_nlOl0il_dataout;
+	wire	wire_nlOl0iO_dataout;
+	wire	wire_nlOl0li_dataout;
+	wire	wire_nlOl0ll_dataout;
+	wire	wire_nlOl0lO_dataout;
+	wire	wire_nlOl0Oi_dataout;
+	wire	wire_nlOl0Ol_dataout;
+	wire	wire_nlOl0OO_dataout;
+	wire	wire_nlOli0i_dataout;
+	wire	wire_nlOli0l_dataout;
+	wire	wire_nlOli0O_dataout;
+	wire	wire_nlOli1i_dataout;
+	wire	wire_nlOli1l_dataout;
+	wire	wire_nlOli1O_dataout;
+	wire	wire_nlOliii_dataout;
+	wire	wire_nlOlilO_dataout;
+	wire	wire_nlOliOi_dataout;
+	wire	wire_nlOliOl_dataout;
+	wire	wire_nlOliOO_dataout;
+	wire	wire_nlOll0i_dataout;
+	wire	wire_nlOll0l_dataout;
+	wire	wire_nlOll0O_dataout;
+	wire	wire_nlOll1i_dataout;
+	wire	wire_nlOll1l_dataout;
+	wire	wire_nlOll1O_dataout;
+	wire	wire_nlOllii_dataout;
+	wire	wire_nlOllil_dataout;
+	wire	wire_nlOO0iO_dataout;
+	wire	wire_nlOO0li_dataout;
+	wire	wire_nlOO0ll_dataout;
+	wire	wire_nlOO0lO_dataout;
+	wire	wire_nlOO0Oi_dataout;
+	wire	wire_nlOO0Ol_dataout;
+	wire	wire_nlOO0OO_dataout;
+	wire	wire_nlOOi0i_dataout;
+	wire	wire_nlOOi0l_dataout;
+	wire	wire_nlOOi0O_dataout;
+	wire	wire_nlOOi1i_dataout;
+	wire	wire_nlOOi1l_dataout;
+	wire	wire_nlOOi1O_dataout;
+	wire	wire_nlOOiii_dataout;
+	wire	wire_nlOOiil_dataout;
+	wire	wire_nlOOiiO_dataout;
+	wire	wire_nlOOili_dataout;
+	wire	wire_nlOOill_dataout;
+	wire	wire_nlOOilO_dataout;
+	wire	wire_nlOOiOi_dataout;
+	wire	wire_nlOOiOl_dataout;
+	wire	wire_nlOOiOO_dataout;
+	wire	wire_nlOOl0i_dataout;
+	wire	wire_nlOOl0l_dataout;
+	wire	wire_nlOOl0O_dataout;
+	wire	wire_nlOOl1i_dataout;
+	wire	wire_nlOOl1l_dataout;
+	wire	wire_nlOOl1O_dataout;
+	wire	wire_nlOOlii_dataout;
+	wire	wire_nlOOlil_dataout;
+	wire	wire_nlOOliO_dataout;
+	wire	wire_nlOOlli_dataout;
+	wire	wire_nlOOlll_dataout;
+	wire	wire_nlOOllO_dataout;
+	wire	wire_nlOOlOi_dataout;
+	wire	wire_nlOOlOl_dataout;
+	wire	wire_nlOOlOO_dataout;
+	wire	wire_nlOOO0i_dataout;
+	wire	wire_nlOOO0l_dataout;
+	wire	wire_nlOOO0O_dataout;
+	wire	wire_nlOOO1i_dataout;
+	wire	wire_nlOOO1l_dataout;
+	wire	wire_nlOOOlO_dataout;
+	wire	wire_nlOOOOi_dataout;
+	wire	wire_nlOOOOl_dataout;
+	wire	wire_nlOOOOO_dataout;
+	wire  [7:0]   wire_n1101O_o;
+	wire  [11:0]   wire_n111iO_o;
+	wire  [7:0]   wire_nlO000l_o;
+	wire  [4:0]   wire_nlO001O_o;
+	wire  [11:0]   wire_nlO010i_o;
+	wire  [4:0]   wire_nlO011l_o;
+	wire  [11:0]   wire_nlOil1O_o;
+	wire  [7:0]   wire_nlOillO_o;
+	wire  [4:0]   wire_nlOliil_o;
+	wire  [11:0]   wire_nlOlili_o;
+	wire  [4:0]   wire_nlOlliO_o;
+	wire  [7:0]   wire_nlOllll_o;
+	wire  wire_n1100O_o;
+	wire  wire_n110iO_o;
+	wire  wire_nlO000i_o;
+	wire  wire_nlO00ii_o;
+	wire  wire_nlO00il_o;
+	wire  wire_nlO011O_o;
+	wire  wire_nlOi0lO_o;
+	wire  wire_nlOii1i_o;
+	wire  wire_nlOilOO_o;
+	wire  wire_nlOiO1O_o;
+	wire  wire_nlOliiO_o;
+	wire  wire_nlOllli_o;
+	wire  wire_nlOllOi_o;
+	wire  wire_nlOllOl_o;
+	wire  wire_nlOOO1O_o;
+	wire  wire_nlOOOii_o;
+	wire  wire_n11l0i_coreclkout;
+	wire  wire_n11l0i_derrcorextrcv0;
+	wire  wire_n11l0i_derrcorextrcv1;
+	wire  wire_n11l0i_derrcorextrpl;
+	wire  wire_n11l0i_derrrpl;
+	wire  [4:0]   wire_n11l0i_dlltssm;
+	wire  wire_n11l0i_dlupexit;
+	wire  [23:0]   wire_n11l0i_eidleinfersel;
+	wire  wire_n11l0i_ev128ns;
+	wire  wire_n11l0i_ev1us;
+	wire  [1:0]   wire_n11l0i_extraclkout;
+	wire  [14:0]   wire_n11l0i_extraout;
+	wire  wire_n11l0i_gen2rate;
+	wire  wire_n11l0i_hotrstexit;
+	wire  [3:0]   wire_n11l0i_intstatus;
+	wire  wire_n11l0i_l2exit;
+	wire  [3:0]   wire_n11l0i_laneact;
+	wire  wire_n11l0i_lmiack;
+	wire  [31:0]   wire_n11l0i_lmidout;
+	wire  [15:0]   wire_n11l0i_powerdown;
+	wire  wire_n11l0i_resetstatus;
+	wire  [7:0]   wire_n11l0i_rxbardecvc0;
+	wire  [7:0]   wire_n11l0i_rxbardecvc1;
+	wire  [7:0]   wire_n11l0i_rxbevc00;
+	wire  [7:0]   wire_n11l0i_rxbevc01;
+	wire  [7:0]   wire_n11l0i_rxbevc10;
+	wire  [7:0]   wire_n11l0i_rxbevc11;
+	wire  [63:0]   wire_n11l0i_rxdatavc00;
+	wire  [63:0]   wire_n11l0i_rxdatavc01;
+	wire  [63:0]   wire_n11l0i_rxdatavc10;
+	wire  [63:0]   wire_n11l0i_rxdatavc11;
+	wire  wire_n11l0i_rxeopvc00;
+	wire  wire_n11l0i_rxeopvc01;
+	wire  wire_n11l0i_rxeopvc10;
+	wire  wire_n11l0i_rxeopvc11;
+	wire  wire_n11l0i_rxerrvc0;
+	wire  wire_n11l0i_rxerrvc1;
+	wire  wire_n11l0i_rxfifoemptyvc0;
+	wire  wire_n11l0i_rxfifoemptyvc1;
+	wire  wire_n11l0i_rxfifofullvc0;
+	wire  wire_n11l0i_rxfifofullvc1;
+	wire  [7:0]   wire_n11l0i_rxpolarity;
+	wire  wire_n11l0i_rxsopvc00;
+	wire  wire_n11l0i_rxsopvc01;
+	wire  wire_n11l0i_rxsopvc10;
+	wire  wire_n11l0i_rxsopvc11;
+	wire  wire_n11l0i_rxvalidvc0;
+	wire  wire_n11l0i_rxvalidvc1;
+	wire  wire_n11l0i_serrout;
+	wire  wire_n11l0i_swdnwake;
+	wire  wire_n11l0i_swuphotrst;
+	wire  [63:0]   wire_n11l0i_testout;
+	wire  wire_n11l0i_tlappintaack;
+	wire  wire_n11l0i_tlappmsiack;
+	wire  [3:0]   wire_n11l0i_tlcfgadd;
+	wire  [31:0]   wire_n11l0i_tlcfgctl;
+	wire  wire_n11l0i_tlcfgctlwr;
+	wire  [52:0]   wire_n11l0i_tlcfgsts;
+	wire  wire_n11l0i_tlcfgstswr;
+	wire  wire_n11l0i_tlpmetosr;
+	wire  [7:0]   wire_n11l0i_txcompl;
+	wire  [35:0]   wire_n11l0i_txcredvc0;
+	wire  [35:0]   wire_n11l0i_txcredvc1;
+	wire  [63:0]   wire_n11l0i_txdata;
+	wire  [7:0]   wire_n11l0i_txdatak;
+	wire  [7:0]   wire_n11l0i_txdeemph;
+	wire  [7:0]   wire_n11l0i_txdetectrx;
+	wire  [7:0]   wire_n11l0i_txelecidle;
+	wire  wire_n11l0i_txfifoemptyvc0;
+	wire  wire_n11l0i_txfifoemptyvc1;
+	wire  wire_n11l0i_txfifofullvc0;
+	wire  wire_n11l0i_txfifofullvc1;
+	wire  [3:0]   wire_n11l0i_txfifordpvc0;
+	wire  [3:0]   wire_n11l0i_txfifordpvc1;
+	wire  [3:0]   wire_n11l0i_txfifowrpvc0;
+	wire  [3:0]   wire_n11l0i_txfifowrpvc1;
+	wire  [23:0]   wire_n11l0i_txmargin;
+	wire  wire_n11l0i_txreadyvc0;
+	wire  wire_n11l0i_txreadyvc1;
+	wire  wire_n11l0i_wakeoen;
+	wire  nllOO0i;
+	wire  nllOO0l;
+	wire  nllOO0O;
+	wire  nllOO1i;
+	wire  nllOO1l;
+	wire  nllOOii;
+	wire  nllOOil;
+	wire  nllOOiO;
+	wire  nllOOli;
+	wire  nllOOll;
+	wire  nllOOlO;
+	wire  nllOOOi;
+	wire  nllOOOl;
+	wire  nllOOOO;
+	wire  nlO100l;
+	wire  nlO10li;
+	wire  nlO10ll;
+	wire  nlO10lO;
+	wire  nlO110O;
+	wire  nlO111i;
+	wire  nlO11iO;
+	wire  nlO1i0l;
+	wire  nlO1i0O;
+	wire  nlO1i1l;
+	wire  nlO1iii;
+	wire  nlO1iil;
+	wire  nlO1l0i;
 
-	altsyncram   n1ilOO
+	altsyncram   nlO1l0l
 	( 
 	.aclr0(1'b0),
 	.aclr1(1'b0),
@@ -828,853 +1085,1216 @@ module  top_core
 	.rden_a()
 	);
 	defparam
-		n1ilOO.address_aclr_a = "NONE",
-		n1ilOO.address_aclr_b = "NONE",
-		n1ilOO.address_reg_b = "CLOCK1",
-		n1ilOO.byte_size = 8,
-		n1ilOO.byteena_aclr_a = "NONE",
-		n1ilOO.byteena_aclr_b = "NONE",
-		n1ilOO.byteena_reg_b = "CLOCK1",
-		n1ilOO.clock_enable_core_a = "USE_INPUT_CLKEN",
-		n1ilOO.clock_enable_core_b = "USE_INPUT_CLKEN",
-		n1ilOO.clock_enable_input_a = "NORMAL",
-		n1ilOO.clock_enable_input_b = "NORMAL",
-		n1ilOO.clock_enable_output_a = "NORMAL",
-		n1ilOO.clock_enable_output_b = "NORMAL",
-		n1ilOO.enable_ecc = "FALSE",
-		n1ilOO.indata_aclr_a = "NONE",
-		n1ilOO.indata_aclr_b = "NONE",
-		n1ilOO.indata_reg_b = "CLOCK1",
-		n1ilOO.init_file_layout = "PORT_A",
-		n1ilOO.intended_device_family = "Stratix IV",
-		n1ilOO.numwords_a = 32768,
-		n1ilOO.numwords_b = 32768,
-		n1ilOO.operation_mode = "DUAL_PORT",
-		n1ilOO.outdata_aclr_a = "NONE",
-		n1ilOO.outdata_aclr_b = "NONE",
-		n1ilOO.outdata_reg_a = "UNREGISTERED",
-		n1ilOO.outdata_reg_b = "UNREGISTERED",
-		n1ilOO.ram_block_type = "AUTO",
-		n1ilOO.rdcontrol_aclr_b = "NONE",
-		n1ilOO.rdcontrol_reg_b = "CLOCK1",
-		n1ilOO.read_during_write_mode_mixed_ports = "DONT_CARE",
-		n1ilOO.read_during_write_mode_port_a = "NEW_DATA_NO_NBE_READ",
-		n1ilOO.read_during_write_mode_port_b = "NEW_DATA_NO_NBE_READ",
-		n1ilOO.width_a = 255,
-		n1ilOO.width_b = 255,
-		n1ilOO.width_byteena_a = 1,
-		n1ilOO.width_byteena_b = 1,
-		n1ilOO.width_eccstatus = 3,
-		n1ilOO.widthad_a = 15,
-		n1ilOO.widthad_b = 15,
-		n1ilOO.wrcontrol_aclr_a = "NONE",
-		n1ilOO.wrcontrol_aclr_b = "NONE",
-		n1ilOO.wrcontrol_wraddress_reg_b = "CLOCK1",
-		n1ilOO.lpm_hint = "WIDTH_BYTEENA=1";
+		nlO1l0l.address_aclr_a = "NONE",
+		nlO1l0l.address_aclr_b = "NONE",
+		nlO1l0l.address_reg_b = "CLOCK1",
+		nlO1l0l.byte_size = 8,
+		nlO1l0l.byteena_aclr_a = "NONE",
+		nlO1l0l.byteena_aclr_b = "NONE",
+		nlO1l0l.byteena_reg_b = "CLOCK1",
+		nlO1l0l.clock_enable_core_a = "USE_INPUT_CLKEN",
+		nlO1l0l.clock_enable_core_b = "USE_INPUT_CLKEN",
+		nlO1l0l.clock_enable_input_a = "NORMAL",
+		nlO1l0l.clock_enable_input_b = "NORMAL",
+		nlO1l0l.clock_enable_output_a = "NORMAL",
+		nlO1l0l.clock_enable_output_b = "NORMAL",
+		nlO1l0l.enable_ecc = "FALSE",
+		nlO1l0l.indata_aclr_a = "NONE",
+		nlO1l0l.indata_aclr_b = "NONE",
+		nlO1l0l.indata_reg_b = "CLOCK1",
+		nlO1l0l.init_file_layout = "PORT_A",
+		nlO1l0l.intended_device_family = "Stratix IV",
+		nlO1l0l.numwords_a = 32768,
+		nlO1l0l.numwords_b = 32768,
+		nlO1l0l.operation_mode = "DUAL_PORT",
+		nlO1l0l.outdata_aclr_a = "NONE",
+		nlO1l0l.outdata_aclr_b = "NONE",
+		nlO1l0l.outdata_reg_a = "UNREGISTERED",
+		nlO1l0l.outdata_reg_b = "UNREGISTERED",
+		nlO1l0l.ram_block_type = "AUTO",
+		nlO1l0l.rdcontrol_aclr_b = "NONE",
+		nlO1l0l.rdcontrol_reg_b = "CLOCK1",
+		nlO1l0l.read_during_write_mode_mixed_ports = "DONT_CARE",
+		nlO1l0l.read_during_write_mode_port_a = "NEW_DATA_NO_NBE_READ",
+		nlO1l0l.read_during_write_mode_port_b = "NEW_DATA_NO_NBE_READ",
+		nlO1l0l.width_a = 255,
+		nlO1l0l.width_b = 255,
+		nlO1l0l.width_byteena_a = 1,
+		nlO1l0l.width_byteena_b = 1,
+		nlO1l0l.width_eccstatus = 3,
+		nlO1l0l.widthad_a = 15,
+		nlO1l0l.widthad_b = 15,
+		nlO1l0l.wrcontrol_aclr_a = "NONE",
+		nlO1l0l.wrcontrol_aclr_b = "NONE",
+		nlO1l0l.wrcontrol_wraddress_reg_b = "CLOCK1",
+		nlO1l0l.lpm_hint = "WIDTH_BYTEENA=1";
 	initial
-		n1i00i35 = 0;
+		nllOO1O49 = 0;
 	always @ ( posedge pld_clk)
-		  n1i00i35 <= n1i00i36;
-	event n1i00i35_event;
+		  nllOO1O49 <= nllOO1O50;
+	event nllOO1O49_event;
 	initial
-		#1 ->n1i00i35_event;
-	always @(n1i00i35_event)
-		n1i00i35 <= {1{1'b1}};
+		#1 ->nllOO1O49_event;
+	always @(nllOO1O49_event)
+		nllOO1O49 <= {1{1'b1}};
 	initial
-		n1i00i36 = 0;
+		nllOO1O50 = 0;
 	always @ ( posedge pld_clk)
-		  n1i00i36 <= n1i00i35;
+		  nllOO1O50 <= nllOO1O49;
 	initial
-		n1i01l37 = 0;
+		nlO100i21 = 0;
 	always @ ( posedge pld_clk)
-		  n1i01l37 <= n1i01l38;
-	event n1i01l37_event;
+		  nlO100i21 <= nlO100i22;
+	event nlO100i21_event;
 	initial
-		#1 ->n1i01l37_event;
-	always @(n1i01l37_event)
-		n1i01l37 <= {1{1'b1}};
+		#1 ->nlO100i21_event;
+	always @(nlO100i21_event)
+		nlO100i21 <= {1{1'b1}};
 	initial
-		n1i01l38 = 0;
+		nlO100i22 = 0;
 	always @ ( posedge pld_clk)
-		  n1i01l38 <= n1i01l37;
+		  nlO100i22 <= nlO100i21;
 	initial
-		n1i0ii33 = 0;
+		nlO100O19 = 0;
 	always @ ( posedge pld_clk)
-		  n1i0ii33 <= n1i0ii34;
-	event n1i0ii33_event;
+		  nlO100O19 <= nlO100O20;
+	event nlO100O19_event;
 	initial
-		#1 ->n1i0ii33_event;
-	always @(n1i0ii33_event)
-		n1i0ii33 <= {1{1'b1}};
+		#1 ->nlO100O19_event;
+	always @(nlO100O19_event)
+		nlO100O19 <= {1{1'b1}};
 	initial
-		n1i0ii34 = 0;
+		nlO100O20 = 0;
 	always @ ( posedge pld_clk)
-		  n1i0ii34 <= n1i0ii33;
+		  nlO100O20 <= nlO100O19;
 	initial
-		n1i0il31 = 0;
+		nlO101i27 = 0;
 	always @ ( posedge pld_clk)
-		  n1i0il31 <= n1i0il32;
-	event n1i0il31_event;
+		  nlO101i27 <= nlO101i28;
+	event nlO101i27_event;
 	initial
-		#1 ->n1i0il31_event;
-	always @(n1i0il31_event)
-		n1i0il31 <= {1{1'b1}};
+		#1 ->nlO101i27_event;
+	always @(nlO101i27_event)
+		nlO101i27 <= {1{1'b1}};
 	initial
-		n1i0il32 = 0;
+		nlO101i28 = 0;
 	always @ ( posedge pld_clk)
-		  n1i0il32 <= n1i0il31;
+		  nlO101i28 <= nlO101i27;
 	initial
-		n1i0iO29 = 0;
+		nlO101l25 = 0;
 	always @ ( posedge pld_clk)
-		  n1i0iO29 <= n1i0iO30;
-	event n1i0iO29_event;
+		  nlO101l25 <= nlO101l26;
+	event nlO101l25_event;
 	initial
-		#1 ->n1i0iO29_event;
-	always @(n1i0iO29_event)
-		n1i0iO29 <= {1{1'b1}};
+		#1 ->nlO101l25_event;
+	always @(nlO101l25_event)
+		nlO101l25 <= {1{1'b1}};
 	initial
-		n1i0iO30 = 0;
+		nlO101l26 = 0;
 	always @ ( posedge pld_clk)
-		  n1i0iO30 <= n1i0iO29;
+		  nlO101l26 <= nlO101l25;
 	initial
-		n1i0li27 = 0;
+		nlO101O23 = 0;
 	always @ ( posedge pld_clk)
-		  n1i0li27 <= n1i0li28;
-	event n1i0li27_event;
+		  nlO101O23 <= nlO101O24;
+	event nlO101O23_event;
 	initial
-		#1 ->n1i0li27_event;
-	always @(n1i0li27_event)
-		n1i0li27 <= {1{1'b1}};
+		#1 ->nlO101O23_event;
+	always @(nlO101O23_event)
+		nlO101O23 <= {1{1'b1}};
 	initial
-		n1i0li28 = 0;
+		nlO101O24 = 0;
 	always @ ( posedge pld_clk)
-		  n1i0li28 <= n1i0li27;
+		  nlO101O24 <= nlO101O23;
 	initial
-		n1i0ll25 = 0;
+		nlO10il17 = 0;
 	always @ ( posedge pld_clk)
-		  n1i0ll25 <= n1i0ll26;
-	event n1i0ll25_event;
+		  nlO10il17 <= nlO10il18;
+	event nlO10il17_event;
 	initial
-		#1 ->n1i0ll25_event;
-	always @(n1i0ll25_event)
-		n1i0ll25 <= {1{1'b1}};
+		#1 ->nlO10il17_event;
+	always @(nlO10il17_event)
+		nlO10il17 <= {1{1'b1}};
 	initial
-		n1i0ll26 = 0;
+		nlO10il18 = 0;
 	always @ ( posedge pld_clk)
-		  n1i0ll26 <= n1i0ll25;
+		  nlO10il18 <= nlO10il17;
 	initial
-		n1i0lO23 = 0;
+		nlO10iO15 = 0;
 	always @ ( posedge pld_clk)
-		  n1i0lO23 <= n1i0lO24;
-	event n1i0lO23_event;
+		  nlO10iO15 <= nlO10iO16;
+	event nlO10iO15_event;
 	initial
-		#1 ->n1i0lO23_event;
-	always @(n1i0lO23_event)
-		n1i0lO23 <= {1{1'b1}};
+		#1 ->nlO10iO15_event;
+	always @(nlO10iO15_event)
+		nlO10iO15 <= {1{1'b1}};
 	initial
-		n1i0lO24 = 0;
+		nlO10iO16 = 0;
 	always @ ( posedge pld_clk)
-		  n1i0lO24 <= n1i0lO23;
+		  nlO10iO16 <= nlO10iO15;
 	initial
-		n1i0Oi21 = 0;
+		nlO10Oi13 = 0;
 	always @ ( posedge pld_clk)
-		  n1i0Oi21 <= n1i0Oi22;
-	event n1i0Oi21_event;
+		  nlO10Oi13 <= nlO10Oi14;
+	event nlO10Oi13_event;
 	initial
-		#1 ->n1i0Oi21_event;
-	always @(n1i0Oi21_event)
-		n1i0Oi21 <= {1{1'b1}};
+		#1 ->nlO10Oi13_event;
+	always @(nlO10Oi13_event)
+		nlO10Oi13 <= {1{1'b1}};
 	initial
-		n1i0Oi22 = 0;
+		nlO10Oi14 = 0;
 	always @ ( posedge pld_clk)
-		  n1i0Oi22 <= n1i0Oi21;
+		  nlO10Oi14 <= nlO10Oi13;
 	initial
-		n1i0Ol19 = 0;
+		nlO10OO11 = 0;
 	always @ ( posedge pld_clk)
-		  n1i0Ol19 <= n1i0Ol20;
-	event n1i0Ol19_event;
+		  nlO10OO11 <= nlO10OO12;
+	event nlO10OO11_event;
 	initial
-		#1 ->n1i0Ol19_event;
-	always @(n1i0Ol19_event)
-		n1i0Ol19 <= {1{1'b1}};
+		#1 ->nlO10OO11_event;
+	always @(nlO10OO11_event)
+		nlO10OO11 <= {1{1'b1}};
 	initial
-		n1i0Ol20 = 0;
+		nlO10OO12 = 0;
 	always @ ( posedge pld_clk)
-		  n1i0Ol20 <= n1i0Ol19;
+		  nlO10OO12 <= nlO10OO11;
 	initial
-		n1i1il49 = 0;
+		nlO110i43 = 0;
 	always @ ( posedge pld_clk)
-		  n1i1il49 <= n1i1il50;
-	event n1i1il49_event;
+		  nlO110i43 <= nlO110i44;
+	event nlO110i43_event;
 	initial
-		#1 ->n1i1il49_event;
-	always @(n1i1il49_event)
-		n1i1il49 <= {1{1'b1}};
+		#1 ->nlO110i43_event;
+	always @(nlO110i43_event)
+		nlO110i43 <= {1{1'b1}};
 	initial
-		n1i1il50 = 0;
+		nlO110i44 = 0;
 	always @ ( posedge pld_clk)
-		  n1i1il50 <= n1i1il49;
+		  nlO110i44 <= nlO110i43;
 	initial
-		n1i1iO47 = 0;
+		nlO111l47 = 0;
 	always @ ( posedge pld_clk)
-		  n1i1iO47 <= n1i1iO48;
-	event n1i1iO47_event;
+		  nlO111l47 <= nlO111l48;
+	event nlO111l47_event;
 	initial
-		#1 ->n1i1iO47_event;
-	always @(n1i1iO47_event)
-		n1i1iO47 <= {1{1'b1}};
+		#1 ->nlO111l47_event;
+	always @(nlO111l47_event)
+		nlO111l47 <= {1{1'b1}};
 	initial
-		n1i1iO48 = 0;
+		nlO111l48 = 0;
 	always @ ( posedge pld_clk)
-		  n1i1iO48 <= n1i1iO47;
+		  nlO111l48 <= nlO111l47;
 	initial
-		n1i1li45 = 0;
+		nlO111O45 = 0;
 	always @ ( posedge pld_clk)
-		  n1i1li45 <= n1i1li46;
-	event n1i1li45_event;
+		  nlO111O45 <= nlO111O46;
+	event nlO111O45_event;
 	initial
-		#1 ->n1i1li45_event;
-	always @(n1i1li45_event)
-		n1i1li45 <= {1{1'b1}};
+		#1 ->nlO111O45_event;
+	always @(nlO111O45_event)
+		nlO111O45 <= {1{1'b1}};
 	initial
-		n1i1li46 = 0;
+		nlO111O46 = 0;
 	always @ ( posedge pld_clk)
-		  n1i1li46 <= n1i1li45;
+		  nlO111O46 <= nlO111O45;
 	initial
-		n1i1ll43 = 0;
+		nlO11ii41 = 0;
 	always @ ( posedge pld_clk)
-		  n1i1ll43 <= n1i1ll44;
-	event n1i1ll43_event;
+		  nlO11ii41 <= nlO11ii42;
+	event nlO11ii41_event;
 	initial
-		#1 ->n1i1ll43_event;
-	always @(n1i1ll43_event)
-		n1i1ll43 <= {1{1'b1}};
+		#1 ->nlO11ii41_event;
+	always @(nlO11ii41_event)
+		nlO11ii41 <= {1{1'b1}};
 	initial
-		n1i1ll44 = 0;
+		nlO11ii42 = 0;
 	always @ ( posedge pld_clk)
-		  n1i1ll44 <= n1i1ll43;
+		  nlO11ii42 <= nlO11ii41;
 	initial
-		n1i1lO41 = 0;
+		nlO11li39 = 0;
 	always @ ( posedge pld_clk)
-		  n1i1lO41 <= n1i1lO42;
-	event n1i1lO41_event;
+		  nlO11li39 <= nlO11li40;
+	event nlO11li39_event;
 	initial
-		#1 ->n1i1lO41_event;
-	always @(n1i1lO41_event)
-		n1i1lO41 <= {1{1'b1}};
+		#1 ->nlO11li39_event;
+	always @(nlO11li39_event)
+		nlO11li39 <= {1{1'b1}};
 	initial
-		n1i1lO42 = 0;
+		nlO11li40 = 0;
 	always @ ( posedge pld_clk)
-		  n1i1lO42 <= n1i1lO41;
+		  nlO11li40 <= nlO11li39;
 	initial
-		n1i1Ol39 = 0;
+		nlO11ll37 = 0;
 	always @ ( posedge pld_clk)
-		  n1i1Ol39 <= n1i1Ol40;
-	event n1i1Ol39_event;
+		  nlO11ll37 <= nlO11ll38;
+	event nlO11ll37_event;
 	initial
-		#1 ->n1i1Ol39_event;
-	always @(n1i1Ol39_event)
-		n1i1Ol39 <= {1{1'b1}};
+		#1 ->nlO11ll37_event;
+	always @(nlO11ll37_event)
+		nlO11ll37 <= {1{1'b1}};
 	initial
-		n1i1Ol40 = 0;
+		nlO11ll38 = 0;
 	always @ ( posedge pld_clk)
-		  n1i1Ol40 <= n1i1Ol39;
+		  nlO11ll38 <= nlO11ll37;
 	initial
-		n1ii0O15 = 0;
+		nlO11lO35 = 0;
 	always @ ( posedge pld_clk)
-		  n1ii0O15 <= n1ii0O16;
-	event n1ii0O15_event;
+		  nlO11lO35 <= nlO11lO36;
+	event nlO11lO35_event;
 	initial
-		#1 ->n1ii0O15_event;
-	always @(n1ii0O15_event)
-		n1ii0O15 <= {1{1'b1}};
+		#1 ->nlO11lO35_event;
+	always @(nlO11lO35_event)
+		nlO11lO35 <= {1{1'b1}};
 	initial
-		n1ii0O16 = 0;
+		nlO11lO36 = 0;
 	always @ ( posedge pld_clk)
-		  n1ii0O16 <= n1ii0O15;
+		  nlO11lO36 <= nlO11lO35;
 	initial
-		n1ii1l17 = 0;
+		nlO11Oi33 = 0;
 	always @ ( posedge pld_clk)
-		  n1ii1l17 <= n1ii1l18;
-	event n1ii1l17_event;
+		  nlO11Oi33 <= nlO11Oi34;
+	event nlO11Oi33_event;
 	initial
-		#1 ->n1ii1l17_event;
-	always @(n1ii1l17_event)
-		n1ii1l17 <= {1{1'b1}};
+		#1 ->nlO11Oi33_event;
+	always @(nlO11Oi33_event)
+		nlO11Oi33 <= {1{1'b1}};
 	initial
-		n1ii1l18 = 0;
+		nlO11Oi34 = 0;
 	always @ ( posedge pld_clk)
-		  n1ii1l18 <= n1ii1l17;
+		  nlO11Oi34 <= nlO11Oi33;
 	initial
-		n1iiil13 = 0;
+		nlO11Ol31 = 0;
 	always @ ( posedge pld_clk)
-		  n1iiil13 <= n1iiil14;
-	event n1iiil13_event;
+		  nlO11Ol31 <= nlO11Ol32;
+	event nlO11Ol31_event;
 	initial
-		#1 ->n1iiil13_event;
-	always @(n1iiil13_event)
-		n1iiil13 <= {1{1'b1}};
+		#1 ->nlO11Ol31_event;
+	always @(nlO11Ol31_event)
+		nlO11Ol31 <= {1{1'b1}};
 	initial
-		n1iiil14 = 0;
+		nlO11Ol32 = 0;
 	always @ ( posedge pld_clk)
-		  n1iiil14 <= n1iiil13;
+		  nlO11Ol32 <= nlO11Ol31;
 	initial
-		n1iili11 = 0;
+		nlO11OO29 = 0;
 	always @ ( posedge pld_clk)
-		  n1iili11 <= n1iili12;
-	event n1iili11_event;
+		  nlO11OO29 <= nlO11OO30;
+	event nlO11OO29_event;
 	initial
-		#1 ->n1iili11_event;
-	always @(n1iili11_event)
-		n1iili11 <= {1{1'b1}};
+		#1 ->nlO11OO29_event;
+	always @(nlO11OO29_event)
+		nlO11OO29 <= {1{1'b1}};
 	initial
-		n1iili12 = 0;
+		nlO11OO30 = 0;
 	always @ ( posedge pld_clk)
-		  n1iili12 <= n1iili11;
+		  nlO11OO30 <= nlO11OO29;
 	initial
-		n1iilO10 = 0;
+		nlO1i1O10 = 0;
 	always @ ( posedge pld_clk)
-		  n1iilO10 <= n1iilO9;
+		  nlO1i1O10 <= nlO1i1O9;
 	initial
-		n1iilO9 = 0;
+		nlO1i1O9 = 0;
 	always @ ( posedge pld_clk)
-		  n1iilO9 <= n1iilO10;
-	event n1iilO9_event;
+		  nlO1i1O9 <= nlO1i1O10;
+	event nlO1i1O9_event;
 	initial
-		#1 ->n1iilO9_event;
-	always @(n1iilO9_event)
-		n1iilO9 <= {1{1'b1}};
+		#1 ->nlO1i1O9_event;
+	always @(nlO1i1O9_event)
+		nlO1i1O9 <= {1{1'b1}};
 	initial
-		n1il0O5 = 0;
+		nlO1iiO7 = 0;
 	always @ ( posedge pld_clk)
-		  n1il0O5 <= n1il0O6;
-	event n1il0O5_event;
+		  nlO1iiO7 <= nlO1iiO8;
+	event nlO1iiO7_event;
 	initial
-		#1 ->n1il0O5_event;
-	always @(n1il0O5_event)
-		n1il0O5 <= {1{1'b1}};
+		#1 ->nlO1iiO7_event;
+	always @(nlO1iiO7_event)
+		nlO1iiO7 <= {1{1'b1}};
 	initial
-		n1il0O6 = 0;
+		nlO1iiO8 = 0;
 	always @ ( posedge pld_clk)
-		  n1il0O6 <= n1il0O5;
+		  nlO1iiO8 <= nlO1iiO7;
 	initial
-		n1il1l7 = 0;
+		nlO1ill5 = 0;
 	always @ ( posedge pld_clk)
-		  n1il1l7 <= n1il1l8;
-	event n1il1l7_event;
+		  nlO1ill5 <= nlO1ill6;
+	event nlO1ill5_event;
 	initial
-		#1 ->n1il1l7_event;
-	always @(n1il1l7_event)
-		n1il1l7 <= {1{1'b1}};
+		#1 ->nlO1ill5_event;
+	always @(nlO1ill5_event)
+		nlO1ill5 <= {1{1'b1}};
 	initial
-		n1il1l8 = 0;
+		nlO1ill6 = 0;
 	always @ ( posedge pld_clk)
-		  n1il1l8 <= n1il1l7;
+		  nlO1ill6 <= nlO1ill5;
 	initial
-		n1ilil3 = 0;
+		nlO1iOi3 = 0;
 	always @ ( posedge pld_clk)
-		  n1ilil3 <= n1ilil4;
-	event n1ilil3_event;
+		  nlO1iOi3 <= nlO1iOi4;
+	event nlO1iOi3_event;
 	initial
-		#1 ->n1ilil3_event;
-	always @(n1ilil3_event)
-		n1ilil3 <= {1{1'b1}};
+		#1 ->nlO1iOi3_event;
+	always @(nlO1iOi3_event)
+		nlO1iOi3 <= {1{1'b1}};
 	initial
-		n1ilil4 = 0;
+		nlO1iOi4 = 0;
 	always @ ( posedge pld_clk)
-		  n1ilil4 <= n1ilil3;
+		  nlO1iOi4 <= nlO1iOi3;
 	initial
-		n1illi1 = 0;
+		nlO1iOO1 = 0;
 	always @ ( posedge pld_clk)
-		  n1illi1 <= n1illi2;
-	event n1illi1_event;
+		  nlO1iOO1 <= nlO1iOO2;
+	event nlO1iOO1_event;
 	initial
-		#1 ->n1illi1_event;
-	always @(n1illi1_event)
-		n1illi1 <= {1{1'b1}};
+		#1 ->nlO1iOO1_event;
+	always @(nlO1iOO1_event)
+		nlO1iOO1 <= {1{1'b1}};
 	initial
-		n1illi2 = 0;
+		nlO1iOO2 = 0;
 	always @ ( posedge pld_clk)
-		  n1illi2 <= n1illi1;
+		  nlO1iOO2 <= nlO1iOO1;
 	initial
 	begin
-		n0110l = 0;
-		n1lOlO = 0;
+		n11i1i = 0;
+		nlO0O1l = 0;
+		nlOiOiO = 0;
+		nlOO0il = 0;
 	end
-	always @ ( posedge pld_clk or  negedge wire_n0110i_CLRN)
+	always @ (pld_clk or wire_n110OO_PRN or wire_n110OO_CLRN)
 	begin
-		if (wire_n0110i_CLRN == 1'b0) 
+		if (wire_n110OO_PRN == 1'b0) 
 		begin
-			n0110l <= 0;
-			n1lOlO <= 0;
+			n11i1i <= 1;
+			nlO0O1l <= 1;
+			nlOiOiO <= 1;
+			nlOO0il <= 1;
+		end
+		else if  (wire_n110OO_CLRN == 1'b0) 
+		begin
+			n11i1i <= 0;
+			nlO0O1l <= 0;
+			nlOiOiO <= 0;
+			nlOO0il <= 0;
+		end
+		else 
+		if (pld_clk != n110OO_clk_prev && pld_clk == 1'b1) 
+		begin
+			n11i1i <= nlO10li;
+			nlO0O1l <= nlOiOiO;
+			nlOiOiO <= nlO10li;
+			nlOO0il <= n11i1i;
+		end
+		n110OO_clk_prev <= pld_clk;
+	end
+	assign
+		wire_n110OO_CLRN = ((nlO10iO16 ^ nlO10iO15) & npor),
+		wire_n110OO_PRN = (nlO10il18 ^ nlO10il17);
+	initial
+	begin
+		nlO00OO = 0;
+		nlO0i1l = 0;
+	end
+	always @ (pld_clk or nlO0O1l or wire_nlO0i1i_CLRN)
+	begin
+		if (nlO0O1l == 1'b0) 
+		begin
+			nlO00OO <= 1;
+			nlO0i1l <= 1;
+		end
+		else if  (wire_nlO0i1i_CLRN == 1'b0) 
+		begin
+			nlO00OO <= 0;
+			nlO0i1l <= 0;
+		end
+		else 
+		if (pld_clk != nlO0i1i_clk_prev && pld_clk == 1'b1) 
+		begin
+			nlO00OO <= wire_nlO0OiO_dataout;
+			nlO0i1l <= wire_nlO0Oli_dataout;
+		end
+		nlO0i1i_clk_prev <= pld_clk;
+	end
+	assign
+		wire_nlO0i1i_CLRN = (nllOO1O50 ^ nllOO1O49);
+	event nlO00OO_event;
+	event nlO0i1l_event;
+	initial
+		#1 ->nlO00OO_event;
+	initial
+		#1 ->nlO0i1l_event;
+	always @(nlO00OO_event)
+		nlO00OO <= 1;
+	always @(nlO0i1l_event)
+		nlO0i1l <= 1;
+	initial
+	begin
+		nlO00iO = 0;
+		nlO00li = 0;
+		nlO00ll = 0;
+		nlO00lO = 0;
+		nlO00Oi = 0;
+		nlO00Ol = 0;
+		nlO0i0i = 0;
+		nlO0i0l = 0;
+		nlO0i0O = 0;
+		nlO0i1O = 0;
+		nlO0iii = 0;
+		nlO0iil = 0;
+		nlO0iiO = 0;
+		nlO0ili = 0;
+		nlO0ill = 0;
+		nlO0ilO = 0;
+		nlO0iOi = 0;
+		nlO0iOl = 0;
+		nlO0iOO = 0;
+		nlO0l0i = 0;
+		nlO0l0l = 0;
+		nlO0l0O = 0;
+		nlO0l1i = 0;
+		nlO0l1l = 0;
+		nlO0l1O = 0;
+		nlO0lii = 0;
+		nlO0lil = 0;
+		nlO0liO = 0;
+		nlO0lli = 0;
+		nlO0lll = 0;
+		nlO0llO = 0;
+		nlO0lOi = 0;
+		nlO0lOl = 0;
+		nlO0O1i = 0;
+	end
+	always @ ( posedge pld_clk or  negedge nlO0O1l)
+	begin
+		if (nlO0O1l == 1'b0) 
+		begin
+			nlO00iO <= 0;
+			nlO00li <= 0;
+			nlO00ll <= 0;
+			nlO00lO <= 0;
+			nlO00Oi <= 0;
+			nlO00Ol <= 0;
+			nlO0i0i <= 0;
+			nlO0i0l <= 0;
+			nlO0i0O <= 0;
+			nlO0i1O <= 0;
+			nlO0iii <= 0;
+			nlO0iil <= 0;
+			nlO0iiO <= 0;
+			nlO0ili <= 0;
+			nlO0ill <= 0;
+			nlO0ilO <= 0;
+			nlO0iOi <= 0;
+			nlO0iOl <= 0;
+			nlO0iOO <= 0;
+			nlO0l0i <= 0;
+			nlO0l0l <= 0;
+			nlO0l0O <= 0;
+			nlO0l1i <= 0;
+			nlO0l1l <= 0;
+			nlO0l1O <= 0;
+			nlO0lii <= 0;
+			nlO0lil <= 0;
+			nlO0liO <= 0;
+			nlO0lli <= 0;
+			nlO0lll <= 0;
+			nlO0llO <= 0;
+			nlO0lOi <= 0;
+			nlO0lOl <= 0;
+			nlO0O1i <= 0;
 		end
 		else 
 		begin
-			n0110l <= n1ii1O;
-			n1lOlO <= n0110l;
+			nlO00iO <= wire_nlO0O0i_dataout;
+			nlO00li <= wire_nlO0O0l_dataout;
+			nlO00ll <= wire_nlO0O1O_dataout;
+			nlO00lO <= wire_nlO0O0O_dataout;
+			nlO00Oi <= wire_nlO0Oii_dataout;
+			nlO00Ol <= wire_nlO0Oil_dataout;
+			nlO0i0i <= wire_nlO0OlO_dataout;
+			nlO0i0l <= wire_nlO0OOi_dataout;
+			nlO0i0O <= wire_nlO0OOl_dataout;
+			nlO0i1O <= wire_nlO0Oll_dataout;
+			nlO0iii <= wire_nlO0OOO_dataout;
+			nlO0iil <= wire_nlOi11i_dataout;
+			nlO0iiO <= wire_nlOi11l_dataout;
+			nlO0ili <= wire_nlOi11O_dataout;
+			nlO0ill <= wire_nlOi10i_dataout;
+			nlO0ilO <= wire_nlOi10l_dataout;
+			nlO0iOi <= wire_nlOi10O_dataout;
+			nlO0iOl <= wire_nlOi1ii_dataout;
+			nlO0iOO <= wire_nlOi1il_dataout;
+			nlO0l0i <= wire_nlOi1lO_dataout;
+			nlO0l0l <= wire_nlOi1Oi_dataout;
+			nlO0l0O <= wire_nlOi1Ol_dataout;
+			nlO0l1i <= wire_nlOi1iO_dataout;
+			nlO0l1l <= wire_nlOi1li_dataout;
+			nlO0l1O <= wire_nlOi1ll_dataout;
+			nlO0lii <= wire_nlOi1OO_dataout;
+			nlO0lil <= wire_nlOi01i_dataout;
+			nlO0liO <= wire_nlOi01l_dataout;
+			nlO0lli <= wire_nlOi01O_dataout;
+			nlO0lll <= wire_nlOi00i_dataout;
+			nlO0llO <= wire_nlOi00l_dataout;
+			nlO0lOi <= wire_nlOi00O_dataout;
+			nlO0lOl <= wire_nlOi0ii_dataout;
+			nlO0O1i <= wire_nlOi0il_dataout;
 		end
 	end
-	assign
-		wire_n0110i_CLRN = ((n1ii1l18 ^ n1ii1l17) & npor);
-	event n0110l_event;
-	event n1lOlO_event;
-	initial
-		#1 ->n0110l_event;
-	initial
-		#1 ->n1lOlO_event;
-	always @(n0110l_event)
-		n0110l <= 1;
-	always @(n1lOlO_event)
-		n1lOlO <= 1;
 	initial
 	begin
-		n1lili = 0;
-		n1lilO = 0;
+		nlOlO0O = 0;
+		nlOlOil = 0;
 	end
-	always @ (pld_clk or wire_n1lill_PRN or wire_n1lill_CLRN)
+	always @ ( posedge pld_clk or  negedge wire_nlOlOii_PRN)
 	begin
-		if (wire_n1lill_PRN == 1'b0) 
+		if (wire_nlOlOii_PRN == 1'b0) 
 		begin
-			n1lili <= 1;
-			n1lilO <= 1;
-		end
-		else if  (wire_n1lill_CLRN == 1'b0) 
-		begin
-			n1lili <= 0;
-			n1lilO <= 0;
+			nlOlO0O <= 1;
+			nlOlOil <= 1;
 		end
 		else 
-		if (pld_clk != n1lill_clk_prev && pld_clk == 1'b1) 
 		begin
-			n1lili <= wire_n1O10i_dataout;
-			n1lilO <= wire_n1O10l_dataout;
+			nlOlO0O <= wire_nlOO0OO_dataout;
+			nlOlOil <= wire_nlOOi1i_dataout;
 		end
-		n1lill_clk_prev <= pld_clk;
 	end
 	assign
-		wire_n1lill_CLRN = (n1i1iO48 ^ n1i1iO47),
-		wire_n1lill_PRN = ((n1i1il50 ^ n1i1il49) & n1lOlO);
-	event n1lili_event;
-	event n1lilO_event;
+		wire_nlOlOii_PRN = ((nlO111l48 ^ nlO111l47) & nlOO0il);
+	event nlOlO0O_event;
+	event nlOlOil_event;
 	initial
-		#1 ->n1lili_event;
+		#1 ->nlOlO0O_event;
 	initial
-		#1 ->n1lilO_event;
-	always @(n1lili_event)
-		n1lili <= 1;
-	always @(n1lilO_event)
-		n1lilO <= 1;
+		#1 ->nlOlOil_event;
+	always @(nlOlO0O_event)
+		nlOlO0O <= 1;
+	always @(nlOlOil_event)
+		nlOlOil <= 1;
 	initial
 	begin
-		n1li0i = 0;
-		n1li0l = 0;
-		n1li0O = 0;
-		n1liii = 0;
-		n1liil = 0;
-		n1liiO = 0;
-		n1liOi = 0;
-		n1liOl = 0;
-		n1liOO = 0;
-		n1ll0i = 0;
-		n1ll0l = 0;
-		n1ll0O = 0;
-		n1ll1i = 0;
-		n1ll1l = 0;
-		n1ll1O = 0;
-		n1llii = 0;
-		n1llil = 0;
-		n1lliO = 0;
-		n1llli = 0;
-		n1llll = 0;
-		n1lllO = 0;
-		n1llOi = 0;
-		n1llOl = 0;
-		n1llOO = 0;
-		n1lO0i = 0;
-		n1lO0l = 0;
-		n1lO0O = 0;
-		n1lO1i = 0;
-		n1lO1l = 0;
-		n1lO1O = 0;
-		n1lOii = 0;
-		n1lOil = 0;
-		n1lOiO = 0;
-		n1lOll = 0;
+		nlOllOO = 0;
+		nlOlO0i = 0;
+		nlOlO0l = 0;
+		nlOlO1i = 0;
+		nlOlO1l = 0;
+		nlOlO1O = 0;
+		nlOlOiO = 0;
+		nlOlOli = 0;
+		nlOlOll = 0;
+		nlOlOlO = 0;
+		nlOlOOi = 0;
+		nlOlOOl = 0;
+		nlOlOOO = 0;
+		nlOO00i = 0;
+		nlOO00l = 0;
+		nlOO01i = 0;
+		nlOO01l = 0;
+		nlOO01O = 0;
+		nlOO0ii = 0;
+		nlOO10i = 0;
+		nlOO10l = 0;
+		nlOO10O = 0;
+		nlOO11i = 0;
+		nlOO11l = 0;
+		nlOO11O = 0;
+		nlOO1ii = 0;
+		nlOO1il = 0;
+		nlOO1iO = 0;
+		nlOO1li = 0;
+		nlOO1ll = 0;
+		nlOO1lO = 0;
+		nlOO1Oi = 0;
+		nlOO1Ol = 0;
+		nlOO1OO = 0;
 	end
-	always @ (pld_clk or wire_n1lOli_PRN or wire_n1lOli_CLRN)
+	always @ ( posedge pld_clk or  negedge wire_nlOO00O_CLRN)
 	begin
-		if (wire_n1lOli_PRN == 1'b0) 
+		if (wire_nlOO00O_CLRN == 1'b0) 
 		begin
-			n1li0i <= 1;
-			n1li0l <= 1;
-			n1li0O <= 1;
-			n1liii <= 1;
-			n1liil <= 1;
-			n1liiO <= 1;
-			n1liOi <= 1;
-			n1liOl <= 1;
-			n1liOO <= 1;
-			n1ll0i <= 1;
-			n1ll0l <= 1;
-			n1ll0O <= 1;
-			n1ll1i <= 1;
-			n1ll1l <= 1;
-			n1ll1O <= 1;
-			n1llii <= 1;
-			n1llil <= 1;
-			n1lliO <= 1;
-			n1llli <= 1;
-			n1llll <= 1;
-			n1lllO <= 1;
-			n1llOi <= 1;
-			n1llOl <= 1;
-			n1llOO <= 1;
-			n1lO0i <= 1;
-			n1lO0l <= 1;
-			n1lO0O <= 1;
-			n1lO1i <= 1;
-			n1lO1l <= 1;
-			n1lO1O <= 1;
-			n1lOii <= 1;
-			n1lOil <= 1;
-			n1lOiO <= 1;
-			n1lOll <= 1;
-		end
-		else if  (wire_n1lOli_CLRN == 1'b0) 
-		begin
-			n1li0i <= 0;
-			n1li0l <= 0;
-			n1li0O <= 0;
-			n1liii <= 0;
-			n1liil <= 0;
-			n1liiO <= 0;
-			n1liOi <= 0;
-			n1liOl <= 0;
-			n1liOO <= 0;
-			n1ll0i <= 0;
-			n1ll0l <= 0;
-			n1ll0O <= 0;
-			n1ll1i <= 0;
-			n1ll1l <= 0;
-			n1ll1O <= 0;
-			n1llii <= 0;
-			n1llil <= 0;
-			n1lliO <= 0;
-			n1llli <= 0;
-			n1llll <= 0;
-			n1lllO <= 0;
-			n1llOi <= 0;
-			n1llOl <= 0;
-			n1llOO <= 0;
-			n1lO0i <= 0;
-			n1lO0l <= 0;
-			n1lO0O <= 0;
-			n1lO1i <= 0;
-			n1lO1l <= 0;
-			n1lO1O <= 0;
-			n1lOii <= 0;
-			n1lOil <= 0;
-			n1lOiO <= 0;
-			n1lOll <= 0;
+			nlOllOO <= 0;
+			nlOlO0i <= 0;
+			nlOlO0l <= 0;
+			nlOlO1i <= 0;
+			nlOlO1l <= 0;
+			nlOlO1O <= 0;
+			nlOlOiO <= 0;
+			nlOlOli <= 0;
+			nlOlOll <= 0;
+			nlOlOlO <= 0;
+			nlOlOOi <= 0;
+			nlOlOOl <= 0;
+			nlOlOOO <= 0;
+			nlOO00i <= 0;
+			nlOO00l <= 0;
+			nlOO01i <= 0;
+			nlOO01l <= 0;
+			nlOO01O <= 0;
+			nlOO0ii <= 0;
+			nlOO10i <= 0;
+			nlOO10l <= 0;
+			nlOO10O <= 0;
+			nlOO11i <= 0;
+			nlOO11l <= 0;
+			nlOO11O <= 0;
+			nlOO1ii <= 0;
+			nlOO1il <= 0;
+			nlOO1iO <= 0;
+			nlOO1li <= 0;
+			nlOO1ll <= 0;
+			nlOO1lO <= 0;
+			nlOO1Oi <= 0;
+			nlOO1Ol <= 0;
+			nlOO1OO <= 0;
 		end
 		else 
-		if (pld_clk != n1lOli_clk_prev && pld_clk == 1'b1) 
 		begin
-			n1li0i <= wire_n1lOOl_dataout;
-			n1li0l <= wire_n1lOOO_dataout;
-			n1li0O <= wire_n1lOOi_dataout;
-			n1liii <= wire_n1O11i_dataout;
-			n1liil <= wire_n1O11l_dataout;
-			n1liiO <= wire_n1O11O_dataout;
-			n1liOi <= wire_n1O10O_dataout;
-			n1liOl <= wire_n1O1ii_dataout;
-			n1liOO <= wire_n1O1il_dataout;
-			n1ll0i <= wire_n1O1lO_dataout;
-			n1ll0l <= wire_n1O1Oi_dataout;
-			n1ll0O <= wire_n1O1Ol_dataout;
-			n1ll1i <= wire_n1O1iO_dataout;
-			n1ll1l <= wire_n1O1li_dataout;
-			n1ll1O <= wire_n1O1ll_dataout;
-			n1llii <= wire_n1O1OO_dataout;
-			n1llil <= wire_n1O01i_dataout;
-			n1lliO <= wire_n1O01l_dataout;
-			n1llli <= wire_n1O01O_dataout;
-			n1llll <= wire_n1O00i_dataout;
-			n1lllO <= wire_n1O00l_dataout;
-			n1llOi <= wire_n1O00O_dataout;
-			n1llOl <= wire_n1O0ii_dataout;
-			n1llOO <= wire_n1O0il_dataout;
-			n1lO0i <= wire_n1O0lO_dataout;
-			n1lO0l <= wire_n1O0Oi_dataout;
-			n1lO0O <= wire_n1O0Ol_dataout;
-			n1lO1i <= wire_n1O0iO_dataout;
-			n1lO1l <= wire_n1O0li_dataout;
-			n1lO1O <= wire_n1O0ll_dataout;
-			n1lOii <= wire_n1O0OO_dataout;
-			n1lOil <= wire_n1Oi1i_dataout;
-			n1lOiO <= wire_n1Oi1l_dataout;
-			n1lOll <= wire_n1Oi1O_dataout;
+			nlOllOO <= wire_nlOO0li_dataout;
+			nlOlO0i <= wire_nlOO0Oi_dataout;
+			nlOlO0l <= wire_nlOO0Ol_dataout;
+			nlOlO1i <= wire_nlOO0ll_dataout;
+			nlOlO1l <= wire_nlOO0iO_dataout;
+			nlOlO1O <= wire_nlOO0lO_dataout;
+			nlOlOiO <= wire_nlOOi1l_dataout;
+			nlOlOli <= wire_nlOOi1O_dataout;
+			nlOlOll <= wire_nlOOi0i_dataout;
+			nlOlOlO <= wire_nlOOi0l_dataout;
+			nlOlOOi <= wire_nlOOi0O_dataout;
+			nlOlOOl <= wire_nlOOiii_dataout;
+			nlOlOOO <= wire_nlOOiil_dataout;
+			nlOO00i <= wire_nlOOllO_dataout;
+			nlOO00l <= wire_nlOOlOi_dataout;
+			nlOO01i <= wire_nlOOliO_dataout;
+			nlOO01l <= wire_nlOOlli_dataout;
+			nlOO01O <= wire_nlOOlll_dataout;
+			nlOO0ii <= wire_nlOOlOl_dataout;
+			nlOO10i <= wire_nlOOilO_dataout;
+			nlOO10l <= wire_nlOOiOi_dataout;
+			nlOO10O <= wire_nlOOiOl_dataout;
+			nlOO11i <= wire_nlOOiiO_dataout;
+			nlOO11l <= wire_nlOOili_dataout;
+			nlOO11O <= wire_nlOOill_dataout;
+			nlOO1ii <= wire_nlOOiOO_dataout;
+			nlOO1il <= wire_nlOOl1i_dataout;
+			nlOO1iO <= wire_nlOOl1l_dataout;
+			nlOO1li <= wire_nlOOl1O_dataout;
+			nlOO1ll <= wire_nlOOl0i_dataout;
+			nlOO1lO <= wire_nlOOl0l_dataout;
+			nlOO1Oi <= wire_nlOOl0O_dataout;
+			nlOO1Ol <= wire_nlOOlii_dataout;
+			nlOO1OO <= wire_nlOOlil_dataout;
 		end
-		n1lOli_clk_prev <= pld_clk;
 	end
 	assign
-		wire_n1lOli_CLRN = ((n1i1ll44 ^ n1i1ll43) & n1lOlO),
-		wire_n1lOli_PRN = (n1i1li46 ^ n1i1li45);
-	assign		wire_n0110O_dataout = (n1iiOl === 1'b1) ? n1ii0i : wire_n011ii_dataout;
-	assign		wire_n0111i_dataout = (n1il1i === 1'b1) ? n1ii0i : n1li0O;
-	assign		wire_n0111l_dataout = (n1il1i === 1'b1) ? n1il0i : n1li0i;
-	and(wire_n011ii_dataout, n1li0O, n1ii0l);
-	assign		wire_n011iO_dataout = (n1iiOl === 1'b1) ? n1il0i : wire_n011li_dataout;
-	and(wire_n011li_dataout, n1li0i, n1ii0l);
-	assign		wire_n1iOll_dataout = (n1i10O === 1'b1) ? wire_n1l1Ol_o[0] : wire_n1l1il_dataout;
-	assign		wire_n1iOlO_dataout = (n1i10O === 1'b1) ? wire_n1l1Ol_o[1] : wire_n1l1iO_dataout;
-	assign		wire_n1iOOi_dataout = (n1i10O === 1'b1) ? wire_n1l1Ol_o[2] : wire_n1l1li_dataout;
-	assign		wire_n1iOOl_dataout = (n1i10O === 1'b1) ? wire_n1l1Ol_o[3] : wire_n1l1ll_dataout;
-	assign		wire_n1iOOO_dataout = (n1i10O === 1'b1) ? wire_n1l1Ol_o[4] : wire_n1l1ll_dataout;
-	assign		wire_n1l00i_dataout = (n1i1ii === 1'b1) ? wire_n1l0OO_o[3] : wire_n1l0lO_dataout;
-	assign		wire_n1l00l_dataout = (n1i1ii === 1'b1) ? wire_n1l0OO_o[4] : wire_n1l0lO_dataout;
-	assign		wire_n1l00O_dataout = (n1i1ii === 1'b1) ? wire_n1l0OO_o[5] : wire_n1l0lO_dataout;
-	assign		wire_n1l01i_dataout = (n1i1ii === 1'b1) ? wire_n1l0OO_o[0] : wire_n1l0iO_dataout;
-	assign		wire_n1l01l_dataout = (n1i1ii === 1'b1) ? wire_n1l0OO_o[1] : wire_n1l0li_dataout;
-	assign		wire_n1l01O_dataout = (n1i1ii === 1'b1) ? wire_n1l0OO_o[2] : wire_n1l0ll_dataout;
-	assign		wire_n1l0ii_dataout = (n1i1ii === 1'b1) ? wire_n1l0OO_o[6] : wire_n1l0lO_dataout;
-	assign		wire_n1l0il_dataout = (n1i1ii === 1'b1) ? wire_n1l0OO_o[7] : wire_n1l0lO_dataout;
-	and(wire_n1l0iO_dataout, wire_n1l0Oi_o[1], wire_n1l0Ol_o);
-	and(wire_n1l0li_dataout, wire_n1l0Oi_o[2], wire_n1l0Ol_o);
-	and(wire_n1l0ll_dataout, wire_n1l0Oi_o[3], wire_n1l0Ol_o);
-	and(wire_n1l0lO_dataout, (~ wire_n1l0Oi_o[4]), wire_n1l0Ol_o);
-	assign		wire_n1l10i_dataout = (n1i10O === 1'b1) ? wire_n1l1Ol_o[8] : wire_n1l1ll_dataout;
-	assign		wire_n1l10l_dataout = (n1i10O === 1'b1) ? wire_n1l1Ol_o[9] : wire_n1l1ll_dataout;
-	assign		wire_n1l10O_dataout = (n1i10O === 1'b1) ? wire_n1l1Ol_o[10] : wire_n1l1ll_dataout;
-	assign		wire_n1l11i_dataout = (n1i10O === 1'b1) ? wire_n1l1Ol_o[5] : wire_n1l1ll_dataout;
-	assign		wire_n1l11l_dataout = (n1i10O === 1'b1) ? wire_n1l1Ol_o[6] : wire_n1l1ll_dataout;
-	assign		wire_n1l11O_dataout = (n1i10O === 1'b1) ? wire_n1l1Ol_o[7] : wire_n1l1ll_dataout;
-	assign		wire_n1l1ii_dataout = (n1i10O === 1'b1) ? wire_n1l1Ol_o[11] : wire_n1l1ll_dataout;
-	and(wire_n1l1il_dataout, wire_n1l1lO_o[1], wire_n1l1Oi_o);
-	and(wire_n1l1iO_dataout, wire_n1l1lO_o[2], wire_n1l1Oi_o);
-	and(wire_n1l1li_dataout, wire_n1l1lO_o[3], wire_n1l1Oi_o);
-	and(wire_n1l1ll_dataout, (~ wire_n1l1lO_o[4]), wire_n1l1Oi_o);
-	and(wire_n1lOOi_dataout, wire_n1OOOl_dataout, ~(srst));
-	and(wire_n1lOOl_dataout, wire_n1OOOO_dataout, ~(srst));
-	and(wire_n1lOOO_dataout, ((((wire_n0110O_dataout & n1i01i) & (n1i1Ol40 ^ n1i1Ol39)) | n1li0l) | (~ (n1i1lO42 ^ n1i1lO41))), ~(srst));
-	and(wire_n1O00i_dataout, wire_n1Oi0l_dataout, ~(srst));
-	and(wire_n1O00l_dataout, wire_n1Oi0O_dataout, ~(srst));
-	and(wire_n1O00O_dataout, wire_n0110O_dataout, ~(srst));
-	and(wire_n1O01i_dataout, wire_n1Olll_dataout, ~(srst));
-	and(wire_n1O01l_dataout, wire_n1OllO_dataout, ~(srst));
-	and(wire_n1O01O_dataout, wire_n1Oi0i_dataout, ~(srst));
-	and(wire_n1O0ii_dataout, wire_n1OlOl_dataout, ~(srst));
-	and(wire_n1O0il_dataout, wire_n1OlOO_dataout, ~(srst));
-	and(wire_n1O0iO_dataout, wire_n1OO1i_dataout, ~(srst));
-	and(wire_n1O0li_dataout, wire_n1OO1l_dataout, ~(srst));
-	and(wire_n1O0ll_dataout, wire_n1OO1O_dataout, ~(srst));
-	and(wire_n1O0lO_dataout, wire_n1OO0i_dataout, ~(srst));
-	and(wire_n1O0Oi_dataout, wire_n1OO0l_dataout, ~(srst));
-	and(wire_n1O0Ol_dataout, wire_n1OO0O_dataout, ~(srst));
-	and(wire_n1O0OO_dataout, wire_n1Oiil_dataout, ~(srst));
-	or(wire_n1O10i_dataout, wire_n1OOiO_dataout, srst);
-	or(wire_n1O10l_dataout, wire_n1OOlO_dataout, srst);
-	and(wire_n1O10O_dataout, wire_n1Ol1i_dataout, ~(srst));
-	and(wire_n1O11i_dataout, ((((wire_n011iO_dataout & n1i00O) & (n1i00i36 ^ n1i00i35)) | n1liii) | (~ (n1i01l38 ^ n1i01l37))), ~(srst));
-	and(wire_n1O11l_dataout, wire_n1OOil_dataout, ~(srst));
-	and(wire_n1O11O_dataout, wire_n1OOll_dataout, ~(srst));
-	and(wire_n1O1ii_dataout, wire_n1Ol1l_dataout, ~(srst));
-	and(wire_n1O1il_dataout, wire_n1Ol1O_dataout, ~(srst));
-	and(wire_n1O1iO_dataout, wire_n1Ol0i_dataout, ~(srst));
-	and(wire_n1O1li_dataout, wire_n1Ol0l_dataout, ~(srst));
-	and(wire_n1O1ll_dataout, wire_n1Ol0O_dataout, ~(srst));
-	and(wire_n1O1lO_dataout, wire_n1Olii_dataout, ~(srst));
-	and(wire_n1O1Oi_dataout, wire_n1Olil_dataout, ~(srst));
-	and(wire_n1O1Ol_dataout, wire_n1OliO_dataout, ~(srst));
-	and(wire_n1O1OO_dataout, wire_n1Olli_dataout, ~(srst));
-	or(wire_n1Oi0i_dataout, wire_n1iOll_dataout, wire_n1Oiii_o);
-	or(wire_n1Oi0l_dataout, wire_n1iOlO_dataout, wire_n1Oiii_o);
-	or(wire_n1Oi0O_dataout, wire_n1iOOi_dataout, wire_n1Oiii_o);
-	and(wire_n1Oi1i_dataout, wire_n1OiiO_dataout, ~(srst));
-	and(wire_n1Oi1l_dataout, wire_n1Oili_dataout, ~(srst));
-	and(wire_n1Oi1O_dataout, wire_n011iO_dataout, ~(srst));
-	or(wire_n1Oiil_dataout, wire_n1l01i_dataout, wire_n1Oill_o);
-	or(wire_n1OiiO_dataout, wire_n1l01l_dataout, wire_n1Oill_o);
-	or(wire_n1Oili_dataout, wire_n1l01O_dataout, wire_n1Oill_o);
-	assign		wire_n1Ol0i_dataout = (n1llOi === 1'b1) ? wire_n1OlOi_o[3] : n1ll1i;
-	assign		wire_n1Ol0l_dataout = (n1llOi === 1'b1) ? wire_n1OlOi_o[4] : n1ll1l;
-	assign		wire_n1Ol0O_dataout = (n1llOi === 1'b1) ? wire_n1OlOi_o[5] : n1ll1O;
-	assign		wire_n1Ol1i_dataout = (n1llOi === 1'b1) ? wire_n1OlOi_o[0] : n1liOi;
-	assign		wire_n1Ol1l_dataout = (n1llOi === 1'b1) ? wire_n1OlOi_o[1] : n1liOl;
-	assign		wire_n1Ol1O_dataout = (n1llOi === 1'b1) ? wire_n1OlOi_o[2] : n1liOO;
-	assign		wire_n1Olii_dataout = (n1llOi === 1'b1) ? wire_n1OlOi_o[6] : n1ll0i;
-	assign		wire_n1Olil_dataout = (n1llOi === 1'b1) ? wire_n1OlOi_o[7] : n1ll0l;
-	assign		wire_n1OliO_dataout = (n1llOi === 1'b1) ? wire_n1OlOi_o[8] : n1ll0O;
-	assign		wire_n1Olli_dataout = (n1llOi === 1'b1) ? wire_n1OlOi_o[9] : n1llii;
-	assign		wire_n1Olll_dataout = (n1llOi === 1'b1) ? wire_n1OlOi_o[10] : n1llil;
-	assign		wire_n1OllO_dataout = (n1llOi === 1'b1) ? wire_n1OlOi_o[11] : n1lliO;
-	assign		wire_n1OlOl_dataout = (n1lOll === 1'b1) ? wire_n1OOii_o[0] : n1llOl;
-	assign		wire_n1OlOO_dataout = (n1lOll === 1'b1) ? wire_n1OOii_o[1] : n1llOO;
-	assign		wire_n1OO0i_dataout = (n1lOll === 1'b1) ? wire_n1OOii_o[5] : n1lO0i;
-	assign		wire_n1OO0l_dataout = (n1lOll === 1'b1) ? wire_n1OOii_o[6] : n1lO0l;
-	assign		wire_n1OO0O_dataout = (n1lOll === 1'b1) ? wire_n1OOii_o[7] : n1lO0O;
-	assign		wire_n1OO1i_dataout = (n1lOll === 1'b1) ? wire_n1OOii_o[2] : n1lO1i;
-	assign		wire_n1OO1l_dataout = (n1lOll === 1'b1) ? wire_n1OOii_o[3] : n1lO1l;
-	assign		wire_n1OO1O_dataout = (n1lOll === 1'b1) ? wire_n1OOii_o[4] : n1lO1O;
-	assign		wire_n1OOil_dataout = (n1lili === 1'b1) ? ((wire_n010il_txcredvc0[18] & (~ wire_n010il_txcredvc0[19])) & (~ wire_n010il_txcredvc0[20])) : n1liil;
-	and(wire_n1OOiO_dataout, (~ wire_n1OOli_o), n1lili);
-	assign		wire_n1OOll_dataout = (n1lilO === 1'b1) ? (((wire_n010il_txcredvc0[15] & (~ wire_n010il_txcredvc0[16])) & (~ wire_n010il_txcredvc0[17])) & (n1i0Ol20 ^ n1i0Ol19)) : n1liiO;
-	and(wire_n1OOlO_dataout, (~ wire_n1OOOi_o), n1lilO);
-	and(wire_n1OOOl_dataout, wire_n0111i_dataout, ~(n1ii1i));
-	and(wire_n1OOOO_dataout, wire_n0111l_dataout, ~(n1ii1i));
-	oper_add   n1l0Oi
+		wire_nlOO00O_CLRN = ((nlO111O46 ^ nlO111O45) & nlOO0il);
+	assign		wire_n1100i_dataout = (nlOlO0O === 1'b1) ? ((wire_n11l0i_txcredvc1[18] & (~ wire_n11l0i_txcredvc1[19])) & (~ wire_n11l0i_txcredvc1[20])) : nlOlO0i;
+	and(wire_n1100l_dataout, (~ wire_n1100O_o), nlOlO0O);
+	assign		wire_n1101i_dataout = (nlOO0ii === 1'b1) ? wire_n1101O_o[6] : nlOO01i;
+	assign		wire_n1101l_dataout = (nlOO0ii === 1'b1) ? wire_n1101O_o[7] : nlOO01l;
+	assign		wire_n110ii_dataout = (nlOlOil === 1'b1) ? ((wire_n11l0i_txcredvc1[15] & (~ wire_n11l0i_txcredvc1[16])) & (~ wire_n11l0i_txcredvc1[17])) : nlOlO0l;
+	and(wire_n110il_dataout, (~ wire_n110iO_o), nlOlOil);
+	and(wire_n110li_dataout, wire_n110lO_dataout, ~(nlO100l));
+	and(wire_n110ll_dataout, wire_n110Oi_dataout, ~(nlO100l));
+	assign		wire_n110lO_dataout = (nlO1i0O === 1'b1) ? nlO10ll : nlOlO1l;
+	assign		wire_n110Oi_dataout = (nlO1i0O === 1'b1) ? nlO1iii : nlOllOO;
+	assign		wire_n1110i_dataout = (nlOO1iO === 1'b1) ? wire_n111iO_o[7] : nlOO11i;
+	assign		wire_n1110l_dataout = (nlOO1iO === 1'b1) ? wire_n111iO_o[8] : nlOO11l;
+	assign		wire_n1110O_dataout = (nlOO1iO === 1'b1) ? wire_n111iO_o[9] : nlOO11O;
+	assign		wire_n1111i_dataout = (nlOO1iO === 1'b1) ? wire_n111iO_o[4] : nlOlOOi;
+	assign		wire_n1111l_dataout = (nlOO1iO === 1'b1) ? wire_n111iO_o[5] : nlOlOOl;
+	assign		wire_n1111O_dataout = (nlOO1iO === 1'b1) ? wire_n111iO_o[6] : nlOlOOO;
+	assign		wire_n111ii_dataout = (nlOO1iO === 1'b1) ? wire_n111iO_o[10] : nlOO10i;
+	assign		wire_n111il_dataout = (nlOO1iO === 1'b1) ? wire_n111iO_o[11] : nlOO10l;
+	assign		wire_n111li_dataout = (nlOO0ii === 1'b1) ? wire_n1101O_o[0] : nlOO1li;
+	assign		wire_n111ll_dataout = (nlOO0ii === 1'b1) ? wire_n1101O_o[1] : nlOO1ll;
+	assign		wire_n111lO_dataout = (nlOO0ii === 1'b1) ? wire_n1101O_o[2] : nlOO1lO;
+	assign		wire_n111Oi_dataout = (nlOO0ii === 1'b1) ? wire_n1101O_o[3] : nlOO1Oi;
+	assign		wire_n111Ol_dataout = (nlOO0ii === 1'b1) ? wire_n1101O_o[4] : nlOO1Ol;
+	assign		wire_n111OO_dataout = (nlOO0ii === 1'b1) ? wire_n1101O_o[5] : nlOO1OO;
+	assign		wire_n11i0l_dataout = (nlO1i1l === 1'b1) ? nlO1iii : wire_n11i0O_dataout;
+	and(wire_n11i0O_dataout, nlOllOO, nlO10lO);
+	assign		wire_n11i1l_dataout = (nlO1i1l === 1'b1) ? nlO10ll : wire_n11i1O_dataout;
+	and(wire_n11i1O_dataout, nlOlO1l, nlO10lO);
+	and(wire_nlO001i_dataout, wire_nlO001O_o[3], wire_nlO000i_o);
+	and(wire_nlO001l_dataout, (~ wire_nlO001O_o[4]), wire_nlO000i_o);
+	assign		wire_nlO010O_dataout = (nllOO1l === 1'b1) ? wire_nlO000l_o[0] : wire_nlO01Ol_dataout;
+	and(wire_nlO011i_dataout, (~ wire_nlO011l_o[4]), wire_nlO011O_o);
+	assign		wire_nlO01ii_dataout = (nllOO1l === 1'b1) ? wire_nlO000l_o[1] : wire_nlO01OO_dataout;
+	assign		wire_nlO01il_dataout = (nllOO1l === 1'b1) ? wire_nlO000l_o[2] : wire_nlO001i_dataout;
+	assign		wire_nlO01iO_dataout = (nllOO1l === 1'b1) ? wire_nlO000l_o[3] : wire_nlO001l_dataout;
+	assign		wire_nlO01li_dataout = (nllOO1l === 1'b1) ? wire_nlO000l_o[4] : wire_nlO001l_dataout;
+	assign		wire_nlO01ll_dataout = (nllOO1l === 1'b1) ? wire_nlO000l_o[5] : wire_nlO001l_dataout;
+	assign		wire_nlO01lO_dataout = (nllOO1l === 1'b1) ? wire_nlO000l_o[6] : wire_nlO001l_dataout;
+	assign		wire_nlO01Oi_dataout = (nllOO1l === 1'b1) ? wire_nlO000l_o[7] : wire_nlO001l_dataout;
+	and(wire_nlO01Ol_dataout, wire_nlO001O_o[1], wire_nlO000i_o);
+	and(wire_nlO01OO_dataout, wire_nlO001O_o[2], wire_nlO000i_o);
+	and(wire_nlO0O0i_dataout, wire_nlOiO0l_dataout, ~(srst));
+	and(wire_nlO0O0l_dataout, ((wire_nlOiOli_dataout & nllOO0i) | nlO00li), ~(srst));
+	and(wire_nlO0O0O_dataout, ((wire_nlOiOOi_dataout & nllOO0l) | nlO00lO), ~(srst));
+	and(wire_nlO0O1O_dataout, wire_nlOiO0i_dataout, ~(srst));
+	and(wire_nlO0Oii_dataout, wire_nlOilOi_dataout, ~(srst));
+	and(wire_nlO0Oil_dataout, wire_nlOiO1i_dataout, ~(srst));
+	or(wire_nlO0OiO_dataout, wire_nlOilOl_dataout, srst);
+	or(wire_nlO0Oli_dataout, wire_nlOiO1l_dataout, srst);
+	and(wire_nlO0Oll_dataout, wire_nlOii0O_dataout, ~(srst));
+	and(wire_nlO0OlO_dataout, wire_nlOiiii_dataout, ~(srst));
+	and(wire_nlO0OOi_dataout, wire_nlOiiil_dataout, ~(srst));
+	and(wire_nlO0OOl_dataout, wire_nlOiiiO_dataout, ~(srst));
+	and(wire_nlO0OOO_dataout, wire_nlOiili_dataout, ~(srst));
+	assign		wire_nlO1O0i_dataout = (nllOO1i === 1'b1) ? wire_nlO010i_o[3] : wire_nlO011i_dataout;
+	assign		wire_nlO1O0l_dataout = (nllOO1i === 1'b1) ? wire_nlO010i_o[4] : wire_nlO011i_dataout;
+	assign		wire_nlO1O0O_dataout = (nllOO1i === 1'b1) ? wire_nlO010i_o[5] : wire_nlO011i_dataout;
+	assign		wire_nlO1O1i_dataout = (nllOO1i === 1'b1) ? wire_nlO010i_o[0] : wire_nlO1OOi_dataout;
+	assign		wire_nlO1O1l_dataout = (nllOO1i === 1'b1) ? wire_nlO010i_o[1] : wire_nlO1OOl_dataout;
+	assign		wire_nlO1O1O_dataout = (nllOO1i === 1'b1) ? wire_nlO010i_o[2] : wire_nlO1OOO_dataout;
+	assign		wire_nlO1Oii_dataout = (nllOO1i === 1'b1) ? wire_nlO010i_o[6] : wire_nlO011i_dataout;
+	assign		wire_nlO1Oil_dataout = (nllOO1i === 1'b1) ? wire_nlO010i_o[7] : wire_nlO011i_dataout;
+	assign		wire_nlO1OiO_dataout = (nllOO1i === 1'b1) ? wire_nlO010i_o[8] : wire_nlO011i_dataout;
+	assign		wire_nlO1Oli_dataout = (nllOO1i === 1'b1) ? wire_nlO010i_o[9] : wire_nlO011i_dataout;
+	assign		wire_nlO1Oll_dataout = (nllOO1i === 1'b1) ? wire_nlO010i_o[10] : wire_nlO011i_dataout;
+	assign		wire_nlO1OlO_dataout = (nllOO1i === 1'b1) ? wire_nlO010i_o[11] : wire_nlO011i_dataout;
+	and(wire_nlO1OOi_dataout, wire_nlO011l_o[1], wire_nlO011O_o);
+	and(wire_nlO1OOl_dataout, wire_nlO011l_o[2], wire_nlO011O_o);
+	and(wire_nlO1OOO_dataout, wire_nlO011l_o[3], wire_nlO011O_o);
+	and(wire_nlOi00i_dataout, wire_nlOilll_dataout, ~(srst));
+	and(wire_nlOi00l_dataout, wire_nlOi0Oi_dataout, ~(srst));
+	and(wire_nlOi00O_dataout, wire_nlOi0Ol_dataout, ~(srst));
+	and(wire_nlOi01i_dataout, wire_nlOilil_dataout, ~(srst));
+	and(wire_nlOi01l_dataout, wire_nlOiliO_dataout, ~(srst));
+	and(wire_nlOi01O_dataout, wire_nlOilli_dataout, ~(srst));
+	and(wire_nlOi0ii_dataout, wire_nlOi0OO_dataout, ~(srst));
+	and(wire_nlOi0il_dataout, wire_nlOiOOi_dataout, ~(srst));
+	or(wire_nlOi0iO_dataout, wire_nlO1O1i_dataout, wire_nlOi0lO_o);
+	or(wire_nlOi0li_dataout, wire_nlO1O1l_dataout, wire_nlOi0lO_o);
+	or(wire_nlOi0ll_dataout, wire_nlO1O1O_dataout, wire_nlOi0lO_o);
+	or(wire_nlOi0Oi_dataout, wire_nlO010O_dataout, wire_nlOii1i_o);
+	or(wire_nlOi0Ol_dataout, wire_nlO01ii_dataout, wire_nlOii1i_o);
+	or(wire_nlOi0OO_dataout, wire_nlO01il_dataout, wire_nlOii1i_o);
+	and(wire_nlOi10i_dataout, wire_nlOiiOl_dataout, ~(srst));
+	and(wire_nlOi10l_dataout, wire_nlOiiOO_dataout, ~(srst));
+	and(wire_nlOi10O_dataout, wire_nlOil1i_dataout, ~(srst));
+	and(wire_nlOi11i_dataout, wire_nlOiill_dataout, ~(srst));
+	and(wire_nlOi11l_dataout, wire_nlOiilO_dataout, ~(srst));
+	and(wire_nlOi11O_dataout, wire_nlOiiOi_dataout, ~(srst));
+	and(wire_nlOi1ii_dataout, wire_nlOil1l_dataout, ~(srst));
+	and(wire_nlOi1il_dataout, wire_nlOi0iO_dataout, ~(srst));
+	and(wire_nlOi1iO_dataout, wire_nlOi0li_dataout, ~(srst));
+	and(wire_nlOi1li_dataout, wire_nlOi0ll_dataout, ~(srst));
+	and(wire_nlOi1ll_dataout, wire_nlOiOli_dataout, ~(srst));
+	and(wire_nlOi1lO_dataout, wire_nlOil0i_dataout, ~(srst));
+	and(wire_nlOi1Oi_dataout, wire_nlOil0l_dataout, ~(srst));
+	and(wire_nlOi1Ol_dataout, wire_nlOil0O_dataout, ~(srst));
+	and(wire_nlOi1OO_dataout, wire_nlOilii_dataout, ~(srst));
+	assign		wire_nlOii0O_dataout = (nlO0l1O === 1'b1) ? wire_nlOil1O_o[0] : nlO0i1O;
+	assign		wire_nlOiiii_dataout = (nlO0l1O === 1'b1) ? wire_nlOil1O_o[1] : nlO0i0i;
+	assign		wire_nlOiiil_dataout = (nlO0l1O === 1'b1) ? wire_nlOil1O_o[2] : nlO0i0l;
+	assign		wire_nlOiiiO_dataout = (nlO0l1O === 1'b1) ? wire_nlOil1O_o[3] : nlO0i0O;
+	assign		wire_nlOiili_dataout = (nlO0l1O === 1'b1) ? wire_nlOil1O_o[4] : nlO0iii;
+	assign		wire_nlOiill_dataout = (nlO0l1O === 1'b1) ? wire_nlOil1O_o[5] : nlO0iil;
+	assign		wire_nlOiilO_dataout = (nlO0l1O === 1'b1) ? wire_nlOil1O_o[6] : nlO0iiO;
+	assign		wire_nlOiiOi_dataout = (nlO0l1O === 1'b1) ? wire_nlOil1O_o[7] : nlO0ili;
+	assign		wire_nlOiiOl_dataout = (nlO0l1O === 1'b1) ? wire_nlOil1O_o[8] : nlO0ill;
+	assign		wire_nlOiiOO_dataout = (nlO0l1O === 1'b1) ? wire_nlOil1O_o[9] : nlO0ilO;
+	assign		wire_nlOil0i_dataout = (nlO0O1i === 1'b1) ? wire_nlOillO_o[0] : nlO0l0i;
+	assign		wire_nlOil0l_dataout = (nlO0O1i === 1'b1) ? wire_nlOillO_o[1] : nlO0l0l;
+	assign		wire_nlOil0O_dataout = (nlO0O1i === 1'b1) ? wire_nlOillO_o[2] : nlO0l0O;
+	assign		wire_nlOil1i_dataout = (nlO0l1O === 1'b1) ? wire_nlOil1O_o[10] : nlO0iOi;
+	assign		wire_nlOil1l_dataout = (nlO0l1O === 1'b1) ? wire_nlOil1O_o[11] : nlO0iOl;
+	assign		wire_nlOilii_dataout = (nlO0O1i === 1'b1) ? wire_nlOillO_o[3] : nlO0lii;
+	assign		wire_nlOilil_dataout = (nlO0O1i === 1'b1) ? wire_nlOillO_o[4] : nlO0lil;
+	assign		wire_nlOiliO_dataout = (nlO0O1i === 1'b1) ? wire_nlOillO_o[5] : nlO0liO;
+	assign		wire_nlOilli_dataout = (nlO0O1i === 1'b1) ? wire_nlOillO_o[6] : nlO0lli;
+	assign		wire_nlOilll_dataout = (nlO0O1i === 1'b1) ? wire_nlOillO_o[7] : nlO0lll;
+	assign		wire_nlOilOi_dataout = (nlO00OO === 1'b1) ? ((wire_n11l0i_txcredvc0[18] & (~ wire_n11l0i_txcredvc0[19])) & (~ wire_n11l0i_txcredvc0[20])) : nlO00Oi;
+	and(wire_nlOilOl_dataout, (~ wire_nlOilOO_o), nlO00OO);
+	and(wire_nlOiO0i_dataout, wire_nlOiO0O_dataout, ~(nllOO0O));
+	and(wire_nlOiO0l_dataout, wire_nlOiOii_dataout, ~(nllOO0O));
+	assign		wire_nlOiO0O_dataout = (nllOOll === 1'b1) ? nllOOii : nlO00ll;
+	assign		wire_nlOiO1i_dataout = (nlO0i1l === 1'b1) ? ((wire_n11l0i_txcredvc0[15] & (~ wire_n11l0i_txcredvc0[16])) & (~ wire_n11l0i_txcredvc0[17])) : nlO00Ol;
+	and(wire_nlOiO1l_dataout, (~ wire_nlOiO1O_o), nlO0i1l);
+	assign		wire_nlOiOii_dataout = (nllOOll === 1'b1) ? nllOOlO : nlO00iO;
+	assign		wire_nlOiOli_dataout = (nllOOiO === 1'b1) ? nllOOii : wire_nlOiOll_dataout;
+	and(wire_nlOiOll_dataout, nlO00ll, nllOOil);
+	assign		wire_nlOiOOi_dataout = (nllOOiO === 1'b1) ? nllOOlO : wire_nlOiOOl_dataout;
+	and(wire_nlOiOOl_dataout, nlO00iO, nllOOil);
+	assign		wire_nlOl0ii_dataout = (nllOOOO === 1'b1) ? wire_nlOlili_o[0] : wire_nlOli0i_dataout;
+	assign		wire_nlOl0il_dataout = (nllOOOO === 1'b1) ? wire_nlOlili_o[1] : wire_nlOli0l_dataout;
+	assign		wire_nlOl0iO_dataout = (nllOOOO === 1'b1) ? wire_nlOlili_o[2] : wire_nlOli0O_dataout;
+	assign		wire_nlOl0li_dataout = (nllOOOO === 1'b1) ? wire_nlOlili_o[3] : wire_nlOliii_dataout;
+	assign		wire_nlOl0ll_dataout = (nllOOOO === 1'b1) ? wire_nlOlili_o[4] : wire_nlOliii_dataout;
+	assign		wire_nlOl0lO_dataout = (nllOOOO === 1'b1) ? wire_nlOlili_o[5] : wire_nlOliii_dataout;
+	assign		wire_nlOl0Oi_dataout = (nllOOOO === 1'b1) ? wire_nlOlili_o[6] : wire_nlOliii_dataout;
+	assign		wire_nlOl0Ol_dataout = (nllOOOO === 1'b1) ? wire_nlOlili_o[7] : wire_nlOliii_dataout;
+	assign		wire_nlOl0OO_dataout = (nllOOOO === 1'b1) ? wire_nlOlili_o[8] : wire_nlOliii_dataout;
+	and(wire_nlOli0i_dataout, wire_nlOliil_o[1], wire_nlOliiO_o);
+	and(wire_nlOli0l_dataout, wire_nlOliil_o[2], wire_nlOliiO_o);
+	and(wire_nlOli0O_dataout, wire_nlOliil_o[3], wire_nlOliiO_o);
+	assign		wire_nlOli1i_dataout = (nllOOOO === 1'b1) ? wire_nlOlili_o[9] : wire_nlOliii_dataout;
+	assign		wire_nlOli1l_dataout = (nllOOOO === 1'b1) ? wire_nlOlili_o[10] : wire_nlOliii_dataout;
+	assign		wire_nlOli1O_dataout = (nllOOOO === 1'b1) ? wire_nlOlili_o[11] : wire_nlOliii_dataout;
+	and(wire_nlOliii_dataout, (~ wire_nlOliil_o[4]), wire_nlOliiO_o);
+	assign		wire_nlOlilO_dataout = (nlO111i === 1'b1) ? wire_nlOllll_o[0] : wire_nlOll0l_dataout;
+	assign		wire_nlOliOi_dataout = (nlO111i === 1'b1) ? wire_nlOllll_o[1] : wire_nlOll0O_dataout;
+	assign		wire_nlOliOl_dataout = (nlO111i === 1'b1) ? wire_nlOllll_o[2] : wire_nlOllii_dataout;
+	assign		wire_nlOliOO_dataout = (nlO111i === 1'b1) ? wire_nlOllll_o[3] : wire_nlOllil_dataout;
+	assign		wire_nlOll0i_dataout = (nlO111i === 1'b1) ? wire_nlOllll_o[7] : wire_nlOllil_dataout;
+	and(wire_nlOll0l_dataout, wire_nlOlliO_o[1], wire_nlOllli_o);
+	and(wire_nlOll0O_dataout, wire_nlOlliO_o[2], wire_nlOllli_o);
+	assign		wire_nlOll1i_dataout = (nlO111i === 1'b1) ? wire_nlOllll_o[4] : wire_nlOllil_dataout;
+	assign		wire_nlOll1l_dataout = (nlO111i === 1'b1) ? wire_nlOllll_o[5] : wire_nlOllil_dataout;
+	assign		wire_nlOll1O_dataout = (nlO111i === 1'b1) ? wire_nlOllll_o[6] : wire_nlOllil_dataout;
+	and(wire_nlOllii_dataout, wire_nlOlliO_o[3], wire_nlOllli_o);
+	and(wire_nlOllil_dataout, (~ wire_nlOlliO_o[4]), wire_nlOllli_o);
+	and(wire_nlOO0iO_dataout, wire_n110li_dataout, ~(srst));
+	and(wire_nlOO0li_dataout, wire_n110ll_dataout, ~(srst));
+	and(wire_nlOO0ll_dataout, (((wire_n11i1l_dataout & nlO110O) | nlOlO1i) | (~ (nlO110i44 ^ nlO110i43))), ~(srst));
+	and(wire_nlOO0lO_dataout, (((wire_n11i0l_dataout & nlO11iO) & (nlO11ii42 ^ nlO11ii41)) | nlOlO1O), ~(srst));
+	and(wire_nlOO0Oi_dataout, wire_n1100i_dataout, ~(srst));
+	and(wire_nlOO0Ol_dataout, wire_n110ii_dataout, ~(srst));
+	or(wire_nlOO0OO_dataout, wire_n1100l_dataout, srst);
+	and(wire_nlOOi0i_dataout, wire_nlOOOOl_dataout, ~(srst));
+	and(wire_nlOOi0l_dataout, wire_nlOOOOO_dataout, ~(srst));
+	and(wire_nlOOi0O_dataout, wire_n1111i_dataout, ~(srst));
+	or(wire_nlOOi1i_dataout, wire_n110il_dataout, srst);
+	and(wire_nlOOi1l_dataout, wire_nlOOOlO_dataout, ~(srst));
+	and(wire_nlOOi1O_dataout, wire_nlOOOOi_dataout, ~(srst));
+	and(wire_nlOOiii_dataout, wire_n1111l_dataout, ~(srst));
+	and(wire_nlOOiil_dataout, wire_n1111O_dataout, ~(srst));
+	and(wire_nlOOiiO_dataout, wire_n1110i_dataout, ~(srst));
+	and(wire_nlOOili_dataout, wire_n1110l_dataout, ~(srst));
+	and(wire_nlOOill_dataout, wire_n1110O_dataout, ~(srst));
+	and(wire_nlOOilO_dataout, wire_n111ii_dataout, ~(srst));
+	and(wire_nlOOiOi_dataout, wire_n111il_dataout, ~(srst));
+	and(wire_nlOOiOl_dataout, wire_nlOOlOO_dataout, ~(srst));
+	and(wire_nlOOiOO_dataout, wire_nlOOO1i_dataout, ~(srst));
+	and(wire_nlOOl0i_dataout, wire_n111ll_dataout, ~(srst));
+	and(wire_nlOOl0l_dataout, wire_n111lO_dataout, ~(srst));
+	and(wire_nlOOl0O_dataout, wire_n111Oi_dataout, ~(srst));
+	and(wire_nlOOl1i_dataout, wire_nlOOO1l_dataout, ~(srst));
+	and(wire_nlOOl1l_dataout, wire_n11i1l_dataout, ~(srst));
+	and(wire_nlOOl1O_dataout, wire_n111li_dataout, ~(srst));
+	and(wire_nlOOlii_dataout, wire_n111Ol_dataout, ~(srst));
+	and(wire_nlOOlil_dataout, wire_n111OO_dataout, ~(srst));
+	and(wire_nlOOliO_dataout, wire_n1101i_dataout, ~(srst));
+	and(wire_nlOOlli_dataout, wire_n1101l_dataout, ~(srst));
+	and(wire_nlOOlll_dataout, wire_nlOOO0i_dataout, ~(srst));
+	and(wire_nlOOllO_dataout, wire_nlOOO0l_dataout, ~(srst));
+	and(wire_nlOOlOi_dataout, wire_nlOOO0O_dataout, ~(srst));
+	and(wire_nlOOlOl_dataout, wire_n11i0l_dataout, ~(srst));
+	or(wire_nlOOlOO_dataout, wire_nlOl0ii_dataout, wire_nlOOO1O_o);
+	or(wire_nlOOO0i_dataout, wire_nlOlilO_dataout, wire_nlOOOii_o);
+	or(wire_nlOOO0l_dataout, wire_nlOliOi_dataout, wire_nlOOOii_o);
+	or(wire_nlOOO0O_dataout, wire_nlOliOl_dataout, wire_nlOOOii_o);
+	or(wire_nlOOO1i_dataout, wire_nlOl0il_dataout, wire_nlOOO1O_o);
+	or(wire_nlOOO1l_dataout, wire_nlOl0iO_dataout, wire_nlOOO1O_o);
+	assign		wire_nlOOOlO_dataout = (nlOO1iO === 1'b1) ? wire_n111iO_o[0] : nlOlOiO;
+	assign		wire_nlOOOOi_dataout = (nlOO1iO === 1'b1) ? wire_n111iO_o[1] : nlOlOli;
+	assign		wire_nlOOOOl_dataout = (nlOO1iO === 1'b1) ? wire_n111iO_o[2] : nlOlOll;
+	assign		wire_nlOOOOO_dataout = (nlOO1iO === 1'b1) ? wire_n111iO_o[3] : nlOlOlO;
+	oper_add   n1101O
 	( 
-	.a({1'b0, wire_n010il_txcredvc0[17:15], 1'b1}),
-	.b({1'b0, {2{1'b1}}, 1'b0, 1'b1}),
-	.cin(1'b0),
-	.cout(),
-	.o(wire_n1l0Oi_o));
-	defparam
-		n1l0Oi.sgate_representation = 0,
-		n1l0Oi.width_a = 5,
-		n1l0Oi.width_b = 5,
-		n1l0Oi.width_o = 5;
-	oper_add   n1l0OO
-	( 
-	.a({(~ n1lO0O), (~ n1lO0l), (~ n1lO0i), (~ n1lO1O), (~ n1lO1l), (~ n1lO1i), (~ n1llOO), (~ n1llOl)}),
+	.a({((nlO101i28 ^ nlO101i27) & nlOO01l), nlOO01i, nlOO1OO, nlOO1Ol, nlOO1Oi, nlOO1lO, ((nlO101l26 ^ nlO101l25) & nlOO1ll), ((nlO101O24 ^ nlO101O23) & nlOO1li)}),
 	.b({{7{1'b0}}, 1'b1}),
 	.cin(1'b0),
 	.cout(),
-	.o(wire_n1l0OO_o));
+	.o(wire_n1101O_o));
 	defparam
-		n1l0OO.sgate_representation = 0,
-		n1l0OO.width_a = 8,
-		n1l0OO.width_b = 8,
-		n1l0OO.width_o = 8;
-	oper_add   n1l1lO
+		n1101O.sgate_representation = 0,
+		n1101O.width_a = 8,
+		n1101O.width_b = 8,
+		n1101O.width_o = 8;
+	oper_add   n111iO
 	( 
-	.a({1'b0, wire_n010il_txcredvc0[20:18], 1'b1}),
-	.b({1'b0, {2{1'b1}}, 1'b0, 1'b1}),
-	.cin(1'b0),
-	.cout(),
-	.o(wire_n1l1lO_o));
-	defparam
-		n1l1lO.sgate_representation = 0,
-		n1l1lO.width_a = 5,
-		n1l1lO.width_b = 5,
-		n1l1lO.width_o = 5;
-	oper_add   n1l1Ol
-	( 
-	.a({(~ n1lliO), (~ n1llil), (~ n1llii), (~ n1ll0O), (~ n1ll0l), (~ n1ll0i), (~ n1ll1O), (~ n1ll1l), (~ n1ll1i), (~ n1liOO), (~ n1liOl), (~ n1liOi)}),
+	.a({nlOO10l, ((nlO11Oi34 ^ nlO11Oi33) & nlOO10i), nlOO11O, nlOO11l, nlOO11i, nlOlOOO, nlOlOOl, nlOlOOi, ((nlO11Ol32 ^ nlO11Ol31) & nlOlOlO), nlOlOll, ((nlO11OO30 ^ nlO11OO29) & nlOlOli), nlOlOiO}),
 	.b({{11{1'b0}}, 1'b1}),
 	.cin(1'b0),
 	.cout(),
-	.o(wire_n1l1Ol_o));
+	.o(wire_n111iO_o));
 	defparam
-		n1l1Ol.sgate_representation = 0,
-		n1l1Ol.width_a = 12,
-		n1l1Ol.width_b = 12,
-		n1l1Ol.width_o = 12;
-	oper_add   n1OlOi
+		n111iO.sgate_representation = 0,
+		n111iO.width_a = 12,
+		n111iO.width_b = 12,
+		n111iO.width_o = 12;
+	oper_add   nlO000l
 	( 
-	.a({n1lliO, n1llil, n1llii, n1ll0O, n1ll0l, ((n1i0iO30 ^ n1i0iO29) & n1ll0i), n1ll1O, n1ll1l, n1ll1i, ((n1i0li28 ^ n1i0li27) & n1liOO), ((n1i0ll26 ^ n1i0ll25) & n1liOl), n1liOi}),
-	.b({{11{1'b0}}, 1'b1}),
-	.cin(1'b0),
-	.cout(),
-	.o(wire_n1OlOi_o));
-	defparam
-		n1OlOi.sgate_representation = 0,
-		n1OlOi.width_a = 12,
-		n1OlOi.width_b = 12,
-		n1OlOi.width_o = 12;
-	oper_add   n1OOii
-	( 
-	.a({n1lO0O, n1lO0l, ((n1i0lO24 ^ n1i0lO23) & n1lO0i), n1lO1O, n1lO1l, ((n1i0Oi22 ^ n1i0Oi21) & n1lO1i), n1llOO, n1llOl}),
+	.a({(~ nlO0lll), (~ nlO0lli), (~ nlO0liO), (~ nlO0lil), (~ nlO0lii), (~ nlO0l0O), (~ nlO0l0l), (~ nlO0l0i)}),
 	.b({{7{1'b0}}, 1'b1}),
 	.cin(1'b0),
 	.cout(),
-	.o(wire_n1OOii_o));
+	.o(wire_nlO000l_o));
 	defparam
-		n1OOii.sgate_representation = 0,
-		n1OOii.width_a = 8,
-		n1OOii.width_b = 8,
-		n1OOii.width_o = 8;
-	oper_less_than   n1l0Ol
+		nlO000l.sgate_representation = 0,
+		nlO000l.width_a = 8,
+		nlO000l.width_b = 8,
+		nlO000l.width_o = 8;
+	oper_add   nlO001O
+	( 
+	.a({1'b0, wire_n11l0i_txcredvc0[17:15], 1'b1}),
+	.b({1'b0, {2{1'b1}}, 1'b0, 1'b1}),
+	.cin(1'b0),
+	.cout(),
+	.o(wire_nlO001O_o));
+	defparam
+		nlO001O.sgate_representation = 0,
+		nlO001O.width_a = 5,
+		nlO001O.width_b = 5,
+		nlO001O.width_o = 5;
+	oper_add   nlO010i
+	( 
+	.a({(~ nlO0iOl), (~ nlO0iOi), (~ nlO0ilO), (~ nlO0ill), (~ nlO0ili), (~ nlO0iiO), (~ nlO0iil), (~ nlO0iii), (~ nlO0i0O), (~ nlO0i0l), (~ nlO0i0i), (~ nlO0i1O)}),
+	.b({{11{1'b0}}, 1'b1}),
+	.cin(1'b0),
+	.cout(),
+	.o(wire_nlO010i_o));
+	defparam
+		nlO010i.sgate_representation = 0,
+		nlO010i.width_a = 12,
+		nlO010i.width_b = 12,
+		nlO010i.width_o = 12;
+	oper_add   nlO011l
+	( 
+	.a({1'b0, wire_n11l0i_txcredvc0[20:18], 1'b1}),
+	.b({1'b0, {2{1'b1}}, 1'b0, 1'b1}),
+	.cin(1'b0),
+	.cout(),
+	.o(wire_nlO011l_o));
+	defparam
+		nlO011l.sgate_representation = 0,
+		nlO011l.width_a = 5,
+		nlO011l.width_b = 5,
+		nlO011l.width_o = 5;
+	oper_add   nlOil1O
+	( 
+	.a({nlO0iOl, nlO0iOi, nlO0ilO, nlO0ill, nlO0ili, nlO0iiO, nlO0iil, nlO0iii, nlO0i0O, nlO0i0l, nlO0i0i, nlO0i1O}),
+	.b({{11{1'b0}}, 1'b1}),
+	.cin(1'b0),
+	.cout(),
+	.o(wire_nlOil1O_o));
+	defparam
+		nlOil1O.sgate_representation = 0,
+		nlOil1O.width_a = 12,
+		nlOil1O.width_b = 12,
+		nlOil1O.width_o = 12;
+	oper_add   nlOillO
+	( 
+	.a({nlO0lll, nlO0lli, nlO0liO, nlO0lil, nlO0lii, nlO0l0O, nlO0l0l, nlO0l0i}),
+	.b({{7{1'b0}}, 1'b1}),
+	.cin(1'b0),
+	.cout(),
+	.o(wire_nlOillO_o));
+	defparam
+		nlOillO.sgate_representation = 0,
+		nlOillO.width_a = 8,
+		nlOillO.width_b = 8,
+		nlOillO.width_o = 8;
+	oper_add   nlOliil
+	( 
+	.a({1'b0, wire_n11l0i_txcredvc1[20:18], 1'b1}),
+	.b({1'b0, {2{1'b1}}, 1'b0, 1'b1}),
+	.cin(1'b0),
+	.cout(),
+	.o(wire_nlOliil_o));
+	defparam
+		nlOliil.sgate_representation = 0,
+		nlOliil.width_a = 5,
+		nlOliil.width_b = 5,
+		nlOliil.width_o = 5;
+	oper_add   nlOlili
+	( 
+	.a({(~ nlOO10l), (~ nlOO10i), (~ nlOO11O), (~ nlOO11l), (~ nlOO11i), (~ nlOlOOO), (~ nlOlOOl), (~ nlOlOOi), (~ nlOlOlO), (~ nlOlOll), (~ nlOlOli), (~ nlOlOiO)}),
+	.b({{11{1'b0}}, 1'b1}),
+	.cin(1'b0),
+	.cout(),
+	.o(wire_nlOlili_o));
+	defparam
+		nlOlili.sgate_representation = 0,
+		nlOlili.width_a = 12,
+		nlOlili.width_b = 12,
+		nlOlili.width_o = 12;
+	oper_add   nlOlliO
+	( 
+	.a({1'b0, wire_n11l0i_txcredvc1[17:15], 1'b1}),
+	.b({1'b0, {2{1'b1}}, 1'b0, 1'b1}),
+	.cin(1'b0),
+	.cout(),
+	.o(wire_nlOlliO_o));
+	defparam
+		nlOlliO.sgate_representation = 0,
+		nlOlliO.width_a = 5,
+		nlOlliO.width_b = 5,
+		nlOlliO.width_o = 5;
+	oper_add   nlOllll
+	( 
+	.a({(~ nlOO01l), (~ nlOO01i), (~ nlOO1OO), (~ nlOO1Ol), (~ nlOO1Oi), (~ nlOO1lO), (~ nlOO1ll), (~ nlOO1li)}),
+	.b({{7{1'b0}}, 1'b1}),
+	.cin(1'b0),
+	.cout(),
+	.o(wire_nlOllll_o));
+	defparam
+		nlOllll.sgate_representation = 0,
+		nlOllll.width_a = 8,
+		nlOllll.width_b = 8,
+		nlOllll.width_o = 8;
+	oper_less_than   n1100O
+	( 
+	.a({3{1'b0}}),
+	.b({wire_n11l0i_txcredvc1[20], ((nlO100i22 ^ nlO100i21) & wire_n11l0i_txcredvc1[19]), wire_n11l0i_txcredvc1[18]}),
+	.cin(1'b0),
+	.o(wire_n1100O_o));
+	defparam
+		n1100O.sgate_representation = 0,
+		n1100O.width_a = 3,
+		n1100O.width_b = 3;
+	oper_less_than   n110iO
+	( 
+	.a({3{1'b0}}),
+	.b({wire_n11l0i_txcredvc1[17:15]}),
+	.cin(1'b0),
+	.o(wire_n110iO_o));
+	defparam
+		n110iO.sgate_representation = 0,
+		n110iO.width_a = 3,
+		n110iO.width_b = 3;
+	oper_less_than   nlO000i
 	( 
 	.a({{2{1'b0}}, 1'b1}),
-	.b({wire_n010il_txcredvc0[17:15]}),
+	.b({wire_n11l0i_txcredvc0[17:15]}),
 	.cin(1'b0),
-	.o(wire_n1l0Ol_o));
+	.o(wire_nlO000i_o));
 	defparam
-		n1l0Ol.sgate_representation = 0,
-		n1l0Ol.width_a = 3,
-		n1l0Ol.width_b = 3;
-	oper_less_than   n1l1Oi
-	( 
-	.a({{2{1'b0}}, 1'b1}),
-	.b({wire_n010il_txcredvc0[20:18]}),
-	.cin(1'b0),
-	.o(wire_n1l1Oi_o));
-	defparam
-		n1l1Oi.sgate_representation = 0,
-		n1l1Oi.width_a = 3,
-		n1l1Oi.width_b = 3;
-	oper_less_than   n1li1l
+		nlO000i.sgate_representation = 0,
+		nlO000i.width_a = 3,
+		nlO000i.width_b = 3;
+	oper_less_than   nlO00ii
 	( 
 	.a({1'b0, 1'b1, {10{1'b0}}}),
-	.b({n1lliO, n1llil, n1llii, n1ll0O, n1ll0l, n1ll0i, n1ll1O, n1ll1l, n1ll1i, n1liOO, n1liOl, n1liOi}),
+	.b({nlO0iOl, nlO0iOi, nlO0ilO, nlO0ill, nlO0ili, nlO0iiO, nlO0iil, nlO0iii, nlO0i0O, nlO0i0l, nlO0i0i, nlO0i1O}),
 	.cin(1'b0),
-	.o(wire_n1li1l_o));
+	.o(wire_nlO00ii_o));
 	defparam
-		n1li1l.sgate_representation = 0,
-		n1li1l.width_a = 12,
-		n1li1l.width_b = 12;
-	oper_less_than   n1li1O
+		nlO00ii.sgate_representation = 0,
+		nlO00ii.width_a = 12,
+		nlO00ii.width_b = 12;
+	oper_less_than   nlO00il
 	( 
 	.a({1'b0, 1'b1, {6{1'b0}}}),
-	.b({n1lO0O, n1lO0l, n1lO0i, n1lO1O, n1lO1l, n1lO1i, n1llOO, n1llOl}),
+	.b({nlO0lll, nlO0lli, nlO0liO, nlO0lil, nlO0lii, nlO0l0O, nlO0l0l, nlO0l0i}),
 	.cin(1'b0),
-	.o(wire_n1li1O_o));
+	.o(wire_nlO00il_o));
 	defparam
-		n1li1O.sgate_representation = 0,
-		n1li1O.width_a = 8,
-		n1li1O.width_b = 8;
-	oper_less_than   n1Oiii
+		nlO00il.sgate_representation = 0,
+		nlO00il.width_a = 8,
+		nlO00il.width_b = 8;
+	oper_less_than   nlO011O
+	( 
+	.a({{2{1'b0}}, 1'b1}),
+	.b({wire_n11l0i_txcredvc0[20:18]}),
+	.cin(1'b0),
+	.o(wire_nlO011O_o));
+	defparam
+		nlO011O.sgate_representation = 0,
+		nlO011O.width_a = 3,
+		nlO011O.width_b = 3;
+	oper_less_than   nlOi0lO
 	( 
 	.a({{9{1'b0}}, {3{1'b1}}}),
-	.b({wire_n1l1ii_dataout, wire_n1l10O_dataout, wire_n1l10l_dataout, wire_n1l10i_dataout, wire_n1l11O_dataout, ((n1i0ii34 ^ n1i0ii33) & wire_n1l11l_dataout), wire_n1l11i_dataout, wire_n1iOOO_dataout, wire_n1iOOl_dataout, wire_n1iOOi_dataout, wire_n1iOlO_dataout, wire_n1iOll_dataout}),
+	.b({wire_nlO1OlO_dataout, wire_nlO1Oll_dataout, wire_nlO1Oli_dataout, wire_nlO1OiO_dataout, wire_nlO1Oil_dataout, wire_nlO1Oii_dataout, wire_nlO1O0O_dataout, wire_nlO1O0l_dataout, wire_nlO1O0i_dataout, wire_nlO1O1O_dataout, wire_nlO1O1l_dataout, wire_nlO1O1i_dataout}),
 	.cin(1'b0),
-	.o(wire_n1Oiii_o));
+	.o(wire_nlOi0lO_o));
 	defparam
-		n1Oiii.sgate_representation = 0,
-		n1Oiii.width_a = 12,
-		n1Oiii.width_b = 12;
-	oper_less_than   n1Oill
+		nlOi0lO.sgate_representation = 0,
+		nlOi0lO.width_a = 12,
+		nlOi0lO.width_b = 12;
+	oper_less_than   nlOii1i
 	( 
 	.a({{5{1'b0}}, {3{1'b1}}}),
-	.b({wire_n1l0il_dataout, wire_n1l0ii_dataout, wire_n1l00O_dataout, wire_n1l00l_dataout, wire_n1l00i_dataout, wire_n1l01O_dataout, wire_n1l01l_dataout, ((n1i0il32 ^ n1i0il31) & wire_n1l01i_dataout)}),
+	.b({wire_nlO01Oi_dataout, wire_nlO01lO_dataout, wire_nlO01ll_dataout, wire_nlO01li_dataout, wire_nlO01iO_dataout, wire_nlO01il_dataout, wire_nlO01ii_dataout, wire_nlO010O_dataout}),
 	.cin(1'b0),
-	.o(wire_n1Oill_o));
+	.o(wire_nlOii1i_o));
 	defparam
-		n1Oill.sgate_representation = 0,
-		n1Oill.width_a = 8,
-		n1Oill.width_b = 8;
-	oper_less_than   n1OOli
+		nlOii1i.sgate_representation = 0,
+		nlOii1i.width_a = 8,
+		nlOii1i.width_b = 8;
+	oper_less_than   nlOilOO
 	( 
 	.a({3{1'b0}}),
-	.b({wire_n010il_txcredvc0[20:18]}),
+	.b({wire_n11l0i_txcredvc0[20:18]}),
 	.cin(1'b0),
-	.o(wire_n1OOli_o));
+	.o(wire_nlOilOO_o));
 	defparam
-		n1OOli.sgate_representation = 0,
-		n1OOli.width_a = 3,
-		n1OOli.width_b = 3;
-	oper_less_than   n1OOOi
+		nlOilOO.sgate_representation = 0,
+		nlOilOO.width_a = 3,
+		nlOilOO.width_b = 3;
+	oper_less_than   nlOiO1O
 	( 
 	.a({3{1'b0}}),
-	.b({wire_n010il_txcredvc0[17:15]}),
+	.b({wire_n11l0i_txcredvc0[17:15]}),
 	.cin(1'b0),
-	.o(wire_n1OOOi_o));
+	.o(wire_nlOiO1O_o));
 	defparam
-		n1OOOi.sgate_representation = 0,
-		n1OOOi.width_a = 3,
-		n1OOOi.width_b = 3;
-	stratixiv_hssi_pcie_hip   n010il
+		nlOiO1O.sgate_representation = 0,
+		nlOiO1O.width_a = 3,
+		nlOiO1O.width_b = 3;
+	oper_less_than   nlOliiO
+	( 
+	.a({{2{1'b0}}, 1'b1}),
+	.b({wire_n11l0i_txcredvc1[20:18]}),
+	.cin(1'b0),
+	.o(wire_nlOliiO_o));
+	defparam
+		nlOliiO.sgate_representation = 0,
+		nlOliiO.width_a = 3,
+		nlOliiO.width_b = 3;
+	oper_less_than   nlOllli
+	( 
+	.a({{2{1'b0}}, 1'b1}),
+	.b({wire_n11l0i_txcredvc1[17:15]}),
+	.cin(1'b0),
+	.o(wire_nlOllli_o));
+	defparam
+		nlOllli.sgate_representation = 0,
+		nlOllli.width_a = 3,
+		nlOllli.width_b = 3;
+	oper_less_than   nlOllOi
+	( 
+	.a({1'b0, 1'b1, {10{1'b0}}}),
+	.b({nlOO10l, nlOO10i, nlOO11O, nlOO11l, nlOO11i, nlOlOOO, nlOlOOl, nlOlOOi, nlOlOlO, nlOlOll, nlOlOli, nlOlOiO}),
+	.cin(1'b0),
+	.o(wire_nlOllOi_o));
+	defparam
+		nlOllOi.sgate_representation = 0,
+		nlOllOi.width_a = 12,
+		nlOllOi.width_b = 12;
+	oper_less_than   nlOllOl
+	( 
+	.a({1'b0, 1'b1, {6{1'b0}}}),
+	.b({nlOO01l, nlOO01i, nlOO1OO, nlOO1Ol, nlOO1Oi, nlOO1lO, nlOO1ll, nlOO1li}),
+	.cin(1'b0),
+	.o(wire_nlOllOl_o));
+	defparam
+		nlOllOl.sgate_representation = 0,
+		nlOllOl.width_a = 8,
+		nlOllOl.width_b = 8;
+	oper_less_than   nlOOO1O
+	( 
+	.a({{9{1'b0}}, {3{1'b1}}}),
+	.b({wire_nlOli1O_dataout, wire_nlOli1l_dataout, wire_nlOli1i_dataout, wire_nlOl0OO_dataout, ((nlO11li40 ^ nlO11li39) & wire_nlOl0Ol_dataout), wire_nlOl0Oi_dataout, wire_nlOl0lO_dataout, wire_nlOl0ll_dataout, wire_nlOl0li_dataout, ((nlO11ll38 ^ nlO11ll37) & wire_nlOl0iO_dataout), wire_nlOl0il_dataout, wire_nlOl0ii_dataout}),
+	.cin(1'b0),
+	.o(wire_nlOOO1O_o));
+	defparam
+		nlOOO1O.sgate_representation = 0,
+		nlOOO1O.width_a = 12,
+		nlOOO1O.width_b = 12;
+	oper_less_than   nlOOOii
+	( 
+	.a({{5{1'b0}}, {3{1'b1}}}),
+	.b({wire_nlOll0i_dataout, ((nlO11lO36 ^ nlO11lO35) & wire_nlOll1O_dataout), wire_nlOll1l_dataout, wire_nlOll1i_dataout, wire_nlOliOO_dataout, wire_nlOliOl_dataout, wire_nlOliOi_dataout, wire_nlOlilO_dataout}),
+	.cin(1'b0),
+	.o(wire_nlOOOii_o));
+	defparam
+		nlOOOii.sgate_representation = 0,
+		nlOOOii.width_a = 8,
+		nlOOOii.width_b = 8;
+	stratixiv_hssi_pcie_hip   n11l0i
 	( 
 	.bistdonearcv0(),
 	.bistdonearcv1(),
@@ -1696,7 +2316,7 @@ module  top_core
 	.bisttesten(1'b0),
 	.clrrxpath(),
 	.coreclkin(core_clk_in),
-	.coreclkout(wire_n010il_coreclkout),
+	.coreclkout(wire_n11l0i_coreclkout),
 	.corecrst(crst),
 	.corepor((~ npor)),
 	.corerst((~ npor)),
@@ -1705,10 +2325,10 @@ module  top_core
 	.cplpending(cpl_pending),
 	.dataenablen(),
 	.dbgpipex1rx({15{1'b0}}),
-	.derrcorextrcv0(wire_n010il_derrcorextrcv0),
-	.derrcorextrcv1(),
-	.derrcorextrpl(wire_n010il_derrcorextrpl),
-	.derrrpl(wire_n010il_derrrpl),
+	.derrcorextrcv0(wire_n11l0i_derrcorextrcv0),
+	.derrcorextrcv1(wire_n11l0i_derrcorextrcv1),
+	.derrcorextrpl(wire_n11l0i_derrcorextrpl),
+	.derrrpl(wire_n11l0i_derrrpl),
 	.dlackphypm(),
 	.dlackrequpfc(),
 	.dlacksndupfc(),
@@ -1725,7 +2345,7 @@ module  top_core
 	.dlinhdllp(1'b0),
 	.dllinkautobdwstatus(),
 	.dllinkbdwmngstatus(),
-	.dlltssm(wire_n010il_dlltssm),
+	.dlltssm(wire_n11l0i_dlltssm),
 	.dlmaxploaddcr({3{1'b0}}),
 	.dlreqphycfg({4{1'b0}}),
 	.dlreqphypm({4{1'b0}}),
@@ -1744,7 +2364,7 @@ module  top_core
 	.dltxtyppm({3{1'b0}}),
 	.dltypupfc({2{1'b0}}),
 	.dlup(),
-	.dlupexit(wire_n010il_dlupexit),
+	.dlupexit(wire_n11l0i_dlupexit),
 	.dlvcctrl({8{1'b0}}),
 	.dlvcidmap({24{1'b0}}),
 	.dlvcidupfc({3{1'b0}}),
@@ -1755,22 +2375,22 @@ module  top_core
 	.dprioload(1'b0),
 	.dprioout(),
 	.dpriostate(),
-	.eidleinfersel(wire_n010il_eidleinfersel),
-	.ev128ns(wire_n010il_ev128ns),
-	.ev1us(wire_n010il_ev1us),
-	.extraclkout(wire_n010il_extraclkout),
-	.extraout(wire_n010il_extraout),
-	.gen2rate(wire_n010il_gen2rate),
+	.eidleinfersel(wire_n11l0i_eidleinfersel),
+	.ev128ns(wire_n11l0i_ev128ns),
+	.ev1us(wire_n11l0i_ev1us),
+	.extraclkout(wire_n11l0i_extraclkout),
+	.extraout(wire_n11l0i_extraout),
+	.gen2rate(wire_n11l0i_gen2rate),
 	.gen2rategnd(),
-	.hotrstexit(wire_n010il_hotrstexit),
-	.intstatus(wire_n010il_intstatus),
-	.l2exit(wire_n010il_l2exit),
-	.laneact(wire_n010il_laneact),
+	.hotrstexit(wire_n11l0i_hotrstexit),
+	.intstatus(wire_n11l0i_intstatus),
+	.l2exit(wire_n11l0i_l2exit),
+	.laneact(wire_n11l0i_laneact),
 	.linkup(),
-	.lmiack(wire_n010il_lmiack),
+	.lmiack(wire_n11l0i_lmiack),
 	.lmiaddr({lmi_addr[11:0]}),
 	.lmidin({lmi_din[31:0]}),
-	.lmidout(wire_n010il_lmidout),
+	.lmidout(wire_n11l0i_lmidout),
 	.lmirden(lmi_rden),
 	.lmiwren(lmi_wren),
 	.ltssml0state(),
@@ -1788,413 +2408,451 @@ module  top_core
 	.pldrst((~ npor)),
 	.pldsrst(srst),
 	.pllfixedclk(pll_fixed_clk),
-	.powerdown(wire_n010il_powerdown),
+	.powerdown(wire_n11l0i_powerdown),
 	.r2cerr0ext(),
-	.resetstatus(wire_n010il_resetstatus),
-	.rxbardecvc0(wire_n010il_rxbardecvc0),
-	.rxbardecvc1(),
-	.rxbevc00(wire_n010il_rxbevc00),
-	.rxbevc01(wire_n010il_rxbevc01),
-	.rxbevc10(),
-	.rxbevc11(),
+	.resetstatus(wire_n11l0i_resetstatus),
+	.rxbardecvc0(wire_n11l0i_rxbardecvc0),
+	.rxbardecvc1(wire_n11l0i_rxbardecvc1),
+	.rxbevc00(wire_n11l0i_rxbevc00),
+	.rxbevc01(wire_n11l0i_rxbevc01),
+	.rxbevc10(wire_n11l0i_rxbevc10),
+	.rxbevc11(wire_n11l0i_rxbevc11),
 	.rxdata({rxdata7_ext[7:0], rxdata6_ext[7:0], rxdata5_ext[7:0], rxdata4_ext[7:0], rxdata3_ext[7:0], rxdata2_ext[7:0], rxdata1_ext[7:0], rxdata0_ext[7:0]}),
 	.rxdatak({rxdatak7_ext, rxdatak6_ext, rxdatak5_ext, rxdatak4_ext, rxdatak3_ext, rxdatak2_ext, rxdatak1_ext, rxdatak0_ext}),
-	.rxdatavc00(wire_n010il_rxdatavc00),
-	.rxdatavc01(wire_n010il_rxdatavc01),
-	.rxdatavc10(),
-	.rxdatavc11(),
+	.rxdatavc00(wire_n11l0i_rxdatavc00),
+	.rxdatavc01(wire_n11l0i_rxdatavc01),
+	.rxdatavc10(wire_n11l0i_rxdatavc10),
+	.rxdatavc11(wire_n11l0i_rxdatavc11),
 	.rxelecidle({rxelecidle7_ext, rxelecidle6_ext, rxelecidle5_ext, rxelecidle4_ext, rxelecidle3_ext, rxelecidle2_ext, rxelecidle1_ext, rxelecidle0_ext}),
-	.rxeopvc00(wire_n010il_rxeopvc00),
-	.rxeopvc01(wire_n010il_rxeopvc01),
-	.rxeopvc10(),
-	.rxeopvc11(),
-	.rxerrvc0(wire_n010il_rxerrvc0),
-	.rxerrvc1(),
-	.rxfifoemptyvc0(wire_n010il_rxfifoemptyvc0),
-	.rxfifoemptyvc1(),
-	.rxfifofullvc0(wire_n010il_rxfifofullvc0),
-	.rxfifofullvc1(),
+	.rxeopvc00(wire_n11l0i_rxeopvc00),
+	.rxeopvc01(wire_n11l0i_rxeopvc01),
+	.rxeopvc10(wire_n11l0i_rxeopvc10),
+	.rxeopvc11(wire_n11l0i_rxeopvc11),
+	.rxerrvc0(wire_n11l0i_rxerrvc0),
+	.rxerrvc1(wire_n11l0i_rxerrvc1),
+	.rxfifoemptyvc0(wire_n11l0i_rxfifoemptyvc0),
+	.rxfifoemptyvc1(wire_n11l0i_rxfifoemptyvc1),
+	.rxfifofullvc0(wire_n11l0i_rxfifofullvc0),
+	.rxfifofullvc1(wire_n11l0i_rxfifofullvc1),
 	.rxfifordpvc0(),
 	.rxfifordpvc1(),
 	.rxfifowrpvc0(),
 	.rxfifowrpvc1(),
 	.rxmaskvc0(rx_st_mask0),
-	.rxmaskvc1(1'b0),
-	.rxpolarity(wire_n010il_rxpolarity),
+	.rxmaskvc1(rx_st_mask1),
+	.rxpolarity(wire_n11l0i_rxpolarity),
 	.rxreadyvc0(rx_st_ready0),
-	.rxreadyvc1(1'b0),
-	.rxsopvc00(wire_n010il_rxsopvc00),
-	.rxsopvc01(wire_n010il_rxsopvc01),
-	.rxsopvc10(),
-	.rxsopvc11(),
+	.rxreadyvc1(rx_st_ready1),
+	.rxsopvc00(wire_n11l0i_rxsopvc00),
+	.rxsopvc01(wire_n11l0i_rxsopvc01),
+	.rxsopvc10(wire_n11l0i_rxsopvc10),
+	.rxsopvc11(wire_n11l0i_rxsopvc11),
 	.rxstatus({rxstatus7_ext[2:0], rxstatus6_ext[2:0], rxstatus5_ext[2:0], rxstatus4_ext[2:0], rxstatus3_ext[2:0], rxstatus2_ext[2:0], rxstatus1_ext[2:0], rxstatus0_ext[2:0]}),
 	.rxvalid({rxvalid7_ext, rxvalid6_ext, rxvalid5_ext, rxvalid4_ext, rxvalid3_ext, rxvalid2_ext, rxvalid1_ext, rxvalid0_ext}),
-	.rxvalidvc0(wire_n010il_rxvalidvc0),
-	.rxvalidvc1(),
+	.rxvalidvc0(wire_n11l0i_rxvalidvc0),
+	.rxvalidvc1(wire_n11l0i_rxvalidvc1),
 	.scanen(1'b0),
 	.scanmoden(1'b1),
-	.serrout(wire_n010il_serrout),
+	.serrout(wire_n11l0i_serrout),
 	.successspeednegoint(),
 	.swdnin({3{1'b0}}),
-	.swdnwake(wire_n010il_swdnwake),
-	.swuphotrst(wire_n010il_swuphotrst),
+	.swdnwake(wire_n11l0i_swdnwake),
+	.swuphotrst(wire_n11l0i_swuphotrst),
 	.swupin({7{1'b0}}),
 	.testin({test_in[39:0]}),
-	.testout(wire_n010il_testout),
+	.testout(wire_n11l0i_testout),
 	.tlaermsinum({aer_msi_num[4:0]}),
-	.tlappintaack(wire_n010il_tlappintaack),
+	.tlappintaack(wire_n11l0i_tlappintaack),
 	.tlappintasts(app_int_sts),
-	.tlappmsiack(wire_n010il_tlappmsiack),
+	.tlappmsiack(wire_n11l0i_tlappmsiack),
 	.tlappmsinum({app_msi_num[4:0]}),
 	.tlappmsireq(app_msi_req),
 	.tlappmsitc({app_msi_tc[2:0]}),
-	.tlcfgadd(wire_n010il_tlcfgadd),
-	.tlcfgctl(wire_n010il_tlcfgctl),
-	.tlcfgctlwr(wire_n010il_tlcfgctlwr),
-	.tlcfgsts(wire_n010il_tlcfgsts),
-	.tlcfgstswr(wire_n010il_tlcfgstswr),
+	.tlcfgadd(wire_n11l0i_tlcfgadd),
+	.tlcfgctl(wire_n11l0i_tlcfgctl),
+	.tlcfgctlwr(wire_n11l0i_tlcfgctlwr),
+	.tlcfgsts(wire_n11l0i_tlcfgsts),
+	.tlcfgstswr(wire_n11l0i_tlcfgstswr),
 	.tlhpgctrler({hpg_ctrler[4:0]}),
 	.tlpexmsinum({pex_msi_num[4:0]}),
 	.tlpmauxpwr(pm_auxpwr),
 	.tlpmdata({pm_data[9:0]}),
 	.tlpmetocr(pme_to_cr),
-	.tlpmetosr(wire_n010il_tlpmetosr),
+	.tlpmetosr(wire_n11l0i_tlpmetosr),
 	.tlpmevent(pm_event),
 	.tlslotclkcfg(1'b1),
-	.txcompl(wire_n010il_txcompl),
-	.txcredvc0(wire_n010il_txcredvc0),
-	.txcredvc1(),
-	.txdata(wire_n010il_txdata),
-	.txdatak(wire_n010il_txdatak),
+	.txcompl(wire_n11l0i_txcompl),
+	.txcredvc0(wire_n11l0i_txcredvc0),
+	.txcredvc1(wire_n11l0i_txcredvc1),
+	.txdata(wire_n11l0i_txdata),
+	.txdatak(wire_n11l0i_txdatak),
 	.txdatavc00({tx_st_data0[63:0]}),
 	.txdatavc01({tx_st_data0_p1[63:0]}),
-	.txdatavc10({64{1'b0}}),
-	.txdatavc11({64{1'b0}}),
-	.txdeemph(wire_n010il_txdeemph),
-	.txdetectrx(wire_n010il_txdetectrx),
-	.txelecidle(wire_n010il_txelecidle),
+	.txdatavc10({tx_st_data1[63:0]}),
+	.txdatavc11({tx_st_data1_p1[63:0]}),
+	.txdeemph(wire_n11l0i_txdeemph),
+	.txdetectrx(wire_n11l0i_txdetectrx),
+	.txelecidle(wire_n11l0i_txelecidle),
 	.txeopvc00(tx_st_eop0),
 	.txeopvc01(tx_st_eop0_p1),
-	.txeopvc10(1'b0),
-	.txeopvc11(1'b0),
+	.txeopvc10(tx_st_eop1),
+	.txeopvc11(tx_st_eop1_p1),
 	.txerrvc0(tx_st_err0),
-	.txerrvc1(1'b0),
-	.txfifoemptyvc0(wire_n010il_txfifoemptyvc0),
-	.txfifoemptyvc1(),
-	.txfifofullvc0(wire_n010il_txfifofullvc0),
-	.txfifofullvc1(),
-	.txfifordpvc0(wire_n010il_txfifordpvc0),
-	.txfifordpvc1(),
-	.txfifowrpvc0(wire_n010il_txfifowrpvc0),
-	.txfifowrpvc1(),
-	.txmargin(wire_n010il_txmargin),
-	.txreadyvc0(wire_n010il_txreadyvc0),
-	.txreadyvc1(),
+	.txerrvc1(tx_st_err1),
+	.txfifoemptyvc0(wire_n11l0i_txfifoemptyvc0),
+	.txfifoemptyvc1(wire_n11l0i_txfifoemptyvc1),
+	.txfifofullvc0(wire_n11l0i_txfifofullvc0),
+	.txfifofullvc1(wire_n11l0i_txfifofullvc1),
+	.txfifordpvc0(wire_n11l0i_txfifordpvc0),
+	.txfifordpvc1(wire_n11l0i_txfifordpvc1),
+	.txfifowrpvc0(wire_n11l0i_txfifowrpvc0),
+	.txfifowrpvc1(wire_n11l0i_txfifowrpvc1),
+	.txmargin(wire_n11l0i_txmargin),
+	.txreadyvc0(wire_n11l0i_txreadyvc0),
+	.txreadyvc1(wire_n11l0i_txreadyvc1),
 	.txsopvc00(tx_st_sop0),
 	.txsopvc01(tx_st_sop0_p1),
-	.txsopvc10(1'b0),
-	.txsopvc11(1'b0),
+	.txsopvc10(tx_st_sop1),
+	.txsopvc11(tx_st_sop1_p1),
 	.txvalidvc0(tx_st_valid0),
-	.txvalidvc1(1'b0),
-	.wakeoen(wire_n010il_wakeoen),
+	.txvalidvc1(tx_st_valid1),
+	.wakeoen(wire_n11l0i_wakeoen),
 	.extrain()
 	);
 	defparam
-		n010il.advanced_errors = "false",
-		n010il.bar0_64bit_mem_space = "true",
-		n010il.bar0_io_space = "false",
-		n010il.bar0_prefetchable = "true",
-		n010il.bar0_size_mask = 28,
-		n010il.bar1_64bit_mem_space = "true",
-		n010il.bar1_io_space = "false",
-		n010il.bar1_prefetchable = "false",
-		n010il.bar1_size_mask = 0,
-		n010il.bar2_64bit_mem_space = "false",
-		n010il.bar2_io_space = "false",
-		n010il.bar2_prefetchable = "false",
-		n010il.bar2_size_mask = 18,
-		n010il.bar3_64bit_mem_space = "false",
-		n010il.bar3_io_space = "false",
-		n010il.bar3_prefetchable = "false",
-		n010il.bar3_size_mask = 18,
-		n010il.bar4_64bit_mem_space = "true",
-		n010il.bar4_io_space = "false",
-		n010il.bar4_prefetchable = "true",
-		n010il.bar4_size_mask = 28,
-		n010il.bar5_64bit_mem_space = "true",
-		n010il.bar5_io_space = "false",
-		n010il.bar5_prefetchable = "false",
-		n010il.bar5_size_mask = 0,
-		n010il.bar_io_window_size = "32BIT",
-		n010il.bar_prefetchable = 32,
-		n010il.bridge_port_ssid_support = "false",
-		n010il.bridge_port_vga_enable = "false",
-		n010il.bypass_cdc = "false",
-		n010il.bypass_tl = "false",
-		n010il.class_code = 16711680,
-		n010il.completion_timeout = "ABCD",
-		n010il.core_clk_divider = 1,
-		n010il.core_clk_source = "PLL_FIXED_CLK",
-		n010il.credit_buffer_allocation_aux = "BALANCED",
-		n010il.deemphasis_enable = "false",
-		n010il.device_id = 57345,
-		n010il.device_number = 0,
-		n010il.diffclock_nfts_count = 255,
-		n010il.disable_cdc_clk_ppm = "false",
-		n010il.disable_link_x2_support = "false",
-		n010il.disable_snoop_packet = 8'h00,
-		n010il.dll_active_report_support = "false",
-		n010il.ei_delay_powerdown_count = 10,
-		n010il.eie_before_nfts_count = 4,
-		n010il.enable_adapter_half_rate_mode = "true",
-		n010il.enable_ch0_pclk_out = "false",
-		n010il.enable_completion_timeout_disable = "true",
-		n010il.enable_coreclk_out_half_rate = "true",
-		n010il.enable_ecrc_check = "false",
-		n010il.enable_ecrc_gen = "false",
-		n010il.enable_function_msi_support = "true",
-		n010il.enable_function_msix_support = "false",
-		n010il.enable_gen2_core = "true",
-		n010il.enable_hip_x1_loopback = "false",
-		n010il.enable_l1_aspm = "false",
-		n010il.enable_msi_64bit_addressing = "true",
-		n010il.enable_msi_masking = "false",
-		n010il.enable_retrybuf_ecc = "true",
-		n010il.enable_retrybuf_x8_clk_stealing = 0,
-		n010il.enable_rx0buf_ecc = "true",
-		n010il.enable_rx0buf_x8_clk_stealing = 0,
-		n010il.enable_rx1buf_ecc = "true",
-		n010il.enable_rx1buf_x8_clk_stealing = 0,
-		n010il.enable_rx_buffer_checking = "true",
-		n010il.enable_rx_reordering = "true",
-		n010il.enable_slot_register = "false",
-		n010il.endpoint_l0_latency = 0,
-		n010il.endpoint_l1_latency = 0,
-		n010il.expansion_base_address_register = 0,
-		n010il.extend_tag_field = "false",
-		n010il.fc_init_timer = 1024,
-		n010il.flow_control_timeout_count = 200,
-		n010il.flow_control_update_count = 30,
-		n010il.gen2_diffclock_nfts_count = 255,
-		n010il.gen2_lane_rate_mode = "true",
-		n010il.gen2_sameclock_nfts_count = 255,
-		n010il.hot_plug_support = 7'h00,
-		n010il.indicator = 0,
-		n010il.l01_entry_latency = 31,
-		n010il.l0_exit_latency_diffclock = 7,
-		n010il.l0_exit_latency_sameclock = 7,
-		n010il.l1_exit_latency_diffclock = 7,
-		n010il.l1_exit_latency_sameclock = 7,
-		n010il.lane_mask = 8'h00,
-		n010il.low_priority_vc = 0,
-		n010il.lpm_type = "stratixiv_hssi_pcie_hip",
-		n010il.max_link_width = 8,
-		n010il.max_payload_size = 2,
-		n010il.maximum_current = 0,
-		n010il.millisecond_cycle_count = 250000,
-		n010il.msi_function_count = 2,
-		n010il.msix_pba_bir = 0,
-		n010il.msix_pba_offset = 0,
-		n010il.msix_table_bir = 0,
-		n010il.msix_table_offset = 0,
-		n010il.msix_table_size = 0,
-		n010il.no_command_completed = "true",
-		n010il.no_soft_reset = "true",
-		n010il.pcie_mode = "SHARED_MODE",
-		n010il.pme_state_enable = 5'h00,
-		n010il.port_link_number = 1,
-		n010il.register_pipe_signals = "false",
-		n010il.retry_buffer_last_active_address = 2047,
-		n010il.retry_buffer_memory_settings = 0,
-		n010il.revision_id = 1,
-		n010il.rx_ptr0_nonposted_dpram_max = 0,
-		n010il.rx_ptr0_nonposted_dpram_min = 0,
-		n010il.rx_ptr0_posted_dpram_max = 0,
-		n010il.rx_ptr0_posted_dpram_min = 0,
-		n010il.rx_ptr1_nonposted_dpram_max = 0,
-		n010il.rx_ptr1_nonposted_dpram_min = 0,
-		n010il.rx_ptr1_posted_dpram_max = 0,
-		n010il.rx_ptr1_posted_dpram_min = 0,
-		n010il.sameclock_nfts_count = 255,
-		n010il.single_rx_detect = 0,
-		n010il.skp_os_schedule_count = 0,
-		n010il.slot_number = 0,
-		n010il.slot_power_limit = 0,
-		n010il.slot_power_scale = 0,
-		n010il.ssid = 0,
-		n010il.ssvid = 0,
-		n010il.subsystem_device_id = 10241,
-		n010il.subsystem_vendor_id = 23518,
-		n010il.surprise_down_error_support = "false",
-		n010il.use_crc_forwarding = "false",
-		n010il.vc0_clk_enable = "true",
-		n010il.vc0_rx_buffer_memory_settings = 0,
-		n010il.vc0_rx_flow_ctrl_compl_data = 448,
-		n010il.vc0_rx_flow_ctrl_compl_header = 112,
-		n010il.vc0_rx_flow_ctrl_nonposted_data = 0,
-		n010il.vc0_rx_flow_ctrl_nonposted_header = 54,
-		n010il.vc0_rx_flow_ctrl_posted_data = 360,
-		n010il.vc0_rx_flow_ctrl_posted_header = 50,
-		n010il.vc1_clk_enable = "false",
-		n010il.vc1_rx_buffer_memory_settings = 0,
-		n010il.vc1_rx_flow_ctrl_compl_data = 448,
-		n010il.vc1_rx_flow_ctrl_compl_header = 112,
-		n010il.vc1_rx_flow_ctrl_nonposted_data = 0,
-		n010il.vc1_rx_flow_ctrl_nonposted_header = 54,
-		n010il.vc1_rx_flow_ctrl_posted_data = 360,
-		n010il.vc1_rx_flow_ctrl_posted_header = 50,
-		n010il.vc_arbitration = 0,
-		n010il.vc_enable = 7'h00,
-		n010il.vendor_id = 4466;
+		n11l0i.advanced_errors = "false",
+		n11l0i.bar0_64bit_mem_space = "true",
+		n11l0i.bar0_io_space = "false",
+		n11l0i.bar0_prefetchable = "true",
+		n11l0i.bar0_size_mask = 28,
+		n11l0i.bar1_64bit_mem_space = "true",
+		n11l0i.bar1_io_space = "false",
+		n11l0i.bar1_prefetchable = "false",
+		n11l0i.bar1_size_mask = 0,
+		n11l0i.bar2_64bit_mem_space = "false",
+		n11l0i.bar2_io_space = "false",
+		n11l0i.bar2_prefetchable = "false",
+		n11l0i.bar2_size_mask = 18,
+		n11l0i.bar3_64bit_mem_space = "false",
+		n11l0i.bar3_io_space = "false",
+		n11l0i.bar3_prefetchable = "false",
+		n11l0i.bar3_size_mask = 18,
+		n11l0i.bar4_64bit_mem_space = "true",
+		n11l0i.bar4_io_space = "false",
+		n11l0i.bar4_prefetchable = "true",
+		n11l0i.bar4_size_mask = 28,
+		n11l0i.bar5_64bit_mem_space = "true",
+		n11l0i.bar5_io_space = "false",
+		n11l0i.bar5_prefetchable = "false",
+		n11l0i.bar5_size_mask = 0,
+		n11l0i.bar_io_window_size = "32BIT",
+		n11l0i.bar_prefetchable = 32,
+		n11l0i.bridge_port_ssid_support = "false",
+		n11l0i.bridge_port_vga_enable = "false",
+		n11l0i.bypass_cdc = "false",
+		n11l0i.bypass_tl = "false",
+		n11l0i.class_code = 16711680,
+		n11l0i.completion_timeout = "ABCD",
+		n11l0i.core_clk_divider = 1,
+		n11l0i.core_clk_source = "PLL_FIXED_CLK",
+		n11l0i.credit_buffer_allocation_aux = "BALANCED",
+		n11l0i.deemphasis_enable = "false",
+		n11l0i.device_id = 57345,
+		n11l0i.device_number = 0,
+		n11l0i.diffclock_nfts_count = 255,
+		n11l0i.disable_cdc_clk_ppm = "false",
+		n11l0i.disable_link_x2_support = "false",
+		n11l0i.disable_snoop_packet = 8'h00,
+		n11l0i.dll_active_report_support = "false",
+		n11l0i.ei_delay_powerdown_count = 10,
+		n11l0i.eie_before_nfts_count = 4,
+		n11l0i.enable_adapter_half_rate_mode = "true",
+		n11l0i.enable_ch0_pclk_out = "false",
+		n11l0i.enable_completion_timeout_disable = "true",
+		n11l0i.enable_coreclk_out_half_rate = "true",
+		n11l0i.enable_ecrc_check = "false",
+		n11l0i.enable_ecrc_gen = "false",
+		n11l0i.enable_function_msi_support = "true",
+		n11l0i.enable_function_msix_support = "false",
+		n11l0i.enable_gen2_core = "true",
+		n11l0i.enable_hip_x1_loopback = "false",
+		n11l0i.enable_l1_aspm = "false",
+		n11l0i.enable_msi_64bit_addressing = "true",
+		n11l0i.enable_msi_masking = "false",
+		n11l0i.enable_retrybuf_ecc = "true",
+		n11l0i.enable_retrybuf_x8_clk_stealing = 0,
+		n11l0i.enable_rx0buf_ecc = "true",
+		n11l0i.enable_rx0buf_x8_clk_stealing = 0,
+		n11l0i.enable_rx1buf_ecc = "true",
+		n11l0i.enable_rx1buf_x8_clk_stealing = 0,
+		n11l0i.enable_rx_buffer_checking = "true",
+		n11l0i.enable_rx_reordering = "true",
+		n11l0i.enable_slot_register = "false",
+		n11l0i.endpoint_l0_latency = 0,
+		n11l0i.endpoint_l1_latency = 0,
+		n11l0i.expansion_base_address_register = 0,
+		n11l0i.extend_tag_field = "true",
+		n11l0i.fc_init_timer = 1024,
+		n11l0i.flow_control_timeout_count = 200,
+		n11l0i.flow_control_update_count = 30,
+		n11l0i.gen2_diffclock_nfts_count = 255,
+		n11l0i.gen2_lane_rate_mode = "true",
+		n11l0i.gen2_sameclock_nfts_count = 255,
+		n11l0i.hot_plug_support = 7'h00,
+		n11l0i.indicator = 0,
+		n11l0i.l01_entry_latency = 31,
+		n11l0i.l0_exit_latency_diffclock = 7,
+		n11l0i.l0_exit_latency_sameclock = 7,
+		n11l0i.l1_exit_latency_diffclock = 7,
+		n11l0i.l1_exit_latency_sameclock = 7,
+		n11l0i.lane_mask = 8'h00,
+		n11l0i.low_priority_vc = 0,
+		n11l0i.lpm_type = "stratixiv_hssi_pcie_hip",
+		n11l0i.max_link_width = 8,
+		n11l0i.max_payload_size = 2,
+		n11l0i.maximum_current = 0,
+		n11l0i.millisecond_cycle_count = 250000,
+		n11l0i.msi_function_count = 2,
+		n11l0i.msix_pba_bir = 0,
+		n11l0i.msix_pba_offset = 0,
+		n11l0i.msix_table_bir = 0,
+		n11l0i.msix_table_offset = 0,
+		n11l0i.msix_table_size = 0,
+		n11l0i.no_command_completed = "true",
+		n11l0i.no_soft_reset = "true",
+		n11l0i.pcie_mode = "SHARED_MODE",
+		n11l0i.pme_state_enable = 5'h00,
+		n11l0i.port_link_number = 1,
+		n11l0i.register_pipe_signals = "false",
+		n11l0i.retry_buffer_last_active_address = 2047,
+		n11l0i.retry_buffer_memory_settings = 0,
+		n11l0i.revision_id = 1,
+		n11l0i.rx_ptr0_nonposted_dpram_max = 0,
+		n11l0i.rx_ptr0_nonposted_dpram_min = 0,
+		n11l0i.rx_ptr0_posted_dpram_max = 0,
+		n11l0i.rx_ptr0_posted_dpram_min = 0,
+		n11l0i.rx_ptr1_nonposted_dpram_max = 0,
+		n11l0i.rx_ptr1_nonposted_dpram_min = 0,
+		n11l0i.rx_ptr1_posted_dpram_max = 0,
+		n11l0i.rx_ptr1_posted_dpram_min = 0,
+		n11l0i.sameclock_nfts_count = 255,
+		n11l0i.single_rx_detect = 0,
+		n11l0i.skp_os_schedule_count = 0,
+		n11l0i.slot_number = 0,
+		n11l0i.slot_power_limit = 0,
+		n11l0i.slot_power_scale = 0,
+		n11l0i.ssid = 0,
+		n11l0i.ssvid = 0,
+		n11l0i.subsystem_device_id = 10241,
+		n11l0i.subsystem_vendor_id = 23518,
+		n11l0i.surprise_down_error_support = "false",
+		n11l0i.use_crc_forwarding = "false",
+		n11l0i.vc0_clk_enable = "true",
+		n11l0i.vc0_rx_buffer_memory_settings = 0,
+		n11l0i.vc0_rx_flow_ctrl_compl_data = 448,
+		n11l0i.vc0_rx_flow_ctrl_compl_header = 112,
+		n11l0i.vc0_rx_flow_ctrl_nonposted_data = 0,
+		n11l0i.vc0_rx_flow_ctrl_nonposted_header = 54,
+		n11l0i.vc0_rx_flow_ctrl_posted_data = 360,
+		n11l0i.vc0_rx_flow_ctrl_posted_header = 50,
+		n11l0i.vc1_clk_enable = "true",
+		n11l0i.vc1_rx_buffer_memory_settings = 0,
+		n11l0i.vc1_rx_flow_ctrl_compl_data = 448,
+		n11l0i.vc1_rx_flow_ctrl_compl_header = 112,
+		n11l0i.vc1_rx_flow_ctrl_nonposted_data = 0,
+		n11l0i.vc1_rx_flow_ctrl_nonposted_header = 54,
+		n11l0i.vc1_rx_flow_ctrl_posted_data = 360,
+		n11l0i.vc1_rx_flow_ctrl_posted_header = 50,
+		n11l0i.vc_arbitration = 0,
+		n11l0i.vc_enable = 7'h01,
+		n11l0i.vendor_id = 4466;
 	assign
-		app_int_ack = wire_n010il_tlappintaack,
-		app_msi_ack = wire_n010il_tlappmsiack,
+		app_int_ack = wire_n11l0i_tlappintaack,
+		app_msi_ack = wire_n11l0i_tlappmsiack,
 		avs_pcie_reconfig_readdata = {16{1'b0}},
 		avs_pcie_reconfig_readdatavalid = 1'b0,
 		avs_pcie_reconfig_waitrequest = 1'b1,
-		core_clk_out = wire_n010il_coreclkout,
+		core_clk_out = wire_n11l0i_coreclkout,
 		CraIrq_o = 1'b0,
 		CraReadData_o = {32{1'b0}},
 		CraWaitRequest_o = 1'b0,
-		derr_cor_ext_rcv0 = wire_n010il_derrcorextrcv0,
-		derr_cor_ext_rpl = wire_n010il_derrcorextrpl,
-		derr_rpl = wire_n010il_derrrpl,
-		dl_ltssm = {wire_n010il_dlltssm[4:0]},
-		dlup_exit = wire_n010il_dlupexit,
-		eidle_infer_sel = {wire_n010il_eidleinfersel[23:0]},
-		ev_128ns = wire_n010il_ev128ns,
-		ev_1us = wire_n010il_ev1us,
-		hip_extraclkout = {wire_n010il_extraclkout[1:0]},
-		hotrst_exit = wire_n010il_hotrstexit,
-		int_status = {wire_n010il_intstatus[3:0]},
-		l2_exit = wire_n010il_l2exit,
-		lane_act = {wire_n010il_laneact[3:0]},
-		lmi_ack = wire_n010il_lmiack,
-		lmi_dout = {wire_n010il_lmidout[31:0]},
-		n1i00O = ((((((((~ wire_n1l0il_dataout) & (~ wire_n1l0ii_dataout)) & (~ wire_n1l00O_dataout)) & (~ wire_n1l00l_dataout)) & (~ wire_n1l00i_dataout)) & (~ wire_n1l01O_dataout)) & (~ wire_n1l01l_dataout)) & (~ wire_n1l01i_dataout)),
-		n1i01i = ((((((((((((~ wire_n1l1ii_dataout) & (~ wire_n1l10O_dataout)) & (~ wire_n1l10l_dataout)) & (~ wire_n1l10i_dataout)) & (~ wire_n1l11O_dataout)) & (~ wire_n1l11l_dataout)) & (~ wire_n1l11i_dataout)) & (~ wire_n1iOOO_dataout)) & (~ wire_n1iOOl_dataout)) & (~ wire_n1iOOi_dataout)) & (~ wire_n1iOlO_dataout)) & (~ wire_n1iOll_dataout)),
-		n1i10O = (wire_n1li1l_o & (((~ wire_n010il_txcredvc0[18]) & (~ wire_n010il_txcredvc0[19])) & (~ wire_n010il_txcredvc0[20]))),
-		n1i1ii = (wire_n1li1O_o & (((~ wire_n010il_txcredvc0[15]) & (~ wire_n010il_txcredvc0[16])) & (~ wire_n010il_txcredvc0[17]))),
-		n1ii0i = (n1il0i & (tx_st_data0[30] & n1il1i)),
-		n1ii0l = (((~ tx_st_err0) & ((tx_st_valid0 & n1iiOO) & (n1iiil14 ^ n1iiil13))) & (n1ii0O16 ^ n1ii0O15)),
-		n1ii1i = (tx_st_err0 & tx_st_valid0),
-		n1ii1O = 1'b1,
-		n1iiOl = (n1il1i & n1iiOO),
-		n1iiOO = ((tx_st_eop0 | ((tx_st_eop0 ^ tx_st_eop0_p1) ^ (~ (n1iilO10 ^ n1iilO9)))) | (~ (n1iili12 ^ n1iili11))),
-		n1il0i = ((((((~ tx_st_data0[30]) & n1ilOl) & (n1illi2 ^ n1illi1)) | ((((~ tx_st_data0[29]) & tx_st_data0[30]) & (~ ((((~ tx_st_data0[24]) & (~ tx_st_data0[25])) & (~ tx_st_data0[26])) & (n1ilil4 ^ n1ilil3)))) & n1ilOl)) | (~ (n1il0O6 ^ n1il0O5))) & (~ n1il0l)),
-		n1il0l = ((((((~ tx_st_data0[24]) & (~ tx_st_data0[25])) & tx_st_data0[26]) & (~ tx_st_data0[27])) & (~ tx_st_data0[28])) & (~ tx_st_data0[29])),
-		n1il1i = ((tx_st_sop0 & tx_st_valid0) & (n1il1l8 ^ n1il1l7)),
-		n1ilOl = ((~ tx_st_data0[27]) & (~ tx_st_data0[28])),
-		npd_alloc_1cred_vc0 = n1liil,
-		npd_cred_vio_vc0 = n1li0l,
-		nph_alloc_1cred_vc0 = n1liiO,
-		nph_cred_vio_vc0 = n1liii,
-		pme_to_sr = wire_n010il_tlpmetosr,
-		powerdown0_ext = {wire_n010il_powerdown[1:0]},
-		powerdown1_ext = {wire_n010il_powerdown[3:2]},
-		powerdown2_ext = {wire_n010il_powerdown[5:4]},
-		powerdown3_ext = {wire_n010il_powerdown[7:6]},
-		powerdown4_ext = {wire_n010il_powerdown[9:8]},
-		powerdown5_ext = {wire_n010il_powerdown[11:10]},
-		powerdown6_ext = {wire_n010il_powerdown[13:12]},
-		powerdown7_ext = {wire_n010il_powerdown[15:14]},
-		r2c_err0 = wire_n010il_extraout[1],
-		rate_ext = wire_n010il_gen2rate,
+		derr_cor_ext_rcv0 = wire_n11l0i_derrcorextrcv0,
+		derr_cor_ext_rcv1 = wire_n11l0i_derrcorextrcv1,
+		derr_cor_ext_rpl = wire_n11l0i_derrcorextrpl,
+		derr_rpl = wire_n11l0i_derrrpl,
+		dl_ltssm = {wire_n11l0i_dlltssm[4:0]},
+		dlup_exit = wire_n11l0i_dlupexit,
+		eidle_infer_sel = {wire_n11l0i_eidleinfersel[23:0]},
+		ev_128ns = wire_n11l0i_ev128ns,
+		ev_1us = wire_n11l0i_ev1us,
+		hip_extraclkout = {wire_n11l0i_extraclkout[1:0]},
+		hotrst_exit = wire_n11l0i_hotrstexit,
+		int_status = {wire_n11l0i_intstatus[3:0]},
+		l2_exit = wire_n11l0i_l2exit,
+		lane_act = {wire_n11l0i_laneact[3:0]},
+		lmi_ack = wire_n11l0i_lmiack,
+		lmi_dout = {wire_n11l0i_lmidout[31:0]},
+		nllOO0i = ((((((((((((~ wire_nlO1OlO_dataout) & (~ wire_nlO1Oll_dataout)) & (~ wire_nlO1Oli_dataout)) & (~ wire_nlO1OiO_dataout)) & (~ wire_nlO1Oil_dataout)) & (~ wire_nlO1Oii_dataout)) & (~ wire_nlO1O0O_dataout)) & (~ wire_nlO1O0l_dataout)) & (~ wire_nlO1O0i_dataout)) & (~ wire_nlO1O1O_dataout)) & (~ wire_nlO1O1l_dataout)) & (~ wire_nlO1O1i_dataout)),
+		nllOO0l = ((((((((~ wire_nlO01Oi_dataout) & (~ wire_nlO01lO_dataout)) & (~ wire_nlO01ll_dataout)) & (~ wire_nlO01li_dataout)) & (~ wire_nlO01iO_dataout)) & (~ wire_nlO01il_dataout)) & (~ wire_nlO01ii_dataout)) & (~ wire_nlO010O_dataout)),
+		nllOO0O = (tx_st_err0 & tx_st_valid0),
+		nllOO1i = (wire_nlO00ii_o & (((~ wire_n11l0i_txcredvc0[18]) & (~ wire_n11l0i_txcredvc0[19])) & (~ wire_n11l0i_txcredvc0[20]))),
+		nllOO1l = (wire_nlO00il_o & (((~ wire_n11l0i_txcredvc0[15]) & (~ wire_n11l0i_txcredvc0[16])) & (~ wire_n11l0i_txcredvc0[17]))),
+		nllOOii = (nllOOlO & (tx_st_data0[30] & nllOOll)),
+		nllOOil = ((~ tx_st_err0) & (tx_st_valid0 & nllOOli)),
+		nllOOiO = (nllOOll & nllOOli),
+		nllOOli = (tx_st_eop0 | (tx_st_eop0 ^ tx_st_eop0_p1)),
+		nllOOll = (tx_st_sop0 & tx_st_valid0),
+		nllOOlO = ((((~ tx_st_data0[30]) & nllOOOl) | ((((~ tx_st_data0[29]) & tx_st_data0[30]) & (~ (((~ tx_st_data0[24]) & (~ tx_st_data0[25])) & (~ tx_st_data0[26])))) & nllOOOl)) & (~ nllOOOi)),
+		nllOOOi = ((((((~ tx_st_data0[24]) & (~ tx_st_data0[25])) & tx_st_data0[26]) & (~ tx_st_data0[27])) & (~ tx_st_data0[28])) & (~ tx_st_data0[29])),
+		nllOOOl = ((~ tx_st_data0[27]) & (~ tx_st_data0[28])),
+		nllOOOO = (wire_nlOllOi_o & (((~ wire_n11l0i_txcredvc1[18]) & (~ wire_n11l0i_txcredvc1[19])) & (~ wire_n11l0i_txcredvc1[20]))),
+		nlO100l = ((tx_st_err1 & tx_st_valid1) & (nlO100O20 ^ nlO100O19)),
+		nlO10li = 1'b1,
+		nlO10ll = (nlO1iii & (tx_st_data1[30] & nlO1i0O)),
+		nlO10lO = (((~ tx_st_err1) & ((tx_st_valid1 & nlO1i0l) & (nlO10OO12 ^ nlO10OO11))) & (nlO10Oi14 ^ nlO10Oi13)),
+		nlO110O = ((((((((((((~ wire_nlOli1O_dataout) & (~ wire_nlOli1l_dataout)) & (~ wire_nlOli1i_dataout)) & (~ wire_nlOl0OO_dataout)) & (~ wire_nlOl0Ol_dataout)) & (~ wire_nlOl0Oi_dataout)) & (~ wire_nlOl0lO_dataout)) & (~ wire_nlOl0ll_dataout)) & (~ wire_nlOl0li_dataout)) & (~ wire_nlOl0iO_dataout)) & (~ wire_nlOl0il_dataout)) & (~ wire_nlOl0ii_dataout)),
+		nlO111i = (wire_nlOllOl_o & (((~ wire_n11l0i_txcredvc1[15]) & (~ wire_n11l0i_txcredvc1[16])) & (~ wire_n11l0i_txcredvc1[17]))),
+		nlO11iO = ((((((((~ wire_nlOll0i_dataout) & (~ wire_nlOll1O_dataout)) & (~ wire_nlOll1l_dataout)) & (~ wire_nlOll1i_dataout)) & (~ wire_nlOliOO_dataout)) & (~ wire_nlOliOl_dataout)) & (~ wire_nlOliOi_dataout)) & (~ wire_nlOlilO_dataout)),
+		nlO1i0l = (tx_st_eop1 | (tx_st_eop1 ^ tx_st_eop1_p1)),
+		nlO1i0O = (tx_st_sop1 & tx_st_valid1),
+		nlO1i1l = ((nlO1i0O & nlO1i0l) & (nlO1i1O10 ^ nlO1i1O9)),
+		nlO1iii = (((((~ tx_st_data1[30]) & nlO1l0i) & (nlO1iOO2 ^ nlO1iOO1)) | ((((((~ tx_st_data1[29]) & tx_st_data1[30]) & (nlO1iOi4 ^ nlO1iOi3)) & (~ ((((~ tx_st_data1[24]) & (~ tx_st_data1[25])) & (~ tx_st_data1[26])) & (nlO1ill6 ^ nlO1ill5)))) & nlO1l0i) & (nlO1iiO8 ^ nlO1iiO7))) & (~ nlO1iil)),
+		nlO1iil = ((((((~ tx_st_data1[24]) & (~ tx_st_data1[25])) & tx_st_data1[26]) & (~ tx_st_data1[27])) & (~ tx_st_data1[28])) & (~ tx_st_data1[29])),
+		nlO1l0i = ((~ tx_st_data1[27]) & (~ tx_st_data1[28])),
+		npd_alloc_1cred_vc0 = nlO00Oi,
+		npd_alloc_1cred_vc1 = nlOlO0i,
+		npd_cred_vio_vc0 = nlO00li,
+		npd_cred_vio_vc1 = nlOlO1i,
+		nph_alloc_1cred_vc0 = nlO00Ol,
+		nph_alloc_1cred_vc1 = nlOlO0l,
+		nph_cred_vio_vc0 = nlO00lO,
+		nph_cred_vio_vc1 = nlOlO1O,
+		pme_to_sr = wire_n11l0i_tlpmetosr,
+		powerdown0_ext = {wire_n11l0i_powerdown[1:0]},
+		powerdown1_ext = {wire_n11l0i_powerdown[3:2]},
+		powerdown2_ext = {wire_n11l0i_powerdown[5:4]},
+		powerdown3_ext = {wire_n11l0i_powerdown[7:6]},
+		powerdown4_ext = {wire_n11l0i_powerdown[9:8]},
+		powerdown5_ext = {wire_n11l0i_powerdown[11:10]},
+		powerdown6_ext = {wire_n11l0i_powerdown[13:12]},
+		powerdown7_ext = {wire_n11l0i_powerdown[15:14]},
+		r2c_err0 = wire_n11l0i_extraout[1],
+		r2c_err1 = wire_n11l0i_extraout[2],
+		rate_ext = wire_n11l0i_gen2rate,
 		rc_gxb_powerdown = 1'b0,
 		rc_rx_analogreset = 1'b0,
 		rc_rx_digitalreset = 1'b0,
 		rc_tx_digitalreset = 1'b0,
-		reset_status = wire_n010il_resetstatus,
-		rx_fifo_empty0 = wire_n010il_rxfifoemptyvc0,
-		rx_fifo_full0 = wire_n010il_rxfifofullvc0,
-		rx_st_bardec0 = {wire_n010il_rxbardecvc0[7:0]},
-		rx_st_be0 = {wire_n010il_rxbevc00[7:0]},
-		rx_st_be0_p1 = {wire_n010il_rxbevc01[7:0]},
-		rx_st_data0 = {wire_n010il_rxdatavc00[63:0]},
-		rx_st_data0_p1 = {wire_n010il_rxdatavc01[63:0]},
-		rx_st_eop0 = wire_n010il_rxeopvc00,
-		rx_st_eop0_p1 = wire_n010il_rxeopvc01,
-		rx_st_err0 = wire_n010il_rxerrvc0,
-		rx_st_sop0 = wire_n010il_rxsopvc00,
-		rx_st_sop0_p1 = wire_n010il_rxsopvc01,
-		rx_st_valid0 = wire_n010il_rxvalidvc0,
+		reset_status = wire_n11l0i_resetstatus,
+		rx_fifo_empty0 = wire_n11l0i_rxfifoemptyvc0,
+		rx_fifo_empty1 = wire_n11l0i_rxfifoemptyvc1,
+		rx_fifo_full0 = wire_n11l0i_rxfifofullvc0,
+		rx_fifo_full1 = wire_n11l0i_rxfifofullvc1,
+		rx_st_bardec0 = {wire_n11l0i_rxbardecvc0[7:0]},
+		rx_st_bardec1 = {wire_n11l0i_rxbardecvc1[7:0]},
+		rx_st_be0 = {wire_n11l0i_rxbevc00[7:0]},
+		rx_st_be0_p1 = {wire_n11l0i_rxbevc01[7:0]},
+		rx_st_be1 = {wire_n11l0i_rxbevc10[7:0]},
+		rx_st_be1_p1 = {wire_n11l0i_rxbevc11[7:0]},
+		rx_st_data0 = {wire_n11l0i_rxdatavc00[63:0]},
+		rx_st_data0_p1 = {wire_n11l0i_rxdatavc01[63:0]},
+		rx_st_data1 = {wire_n11l0i_rxdatavc10[63:0]},
+		rx_st_data1_p1 = {wire_n11l0i_rxdatavc11[63:0]},
+		rx_st_eop0 = wire_n11l0i_rxeopvc00,
+		rx_st_eop0_p1 = wire_n11l0i_rxeopvc01,
+		rx_st_eop1 = wire_n11l0i_rxeopvc10,
+		rx_st_eop1_p1 = wire_n11l0i_rxeopvc11,
+		rx_st_err0 = wire_n11l0i_rxerrvc0,
+		rx_st_err1 = wire_n11l0i_rxerrvc1,
+		rx_st_sop0 = wire_n11l0i_rxsopvc00,
+		rx_st_sop0_p1 = wire_n11l0i_rxsopvc01,
+		rx_st_sop1 = wire_n11l0i_rxsopvc10,
+		rx_st_sop1_p1 = wire_n11l0i_rxsopvc11,
+		rx_st_valid0 = wire_n11l0i_rxvalidvc0,
+		rx_st_valid1 = wire_n11l0i_rxvalidvc1,
 		RxmAddress_o = {32{1'b0}},
 		RxmBurstCount_o = {10{1'b0}},
 		RxmByteEnable_o = {8{1'b0}},
 		RxmRead_o = 1'b0,
 		RxmWrite_o = 1'b0,
 		RxmWriteData_o = {64{1'b0}},
-		rxpolarity0_ext = wire_n010il_rxpolarity[0],
-		rxpolarity1_ext = wire_n010il_rxpolarity[1],
-		rxpolarity2_ext = wire_n010il_rxpolarity[2],
-		rxpolarity3_ext = wire_n010il_rxpolarity[3],
-		rxpolarity4_ext = wire_n010il_rxpolarity[4],
-		rxpolarity5_ext = wire_n010il_rxpolarity[5],
-		rxpolarity6_ext = wire_n010il_rxpolarity[6],
-		rxpolarity7_ext = wire_n010il_rxpolarity[7],
-		serr_out = wire_n010il_serrout,
-		suc_spd_neg = wire_n010il_extraout[0],
-		swdn_wake = wire_n010il_swdnwake,
-		swup_hotrst = wire_n010il_swuphotrst,
-		test_out = {wire_n010il_testout[63:0]},
-		tl_cfg_add = {wire_n010il_tlcfgadd[3:0]},
-		tl_cfg_ctl = {wire_n010il_tlcfgctl[31:0]},
-		tl_cfg_ctl_wr = wire_n010il_tlcfgctlwr,
-		tl_cfg_sts = {wire_n010il_tlcfgsts[52:0]},
-		tl_cfg_sts_wr = wire_n010il_tlcfgstswr,
-		tx_cred0 = {wire_n010il_txcredvc0[35:21], n1lllO, n1llll, n1llli, n1lOiO, n1lOil, n1lOii, wire_n010il_txcredvc0[14:0]},
-		tx_deemph = {wire_n010il_txdeemph[7:0]},
-		tx_fifo_empty0 = wire_n010il_txfifoemptyvc0,
-		tx_fifo_full0 = wire_n010il_txfifofullvc0,
-		tx_fifo_rdptr0 = {wire_n010il_txfifordpvc0[3:0]},
-		tx_fifo_wrptr0 = {wire_n010il_txfifowrpvc0[3:0]},
-		tx_margin = {wire_n010il_txmargin[23:0]},
-		tx_st_ready0 = wire_n010il_txreadyvc0,
-		txcompl0_ext = wire_n010il_txcompl[0],
-		txcompl1_ext = wire_n010il_txcompl[1],
-		txcompl2_ext = wire_n010il_txcompl[2],
-		txcompl3_ext = wire_n010il_txcompl[3],
-		txcompl4_ext = wire_n010il_txcompl[4],
-		txcompl5_ext = wire_n010il_txcompl[5],
-		txcompl6_ext = wire_n010il_txcompl[6],
-		txcompl7_ext = wire_n010il_txcompl[7],
-		txdata0_ext = {wire_n010il_txdata[7:0]},
-		txdata1_ext = {wire_n010il_txdata[15:8]},
-		txdata2_ext = {wire_n010il_txdata[23:16]},
-		txdata3_ext = {wire_n010il_txdata[31:24]},
-		txdata4_ext = {wire_n010il_txdata[39:32]},
-		txdata5_ext = {wire_n010il_txdata[47:40]},
-		txdata6_ext = {wire_n010il_txdata[55:48]},
-		txdata7_ext = {wire_n010il_txdata[63:56]},
-		txdatak0_ext = wire_n010il_txdatak[0],
-		txdatak1_ext = wire_n010il_txdatak[1],
-		txdatak2_ext = wire_n010il_txdatak[2],
-		txdatak3_ext = wire_n010il_txdatak[3],
-		txdatak4_ext = wire_n010il_txdatak[4],
-		txdatak5_ext = wire_n010il_txdatak[5],
-		txdatak6_ext = wire_n010il_txdatak[6],
-		txdatak7_ext = wire_n010il_txdatak[7],
-		txdetectrx0_ext = wire_n010il_txdetectrx[0],
-		txdetectrx1_ext = wire_n010il_txdetectrx[1],
-		txdetectrx2_ext = wire_n010il_txdetectrx[2],
-		txdetectrx3_ext = wire_n010il_txdetectrx[3],
-		txdetectrx4_ext = wire_n010il_txdetectrx[4],
-		txdetectrx5_ext = wire_n010il_txdetectrx[5],
-		txdetectrx6_ext = wire_n010il_txdetectrx[6],
-		txdetectrx7_ext = wire_n010il_txdetectrx[7],
-		txelecidle0_ext = wire_n010il_txelecidle[0],
-		txelecidle1_ext = wire_n010il_txelecidle[1],
-		txelecidle2_ext = wire_n010il_txelecidle[2],
-		txelecidle3_ext = wire_n010il_txelecidle[3],
-		txelecidle4_ext = wire_n010il_txelecidle[4],
-		txelecidle5_ext = wire_n010il_txelecidle[5],
-		txelecidle6_ext = wire_n010il_txelecidle[6],
-		txelecidle7_ext = wire_n010il_txelecidle[7],
+		rxpolarity0_ext = wire_n11l0i_rxpolarity[0],
+		rxpolarity1_ext = wire_n11l0i_rxpolarity[1],
+		rxpolarity2_ext = wire_n11l0i_rxpolarity[2],
+		rxpolarity3_ext = wire_n11l0i_rxpolarity[3],
+		rxpolarity4_ext = wire_n11l0i_rxpolarity[4],
+		rxpolarity5_ext = wire_n11l0i_rxpolarity[5],
+		rxpolarity6_ext = wire_n11l0i_rxpolarity[6],
+		rxpolarity7_ext = wire_n11l0i_rxpolarity[7],
+		serr_out = wire_n11l0i_serrout,
+		suc_spd_neg = wire_n11l0i_extraout[0],
+		swdn_wake = wire_n11l0i_swdnwake,
+		swup_hotrst = wire_n11l0i_swuphotrst,
+		test_out = {wire_n11l0i_testout[63:0]},
+		tl_cfg_add = {wire_n11l0i_tlcfgadd[3:0]},
+		tl_cfg_ctl = {wire_n11l0i_tlcfgctl[31:0]},
+		tl_cfg_ctl_wr = wire_n11l0i_tlcfgctlwr,
+		tl_cfg_sts = {wire_n11l0i_tlcfgsts[52:0]},
+		tl_cfg_sts_wr = wire_n11l0i_tlcfgstswr,
+		tx_cred0 = {wire_n11l0i_txcredvc0[35:21], nlO0l1l, nlO0l1i, nlO0iOO, nlO0lOl, nlO0lOi, nlO0llO, wire_n11l0i_txcredvc0[14:0]},
+		tx_cred1 = {wire_n11l0i_txcredvc1[35:21], nlOO1il, nlOO1ii, nlOO10O, nlOO00l, nlOO00i, nlOO01O, wire_n11l0i_txcredvc1[14:0]},
+		tx_deemph = {wire_n11l0i_txdeemph[7:0]},
+		tx_fifo_empty0 = wire_n11l0i_txfifoemptyvc0,
+		tx_fifo_empty1 = wire_n11l0i_txfifoemptyvc1,
+		tx_fifo_full0 = wire_n11l0i_txfifofullvc0,
+		tx_fifo_full1 = wire_n11l0i_txfifofullvc1,
+		tx_fifo_rdptr0 = {wire_n11l0i_txfifordpvc0[3:0]},
+		tx_fifo_rdptr1 = {wire_n11l0i_txfifordpvc1[3:0]},
+		tx_fifo_wrptr0 = {wire_n11l0i_txfifowrpvc0[3:0]},
+		tx_fifo_wrptr1 = {wire_n11l0i_txfifowrpvc1[3:0]},
+		tx_margin = {wire_n11l0i_txmargin[23:0]},
+		tx_st_ready0 = wire_n11l0i_txreadyvc0,
+		tx_st_ready1 = wire_n11l0i_txreadyvc1,
+		txcompl0_ext = wire_n11l0i_txcompl[0],
+		txcompl1_ext = wire_n11l0i_txcompl[1],
+		txcompl2_ext = wire_n11l0i_txcompl[2],
+		txcompl3_ext = wire_n11l0i_txcompl[3],
+		txcompl4_ext = wire_n11l0i_txcompl[4],
+		txcompl5_ext = wire_n11l0i_txcompl[5],
+		txcompl6_ext = wire_n11l0i_txcompl[6],
+		txcompl7_ext = wire_n11l0i_txcompl[7],
+		txdata0_ext = {wire_n11l0i_txdata[7:0]},
+		txdata1_ext = {wire_n11l0i_txdata[15:8]},
+		txdata2_ext = {wire_n11l0i_txdata[23:16]},
+		txdata3_ext = {wire_n11l0i_txdata[31:24]},
+		txdata4_ext = {wire_n11l0i_txdata[39:32]},
+		txdata5_ext = {wire_n11l0i_txdata[47:40]},
+		txdata6_ext = {wire_n11l0i_txdata[55:48]},
+		txdata7_ext = {wire_n11l0i_txdata[63:56]},
+		txdatak0_ext = wire_n11l0i_txdatak[0],
+		txdatak1_ext = wire_n11l0i_txdatak[1],
+		txdatak2_ext = wire_n11l0i_txdatak[2],
+		txdatak3_ext = wire_n11l0i_txdatak[3],
+		txdatak4_ext = wire_n11l0i_txdatak[4],
+		txdatak5_ext = wire_n11l0i_txdatak[5],
+		txdatak6_ext = wire_n11l0i_txdatak[6],
+		txdatak7_ext = wire_n11l0i_txdatak[7],
+		txdetectrx0_ext = wire_n11l0i_txdetectrx[0],
+		txdetectrx1_ext = wire_n11l0i_txdetectrx[1],
+		txdetectrx2_ext = wire_n11l0i_txdetectrx[2],
+		txdetectrx3_ext = wire_n11l0i_txdetectrx[3],
+		txdetectrx4_ext = wire_n11l0i_txdetectrx[4],
+		txdetectrx5_ext = wire_n11l0i_txdetectrx[5],
+		txdetectrx6_ext = wire_n11l0i_txdetectrx[6],
+		txdetectrx7_ext = wire_n11l0i_txdetectrx[7],
+		txelecidle0_ext = wire_n11l0i_txelecidle[0],
+		txelecidle1_ext = wire_n11l0i_txelecidle[1],
+		txelecidle2_ext = wire_n11l0i_txelecidle[2],
+		txelecidle3_ext = wire_n11l0i_txelecidle[3],
+		txelecidle4_ext = wire_n11l0i_txelecidle[4],
+		txelecidle5_ext = wire_n11l0i_txelecidle[5],
+		txelecidle6_ext = wire_n11l0i_txelecidle[6],
+		txelecidle7_ext = wire_n11l0i_txelecidle[7],
 		TxsReadData_o = {64{1'b0}},
 		TxsReadDataValid_o = 1'b0,
 		TxsWaitRequest_o = 1'b0,
 		use_pcie_reconfig = 1'b0,
-		wake_oen = wire_n010il_wakeoen;
+		wake_oen = wire_n11l0i_wakeoen;
 endmodule //top_core
 //synopsys translate_on
 //VALID FILE

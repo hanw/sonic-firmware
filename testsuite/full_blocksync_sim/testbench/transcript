@@ -1,0 +1,1986 @@
+# //  Questa Sim
+# //  Version 10.0c linux Jul 21 2011
+# //
+# //  Copyright 1991-2011 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+#  source ./sonic_blocksync_sim/testbench/msim_setup.tcl 
+# List Of Command Line Aliases 
+# 
+# dev_com                       -- Compile device library files 
+# 
+# com                           -- Compile the design files in correct order 
+# 
+# elab                          -- Elaborate top level design 
+# 
+# elab_debug                    -- Elaborate the top level design with novopt option 
+# 
+# ld                            -- Compile all the design files and elaborate the top level design 
+# 
+# ld_debug                      -- Compile all the design files and elaborate the top level design with -novopt 
+# 
+# 
+# 
+# List Of Variables 
+# 
+# TOP_LEVEL_NAME                -- Top level module name. 
+# 
+# SYSTEM_INSTANCE_NAME          -- Instantiated system module name inside top level module. 
+# 
+# QSYS_SIMDIR                   -- Qsys base simulation directory. 
+#  			  set QSYS_SIMDIR ./sonic_blocksync_sim/testbench 
+# ./sonic_blocksync_sim/testbench
+#  			  dev_com 
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module global
+# -- Compiling module carry
+# -- Compiling module cascade
+# -- Compiling module carry_sum
+# -- Compiling module exp
+# -- Compiling module soft
+# -- Compiling module opndrn
+# -- Compiling module row_global
+# -- Compiling module TRI
+# -- Compiling module lut_input
+# -- Compiling module lut_output
+# -- Compiling module latch
+# -- Compiling module dlatch
+# -- Compiling module prim_gdff
+# -- Compiling module dff
+# -- Compiling module dffe
+# -- Compiling module dffea
+# -- Compiling module dffeas
+# -- Compiling module prim_gtff
+# -- Compiling module tff
+# -- Compiling module tffe
+# -- Compiling module prim_gjkff
+# -- Compiling module jkff
+# -- Compiling module jkffe
+# -- Compiling module prim_gsrff
+# -- Compiling module srff
+# -- Compiling module srffe
+# -- Compiling module clklock
+# -- Compiling module alt_inbuf
+# -- Compiling module alt_outbuf
+# -- Compiling module alt_outbuf_tri
+# -- Compiling module alt_iobuf
+# -- Compiling module alt_inbuf_diff
+# -- Compiling module alt_outbuf_diff
+# -- Compiling module alt_outbuf_tri_diff
+# -- Compiling module alt_iobuf_diff
+# -- Compiling module alt_bidir_diff
+# -- Compiling module alt_bidir_buf
+# -- Compiling UDP PRIM_GDFF_LOW
+# -- Compiling UDP PRIM_GDFF_HIGH
+# 
+# Top level modules:
+# 	global
+# 	carry
+# 	cascade
+# 	carry_sum
+# 	exp
+# 	soft
+# 	opndrn
+# 	row_global
+# 	TRI
+# 	lut_input
+# 	lut_output
+# 	latch
+# 	dlatch
+# 	dff
+# 	dffe
+# 	dffea
+# 	dffeas
+# 	tff
+# 	tffe
+# 	jkff
+# 	jkffe
+# 	srff
+# 	srffe
+# 	clklock
+# 	alt_inbuf
+# 	alt_outbuf
+# 	alt_outbuf_tri
+# 	alt_iobuf
+# 	alt_inbuf_diff
+# 	alt_outbuf_diff
+# 	alt_outbuf_tri_diff
+# 	alt_iobuf_diff
+# 	alt_bidir_diff
+# 	alt_bidir_buf
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module LPM_MEMORY_INITIALIZATION
+# -- Compiling module LPM_HINT_EVALUATION
+# -- Compiling module LPM_DEVICE_FAMILIES
+# -- Compiling module lpm_constant
+# -- Compiling module lpm_inv
+# -- Compiling module lpm_and
+# -- Compiling module lpm_or
+# -- Compiling module lpm_xor
+# -- Compiling module lpm_bustri
+# -- Compiling module lpm_mux
+# -- Compiling module lpm_decode
+# -- Compiling module lpm_clshift
+# -- Compiling module lpm_add_sub
+# -- Compiling module lpm_compare
+# -- Compiling module lpm_mult
+# -- Compiling module lpm_divide
+# -- Compiling module lpm_abs
+# -- Compiling module lpm_counter
+# -- Compiling module lpm_latch
+# -- Compiling module lpm_ff
+# -- Compiling module lpm_shiftreg
+# -- Compiling module lpm_ram_dq
+# -- Compiling module lpm_ram_dp
+# -- Compiling module lpm_ram_io
+# -- Compiling module lpm_rom
+# -- Compiling module lpm_fifo
+# -- Compiling module lpm_fifo_dc_dffpipe
+# -- Compiling module lpm_fifo_dc_fefifo
+# -- Compiling module lpm_fifo_dc_async
+# -- Compiling module lpm_fifo_dc
+# -- Compiling module lpm_inpad
+# -- Compiling module lpm_outpad
+# -- Compiling module lpm_bipad
+# 
+# Top level modules:
+# 	lpm_constant
+# 	lpm_inv
+# 	lpm_and
+# 	lpm_or
+# 	lpm_xor
+# 	lpm_bustri
+# 	lpm_mux
+# 	lpm_decode
+# 	lpm_clshift
+# 	lpm_add_sub
+# 	lpm_compare
+# 	lpm_mult
+# 	lpm_divide
+# 	lpm_abs
+# 	lpm_counter
+# 	lpm_latch
+# 	lpm_ff
+# 	lpm_shiftreg
+# 	lpm_ram_dq
+# 	lpm_ram_dp
+# 	lpm_ram_io
+# 	lpm_rom
+# 	lpm_fifo
+# 	lpm_fifo_dc
+# 	lpm_inpad
+# 	lpm_outpad
+# 	lpm_bipad
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module oper_add
+# -- Compiling module oper_addsub
+# -- Compiling module mux21
+# -- Compiling module io_buf_tri
+# -- Compiling module io_buf_opdrn
+# -- Compiling module oper_mult
+# -- Compiling module tri_bus
+# -- Compiling module oper_div
+# -- Compiling module oper_mod
+# -- Compiling module oper_left_shift
+# -- Compiling module oper_right_shift
+# -- Compiling module oper_rotate_left
+# -- Compiling module oper_rotate_right
+# -- Compiling module oper_less_than
+# -- Compiling module oper_mux
+# -- Compiling module oper_selector
+# -- Compiling module oper_decoder
+# -- Compiling module oper_bus_mux
+# -- Compiling module oper_latch
+# 
+# Top level modules:
+# 	oper_add
+# 	oper_addsub
+# 	mux21
+# 	io_buf_tri
+# 	io_buf_opdrn
+# 	oper_mult
+# 	tri_bus
+# 	oper_div
+# 	oper_mod
+# 	oper_left_shift
+# 	oper_right_shift
+# 	oper_rotate_left
+# 	oper_rotate_right
+# 	oper_less_than
+# 	oper_mux
+# 	oper_selector
+# 	oper_decoder
+# 	oper_bus_mux
+# 	oper_latch
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module lcell
+# -- Compiling module ALTERA_MF_MEMORY_INITIALIZATION
+# -- Compiling module ALTERA_MF_HINT_EVALUATION
+# -- Compiling module ALTERA_DEVICE_FAMILIES
+# -- Compiling module dffp
+# -- Compiling module pll_iobuf
+# -- Compiling module stx_m_cntr
+# -- Compiling module stx_n_cntr
+# -- Compiling module stx_scale_cntr
+# -- Compiling module MF_pll_reg
+# -- Compiling module MF_stratix_pll
+# -- Compiling module arm_m_cntr
+# -- Compiling module arm_n_cntr
+# -- Compiling module arm_scale_cntr
+# -- Compiling module MF_stratixii_pll
+# -- Compiling module ttn_m_cntr
+# -- Compiling module ttn_n_cntr
+# -- Compiling module ttn_scale_cntr
+# -- Compiling module MF_stratixiii_pll
+# -- Compiling module cda_m_cntr
+# -- Compiling module cda_n_cntr
+# -- Compiling module cda_scale_cntr
+# -- Compiling module MF_cycloneiii_pll
+# -- Compiling module MF_cycloneiiigl_m_cntr
+# -- Compiling module MF_cycloneiiigl_n_cntr
+# -- Compiling module MF_cycloneiiigl_scale_cntr
+# -- Compiling module cycloneiiigl_post_divider
+# -- Compiling module MF_cycloneiiigl_pll
+# -- Compiling module altpll
+# -- Compiling module altlvds_rx
+# -- Compiling module stratix_lvds_rx
+# -- Compiling module stratixgx_dpa_lvds_rx
+# -- Compiling module stratixii_lvds_rx
+# -- Compiling module flexible_lvds_rx
+# -- Compiling module stratixiii_lvds_rx
+# -- Compiling module stratixiii_lvds_rx_channel
+# -- Compiling module stratixiii_lvds_rx_dpa
+# -- Compiling module altlvds_tx
+# -- Compiling module stratix_tx_outclk
+# -- Compiling module stratixii_tx_outclk
+# -- Compiling module flexible_lvds_tx
+# -- Compiling module dcfifo_dffpipe
+# -- Compiling module dcfifo_fefifo
+# -- Compiling module dcfifo_async
+# -- Compiling module dcfifo_sync
+# -- Compiling module dcfifo_low_latency
+# -- Compiling module dcfifo_mixed_widths
+# -- Compiling module dcfifo
+# -- Compiling module altaccumulate
+# -- Compiling module altmult_accum
+# -- Compiling module altmult_add
+# -- Compiling module altfp_mult
+# -- Compiling module altsqrt
+# -- Compiling module altclklock
+# -- Compiling module altddio_in
+# -- Compiling module altddio_out
+# -- Compiling module altddio_bidir
+# -- Compiling module altdpram
+# -- Compiling module altsyncram
+# -- Compiling module alt3pram
+# -- Compiling module parallel_add
+# -- Compiling module scfifo
+# -- Compiling module altshift_taps
+# -- Compiling module a_graycounter
+# -- Compiling module altsquare
+# -- Compiling module altera_std_synchronizer
+# -- Compiling module altera_std_synchronizer_bundle
+# -- Compiling module alt_cal
+# -- Compiling module alt_cal_mm
+# -- Compiling module alt_cal_c3gxb
+# -- Compiling module alt_cal_sv
+# -- Compiling module alt_aeq_s4
+# -- Compiling module alt_eyemon
+# -- Compiling module alt_dfe
+# -- Compiling module signal_gen
+# -- Compiling module jtag_tap_controller
+# -- Compiling module dummy_hub
+# -- Compiling module sld_virtual_jtag
+# -- Compiling module sld_signaltap
+# -- Compiling module altstratixii_oct
+# -- Compiling module altparallel_flash_loader
+# -- Compiling module altserial_flash_loader
+# -- Compiling module sld_virtual_jtag_basic
+# -- Compiling module altsource_probe
+# 
+# Top level modules:
+# 	lcell
+# 	altpll
+# 	altlvds_rx
+# 	altlvds_tx
+# 	dcfifo
+# 	altaccumulate
+# 	altmult_accum
+# 	altmult_add
+# 	altfp_mult
+# 	altsqrt
+# 	altclklock
+# 	altddio_bidir
+# 	altdpram
+# 	alt3pram
+# 	parallel_add
+# 	scfifo
+# 	altshift_taps
+# 	a_graycounter
+# 	altsquare
+# 	altera_std_synchronizer_bundle
+# 	alt_cal
+# 	alt_cal_mm
+# 	alt_cal_c3gxb
+# 	alt_cal_sv
+# 	alt_aeq_s4
+# 	alt_eyemon
+# 	alt_dfe
+# 	sld_virtual_jtag
+# 	sld_signaltap
+# 	altstratixii_oct
+# 	altparallel_flash_loader
+# 	altserial_flash_loader
+# 	sld_virtual_jtag_basic
+# 	altsource_probe
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module altera_pll
+# -- Compiling package altera_lnsim_functions
+# -- Compiling module generic_pll
+# -- Importing package altera_lnsim_functions
+# -- Compiling module generic_cdr
+# -- Compiling module common_28nm_ram_pulse_generator
+# -- Compiling module common_28nm_ram_register
+# -- Compiling module common_28nm_ram_block
+# -- Compiling module generic_m20k
+# -- Compiling module generic_m10k
+# -- Compiling module common_28nm_mlab_cell_pulse_generator
+# -- Compiling module common_28nm_mlab_cell
+# -- Compiling module generic_mlab_cell
+# -- Compiling module generic_mux
+# -- Compiling module generic_device_pll
+# -- Compiling module altera_mult_add
+# -- Compiling module ama_signed_extension_function
+# -- Compiling module ama_dynamic_signed_function
+# -- Compiling module ama_register_function
+# -- Compiling module ama_register_with_ext_function
+# -- Compiling module ama_data_split_reg_ext_function
+# -- Compiling module ama_coef_reg_ext_function
+# -- Compiling module ama_adder_function
+# -- Compiling module ama_multiplier_function
+# -- Compiling module ama_preadder_function
+# -- Compiling module ama_accumulator_function
+# -- Compiling module ama_systolic_adder_function
+# -- Compiling module ama_scanchain
+# 
+# Top level modules:
+# 	altera_pll
+# 	generic_cdr
+# 	generic_m20k
+# 	generic_m10k
+# 	generic_mlab_cell
+# 	generic_mux
+# 	generic_device_pll
+# 	altera_mult_add
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module stratixiv_hssi_aux_clock_div
+# -- Compiling module stratixiv_hssi_aux_clock_mult
+# -- Compiling module stratixiv_hssi_pma_c_divby2q
+# -- Compiling module stratixiv_hssi_pma_c_controller_4t16
+# -- Compiling module stratixiv_hssi_pma_c_clkgendrv
+# -- Compiling module stratixiv_hssi_pma_c_clkgenbuf
+# -- Compiling module stratixiv_hssi_pma_c_clkgenbuf_cmu
+# -- Compiling module stratixiv_hssi_pma_c_d2a_mbpass
+# -- Compiling module stratixiv_hssi_pma_c_tx_clkmux_cmu
+# -- Compiling module stratixiv_hssi_pma_c_deser_pcie
+# -- Compiling module stratixiv_hssi_pma_c_deser_10to20
+# -- Compiling module stratixiv_hssi_pma_c_deser_ff_chain
+# -- Compiling module stratixiv_hssi_pma_c_deser_fsd_rst
+# -- Compiling module stratixiv_hssi_pma_c_deser
+# -- Compiling module stratixiv_hssi_pma_c_div4or5_mcnt
+# -- Compiling module stratixiv_hssi_pma_c_lockdet_tx18
+# -- Compiling module stratixiv_hssi_pma_c_pfd
+# -- Compiling module stratixiv_hssi_pma_c_rlpbk_ctrl
+# -- Compiling module stratixiv_hssi_pma_c_rlpbk_mux
+# -- Compiling module stratixiv_hssi_pma_c_rx
+# -- Compiling module stratixiv_hssi_pma_c_ser_20to10
+# -- Compiling module stratixiv_hssi_pma_c_ser
+# -- Compiling module stratixiv_hssi_pma_c_sdl_en_2x
+# -- Compiling module stratixiv_hssi_pma_c_rcv_detect_div_by_2
+# -- Compiling module stratixiv_hssi_pma_c_rcv_detect_clk_gen
+# -- Compiling module stratixiv_hssi_pma_c_rcv_detect_sync
+# -- Compiling module stratixiv_hssi_pma_c_rcv_detect_fsm
+# -- Compiling module stratixiv_hssi_pma_c_rcv_detect_control
+# -- Compiling module stratixiv_hssi_pma_c_rcv_det_digital
+# -- Compiling module stratixiv_hssi_pma_c_rcv_detect
+# -- Compiling module stratixiv_hssi_pma_c_tx
+# -- Compiling module stratixiv_hssi_pma_ppmdetect
+# -- Compiling module stratixiv_hssi_pma_c_ser_10g
+# -- Compiling module stratixiv_hssi_pma_c_deser_10g
+# -- Compiling module stratixiv_hssi_pma_c_pcie_sw
+# -- Compiling module stratixiv_hssi_pma_c_clkgendrv_tx10g
+# -- Compiling module stratixiv_hssi_pma_c_clkgenbuf_tx10g
+# -- Compiling module stratixiv_hssi_clock_divider
+# -- Compiling module stratixiv_hssi_pll
+# -- Compiling module stratixiv_hssi_tx_pma
+# -- Compiling module stratixiv_hssi_rx_pma
+# -- Compiling module stratixiv_hssi_pcs_reset
+# -- Compiling module stratixiv_hssi_digi_chnl_hip_spt
+# -- Compiling module stratixiv_hssi_phystatus_generator_fsm
+# -- Compiling module stratixiv_hssi_phystatus_generator
+# -- Compiling module stratixiv_hssi_rx_pipe_interface
+# -- Compiling module stratixiv_hssi_tx_pipe_interface
+# -- Compiling module stratixiv_hssi_q_pipe_interface_top
+# -- Compiling module stratixiv_hssi_tx_digis_txclk_gating
+# -- Compiling module stratixiv_hssi_tx_digi_txclk_ctl
+# -- Compiling module stratixiv_hssi_tx_digis_ram8x49_syn
+# -- Compiling module stratixiv_hssi_tx_digis_ph_fifo
+# -- Compiling module stratixiv_hssi_tx_digi_tx_ctrl
+# -- Compiling module stratixiv_hssi_tx_digi_bist_gen
+# -- Compiling module stratixiv_hssi_tx_digi_prbs_gen
+# -- Compiling module stratixiv_hssi_tx_digi_enc_chnl_top
+# -- Compiling module stratixiv_hssi_tx_digi_iq_pipe_tx
+# -- Compiling module stratixiv_hssi_tx_digi
+# -- Compiling module stratixiv_hssi_tx_pcs
+# -- Compiling module stratixiv_hssi_rx_digis_ph_fifo
+# -- Compiling module stratixiv_hssi_rx_digis_ram16x14_syn
+# -- Compiling module stratixiv_hssi_rx_digis_ram20x16_syn
+# -- Compiling module stratixiv_hssi_rx_digis_ram8x70_syn
+# -- Compiling module stratixiv_hssi_rx_digis_rxclk_gating
+# -- Compiling module stratixiv_hssi_rx_digi_rxclk_ctl
+# -- Compiling module stratixiv_hssi_rx_digi_auto_speed_neg
+# -- Compiling module stratixiv_hssi_rx_digi_bist_ver
+# -- Compiling module stratixiv_hssi_rx_digi_cdr_ctrl
+# -- Compiling module stratixiv_hssi_rx_digi_comp_chnl_top
+# -- Compiling module stratixiv_hssi_rx_digi_rx_ctrl
+# -- Compiling module stratixiv_hssi_rx_digi_dec_chnl_top
+# -- Compiling module stratixiv_hssi_rx_digi_dskw_fifo
+# -- Compiling module stratixiv_hssi_rx_digi_freqdet
+# -- Compiling module stratixiv_hssi_rx_digi_eii_module
+# -- Compiling module stratixiv_hssi_rx_digi_pcs_channel_testbus
+# -- Compiling module stratixiv_hssi_rx_digi_iq_pipe_rx
+# -- Compiling module stratixiv_hssi_rx_digi_prbs_ver
+# -- Compiling module stratixiv_hssi_rx_digi_wordalign
+# -- Compiling module stratixiv_hssi_rx_digi
+# -- Compiling module stratixiv_hssi_rx_pcs
+# -- Compiling module stratixiv_hssi_dskw_sm
+# -- Compiling module stratixiv_hssi_tx_sm
+# -- Compiling module stratixiv_hssi_rcv_sm
+# -- Compiling module stratixiv_hssi_cmu_chnl_reset
+# -- Compiling module stratixiv_hssi_cmu_quad_reset
+# -- Compiling module stratixiv_hssi_cmu_auto_speed_neg
+# -- Compiling module stratixiv_hssi_cmu_clk_gating
+# -- Compiling module stratixiv_hssi_cmu_clk_ctl
+# -- Compiling module stratixiv_hssi_cmu_rx_ctrl
+# -- Compiling module stratixiv_hssi_cmu_rxclk_gating
+# -- Compiling module stratixiv_hssi_cmu_rxclk_ctl
+# -- Compiling module stratixiv_hssi_cmu_tx_ctrl
+# -- Compiling module stratixiv_hssi_cmu_txclk_gating
+# -- Compiling module stratixiv_hssi_cmu_txclk_ctl
+# -- Compiling module stratixiv_hssi_cmu_dprio_bit
+# -- Compiling module stratixiv_hssi_cmu_dprio_bit_pma
+# -- Compiling module stratixiv_hssi_cmu_dprio_16bit
+# -- Compiling module stratixiv_hssi_cmu_dprio_16bit_pma
+# -- Compiling module stratixiv_hssi_cmu_dprio_reg_chnl
+# -- Compiling module stratixiv_hssi_cmu_dprio_chnl_bus_out_mux
+# -- Compiling module stratixiv_hssi_cmu_dprio_chnl_top
+# -- Compiling module stratixiv_hssi_cmu_dprio_status
+# -- Compiling module stratixiv_hssi_cmu_dprio_addr
+# -- Compiling module stratixiv_hssi_cmu_dprio_cnt
+# -- Compiling module stratixiv_hssi_cmu_dprio_ctl_data
+# -- Compiling module stratixiv_hssi_cmu_dprio_sm
+# -- Compiling module stratixiv_hssi_cmu_dprio_reg_centrl
+# -- Compiling module stratixiv_hssi_cmu_dprio_centrl_bus_out_mux
+# -- Compiling module stratixiv_hssi_cmu_dprio_centrl_top
+# -- Compiling module stratixiv_hssi_cmu_dprio_map_index
+# -- Compiling module stratixiv_hssi_cmu_dprio_map
+# -- Compiling module stratixiv_hssi_cmu_dprio_top
+# -- Compiling module stratixiv_hssi_cmu
+# -- Compiling module stratixiv_hssi_calibration_block
+# -- Compiling module stratixiv_hssi_refclk_divider
+# -- Compiling module stratixiv_hssi_pma_c_adce
+# 
+# Top level modules:
+# 	stratixiv_hssi_pma_c_d2a_mbpass
+# 	stratixiv_hssi_pma_c_div4or5_mcnt
+# 	stratixiv_hssi_pma_c_lockdet_tx18
+# 	stratixiv_hssi_pma_c_pfd
+# 	stratixiv_hssi_pma_c_rlpbk_ctrl
+# 	stratixiv_hssi_pma_c_sdl_en_2x
+# 	stratixiv_hssi_clock_divider
+# 	stratixiv_hssi_pll
+# 	stratixiv_hssi_tx_pma
+# 	stratixiv_hssi_rx_pma
+# 	stratixiv_hssi_tx_pcs
+# 	stratixiv_hssi_rx_pcs
+# 	stratixiv_hssi_cmu
+# 	stratixiv_hssi_calibration_block
+# 	stratixiv_hssi_refclk_divider
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module stratixiv_pciehip_param
+# -- Compiling module stratixiv_pciehip_clkmux
+# -- Compiling module stratixiv_pciehip_dprio_bit
+# -- Compiling module stratixiv_pciehip_dprio_16bit
+# -- Compiling module stratixiv_pciehip_dprio_addr
+# -- Compiling module stratixiv_pciehip_dprio_cnt
+# -- Compiling module stratixiv_pciehip_dprio_ctl_data
+# -- Compiling module stratixiv_pciehip_dprio_sm
+# -- Compiling module stratixiv_pciehip_dprio_bus_out_mux
+# -- Compiling module stratixiv_pciehip_dprio_reg
+# -- Compiling module stratixiv_pciehip_dprio_reg_top
+# -- Compiling module stratixiv_pciehip_hip_dprio_top
+# -- Compiling module stratixiv_pciehip_compute_bit
+# -- Compiling module stratixiv_pciehip_ecc_gen
+# -- Compiling module stratixiv_pciehip_ecc_chk
+# -- Compiling module stratixiv_pciehip_ecc_decoder
+# -- Compiling module stratixiv_pciehip_pulse_ext
+# -- Compiling module stratixiv_pciehip_hip_mram
+# -- Compiling module stratixiv_pciehip_mram_top
+# -- Compiling module stratixiv_pciehip_pciexp_dcfiforam
+# -- Compiling module stratixiv_pciehip_pciexp_dcram_rtry
+# -- Compiling module stratixiv_pciehip_pciexp_dcram_rxvc
+# -- Compiling module stratixiv_pciehip_iei_detect
+# -- Compiling module stratixiv_pciehip_pciexp_top_hip
+# -- Compiling module stratixiv_pciehip_hip_top
+# -- Compiling module stratixiv_hssi_pcie_hip
+# 
+# Top level modules:
+# 	stratixiv_hssi_pcie_hip
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling UDP STRATIXIV_PRIM_DFFE
+# -- Compiling UDP STRATIXIV_PRIM_DFFEAS
+# -- Compiling UDP STRATIXIV_PRIM_DFFEAS_HIGH
+# -- Compiling module stratixiv_dffe
+# -- Compiling module stratixiv_mux21
+# -- Compiling module stratixiv_mux41
+# -- Compiling module stratixiv_and1
+# -- Compiling module stratixiv_and16
+# -- Compiling module stratixiv_bmux21
+# -- Compiling module stratixiv_b17mux21
+# -- Compiling module stratixiv_nmux21
+# -- Compiling module stratixiv_b5mux21
+# -- Compiling module stratixiv_jtag
+# -- Compiling module stratixiv_crcblock
+# -- Compiling module stratixiv_lcell_comb
+# -- Compiling module stratixiv_routing_wire
+# -- Compiling module stratixiv_lvds_tx_reg
+# -- Compiling module stratixiv_lvds_tx_parallel_register
+# -- Compiling module stratixiv_lvds_tx_out_block
+# -- Compiling module stratixiv_lvds_transmitter
+# -- Compiling module stratixiv_rublock
+# -- Compiling module stratixiv_ram_pulse_generator
+# -- Compiling module stratixiv_ram_register
+# -- Compiling module stratixiv_ram_block
+# -- Compiling module stratixiv_ff
+# -- Compiling module stratixiv_clkselect
+# -- Compiling module stratixiv_and2
+# -- Compiling module stratixiv_ena_reg
+# -- Compiling module stratixiv_clkena
+# -- Compiling module stratixiv_mlab_cell_pulse_generator
+# -- Compiling module stratixiv_mlab_cell
+# -- Compiling module stratixiv_io_ibuf
+# -- Compiling module stratixiv_io_obuf
+# -- Compiling module stratixiv_ddio_out
+# -- Compiling module stratixiv_ddio_oe
+# -- Compiling module stratixiv_ddio_in
+# -- Compiling module stratixiv_mac_register
+# -- Compiling module stratixiv_mac_multiplier
+# -- Compiling module stratixiv_mac_mult
+# -- Compiling module stratixiv_fsa_isse
+# -- Compiling module stratixiv_first_stage_add_sub
+# -- Compiling module stratixiv_second_stage_add_accum
+# -- Compiling module stratixiv_round_block
+# -- Compiling module stratixiv_saturate_block
+# -- Compiling module stratixiv_round_saturate_block
+# -- Compiling module stratixiv_rotate_shift_block
+# -- Compiling module stratixiv_carry_chain_adder
+# -- Compiling module stratixiv_mac_out
+# -- Compiling module stratixiv_ddr_gray_decoder
+# -- Compiling module stratixiv_ddr_delay_chain_s
+# -- Compiling module stratixiv_ddr_io_reg
+# -- Compiling module stratixiv_dll
+# -- Compiling module stratixiv_dll_offset_ctrl
+# -- Compiling module stratixiv_dqs_delay_chain
+# -- Compiling module stratixiv_dqs_enable
+# -- Compiling module stratixiv_dqs_enable_ctrl
+# -- Compiling module stratixiv_delay_chain
+# -- Compiling module stratixiv_io_clock_divider
+# -- Compiling module stratixiv_output_phase_alignment
+# -- Compiling module stratixiv_input_phase_alignment
+# -- Compiling module stratixiv_half_rate_input
+# -- Compiling module stratixiv_io_config
+# -- Compiling module stratixiv_dqs_config
+# -- Compiling module stratixiv_rt_sm
+# -- Compiling module stratixiv_termination_aux_clock_div
+# -- Compiling module stratixiv_termination
+# -- Compiling module stratixiv_termination_logic
+# -- Compiling module stratixiv_io_pad
+# -- Compiling module stratixiv_m_cntr
+# -- Compiling module stratixiv_n_cntr
+# -- Compiling module stratixiv_scale_cntr
+# -- Compiling module stratixiv_pll_reg
+# -- Compiling module stratixiv_pll
+# -- Compiling module stratixiv_asmiblock
+# -- Compiling module stratixiv_tsdblock
+# -- Compiling module stratixiv_lvds_rx_fifo_sync_ram
+# -- Compiling module stratixiv_lvds_rx_fifo
+# -- Compiling module stratixiv_lvds_rx_bitslip
+# -- Compiling module stratixiv_lvds_rx_deser
+# -- Compiling module stratixiv_lvds_rx_parallel_reg
+# -- Compiling module stratixiv_lvds_reg
+# -- Compiling module stratixiv_pclk_divider
+# -- Compiling module stratixiv_select_ini_phase_dpaclk
+# -- Compiling module stratixiv_dpa_retime_block
+# -- Compiling module stratixiv_dpa_block
+# -- Compiling module stratixiv_lvds_receiver
+# -- Compiling module stratixiv_pseudo_diff_out
+# -- Compiling module stratixiv_bias_logic
+# -- Compiling module stratixiv_bias_generator
+# -- Compiling module stratixiv_bias_block
+# 
+# Top level modules:
+# 	stratixiv_dffe
+# 	stratixiv_and1
+# 	stratixiv_and16
+# 	stratixiv_bmux21
+# 	stratixiv_b17mux21
+# 	stratixiv_nmux21
+# 	stratixiv_b5mux21
+# 	stratixiv_jtag
+# 	stratixiv_crcblock
+# 	stratixiv_lcell_comb
+# 	stratixiv_routing_wire
+# 	stratixiv_lvds_transmitter
+# 	stratixiv_rublock
+# 	stratixiv_ram_block
+# 	stratixiv_ff
+# 	stratixiv_clkselect
+# 	stratixiv_clkena
+# 	stratixiv_mlab_cell
+# 	stratixiv_io_ibuf
+# 	stratixiv_io_obuf
+# 	stratixiv_ddio_out
+# 	stratixiv_ddio_oe
+# 	stratixiv_ddio_in
+# 	stratixiv_mac_mult
+# 	stratixiv_mac_out
+# 	stratixiv_dll
+# 	stratixiv_dll_offset_ctrl
+# 	stratixiv_dqs_delay_chain
+# 	stratixiv_dqs_enable
+# 	stratixiv_dqs_enable_ctrl
+# 	stratixiv_delay_chain
+# 	stratixiv_io_clock_divider
+# 	stratixiv_output_phase_alignment
+# 	stratixiv_input_phase_alignment
+# 	stratixiv_half_rate_input
+# 	stratixiv_io_config
+# 	stratixiv_dqs_config
+# 	stratixiv_termination
+# 	stratixiv_termination_logic
+# 	stratixiv_io_pad
+# 	stratixiv_pll_reg
+# 	stratixiv_pll
+# 	stratixiv_asmiblock
+# 	stratixiv_tsdblock
+# 	stratixiv_lvds_receiver
+# 	stratixiv_pseudo_diff_out
+# 	stratixiv_bias_block
+#  			  com 
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module altera_reset_controller
+# 
+# Top level modules:
+# 	altera_reset_controller
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module altera_reset_synchronizer
+# 
+# Top level modules:
+# 	altera_reset_synchronizer
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling package avalon_utilities_pkg
+# 
+# Top level modules:
+# 	--none--
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling package verbosity_pkg
+# 
+# Top level modules:
+# 	--none--
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module altera_avalon_st_sink_bfm
+# -- Importing package verbosity_pkg
+# 
+# Top level modules:
+# 	altera_avalon_st_sink_bfm
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling package avalon_utilities_pkg
+# 
+# Top level modules:
+# 	--none--
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling package verbosity_pkg
+# 
+# Top level modules:
+# 	--none--
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module altera_avalon_st_source_bfm
+# -- Importing package verbosity_pkg
+# -- Importing package avalon_utilities_pkg
+# 
+# Top level modules:
+# 	altera_avalon_st_source_bfm
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module sonic_blocksync_testbench
+# 
+# Top level modules:
+# 	sonic_blocksync_testbench
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling package verbosity_pkg
+# 
+# Top level modules:
+# 	--none--
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module altera_avalon_reset_source
+# -- Importing package verbosity_pkg
+# 
+# Top level modules:
+# 	altera_avalon_reset_source
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling package verbosity_pkg
+# 
+# Top level modules:
+# 	--none--
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module altera_avalon_clock_source
+# -- Importing package verbosity_pkg
+# 
+# Top level modules:
+# 	altera_avalon_clock_source
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module sonic_blocksync_sim_tb_sonic_blocksync_sim_inst
+# 
+# Top level modules:
+# 	sonic_blocksync_sim_tb_sonic_blocksync_sim_inst
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module sonic_blocksync_sim_tb
+# 
+# Top level modules:
+# 	sonic_blocksync_sim_tb
+#  			  /home/hwang/questasim/install/questa_sim/linux/vlog +define+SYNTHESIS=1 +incdir+../../../lib/shared/+../../../lib/sonic/common/testbench/ -novopt -work work  -sv sonic_chaining_testbench.v sonictb_bfm_driver_chaining.sv test_program.sv sim_top.sv 
+# QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
+# -- Compiling module sonic_chaining_testbench
+# ** Warning: ../../../lib/shared//sonic_constants.sv(159): (vlog-2263) Redefinition of macro: TLP_TC_CLASS_P1.
+# ** Warning: ../../../lib/shared//sonic_constants.sv(160): (vlog-2263) Redefinition of macro: TLP_TC_CLASS_P0.
+# -- Compiling module sonictb_bfm_driver_chaining
+# -- Compiling module test_program
+# -- Importing package verbosity_pkg
+# -- Compiling module sim_top
+# 
+# Top level modules:
+# 	sonic_chaining_testbench
+# 	sim_top
+#  			  source msim.tcl 
+#  			  elab_top 
+# vsim -L work -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L stratixiv_hssi_ver -L stratixiv_pcie_hip_ver -L stratixiv_ver -t ps -novopt sim_top 
+# Loading sv_std.std
+# Loading work.sim_top
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/work.sonic_blocksync_sim_tb
+# Loading work.sonic_blocksync_sim_tb
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/work.sonic_blocksync_sim_tb_sonic_blocksync_sim_inst
+# Loading work.sonic_blocksync_sim_tb_sonic_blocksync_sim_inst
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/work.sonic_blocksync_testbench
+# Loading work.sonic_blocksync_testbench
+# Loading work.altpcietb_bfm_rp_top_x8_pipen1b
+# Loading work.altpcietb_bfm_rpvar_64b_x8_pipen1b
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.altpll
+# Loading altera_mf_ver.altpll
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.ALTERA_DEVICE_FAMILIES
+# Loading altera_mf_ver.ALTERA_DEVICE_FAMILIES
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.pll_iobuf
+# Loading altera_mf_ver.pll_iobuf
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.altsyncram
+# Loading altera_mf_ver.altsyncram
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.ALTERA_MF_MEMORY_INITIALIZATION
+# Loading altera_mf_ver.ALTERA_MF_MEMORY_INITIALIZATION
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/sgate_ver.oper_add
+# Loading sgate_ver.oper_add
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/lpm_ver.lpm_add_sub
+# Loading lpm_ver.lpm_add_sub
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/sgate_ver.oper_decoder
+# Loading sgate_ver.oper_decoder
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/lpm_ver.lpm_decode
+# Loading lpm_ver.lpm_decode
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/sgate_ver.oper_less_than
+# Loading sgate_ver.oper_less_than
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/sgate_ver.oper_mux
+# Loading sgate_ver.oper_mux
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/sgate_ver.oper_selector
+# Loading sgate_ver.oper_selector
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_calibration_block
+# Loading stratixiv_hssi_ver.stratixiv_hssi_calibration_block
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_clock_divider
+# Loading stratixiv_hssi_ver.stratixiv_hssi_clock_divider
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_clkgenbuf_cmu
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_clkgenbuf_cmu
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_clkgenbuf
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_clkgenbuf
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_divby2q
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_divby2q
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_clkgendrv
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_clkgendrv
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_pcie_sw
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_pcie_sw
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_clkgenbuf_tx10g
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_clkgenbuf_tx10g
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_clkgendrv_tx10g
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_clkgendrv_tx10g
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_aux_clock_div
+# Loading stratixiv_hssi_ver.stratixiv_hssi_aux_clock_div
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_quad_reset
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_quad_reset
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_chnl_reset
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_chnl_reset
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_clk_ctl
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_clk_ctl
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_clk_gating
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_clk_gating
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_rxclk_ctl
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_rxclk_ctl
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_rxclk_gating
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_rxclk_gating
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_txclk_ctl
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_txclk_ctl
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_txclk_gating
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_txclk_gating
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_auto_speed_neg
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_auto_speed_neg
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_rx_ctrl
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_rx_ctrl
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_tx_ctrl
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_tx_ctrl
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_dskw_sm
+# Loading stratixiv_hssi_ver.stratixiv_hssi_dskw_sm
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_tx_sm
+# Loading stratixiv_hssi_ver.stratixiv_hssi_tx_sm
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rcv_sm
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rcv_sm
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_top
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_top
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_addr
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_addr
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_cnt
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_cnt
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_sm
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_sm
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_ctl_data
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_ctl_data
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_status
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_status
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_bit
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_bit
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_centrl_top
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_centrl_top
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_reg_centrl
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_reg_centrl
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_16bit_pma
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_16bit_pma
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_bit_pma
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_bit_pma
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_16bit
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_16bit
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_centrl_bus_out_mux
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_centrl_bus_out_mux
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_chnl_top
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_chnl_top
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_reg_chnl
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_reg_chnl
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_chnl_bus_out_mux
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_chnl_bus_out_mux
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_map
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_map
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_map_index
+# Loading stratixiv_hssi_ver.stratixiv_hssi_cmu_dprio_map_index
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pll
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pll
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_aux_clock_mult
+# Loading stratixiv_hssi_ver.stratixiv_hssi_aux_clock_mult
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_pcs
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_pcs
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pcs_reset
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pcs_reset
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_digi_chnl_hip_spt
+# Loading stratixiv_hssi_ver.stratixiv_hssi_digi_chnl_hip_spt
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_q_pipe_interface_top
+# Loading stratixiv_hssi_ver.stratixiv_hssi_q_pipe_interface_top
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_tx_pipe_interface
+# Loading stratixiv_hssi_ver.stratixiv_hssi_tx_pipe_interface
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_pipe_interface
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_pipe_interface
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_phystatus_generator
+# Loading stratixiv_hssi_ver.stratixiv_hssi_phystatus_generator
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_phystatus_generator_fsm
+# Loading stratixiv_hssi_ver.stratixiv_hssi_phystatus_generator_fsm
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digi
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digi
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digi_rxclk_ctl
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digi_rxclk_ctl
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digis_rxclk_gating
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digis_rxclk_gating
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digi_wordalign
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digi_wordalign
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digi_dskw_fifo
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digi_dskw_fifo
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digis_ram16x14_syn
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digis_ram16x14_syn
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digi_prbs_ver
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digi_prbs_ver
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digi_comp_chnl_top
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digi_comp_chnl_top
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digis_ram20x16_syn
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digis_ram20x16_syn
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digi_dec_chnl_top
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digi_dec_chnl_top
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digi_bist_ver
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digi_bist_ver
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digi_rx_ctrl
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digi_rx_ctrl
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digis_ph_fifo
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digis_ph_fifo
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digis_ram8x70_syn
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digis_ram8x70_syn
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digi_pcs_channel_testbus
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digi_pcs_channel_testbus
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digi_freqdet
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digi_freqdet
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digi_auto_speed_neg
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digi_auto_speed_neg
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digi_eii_module
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digi_eii_module
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digi_cdr_ctrl
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digi_cdr_ctrl
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_digi_iq_pipe_rx
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_digi_iq_pipe_rx
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_rx_pma
+# Loading stratixiv_hssi_ver.stratixiv_hssi_rx_pma
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_adce
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_adce
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/sgate_ver.io_buf_tri
+# Loading sgate_ver.io_buf_tri
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/sgate_ver.tri_bus
+# Loading sgate_ver.tri_bus
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_rx
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_rx
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_ppmdetect
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_ppmdetect
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_rlpbk_mux
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_rlpbk_mux
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_deser
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_deser
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_deser_10to20
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_deser_10to20
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_deser_fsd_rst
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_deser_fsd_rst
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_deser_ff_chain
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_deser_ff_chain
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_deser_pcie
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_deser_pcie
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_tx_pcs
+# Loading stratixiv_hssi_ver.stratixiv_hssi_tx_pcs
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_tx_digi
+# Loading stratixiv_hssi_ver.stratixiv_hssi_tx_digi
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_tx_digi_txclk_ctl
+# Loading stratixiv_hssi_ver.stratixiv_hssi_tx_digi_txclk_ctl
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_tx_digis_txclk_gating
+# Loading stratixiv_hssi_ver.stratixiv_hssi_tx_digis_txclk_gating
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_tx_digi_tx_ctrl
+# Loading stratixiv_hssi_ver.stratixiv_hssi_tx_digi_tx_ctrl
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_tx_digis_ph_fifo
+# Loading stratixiv_hssi_ver.stratixiv_hssi_tx_digis_ph_fifo
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_tx_digis_ram8x49_syn
+# Loading stratixiv_hssi_ver.stratixiv_hssi_tx_digis_ram8x49_syn
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_tx_digi_bist_gen
+# Loading stratixiv_hssi_ver.stratixiv_hssi_tx_digi_bist_gen
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_tx_digi_prbs_gen
+# Loading stratixiv_hssi_ver.stratixiv_hssi_tx_digi_prbs_gen
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_tx_digi_enc_chnl_top
+# Loading stratixiv_hssi_ver.stratixiv_hssi_tx_digi_enc_chnl_top
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_tx_digi_iq_pipe_tx
+# Loading stratixiv_hssi_ver.stratixiv_hssi_tx_digi_iq_pipe_tx
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_tx_pma
+# Loading stratixiv_hssi_ver.stratixiv_hssi_tx_pma
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_tx_clkmux_cmu
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_tx_clkmux_cmu
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_ser
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_ser
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_ser_20to10
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_ser_20to10
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_tx
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_tx
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_controller_4t16
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_controller_4t16
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_rcv_detect
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_rcv_detect
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_rcv_det_digital
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_rcv_det_digital
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_rcv_detect_clk_gen
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_rcv_detect_clk_gen
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_rcv_detect_div_by_2
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_rcv_detect_div_by_2
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_rcv_detect_control
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_rcv_detect_control
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_rcv_detect_sync
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_rcv_detect_sync
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_hssi_ver.stratixiv_hssi_pma_c_rcv_detect_fsm
+# Loading stratixiv_hssi_ver.stratixiv_hssi_pma_c_rcv_detect_fsm
+# Loading work.altpcietb_bfm_vc_intf
+# Loading work.sonictb_bfm_driver_chaining
+# Loading work.altpcietb_ltssm_mon
+# Loading work.sonic_top
+# Loading work.top_plus
+# Loading work.top
+# Loading work.top_serdes
+# Loading work.top_serdes_alt4gxb_80pa
+# Loading work.altpcie_rs_serdes
+# Loading work.top_core
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_hssi_pcie_hip
+# Loading stratixiv_pcie_hip_ver.stratixiv_hssi_pcie_hip
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_hip_top
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_hip_top
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_hip_dprio_top
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_hip_dprio_top
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_reg_top
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_reg_top
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_reg
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_reg
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_16bit
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_16bit
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_bit
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_bit
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_bus_out_mux
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_bus_out_mux
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_addr
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_addr
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_cnt
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_cnt
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_sm
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_sm
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_ctl_data
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_dprio_ctl_data
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_iei_detect
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_iei_detect
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_pciexp_top_hip
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_pciexp_top_hip
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_pciexp_dcfiforam
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_pciexp_dcfiforam
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_pciexp_dcram_rtry
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_pciexp_dcram_rtry
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_pciexp_dcram_rxvc
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_pciexp_dcram_rxvc
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_mram_top
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_mram_top
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_ecc_chk
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_ecc_chk
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_ecc_gen
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_ecc_gen
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_compute_bit
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_compute_bit
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_hip_mram
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_hip_mram
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_ecc_decoder
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_ecc_decoder
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_pulse_ext
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_pulse_ext
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_clkmux
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_clkmux
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/stratixiv_pcie_hip_ver.stratixiv_pciehip_param
+# Loading stratixiv_pcie_hip_ver.stratixiv_pciehip_param
+# Loading work.altpcie_pll_100_250
+# Loading work.altpcie_pll_125_250
+# Loading work.altpcie_reconfig_4sgx
+# Loading work.altpcie_reconfig_4sgx_alt2gxb_reconfig_squ1
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.alt_cal
+# Loading altera_mf_ver.alt_cal
+# Loading work.altpcie_reconfig_4sgx_alt_dprio_2vj
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/lpm_ver.lpm_compare
+# Loading lpm_ver.lpm_compare
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/lpm_ver.lpm_counter
+# Loading lpm_ver.lpm_counter
+# Loading work.altpcie_reconfig_4sgx_mux_c6a
+# Loading work.altpcie_reconfig_4sgx_mux_46a
+# Loading work.top_rs_hip
+# Loading work.altpcierd_reconfig_clk_pll
+# Loading work.altpcierd_tl_cfg_sample
+# Loading work.altpcierd_cplerr_lmi
+# Loading work.sonic_application_streaming_port
+# Loading work.altpcierd_cpld_rx_buffer
+# Loading work.altpcierd_cdma_ast_msi
+# Loading work.sonic_single_port_logic
+# Loading work.sonic_dma_dt
+# Loading work.sonic_dma_prg_reg
+# Loading work.sonic_dma_descriptor
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.scfifo
+# Loading altera_mf_ver.scfifo
+# Loading work.sonic_cmd_ctl
+# Loading work.sonic_cmd_prg_reg
+# Loading work.sonic_rc_update
+# Loading work.sonic_irq_ctl
+# Loading work.sonic_irq_generator
+# Loading work.sonic_irq_prg_reg
+# Loading work.sonic_rx_chan_66
+# Loading work.sonic_gearbox_40_66
+# Loading work.sonic_blocksync_xg
+# Loading work.sonic_rx_ctl_66
+# Loading work.sonic_rx_circular_buffer_66
+# Loading work.sonic_calc_address
+# Loading work.sonic_translate_address
+# Loading work.sonic_mult_add
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.altmult_add
+# Loading altera_mf_ver.altmult_add
+# Loading work.sonic_sync_ring_2_128
+# Loading work.sonic_dpram_async_2_64
+# Loading work.sonic_dpram_async_64_128
+# Loading work.sonic_common_fifo_usedw_calculator
+# Loading work.sonic_common_gray_clock_crosser
+# Loading work.sonic_common_logic_vector_delay
+# Loading work.sonic_tx_chan_66
+# Loading work.sonic_tx_ctl_66
+# Loading work.sonic_common_signal_clock_crosser
+# Loading work.sonic_tx_circular_buffer_66
+# Loading work.sonic_dpram_async_128_64
+# Loading work.sonic_sync_ring_128_2
+# Loading work.sonic_dpram_async_64_2
+# Loading work.sonic_gearbox_66_40
+# Loading work.sonic_rc_slave
+# Loading work.sonic_rxtx_downstream_intf
+# Loading work.sonic_reg_access
+# Loading work.altpcietb_bfm_log_common
+# Loading work.altpcietb_bfm_req_intf_common
+# Loading work.altpcietb_bfm_shmem_common
+# Loading work.altpcietb_pipe_phy
+# Loading work.altpcietb_pipe_xtx2yrx
+# Loading work.altpcietb_rst_clk
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/work.altera_avalon_st_source_bfm
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/work.avalon_utilities_pkg
+# Loading work.avalon_utilities_pkg
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/work.verbosity_pkg
+# Loading work.verbosity_pkg
+# Loading work.altera_avalon_st_source_bfm
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/work.altera_avalon_st_sink_bfm
+# Loading work.altera_avalon_st_sink_bfm
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/work.altera_reset_controller
+# Loading work.altera_reset_controller
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/work.altera_avalon_clock_source
+# Loading work.altera_avalon_clock_source
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/work.altera_avalon_reset_source
+# Loading work.altera_avalon_reset_source
+# Loading work.test_program
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.MF_stratixii_pll
+# Loading altera_mf_ver.MF_stratixii_pll
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.MF_pll_reg
+# Loading altera_mf_ver.MF_pll_reg
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.arm_m_cntr
+# Loading altera_mf_ver.arm_m_cntr
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.arm_n_cntr
+# Loading altera_mf_ver.arm_n_cntr
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.arm_scale_cntr
+# Loading altera_mf_ver.arm_scale_cntr
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.MF_stratix_pll
+# Loading altera_mf_ver.MF_stratix_pll
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.stx_m_cntr
+# Loading altera_mf_ver.stx_m_cntr
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.stx_n_cntr
+# Loading altera_mf_ver.stx_n_cntr
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.stx_scale_cntr
+# Loading altera_mf_ver.stx_scale_cntr
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.dffp
+# Loading altera_mf_ver.dffp
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.MF_stratixiii_pll
+# Loading altera_mf_ver.MF_stratixiii_pll
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.ttn_m_cntr
+# Loading altera_mf_ver.ttn_m_cntr
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.ttn_n_cntr
+# Loading altera_mf_ver.ttn_n_cntr
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/altera_mf_ver.ttn_scale_cntr
+# Loading altera_mf_ver.ttn_scale_cntr
+# Loading work.sonic_write_dma_requester_128
+# Loading work.sonic_read_dma_requester_128
+# Loading work.altpcierd_tx_req_reg
+# Loading work.altpcierd_cdma_ast_tx_128
+# Loading work.altpcierd_cdma_ast_rx_128
+# Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/work.altera_reset_synchronizer
+# Loading work.altera_reset_synchronizer
+# ** Warning: (vsim-PLI-3691) test_program.sv(111): Expected a system task, not a system function '$fscanf'.
+#         Region: /sim_top/pgm/chan0_xcvr_src
+# ** Warning: (vsim-3017) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(67174): [TFMPC] - Too few port connections. Expected 37, found 34.
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/rp/rp/nl00O0i
+# ** Warning: (vsim-3722) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(67174): [TFMPC] - Missing connection for port 'fbmimicbidir'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(67174): [TFMPC] - Missing connection for port 'fref'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(67174): [TFMPC] - Missing connection for port 'icdrclk'.
+# ** Warning: (vsim-3017) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(163016): [TFMPC] - Too few port connections. Expected 158, found 157.
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/rp/rp/nl0i00i
+# ** Warning: (vsim-3722) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(163016): [TFMPC] - Missing connection for port 'wareset'.
+# ** Warning: (vsim-3017) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(163272): [TFMPC] - Too few port connections. Expected 158, found 157.
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/rp/rp/nl0i00l
+# ** Warning: (vsim-3722) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(163272): [TFMPC] - Missing connection for port 'wareset'.
+# ** Warning: (vsim-3017) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(163528): [TFMPC] - Too few port connections. Expected 158, found 157.
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/rp/rp/nl0i00O
+# ** Warning: (vsim-3722) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(163528): [TFMPC] - Missing connection for port 'wareset'.
+# ** Warning: (vsim-3017) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(163784): [TFMPC] - Too few port connections. Expected 158, found 157.
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/rp/rp/nl0i01i
+# ** Warning: (vsim-3722) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(163784): [TFMPC] - Missing connection for port 'wareset'.
+# ** Warning: (vsim-3017) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(164040): [TFMPC] - Too few port connections. Expected 158, found 157.
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/rp/rp/nl0i01l
+# ** Warning: (vsim-3722) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(164040): [TFMPC] - Missing connection for port 'wareset'.
+# ** Warning: (vsim-3017) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(164297): [TFMPC] - Too few port connections. Expected 158, found 157.
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/rp/rp/nl0i01O
+# ** Warning: (vsim-3722) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(164297): [TFMPC] - Missing connection for port 'wareset'.
+# ** Warning: (vsim-3017) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(164553): [TFMPC] - Too few port connections. Expected 158, found 157.
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/rp/rp/nl0i1Ol
+# ** Warning: (vsim-3722) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(164553): [TFMPC] - Missing connection for port 'wareset'.
+# ** Warning: (vsim-3017) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(164809): [TFMPC] - Too few port connections. Expected 158, found 157.
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/rp/rp/nl0i1OO
+# ** Warning: (vsim-3722) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(164809): [TFMPC] - Missing connection for port 'wareset'.
+# ** Warning: (vsim-3015) ../../../designs/sonic_xg_blocksync/sonic_top.sv(687): [PCDPC] - Port size (9 or 9) does not match connection size (64) for port 'test_out'. The port definition is at: ../../../designs/sonic_xg_blocksync/top_plus.v(154).
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/ep/ep_plus
+# ** Warning: (vsim-3017) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Too few port connections. Expected 219, found 199.
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/ep/ep_plus/epmap
+# ** Warning: (vsim-3015) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [PCDPC] - Port size (64 or 64) does not match connection size (9) for port 'test_out'. The port definition is at: ../../../lib/sonic/pcie/top.v(196).
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/ep/ep_plus/epmap
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'derr_cor_ext_rcv0'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'derr_cor_ext_rcv1'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'derr_cor_ext_rpl'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'derr_rpl'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'ko_cpl_spc_vc0'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'ko_cpl_spc_vc1'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'npd_alloc_1cred_vc0'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'npd_alloc_1cred_vc1'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'npd_cred_vio_vc0'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'npd_cred_vio_vc1'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'nph_alloc_1cred_vc0'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'nph_alloc_1cred_vc1'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'nph_cred_vio_vc0'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'nph_cred_vio_vc1'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'r2c_err0'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'r2c_err1'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'rc_rx_digitalreset'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'reset_status'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'rx_st_empty1'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Missing connection for port 'suc_spd_neg'.
+# ** Warning: (vsim-3017) ../../../lib/sonic/pcie/top.v(1049): [TFMPC] - Too few port connections. Expected 40, found 37.
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/ep/ep_plus/epmap/serdes
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/top.v(1049): [TFMPC] - Missing connection for port 'coreclkout'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/top.v(1049): [TFMPC] - Missing connection for port 'rx_patterndetect'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/top.v(1049): [TFMPC] - Missing connection for port 'rx_syncstatus'.
+# ** Warning: (vsim-3017) ../../../lib/sonic/pcie/top.v(1341): [TFMPC] - Too few port connections. Expected 277, found 266.
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/ep/ep_plus/epmap/wrapper
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/top.v(1341): [TFMPC] - Missing connection for port 'avs_pcie_reconfig_readdata'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/top.v(1341): [TFMPC] - Missing connection for port 'avs_pcie_reconfig_readdatavalid'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/top.v(1341): [TFMPC] - Missing connection for port 'avs_pcie_reconfig_waitrequest'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/top.v(1341): [TFMPC] - Missing connection for port 'ev_128ns'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/top.v(1341): [TFMPC] - Missing connection for port 'ev_1us'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/top.v(1341): [TFMPC] - Missing connection for port 'int_status'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/top.v(1341): [TFMPC] - Missing connection for port 'serr_out'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/top.v(1341): [TFMPC] - Missing connection for port 'swdn_wake'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/top.v(1341): [TFMPC] - Missing connection for port 'swup_hotrst'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/top.v(1341): [TFMPC] - Missing connection for port 'use_pcie_reconfig'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/top.v(1341): [TFMPC] - Missing connection for port 'wake_oen'.
+# ** Warning: (vsim-3017) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_100_250.v(84): [TFMPC] - Too few port connections. Expected 37, found 25.
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/ep/ep_plus/epmap/refclk_to_250mhz/altpll_component
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_100_250.v(84): [TFMPC] - Missing connection for port 'scanclkena'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_100_250.v(84): [TFMPC] - Missing connection for port 'phasecounterselect'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_100_250.v(84): [TFMPC] - Missing connection for port 'phaseupdown'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_100_250.v(84): [TFMPC] - Missing connection for port 'phasestep'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_100_250.v(84): [TFMPC] - Missing connection for port 'configupdate'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_100_250.v(84): [TFMPC] - Missing connection for port 'fbmimicbidir'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_100_250.v(84): [TFMPC] - Missing connection for port 'phasedone'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_100_250.v(84): [TFMPC] - Missing connection for port 'vcooverrange'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_100_250.v(84): [TFMPC] - Missing connection for port 'vcounderrange'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_100_250.v(84): [TFMPC] - Missing connection for port 'fbout'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_100_250.v(84): [TFMPC] - Missing connection for port 'fref'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_100_250.v(84): [TFMPC] - Missing connection for port 'icdrclk'.
+# ** Warning: (vsim-3017) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_125_250.v(84): [TFMPC] - Too few port connections. Expected 37, found 25.
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/ep/ep_plus/epmap/pll_250mhz_to_500mhz/altpll_component
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_125_250.v(84): [TFMPC] - Missing connection for port 'scanclkena'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_125_250.v(84): [TFMPC] - Missing connection for port 'phasecounterselect'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_125_250.v(84): [TFMPC] - Missing connection for port 'phaseupdown'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_125_250.v(84): [TFMPC] - Missing connection for port 'phasestep'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_125_250.v(84): [TFMPC] - Missing connection for port 'configupdate'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_125_250.v(84): [TFMPC] - Missing connection for port 'fbmimicbidir'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_125_250.v(84): [TFMPC] - Missing connection for port 'phasedone'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_125_250.v(84): [TFMPC] - Missing connection for port 'vcooverrange'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_125_250.v(84): [TFMPC] - Missing connection for port 'vcounderrange'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_125_250.v(84): [TFMPC] - Missing connection for port 'fbout'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_125_250.v(84): [TFMPC] - Missing connection for port 'fref'.
+# ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_125_250.v(84): [TFMPC] - Missing connection for port 'icdrclk'.
+# ** Warning: (vsim-8607) /home/hwang/altera/11.0/quartus/eda/sim_lib/altera_mf.v(39922): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /home/hwang/altera/11.0/quartus/eda/sim_lib/altera_mf.v(39922): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-3017) ../../../designs/sonic_xg_blocksync/sonic_top.sv(851): [TFMPC] - Too few port connections. Expected 46, found 43.
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/ep/app1
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/sonic_top.sv(851): [TFMPC] - Missing connection for port 'reset_nios'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/sonic_top.sv(851): [TFMPC] - Missing connection for port 'set_lpbk'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/sonic_top.sv(851): [TFMPC] - Missing connection for port 'unset_lpbk'.
+# ** Warning: (vsim-8607) /home/hwang/altera/11.0/quartus/eda/sim_lib/altera_mf.v(39922): Non-positive replication multiplier inside concat. Replication will be ignored.
+# ** Warning: (vsim-8607) /home/hwang/altera/11.0/quartus/eda/sim_lib/altera_mf.v(39922): Non-positive replication multiplier inside concat. Replication will be ignored.
+#  			  do wave.do 
+#  			   
+#  
+run -all
+# created read thread           0.
+# created write thread           0.
+# created read thread           1.
+# created write thread           1.
+# Warning: read_during_write_mode_mixed_ports is assumed as   OLD_DATA
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.ep.app0.chaining_dma_arb.dma_read.genblk1.genblk1.read_requester_128.tag_dpram
+# Warning: read_during_write_mode_mixed_ports is assumed as   OLD_DATA
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.ep.app1.chaining_dma_arb.dma_read.genblk1.genblk1.read_requester_128.tag_dpram
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: - Hello from altera_avalon_st_source_bfm.
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: -   $Revision: #2 $
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: -   $Date: 2011/02/25 $
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: -   ST_SYMBOL_W             = 40
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: -   ST_NUMSYMBOLS           = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: -   ST_CHANNEL_W            = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: -   ST_ERROR_W              = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: -   ST_EMPTY_W              = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: -   ST_READY_LATENCY = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: -   ST_MAX_CHANNELS  = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: -   ST_BEATSPERCYCLE = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: -   USE_PACKET            = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: -   USE_CHANNEL           = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: -   USE_ERROR           = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: -   USE_READY           = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: -   USE_VALID           = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_0.__hello: -   USE_EMPTY           = 0
+#                    0: INFO: ------------------------------------------------------------
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: - Hello from altera_avalon_st_sink_bfm.
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: -   $Revision: #2 $
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: -   $Date: 2011/02/25 $
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: -   ST_SYMBOL_W   	  = 40
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: -   ST_NUMSYMBOLS 	  = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: -   ST_CHANNEL_W  	  = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: -   ST_ERROR_W    	  = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: -   ST_EMPTY_W    	  = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: -   ST_READY_LATENCY = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: -   ST_MAX_CHANNELS  = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: -   ST_BEATSPERCYCLE = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: -   USE_PACKET  	  = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: -   USE_CHANNEL 	  = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: -   USE_ERROR 	  = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: -   USE_READY 	  = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: -   USE_VALID 	  = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.__hello: -   USE_EMPTY 	  = 0
+#                    0: INFO: ------------------------------------------------------------
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: - Hello from altera_avalon_st_source_bfm.
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: -   $Revision: #2 $
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: -   $Date: 2011/02/25 $
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: -   ST_SYMBOL_W             = 40
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: -   ST_NUMSYMBOLS           = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: -   ST_CHANNEL_W            = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: -   ST_ERROR_W              = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: -   ST_EMPTY_W              = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: -   ST_READY_LATENCY = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: -   ST_MAX_CHANNELS  = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: -   ST_BEATSPERCYCLE = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: -   USE_PACKET            = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: -   USE_CHANNEL           = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: -   USE_ERROR           = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: -   USE_READY           = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: -   USE_VALID           = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_dataout_1.__hello: -   USE_EMPTY           = 0
+#                    0: INFO: ------------------------------------------------------------
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: - Hello from altera_avalon_st_sink_bfm.
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: -   $Revision: #2 $
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: -   $Date: 2011/02/25 $
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: -   ST_SYMBOL_W   	  = 40
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: -   ST_NUMSYMBOLS 	  = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: -   ST_CHANNEL_W  	  = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: -   ST_ERROR_W    	  = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: -   ST_EMPTY_W    	  = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: -   ST_READY_LATENCY = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: -   ST_MAX_CHANNELS  = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: -   ST_BEATSPERCYCLE = 1
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: -   USE_PACKET  	  = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: -   USE_CHANNEL 	  = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: -   USE_ERROR 	  = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: -   USE_READY 	  = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: -   USE_VALID 	  = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.__hello: -   USE_EMPTY 	  = 0
+#                    0: INFO: ------------------------------------------------------------
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst_clk_bfm.__hello: - Hello from altera_clock_source.
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst_clk_bfm.__hello: -   $Revision: #1 $
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst_clk_bfm.__hello: -   $Date: 2011/02/14 $
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst_clk_bfm.__hello: -   CLOCK_RATE = 257
+#                    0: INFO: ------------------------------------------------------------
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst_reset_bfm.__hello: - Hello from altera_reset_source
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst_reset_bfm.__hello: -   $Revision: #1 $
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst_reset_bfm.__hello: -   $Date: 2011/02/14 $
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst_reset_bfm.__hello: -   ASSERT_HIGH_RESET = 0
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst_reset_bfm.__hello: -   INITIAL_RESET_CYCLES = 50
+#                    0: INFO: ------------------------------------------------------------
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst_reset_bfm.reset_assert: Reset asserted
+#                    0:  verbosity_pkg.set_verbosity: Setting Verbosity level=4 (VERBOSITY_INFO)
+#                    0: INFO: sim_top.pgm: Helloworld message!
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst_clk_bfm.clock_start: Clock started
+#                    0: INFO: sim_top.tb.sonic_blocksync_sim_inst_reset_bfm.reset_deassert: Reset deasserted
+#                    0: WARNING: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_0.set_ready: Ignore set_ready() when USE_READY == 0
+#                    0: WARNING: sim_top.tb.sonic_blocksync_sim_inst.xcvr_datain_1.set_ready: Ignore set_ready() when USE_READY == 0
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.ep.ep_plus.epmap.serdes.top_serdes_alt4gxb_80pa_component.rx_cdr_pll0
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.ep.ep_plus.epmap.serdes.top_serdes_alt4gxb_80pa_component.rx_cdr_pll1
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.ep.ep_plus.epmap.serdes.top_serdes_alt4gxb_80pa_component.rx_cdr_pll2
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.ep.ep_plus.epmap.serdes.top_serdes_alt4gxb_80pa_component.rx_cdr_pll3
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.ep.ep_plus.epmap.serdes.top_serdes_alt4gxb_80pa_component.rx_cdr_pll4
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.ep.ep_plus.epmap.serdes.top_serdes_alt4gxb_80pa_component.rx_cdr_pll5
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.ep.ep_plus.epmap.serdes.top_serdes_alt4gxb_80pa_component.rx_cdr_pll6
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.ep.ep_plus.epmap.serdes.top_serdes_alt4gxb_80pa_component.rx_cdr_pll7
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.rp.rp.nl0i0ll
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.rp.rp.nl0i0li
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.rp.rp.nl0i0iO
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.rp.rp.nl0i0il
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.rp.rp.nl0i0OO
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.rp.rp.nl0i0Ol
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.rp.rp.nl0i0Oi
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.rp.rp.nl0i0lO
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.rp.rp.nl0i0ii
+# Note : CMU PLL is reset
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.ep.ep_plus.epmap.serdes.top_serdes_alt4gxb_80pa_component.tx_pll0
+#  Note : Stratix II PLL is enabled
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.rp.rp.nl00O0i.stratixii_pll.pll1
+# Warning : Invalid transition to 'X' detected on StratixII PLL input clk. This edge will be ignored.
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.rp.rp.nl00O0i.stratixii_pll.pll1.n1
+# Warning : Invalid transition to 'X' detected on PLL input clk. This edge will be ignored.
+# Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.ep.ep_plus.epmap.pll_250mhz_to_500mhz.altpll_component.stratix_pll.pll0.n1
+#  Note : Stratix IV PLL locked to incoming clock
+# Time: 30000  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.ep.reconfig_pll.altpll_component.stratixiii_pll.pll2
+#  Note : Stratix GX PLL locked to incoming clock
+# Time: 40000  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.ep.ep_plus.epmap.refclk_to_250mhz.altpll_component.stratix_pll.pll0
+#  Note : Stratix II PLL locked to incoming clock
+# Time: 48000  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.rp.rp.nl00O0i.stratixii_pll.pll1
+#  Note : Stratix GX PLL locked to incoming clock
+# Time: 56000  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.ep.ep_plus.epmap.pll_250mhz_to_500mhz.altpll_component.stratix_pll.pll0
+#                99000: INFO: sim_top.tb.sonic_blocksync_sim_inst_reset_bfm.reset_deassert: Reset deasserted
+# INFO:             464 ns Completed initial configuration of Root Port.                                                       
+# INFO: Core Clk Frequency: 251.00 Mhz
+# INFO:            3604 ns  EP LTSSM State: DETECT.ACTIVE                                                                      
+# INFO:            3640 ns  EP LTSSM State: POLLING.ACTIVE                                                                     
+# INFO:            3660 ns  RP LTSSM State: DETECT.ACTIVE                                                                      
+# INFO:            3692 ns  RP LTSSM State: POLLING.ACTIVE                                                                     
+# INFO:            6012 ns  RP LTSSM State: POLLING.CONFIG                                                                     
+# INFO:            6104 ns  EP LTSSM State: POLLING.CONFIG                                                                     
+# INFO:            7384 ns  EP LTSSM State: CONFIG.LINKWIDTH.START                                                             
+# INFO:            7420 ns  RP LTSSM State: CONFIG.LINKWIDTH.START                                                             
+# INFO:            7896 ns  EP LTSSM State: CONFIG.LINKWIDTH.ACCEPT                                                            
+# INFO:            8316 ns  RP LTSSM State: CONFIG.LINKWIDTH.ACCEPT                                                            
+# INFO:            8508 ns  RP LTSSM State: CONFIG.LANENUM.WAIT                                                                
+# INFO:            9000 ns  EP LTSSM State: CONFIG.LANENUM.WAIT                                                                
+# INFO:            9192 ns  EP LTSSM State: CONFIG.LANENUM.ACCEPT                                                              
+# INFO:            9356 ns  RP LTSSM State: CONFIG.LANENUM.ACCEPT                                                              
+# INFO:            9548 ns  RP LTSSM State: CONFIG.COMPLETE                                                                    
+# INFO:            9960 ns  EP LTSSM State: CONFIG.COMPLETE                                                                    
+# INFO:           11048 ns  EP LTSSM State: CONFIG.IDLE                                                                        
+# INFO:           11276 ns  RP LTSSM State: CONFIG.IDLE                                                                        
+# INFO:           11356 ns  RP LTSSM State: L0                                                                                 
+# INFO:           11576 ns  EP LTSSM State: L0                                                                                 
+# INFO:           12576 ns                                                                                                     
+# INFO:           12576 ns Configuring Bus 001, Device 001, Function 00                                                        
+# INFO:           12576 ns   EP Read Only Configuration Registers:                                                             
+# INFO:           12576 ns                 Vendor ID: 1172                                                                     
+# INFO:           12576 ns                 Device ID: E001                                                                     
+# INFO:           12576 ns               Revision ID: 01                                                                       
+# INFO:           12576 ns                Class Code: FF0000                                                                   
+# INFO:           12576 ns       Subsystem Vendor ID: 5BDE                                                                     
+# INFO:           12576 ns              Subsystem ID: 2801                                                                     
+# INFO:           12576 ns             Interrupt Pin: INTA# used                                                               
+# INFO:           12576 ns                                                                                                     
+# INFO:           13176 ns   PCI MSI Capability Register:                                                                      
+# INFO:           13176 ns    64-Bit Address Capable: Supported                                                                
+# INFO:           13176 ns        Messages Requested:  4                                                                       
+# INFO:           13176 ns                                                                                                     
+# INFO:           16160 ns   EP PCI Express Link Status Register (1081):                                                       
+# INFO:           16160 ns     Negotiated Link Width: x8                                                                       
+# INFO:           16160 ns         Slot Clock Config: System Reference Clock Used                                              
+# INFO:           16808 ns  RP LTSSM State: RECOVERY.RCVRLOCK                                                                  
+# INFO:           17188 ns  EP LTSSM State: RECOVERY.RCVRLOCK                                                                  
+# INFO:           17844 ns  EP LTSSM State: RECOVERY.RCVRCFG                                                                   
+# INFO:           18632 ns  RP LTSSM State: RECOVERY.RCVRCFG                                                                   
+# INFO:           20744 ns  RP LTSSM State: RECOVERY.SPEED                                                                     
+# INFO:           20996 ns  EP LTSSM State: RECOVERY.SPEED                                                                     
+# INFO:           21884 ns  EP LTSSM State: RECOVERY.RCVRLOCK                                                                  
+# INFO:           21902 ns  RP LTSSM State: RECOVERY.RCVRLOCK                                                                  
+# INFO:           22294 ns  RP LTSSM State: RECOVERY.RCVRCFG                                                                   
+# INFO:           22338 ns  EP LTSSM State: RECOVERY.RCVRCFG                                                                   
+# INFO:           23010 ns  EP LTSSM State: RECOVERY.IDLE                                                                      
+# INFO:           23030 ns  RP LTSSM State: RECOVERY.IDLE                                                                      
+# INFO:           23134 ns  RP LTSSM State: L0                                                                                 
+# INFO:           23194 ns  EP LTSSM State: L0                                                                                 
+# INFO:           23440 ns        Current Link Speed: 5.0GT/s                                                                  
+# INFO:           23440 ns                                                                                                     
+# INFO:           23744 ns   EP PCI Express Link Control Register (0040):                                                      
+# INFO:           23744 ns       Common Clock Config: System Reference Clock Used                                              
+# INFO:           23744 ns                                                                                                     
+# INFO:           24160 ns                                                                                                     
+# INFO:           24160 ns   EP PCI Express Capabilities Register (0002):                                                      
+# INFO:           24160 ns        Capability Version: 2                                                                        
+# INFO:           24160 ns                 Port Type: Native Endpoint                                                          
+# INFO:           24160 ns                                                                                                     
+# INFO:           24160 ns   EP PCI Express Device Capabilities Register (00008022):                                           
+# INFO:           24160 ns     Max Payload Supported: 512 Bytes                                                                
+# INFO:           24160 ns              Extended Tag: Supported                                                                
+# INFO:           24160 ns    Acceptable L0s Latency: Less Than 64 ns                                                          
+# INFO:           24160 ns    Acceptable L1  Latency: Less Than 1 us                                                           
+# INFO:           24160 ns          Attention Button: Not Present                                                              
+# INFO:           24160 ns       Attention Indicator: Not Present                                                              
+# INFO:           24160 ns           Power Indicator: Not Present                                                              
+# INFO:           24160 ns                                                                                                     
+# INFO:           24160 ns   EP PCI Express Link Capabilities Register (0103F482):                                             
+# INFO:           24160 ns        Maximum Link Width: x8                                                                       
+# INFO:           24160 ns      Supported Link Speed: 5.0GT/s or 2.5GT/s                                                       
+# INFO:           24160 ns                 L0s Entry: Supported                                                                
+# INFO:           24160 ns                 L1  Entry: Not Supported                                                            
+# INFO:           24160 ns          L0s Exit Latency: More than 4 us                                                           
+# INFO:           24160 ns          L1  Exit Latency: More than 64 us                                                          
+# INFO:           24160 ns               Port Number: 01                                                                       
+# INFO:           24160 ns   Surprise Dwn Err Report: Not Supported                                                            
+# INFO:           24160 ns    DLL Link Active Report: Not Supported                                                            
+# INFO:           24160 ns                                                                                                     
+# INFO:           24160 ns   EP PCI Express Device Capabilities 2 Register (0000001F):                                         
+# INFO:           24160 ns   Completion Timeout Rnge: ABCD (50us to 64s)                                                       
+# INFO:           24504 ns                                                                                                     
+# INFO:           24504 ns   EP PCI Express Device Control Register (2150):                                                    
+# INFO:           24504 ns   Error Reporting Enables: 0                                                                        
+# INFO:           24504 ns          Relaxed Ordering: Enabled                                                                  
+# INFO:           24504 ns               Max Payload: 512 Bytes                                                                
+# INFO:           24504 ns              Extended Tag: Enabled                                                                  
+# INFO:           24504 ns          Max Read Request: 512 Bytes                                                                
+# INFO:           24504 ns                                                                                                     
+# INFO:           24504 ns   EP PCI Express Device Status Register (0000):                                                     
+# INFO:           24504 ns                                                                                                     
+# INFO:           24816 ns   EP PCI Express Virtual Channel Capability:                                                        
+# INFO:           24816 ns          Virtual Channel: 2                                                                         
+# INFO:           24816 ns          Low Priority VC: 0                                                                         
+# INFO:           24816 ns                                                                                                     
+# INFO:           25944 ns                                                                                                     
+# INFO:           25944 ns BAR Address Assignments:                                                                            
+# INFO:           25944 ns BAR    Size       Assigned Address  Type                                                            
+# INFO:           25944 ns ---    ----       ----------------                                                                  
+# INFO:           25944 ns BAR1:0 256 MBytes 00000001 00000000 Prefetchable                                                    
+# INFO:           25944 ns BAR2   256 KBytes          00200000 Non-Prefetchable                                                
+# INFO:           25944 ns BAR3   256 KBytes          00240000 Non-Prefetchable                                                
+# INFO:           25944 ns BAR5:4 256 MBytes 00000001 10000000 Prefetchable                                                    
+# INFO:           25944 ns ExpROM Disabled                                                                                     
+# INFO:           26352 ns                                                                                                     
+# INFO:           26352 ns Completed configuration of Endpoint BARs.                                                           
+# INFO:           26768 ns Val: 8000000F                                                                                       
+# INFO:           27072 ns Val: 810000F0                                                                                       
+# INFO:           27384 ns Val: 800000FF                                                                                       
+# INFO:           27400 ns Val: 81000000                                                                                       
+# INFO:           27720 ns      EP Virtual Channel Extended Capability Header ( 00010002 )                                     
+# INFO:           28024 ns        VC count ( 1 ), Low Priority Extended VC Count ( 0 )                                         
+# INFO:           28640 ns   Virtual Channel 0:                                                                                
+# INFO:           28640 ns        PAT offset: ( 00 )Port Arbitration Capabiliity ( 0000 )                                      
+# INFO:           28944 ns        Resource Control: TC/VC map (0F) VC ID: ( 0 )                                                
+# INFO:           28944 ns        VC 0 enabled.                                                                                
+# INFO:           29256 ns          VC 0 Resource Status regs ( 00000000 )                                                     
+# INFO:           29568 ns   Virtual Channel 1:                                                                                
+# INFO:           29568 ns        PAT offset: ( 00 )Port Arbitration Capabiliity ( 0000 )                                      
+# INFO:           29880 ns        Resource Control: TC/VC map (F0) VC ID: ( 1 )                                                
+# INFO:           29880 ns        VC 1 enabled.                                                                                
+# INFO:           30192 ns          VC 1 Resource Status regs(00000000)                                                        
+# INFO:           30208 ns      RP Virtual Channel Extended Capability Header ( 80010002 )                                     
+# INFO:           30224 ns        VC count ( 3 ), Low Priority Extended VC Count ( 2 )                                         
+# INFO:           30240 ns       Hardware fixed arbitration scheme : Round Robin                                               
+# INFO:           30256 ns   Virtual Channel 0:                                                                                
+# INFO:           30256 ns        PAT offset: ( 00 )Port Arbitration Capabiliity ( 0000 )                                      
+# INFO:           30272 ns        Resource Control: TC/VC map (FF) VC ID: ( 0 )                                                
+# INFO:           30272 ns        VC 0 enabled.                                                                                
+# INFO:           30288 ns          VC 0 Resource Status regs ( 00000000 )                                                     
+# INFO:           30304 ns   Virtual Channel 1:                                                                                
+# INFO:           30304 ns        PAT offset: ( 00 )Port Arbitration Capabiliity ( 0000 )                                      
+# INFO:           30320 ns        Resource Control: TC/VC map (00) VC ID: ( 1 )                                                
+# INFO:           30320 ns        VC 1 enabled.                                                                                
+# INFO:           30336 ns          VC 1 Resource Status regs(00020000)                                                        
+# INFO:           30336 ns CMD_TEST: cmd_response_address 0x00000A00                                                           
+# INFO:           30376 ns                                                                                                     
+# INFO:           30376 ns Shared Memory Data Display:                                                                         
+# INFO:           30376 ns Address  Data                                                                                       
+# INFO:           30376 ns -------  ----                                                                                       
+# INFO:           30376 ns 00000A00 FFFFFFFF 00000000 00000000 00000000 <===                                                   
+# INFO:           30376 ns 00000A10 00000000 00000000 00000000 00000000                                                        
+# INFO:           30376 ns 00000A20 00000000 00000000 00000000 00000000                                                        
+# INFO:           30376 ns 00000A30 00000000                                                                                   
+# INFO:           31176 ns Task: cmd_poll	Received cmd reponse00000A00---> data:00000000.......                                
+# INFO:           31176 ns                                                                                                     
+# INFO:           31176 ns Shared Memory Data Display:                                                                         
+# INFO:           31176 ns Address  Data                                                                                       
+# INFO:           31176 ns -------  ----                                                                                       
+# INFO:           31176 ns 00000A00 00000000 00000000 00000000 00000000 <===                                                   
+# INFO:           31176 ns 00000A10 00000000 00000000 00000000 00000000                                                        
+# INFO:           31176 ns 00000A20 00000000 00000000 00000000 00000000                                                        
+# INFO:           31176 ns 00000A30 00000000                                                                                   
+# INFO:           31232 ns                                                                                                     
+# INFO:           31232 ns Shared Memory Data Display:                                                                         
+# INFO:           31232 ns Address  Data                                                                                       
+# INFO:           31232 ns -------  ----                                                                                       
+# INFO:           31232 ns 00000A00 FFFFFFFF 00000000 00000000 00000000 <===                                                   
+# INFO:           31232 ns 00000A10 00000000 00000000 00000000 00000000                                                        
+# INFO:           31232 ns 00000A20 00000000 00000000 00000000 00000000                                                        
+# INFO:           31232 ns 00000A30 00000000                                                                                   
+# INFO:           32030 ns Task: cmd_poll	Received cmd reponse00000A00---> data:00000000.......                                
+# INFO:           32030 ns                                                                                                     
+# INFO:           32030 ns Shared Memory Data Display:                                                                         
+# INFO:           32030 ns Address  Data                                                                                       
+# INFO:           32030 ns -------  ----                                                                                       
+# INFO:           32030 ns 00000A00 00000000 00000000 00000000 00000000 <===                                                   
+# INFO:           32030 ns 00000A10 00000000 00000000 00000000 00000000                                                        
+# INFO:           32030 ns 00000A20 00000000 00000000 00000000 00000000                                                        
+# INFO:           32030 ns 00000A30 00000000                                                                                   
+# INFO:           32070 ns                                                                                                     
+# INFO:           32070 ns Shared Memory Data Display:                                                                         
+# INFO:           32070 ns Address  Data                                                                                       
+# INFO:           32070 ns -------  ----                                                                                       
+# INFO:           32070 ns 00000A00 FFFFFFFF 00000000 00000000 00000000 <===                                                   
+# INFO:           32070 ns 00000A10 00000000 00000000 00000000 00000000                                                        
+# INFO:           32070 ns 00000A20 00000000 00000000 00000000 00000000                                                        
+# INFO:           32070 ns 00000A30 00000000                                                                                   
+# INFO:           32868 ns Task: cmd_poll	Received cmd reponse00000A00---> data:00000000.......                                
+# INFO:           32868 ns                                                                                                     
+# INFO:           32868 ns Shared Memory Data Display:                                                                         
+# INFO:           32868 ns Address  Data                                                                                       
+# INFO:           32868 ns -------  ----                                                                                       
+# INFO:           32868 ns 00000A00 00000000 00000000 00002000 00000000 <===                                                   
+# INFO:           32868 ns 00000A10 00000000 00000000 00000000 00000000                                                        
+# INFO:           32868 ns 00000A20 00000000 00000000 00000000 00000000                                                        
+# INFO:           32868 ns 00000A30 00000000                                                                                   
+# INFO:           32868 ns CMD_TEST: rc_response_address 0x00000000 00000040                                                   
+# INFO:           32940 ns                                                                                                     
+# INFO:           32940 ns Shared Memory Data Display:                                                                         
+# INFO:           32940 ns Address  Data                                                                                       
+# INFO:           32940 ns -------  ----                                                                                       
+# INFO:           32940 ns 00000A00 00000000 00000000 00002000 00000000 <===                                                   
+# INFO:           32940 ns 00000A10 00000000 00000000 00000000 00000000                                                        
+# INFO:           32940 ns 00000A20 00000000 00000000 00000000 00000000                                                        
+# INFO:           32940 ns 00000A30 00000000                                                                                   
+# INFO:           33738 ns Task: cmd_poll	Received cmd reponse00000A00---> data:00000000.......                                
+# INFO:           33738 ns                                                                                                     
+# INFO:           33738 ns Shared Memory Data Display:                                                                         
+# INFO:           33738 ns Address  Data                                                                                       
+# INFO:           33738 ns -------  ----                                                                                       
+# INFO:           33738 ns 00000A00 00000000 00000000 00000000 00000000 <===                                                   
+# INFO:           33738 ns 00000A10 00000000 00000000 00000000 00000000                                                        
+# INFO:           33738 ns 00000A20 00000000 00000000 00000000 00000000                                                        
+# INFO:           33738 ns 00000A30 00000000                                                                                   
+# INFO:           33738 ns                                                                                                     
+# INFO:           33738 ns Shared Memory Data Display:                                                                         
+# INFO:           33738 ns Address  Data                                                                                       
+# INFO:           33738 ns -------  ----                                                                                       
+# INFO:           33738 ns 00000A00 FFFFFFFF 00000000 00000000 00000000 <===                                                   
+# INFO:           33738 ns 00000A10 00000000 00000000 00000000 00000000                                                        
+# INFO:           33738 ns 00000A20 00000000 00000000 00000000 00000000                                                        
+# INFO:           33738 ns 00000A30 00000000                                                                                   
+# INFO:           34592 ns Task: cmd_poll	Received cmd reponse00000A00---> data:00000000.......                                
+# INFO:           34592 ns                                                                                                     
+# INFO:           34592 ns Shared Memory Data Display:                                                                         
+# INFO:           34592 ns Address  Data                                                                                       
+# INFO:           34592 ns -------  ----                                                                                       
+# INFO:           34592 ns 00000A00 00000000 00000000 00000000 00000000 <===                                                   
+# INFO:           34592 ns 00000A10 00000000 00000000 00000000 00000000                                                        
+# INFO:           34592 ns 00000A20 00000000 00000000 00000000 00000000                                                        
+# INFO:           34592 ns 00000A30 00000000                                                                                   
+# INFO:           34592 ns                                                                                                     
+# INFO:           34592 ns Shared Memory Data Display:                                                                         
+# INFO:           34592 ns Address  Data                                                                                       
+# INFO:           34592 ns -------  ----                                                                                       
+# INFO:           34592 ns 00000A00 FFFFFFFF 00000000 00000000 00000000 <===                                                   
+# INFO:           34592 ns 00000A10 00000000 00000000 00000000 00000000                                                        
+# INFO:           34592 ns 00000A20 00000000 00000000 00000000 00000000                                                        
+# INFO:           34592 ns 00000A30 00000000                                                                                   
+# INFO:           35430 ns Task: cmd_poll	Received cmd reponse00000A00---> data:00000000.......                                
+# INFO:           35430 ns                                                                                                     
+# INFO:           35430 ns Shared Memory Data Display:                                                                         
+# INFO:           35430 ns Address  Data                                                                                       
+# INFO:           35430 ns -------  ----                                                                                       
+# INFO:           35430 ns 00000A00 00000000 00000000 00000000 00000000 <===                                                   
+# INFO:           35430 ns 00000A10 00000000 00000000 00000000 00000000                                                        
+# INFO:           35430 ns 00000A20 00000000 00000000 00000000 00000000                                                        
+# INFO:           35430 ns 00000A30 00000000                                                                                   
+# INFO:           36430 ns CMD_TEST: cmd_response_address 0x00000C00                                                           
+# INFO:           36470 ns                                                                                                     
+# INFO:           36470 ns Shared Memory Data Display:                                                                         
+# INFO:           36470 ns Address  Data                                                                                       
+# INFO:           36470 ns -------  ----                                                                                       
+# INFO:           36470 ns 00000C00 FFFFFFFF 00000000 00000000 00000000 <===                                                   
+# INFO:           36470 ns 00000C10 00000000 00000000 00000000 00000000                                                        
+# INFO:           36470 ns 00000C20 00000000 00000000 00000000 00000000                                                        
+# INFO:           36470 ns 00000C30 00000000                                                                                   
+# INFO:           37268 ns Task: cmd_poll	Received cmd reponse00000C00---> data:00000000.......                                
+# INFO:           37268 ns                                                                                                     
+# INFO:           37268 ns Shared Memory Data Display:                                                                         
+# INFO:           37268 ns Address  Data                                                                                       
+# INFO:           37268 ns -------  ----                                                                                       
+# INFO:           37268 ns 00000C00 00000000 00000000 00000000 00000000 <===                                                   
+# INFO:           37268 ns 00000C10 00000000 00000000 00000000 00000000                                                        
+# INFO:           37268 ns 00000C20 00000000 00000000 00000000 00000000                                                        
+# INFO:           37268 ns 00000C30 00000000                                                                                   
+# INFO:           37324 ns                                                                                                     
+# INFO:           37324 ns Shared Memory Data Display:                                                                         
+# INFO:           37324 ns Address  Data                                                                                       
+# INFO:           37324 ns -------  ----                                                                                       
+# INFO:           37324 ns 00000C00 FFFFFFFF 00000000 00000000 00000000 <===                                                   
+# INFO:           37324 ns 00000C10 00000000 00000000 00000000 00000000                                                        
+# INFO:           37324 ns 00000C20 00000000 00000000 00000000 00000000                                                        
+# INFO:           37324 ns 00000C30 00000000                                                                                   
+# INFO:           38122 ns Task: cmd_poll	Received cmd reponse00000C00---> data:00000000.......                                
+# INFO:           38122 ns                                                                                                     
+# INFO:           38122 ns Shared Memory Data Display:                                                                         
+# INFO:           38122 ns Address  Data                                                                                       
+# INFO:           38122 ns -------  ----                                                                                       
+# INFO:           38122 ns 00000C00 00000000 00000000 00000000 00000000 <===                                                   
+# INFO:           38122 ns 00000C10 00000000 00000000 00000000 00000000                                                        
+# INFO:           38122 ns 00000C20 00000000 00000000 00000000 00000000                                                        
+# INFO:           38122 ns 00000C30 00000000                                                                                   
+# INFO:           38162 ns                                                                                                     
+# INFO:           38162 ns Shared Memory Data Display:                                                                         
+# INFO:           38162 ns Address  Data                                                                                       
+# INFO:           38162 ns -------  ----                                                                                       
+# INFO:           38162 ns 00000C00 FFFFFFFF 00000000 00000000 00000000 <===                                                   
+# INFO:           38162 ns 00000C10 00000000 00000000 00000000 00000000                                                        
+# INFO:           38162 ns 00000C20 00000000 00000000 00000000 00000000                                                        
+# INFO:           38162 ns 00000C30 00000000                                                                                   
+# INFO:           38960 ns Task: cmd_poll	Received cmd reponse00000C00---> data:00000000.......                                
+# INFO:           38960 ns                                                                                                     
+# INFO:           38960 ns Shared Memory Data Display:                                                                         
+# INFO:           38960 ns Address  Data                                                                                       
+# INFO:           38960 ns -------  ----                                                                                       
+# INFO:           38960 ns 00000C00 00000000 00000000 00002000 00000000 <===                                                   
+# INFO:           38960 ns 00000C10 00000000 00000000 00000000 00000000                                                        
+# INFO:           38960 ns 00000C20 00000000 00000000 00000000 00000000                                                        
+# INFO:           38960 ns 00000C30 00000000                                                                                   
+# INFO:           38960 ns CMD_TEST: rc_response_address 0x00000000 00000240                                                   
+# INFO:           39032 ns                                                                                                     
+# INFO:           39032 ns Shared Memory Data Display:                                                                         
+# INFO:           39032 ns Address  Data                                                                                       
+# INFO:           39032 ns -------  ----                                                                                       
+# INFO:           39032 ns 00000C00 00000000 00000000 00002000 00000000 <===                                                   
+# INFO:           39032 ns 00000C10 00000000 00000000 00000000 00000000                                                        
+# INFO:           39032 ns 00000C20 00000000 00000000 00000000 00000000                                                        
+# INFO:           39032 ns 00000C30 00000000                                                                                   
+# INFO:           39830 ns Task: cmd_poll	Received cmd reponse00000C00---> data:00000000.......                                
+# INFO:           39830 ns                                                                                                     
+# INFO:           39830 ns Shared Memory Data Display:                                                                         
+# INFO:           39830 ns Address  Data                                                                                       
+# INFO:           39830 ns -------  ----                                                                                       
+# INFO:           39830 ns 00000C00 00000000 00000000 00000000 00000000 <===                                                   
+# INFO:           39830 ns 00000C10 00000000 00000000 00000000 00000000                                                        
+# INFO:           39830 ns 00000C20 00000000 00000000 00000000 00000000                                                        
+# INFO:           39830 ns 00000C30 00000000                                                                                   
+# INFO:           39830 ns                                                                                                     
+# INFO:           39830 ns Shared Memory Data Display:                                                                         
+# INFO:           39830 ns Address  Data                                                                                       
+# INFO:           39830 ns -------  ----                                                                                       
+# INFO:           39830 ns 00000C00 FFFFFFFF 00000000 00000000 00000000 <===                                                   
+# INFO:           39830 ns 00000C10 00000000 00000000 00000000 00000000                                                        
+# INFO:           39830 ns 00000C20 00000000 00000000 00000000 00000000                                                        
+# INFO:           39830 ns 00000C30 00000000                                                                                   
+# INFO:           40684 ns Task: cmd_poll	Received cmd reponse00000C00---> data:00000000.......                                
+# INFO:           40684 ns                                                                                                     
+# INFO:           40684 ns Shared Memory Data Display:                                                                         
+# INFO:           40684 ns Address  Data                                                                                       
+# INFO:           40684 ns -------  ----                                                                                       
+# INFO:           40684 ns 00000C00 00000000 00000000 00000000 00000000 <===                                                   
+# INFO:           40684 ns 00000C10 00000000 00000000 00000000 00000000                                                        
+# INFO:           40684 ns 00000C20 00000000 00000000 00000000 00000000                                                        
+# INFO:           40684 ns 00000C30 00000000                                                                                   
+# INFO:           40684 ns                                                                                                     
+# INFO:           40684 ns Shared Memory Data Display:                                                                         
+# INFO:           40684 ns Address  Data                                                                                       
+# INFO:           40684 ns -------  ----                                                                                       
+# INFO:           40684 ns 00000C00 FFFFFFFF 00000000 00000000 00000000 <===                                                   
+# INFO:           40684 ns 00000C10 00000000 00000000 00000000 00000000                                                        
+# INFO:           40684 ns 00000C20 00000000 00000000 00000000 00000000                                                        
+# INFO:           40684 ns 00000C30 00000000                                                                                   
+# INFO:           41522 ns Task: cmd_poll	Received cmd reponse00000C00---> data:00000000.......                                
+# INFO:           41522 ns                                                                                                     
+# INFO:           41522 ns Shared Memory Data Display:                                                                         
+# INFO:           41522 ns Address  Data                                                                                       
+# INFO:           41522 ns -------  ----                                                                                       
+# INFO:           41522 ns 00000C00 00000000 00000000 00000000 00000000 <===                                                   
+# INFO:           41522 ns 00000C10 00000000 00000000 00000000 00000000                                                        
+# INFO:           41522 ns 00000C20 00000000 00000000 00000000 00000000                                                        
+# INFO:           41522 ns 00000C30 00000000                                                                                   
+# INFO:           42522 ns ---------                                                                                           
+# INFO:           42522 ns TASK:dma_set_msi READ                                                                               
+# INFO:           42522 ns  Message Signaled Interrupt Configuration                                                           
+# INFO:           42522 ns   msi_address (RC memory)= 0x07F0                                                                   
+# INFO:           42826 ns   msi_control_register = 0x0084                                                                     
+# INFO:           44066 ns   msi_expected = 0x0000                                                                             
+# INFO:           44066 ns   msi_capabilities address = 0x0050                                                                 
+# INFO:           44066 ns   multi_message_enable = 0x0002                                                                     
+# INFO:           44066 ns   msi_number = 0000                                                                                 
+# INFO:           44066 ns   msi_traffic_class = 0000                                                                          
+# INFO:           58853 ns ---------                                                                                           
+# INFO:           58853 ns TASK:dma_wr_test                                                                                    
+# INFO:           58853 ns    DMA: Write                                                                                       
+# INFO:           58853 ns ---------                                                                                           
+# INFO:           58853 ns TASK:dma_set_wr_desc_data                                                                           
+# INFO:           58853 ns ---------                                                                                           
+# INFO:           58853 ns TASK:dma_set_header WRITE                                                                           
+# INFO:           58853 ns Writing Descriptor header                                                                           
+# INFO:           58893 ns data content of the DT header                                                                       
+# INFO:           58893 ns                                                                                                     
+# INFO:           58893 ns Shared Memory Data Display:                                                                         
+# INFO:           58893 ns Address  Data                                                                                       
+# INFO:           58893 ns -------  ----                                                                                       
+# INFO:           58893 ns 00000800 00000004 00000000 00000800 CAFEFADE                                                        
+# INFO:           58893 ns ---------                                                                                           
+# INFO:           58893 ns TASK:dma_set_rclast                                                                                 
+# INFO:           58893 ns    Start WRITE DMA : RC issues MWr (RCLast=0003)                                                    
+# INFO:           58909 ns ---------                                                                                           
+# INFO:           59008 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (0000FADE)  expected data (00000003)     
+# INFO:           61008 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000000)  expected data (00000003)     
+# INFO:           62108 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000001)  expected data (00000003)     
+# INFO:           63208 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000002)  expected data (00000003)     
+# INFO:           64308 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000003)  expected data (00000003)     
+# INFO:           64308 ns TASK:rcmem_poll   ---> Received Expected Data (00000003)                                            
+# INFO:           64316 ns ---------                                                                                           
+# INFO:           64316 ns Completed DMA Write                                                                                 
+# INFO:           72369 ns ---------                                                                                           
+# INFO:           72369 ns TASK:dma_wr_test                                                                                    
+# INFO:           72369 ns    DMA: Write                                                                                       
+# INFO:           72369 ns ---------                                                                                           
+# INFO:           72369 ns TASK:dma_set_wr_desc_data                                                                           
+# INFO:           72369 ns ---------                                                                                           
+# INFO:           72369 ns TASK:dma_set_header WRITE                                                                           
+# INFO:           72369 ns Writing Descriptor header                                                                           
+# INFO:           72409 ns data content of the DT header                                                                       
+# INFO:           72409 ns                                                                                                     
+# INFO:           72409 ns Shared Memory Data Display:                                                                         
+# INFO:           72409 ns Address  Data                                                                                       
+# INFO:           72409 ns -------  ----                                                                                       
+# INFO:           72409 ns 00000800 00000004 00000000 00000800 CAFEFADE                                                        
+# INFO:           72409 ns ---------                                                                                           
+# INFO:           72409 ns TASK:dma_set_rclast                                                                                 
+# INFO:           72409 ns    Start WRITE DMA : RC issues MWr (RCLast=0003)                                                    
+# INFO:           72425 ns ---------                                                                                           
+# INFO:           72524 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (0000FADE)  expected data (00000003)     
+# INFO:           74524 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000000)  expected data (00000003)     
+# INFO:           75624 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000001)  expected data (00000003)     
+# INFO:           76724 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000002)  expected data (00000003)     
+# INFO:           77824 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000003)  expected data (00000003)     
+# INFO:           77824 ns TASK:rcmem_poll   ---> Received Expected Data (00000003)                                            
+# INFO:           77832 ns ---------                                                                                           
+# INFO:           77832 ns Completed DMA Write                                                                                 
+# INFO:           85877 ns ---------                                                                                           
+# INFO:           85877 ns TASK:dma_wr_test                                                                                    
+# INFO:           85877 ns    DMA: Write                                                                                       
+# INFO:           85877 ns ---------                                                                                           
+# INFO:           85877 ns TASK:dma_set_wr_desc_data                                                                           
+# INFO:           85877 ns ---------                                                                                           
+# INFO:           85877 ns TASK:dma_set_header WRITE                                                                           
+# INFO:           85877 ns Writing Descriptor header                                                                           
+# INFO:           85917 ns data content of the DT header                                                                       
+# INFO:           85917 ns                                                                                                     
+# INFO:           85917 ns Shared Memory Data Display:                                                                         
+# INFO:           85917 ns Address  Data                                                                                       
+# INFO:           85917 ns -------  ----                                                                                       
+# INFO:           85917 ns 00000800 00000003 00000000 00000800 CAFEFADE                                                        
+# INFO:           85917 ns ---------                                                                                           
+# INFO:           85917 ns TASK:dma_set_rclast                                                                                 
+# INFO:           85917 ns    Start WRITE DMA : RC issues MWr (RCLast=0002)                                                    
+# INFO:           85933 ns ---------                                                                                           
+# INFO:           86032 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (0000FADE)  expected data (00000002)     
+# INFO:           88032 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000000)  expected data (00000002)     
+# INFO:           89132 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000001)  expected data (00000002)     
+# INFO:           90232 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000002)  expected data (00000002)     
+# INFO:           90232 ns TASK:rcmem_poll   ---> Received Expected Data (00000002)                                            
+# INFO:           90240 ns ---------                                                                                           
+# INFO:           90240 ns Completed DMA Write                                                                                 
+# INFO:           99393 ns ---------                                                                                           
+# INFO:           99393 ns TASK:dma_wr_test                                                                                    
+# INFO:           99393 ns    DMA: Write                                                                                       
+# INFO:           99393 ns ---------                                                                                           
+# INFO:           99393 ns TASK:dma_set_wr_desc_data                                                                           
+# INFO:           99393 ns ---------                                                                                           
+# INFO:           99393 ns TASK:dma_set_header WRITE                                                                           
+# INFO:           99393 ns Writing Descriptor header                                                                           
+# INFO:           99433 ns data content of the DT header                                                                       
+# INFO:           99433 ns                                                                                                     
+# INFO:           99433 ns Shared Memory Data Display:                                                                         
+# INFO:           99433 ns Address  Data                                                                                       
+# INFO:           99433 ns -------  ----                                                                                       
+# INFO:           99433 ns 00000800 00000004 00000000 00000800 CAFEFADE                                                        
+# INFO:           99433 ns ---------                                                                                           
+# INFO:           99433 ns TASK:dma_set_rclast                                                                                 
+# INFO:           99433 ns    Start WRITE DMA : RC issues MWr (RCLast=0003)                                                    
+# INFO:           99449 ns ---------                                                                                           
+# INFO:           99548 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (0000FADE)  expected data (00000003)     
+# INFO:          101548 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000000)  expected data (00000003)     
+# INFO:          102648 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000001)  expected data (00000003)     
+# INFO:          103748 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000002)  expected data (00000003)     
+# INFO:          104848 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000003)  expected data (00000003)     
+# INFO:          104848 ns TASK:rcmem_poll   ---> Received Expected Data (00000003)                                            
+# INFO:          104856 ns ---------                                                                                           
+# INFO:          104856 ns Completed DMA Write                                                                                 
+# INFO:          112909 ns ---------                                                                                           
+# INFO:          112909 ns TASK:dma_wr_test                                                                                    
+# INFO:          112909 ns    DMA: Write                                                                                       
+# INFO:          112909 ns ---------                                                                                           
+# INFO:          112909 ns TASK:dma_set_wr_desc_data                                                                           
+# INFO:          112909 ns ---------                                                                                           
+# INFO:          112909 ns TASK:dma_set_header WRITE                                                                           
+# INFO:          112909 ns Writing Descriptor header                                                                           
+# INFO:          112949 ns data content of the DT header                                                                       
+# INFO:          112949 ns                                                                                                     
+# INFO:          112949 ns Shared Memory Data Display:                                                                         
+# INFO:          112949 ns Address  Data                                                                                       
+# INFO:          112949 ns -------  ----                                                                                       
+# INFO:          112949 ns 00000800 00000004 00000000 00000800 CAFEFADE                                                        
+# INFO:          112949 ns ---------                                                                                           
+# INFO:          112949 ns TASK:dma_set_rclast                                                                                 
+# INFO:          112949 ns    Start WRITE DMA : RC issues MWr (RCLast=0003)                                                    
+# INFO:          112965 ns ---------                                                                                           
+# INFO:          113064 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (0000FADE)  expected data (00000003)     
+# INFO:          115064 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000000)  expected data (00000003)     
+# INFO:          116164 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000001)  expected data (00000003)     
+# INFO:          117264 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000002)  expected data (00000003)     
+# INFO:          118364 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000003)  expected data (00000003)     
+# INFO:          118364 ns TASK:rcmem_poll   ---> Received Expected Data (00000003)                                            
+# INFO:          118372 ns ---------                                                                                           
+# INFO:          118372 ns Completed DMA Write                                                                                 
+# INFO:          126437 ns ---------                                                                                           
+# INFO:          126437 ns TASK:dma_wr_test                                                                                    
+# INFO:          126437 ns    DMA: Write                                                                                       
+# INFO:          126437 ns ---------                                                                                           
+# INFO:          126437 ns TASK:dma_set_wr_desc_data                                                                           
+# INFO:          126437 ns ---------                                                                                           
+# INFO:          126437 ns TASK:dma_set_header WRITE                                                                           
+# INFO:          126437 ns Writing Descriptor header                                                                           
+# INFO:          126477 ns data content of the DT header                                                                       
+# INFO:          126477 ns                                                                                                     
+# INFO:          126477 ns Shared Memory Data Display:                                                                         
+# INFO:          126477 ns Address  Data                                                                                       
+# INFO:          126477 ns -------  ----                                                                                       
+# INFO:          126477 ns 00000800 00000004 00000000 00000800 CAFEFADE                                                        
+# INFO:          126477 ns ---------                                                                                           
+# INFO:          126477 ns TASK:dma_set_rclast                                                                                 
+# INFO:          126477 ns    Start WRITE DMA : RC issues MWr (RCLast=0003)                                                    
+# INFO:          126493 ns ---------                                                                                           
+# INFO:          126592 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (0000FADE)  expected data (00000003)     
+# INFO:          128592 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000000)  expected data (00000003)     
+# INFO:          129692 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000001)  expected data (00000003)     
+# INFO:          130792 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000002)  expected data (00000003)     
+# INFO:          131892 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000003)  expected data (00000003)     
+# INFO:          131892 ns TASK:rcmem_poll   ---> Received Expected Data (00000003)                                            
+# INFO:          131900 ns ---------                                                                                           
+# INFO:          131900 ns Completed DMA Write                                                                                 

@@ -1,0 +1,14 @@
+------------------------------------------
+Test HOWTO
+------------------------------------------
+input uses the page format which has sync_header at the first 8 rows (128-bit per row).
+followed by 248 rows of data. 
+
+read test_vector.hex
+# vectorgen.py first converts the raw bitstream to the page format data stream.
+read first 496 rows, 
+put first 2-bit of all rows into first 8 rows of the output data stream.
+append the rest 64-bit of each row into the output data stream.
+store all to test_vector.dat
+
+

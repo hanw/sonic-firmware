@@ -57,9 +57,13 @@ module sonic_dpram_async_128_64 (
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_off
 `endif
+
+`ifdef SYNTHESIS
 	tri1	  rden;
 	tri1	  wrclock;
 	tri0	  wren;
+`endif
+
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_on
 `endif
@@ -67,6 +71,7 @@ module sonic_dpram_async_128_64 (
 	wire [63:0] sub_wire0;
 	wire [63:0] q = sub_wire0[63:0];
 
+`ifdef SYNTHESIS
 	altsyncram	altsyncram_component (
 				.address_a (wraddress),
 				.clock0 (wrclock),
@@ -111,7 +116,27 @@ module sonic_dpram_async_128_64 (
 		altsyncram_component.width_a = 128,
 		altsyncram_component.width_b = 64,
 		altsyncram_component.width_byteena_a = 1;
+`else
+   altsyncram altsyncram_component (
+				    .address_a (wraddress),
+				    .clock0 (wrclock),
+				    .data_a (data),
+				    .wren_a (wren),
+				    .address_b (rdaddress),
+				    .clock1 (rdclock),
+				    .q_b (sub_wire0),
+				    .cs_a (1'b1),
+				    .oe_a (1'b1),
+				    .cs_b (1'b1),
+				    .oe_b (1'b1)
+				    );
+   defparam
+     altsyncram_component.width_a = 128,
+     altsyncram_component.width_b = 64,
+     altsyncram_component.widthad_a = 13,
+     altsyncram_component.widthad_b = 14;
 
+`endif
 
 endmodule
 

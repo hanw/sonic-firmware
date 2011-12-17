@@ -54,7 +54,8 @@ module sonic_write_dma_requester_128  # (
 	parameter INTENDED_DEVICE_FAMILY = "Cyclone IV GX",
 	parameter TL_SELECTION     = 0,
 	parameter USE_CREDIT_CTRL  = 1,
-	parameter DT_EP_ADDR_SPEC   = 2   // Descriptor Table's EP Address is specified as:  3=QW Address,  2=DW Address, 1= W Address, 0= Byte Addr.
+	parameter DT_EP_ADDR_SPEC   = 2,   // Descriptor Table's EP Address is specified as:  3=QW Address,  2=DW Address, 1= W Address, 0= Byte Addr.
+					 parameter PORT_NUM = 0
 	)
 	(
 	// Descriptor control signals
@@ -120,7 +121,8 @@ module sonic_write_dma_requester_128  # (
 	//
 	localparam CDMA_VERSION      = 4'b0011;
 	localparam TL_MODE           = 2'b10;
-
+   localparam TLP_TC_CLASS = (PORT_NUM == 0) ? 0 : 5;
+   
 	// Write requester states
 	localparam	DT_FIFO           = 0 , // Ready to retrieve new descriptor from FIFO
 				DT_FIFO_RD_QW0    = 1 , // Read the first QWORD descriptor
@@ -438,7 +440,7 @@ module sonic_write_dma_requester_128  # (
 																				`TLP_FMT_4DW_W;
 	assign tx_desc[124:120] = `TLP_TYPE_WRITE    ;
 	assign tx_desc[119]     = `RESERVED_1BIT     ;
-	assign tx_desc[118:116] = `TLP_TC_DEFAULT    ;
+   assign tx_desc[118:116] = TLP_TC_CLASS    ;
 	assign tx_desc[115:112] = `RESERVED_4BIT     ;
 	assign tx_desc[111]     = `TLP_TD_DEFAULT    ;
 	assign tx_desc[110]     = `TLP_EP_DEFAULT    ;

@@ -1,0 +1,15 @@
+load_lib sonic.exp
+
+cd gearbox
+
+set test "sonic_rx_chan_66"
+set expected "test" 
+set stderr 1
+
+# verilate and compile 
+run-verilator $test $expected $stderr
+
+# run test
+run-test $test $expected
+
+cd ..

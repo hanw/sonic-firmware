@@ -1,0 +1,8 @@
+ram/sonic_dpram_async_128_64.v
+ram/sonic_dpram_async_2_64.v
+ram/sonic_dpram_async_64_128.v
+ram/sonic_dpram_async_64_2.v
+pcie/top_core.v
+pcie/top_serdes.v
+pcie/top.v
+multadd/sonic_mult_add.v

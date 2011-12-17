@@ -25,7 +25,9 @@
 // 
 //-----------------------------------------------------------------------------
 
-module sonic_irq_ctl (
+module sonic_irq_ctl # (
+			parameter PORT_NUM = 0
+			)(
 
 	input logic				clk_in,
 	input logic				reset,
@@ -127,7 +129,8 @@ module sonic_irq_ctl (
 		.force_flush_rc(force_flush_rc)
 	);
 	defparam irq_gen.USED_QWORDS_WIDTH = `USED_QWORDS_WIDTH,
-			 irq_gen.USE_MSI	 = 1'b1;
+			 irq_gen.USE_MSI	 = 1'b1,
+	  irq_gen.PORT_NUM = PORT_NUM;
 		
 	
 	// -------------------------------------------------------

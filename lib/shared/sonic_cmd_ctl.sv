@@ -20,7 +20,8 @@
 
 module sonic_cmd_ctl #(
 	parameter RING_SIZE = 8192,
-	parameter USEDW_WIDTH = 13
+	parameter USEDW_WIDTH = 13,
+		       parameter PORT_NUM = 0
 	)(
 	input	clk_in,
 	input	rstn,
@@ -452,6 +453,7 @@ module sonic_cmd_ctl #(
 	defparam rc_update.START_TX = START_TX_CMD_RESP,
 			 rc_update.MWR_REQ = MWR_REQ_CMD_RESP,
 			 rc_update.MWR_DV = MWR_DV_CMD_RESP,
-			 rc_update.MODE   = `RC_UPD_CMD_MODE;
+			 rc_update.MODE   = `RC_UPD_CMD_MODE,
+			 rc_update.PORT_NUM = PORT_NUM;
 
 endmodule

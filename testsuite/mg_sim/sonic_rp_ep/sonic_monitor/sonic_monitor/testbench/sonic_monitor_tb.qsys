@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags=""
+   categories="" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element sonic_monitor_inst
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+   element sonic_monitor_inst_clk_in_bfm
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+   element sonic_monitor_inst_reset_bfm
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+   }
+   element sonic_monitor_inst_sonic_rx_monitor_sink_bfm
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
+      }
+   }
+   element sonic_monitor_inst_sonic_rx_monitor_src_bfm
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
+   element sonic_monitor_inst_sonic_tx_monitor_sink_bfm
+   {
+      datum _sortIndex
+      {
+         value = "6";
+         type = "int";
+      }
+   }
+   element sonic_monitor_inst_sonic_tx_monitor_src_bfm
+   {
+      datum _sortIndex
+      {
+         value = "5";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="deviceFamily" value="STRATIXIV" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="maxAdditionalLatency" value="1" />
+ <parameter name="projectName" value="" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="1" />
+ <parameter name="timeStamp" value="1323243057382" />
+ <module
+   kind="sonic_monitor"
+   version="1.0"
+   enabled="1"
+   name="sonic_monitor_inst">
+  <parameter name="AUTO_GENERATION_ID" value="0" />
+  <parameter name="AUTO_UNIQUE_ID" value="sonic_monitor_inst" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Stratix IV" />
+  <parameter name="AUTO_CLK_IN_CLOCK_RATE" value="0" />
+  <parameter name="AUTO_CLK_IN_CLOCK_DOMAIN" value="1" />
+  <parameter name="AUTO_CLK_IN_RESET_DOMAIN" value="1" />
+ </module>
+ <module
+   kind="altera_avalon_clock_source"
+   version="11.0"
+   enabled="1"
+   name="sonic_monitor_inst_clk_in_bfm">
+  <parameter name="CLOCK_RATE" value="250" />
+ </module>
+ <module
+   kind="altera_avalon_reset_source"
+   version="11.0"
+   enabled="1"
+   name="sonic_monitor_inst_reset_bfm">
+  <parameter name="ASSERT_HIGH_RESET" value="0" />
+  <parameter name="INITIAL_RESET_CYCLES" value="50" />
+ </module>
+ <module
+   kind="altera_avalon_st_sink_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_monitor_inst_sonic_rx_monitor_src_bfm">
+  <parameter name="USE_PACKET" value="1" />
+  <parameter name="USE_CHANNEL" value="0" />
+  <parameter name="USE_ERROR" value="1" />
+  <parameter name="USE_READY" value="1" />
+  <parameter name="USE_VALID" value="1" />
+  <parameter name="USE_EMPTY" value="1" />
+  <parameter name="ST_SYMBOL_W" value="32" />
+  <parameter name="ST_NUMSYMBOLS" value="4" />
+  <parameter name="ST_CHANNEL_W" value="1" />
+  <parameter name="ST_ERROR_W" value="1" />
+  <parameter name="ST_READY_LATENCY" value="0" />
+  <parameter name="ST_BEATSPERCYCLE" value="1" />
+  <parameter name="ST_MAX_CHANNELS" value="0" />
+ </module>
+ <module
+   kind="altera_avalon_st_source_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_monitor_inst_sonic_rx_monitor_sink_bfm">
+  <parameter name="USE_PACKET" value="1" />
+  <parameter name="USE_CHANNEL" value="0" />
+  <parameter name="USE_ERROR" value="1" />
+  <parameter name="USE_READY" value="1" />
+  <parameter name="USE_VALID" value="1" />
+  <parameter name="USE_EMPTY" value="1" />
+  <parameter name="ST_SYMBOL_W" value="32" />
+  <parameter name="ST_NUMSYMBOLS" value="4" />
+  <parameter name="ST_CHANNEL_W" value="1" />
+  <parameter name="ST_ERROR_W" value="1" />
+  <parameter name="ST_READY_LATENCY" value="0" />
+  <parameter name="ST_BEATSPERCYCLE" value="1" />
+  <parameter name="ST_MAX_CHANNELS" value="0" />
+ </module>
+ <module
+   kind="altera_avalon_st_sink_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_monitor_inst_sonic_tx_monitor_src_bfm">
+  <parameter name="USE_PACKET" value="1" />
+  <parameter name="USE_CHANNEL" value="0" />
+  <parameter name="USE_ERROR" value="1" />
+  <parameter name="USE_READY" value="1" />
+  <parameter name="USE_VALID" value="1" />
+  <parameter name="USE_EMPTY" value="1" />
+  <parameter name="ST_SYMBOL_W" value="32" />
+  <parameter name="ST_NUMSYMBOLS" value="4" />
+  <parameter name="ST_CHANNEL_W" value="1" />
+  <parameter name="ST_ERROR_W" value="1" />
+  <parameter name="ST_READY_LATENCY" value="0" />
+  <parameter name="ST_BEATSPERCYCLE" value="1" />
+  <parameter name="ST_MAX_CHANNELS" value="0" />
+ </module>
+ <module
+   kind="altera_avalon_st_source_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_monitor_inst_sonic_tx_monitor_sink_bfm">
+  <parameter name="USE_PACKET" value="1" />
+  <parameter name="USE_CHANNEL" value="0" />
+  <parameter name="USE_ERROR" value="1" />
+  <parameter name="USE_READY" value="1" />
+  <parameter name="USE_VALID" value="1" />
+  <parameter name="USE_EMPTY" value="1" />
+  <parameter name="ST_SYMBOL_W" value="32" />
+  <parameter name="ST_NUMSYMBOLS" value="4" />
+  <parameter name="ST_CHANNEL_W" value="1" />
+  <parameter name="ST_ERROR_W" value="1" />
+  <parameter name="ST_READY_LATENCY" value="0" />
+  <parameter name="ST_BEATSPERCYCLE" value="1" />
+  <parameter name="ST_MAX_CHANNELS" value="0" />
+ </module>
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_monitor_inst_clk_in_bfm.clk"
+   end="sonic_monitor_inst.clk_in" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_monitor_inst_clk_in_bfm.clk"
+   end="sonic_monitor_inst_reset_bfm.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="sonic_monitor_inst_reset_bfm.reset"
+   end="sonic_monitor_inst.reset" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_monitor_inst_clk_in_bfm.clk"
+   end="sonic_monitor_inst_sonic_rx_monitor_src_bfm.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="sonic_monitor_inst_reset_bfm.reset"
+   end="sonic_monitor_inst_sonic_rx_monitor_src_bfm.clk_reset" />
+ <connection
+   kind="avalon_streaming"
+   version="11.0"
+   start="sonic_monitor_inst.sonic_rx_monitor_src"
+   end="sonic_monitor_inst_sonic_rx_monitor_src_bfm.sink" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_monitor_inst_clk_in_bfm.clk"
+   end="sonic_monitor_inst_sonic_rx_monitor_sink_bfm.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="sonic_monitor_inst_reset_bfm.reset"
+   end="sonic_monitor_inst_sonic_rx_monitor_sink_bfm.clk_reset" />
+ <connection
+   kind="avalon_streaming"
+   version="11.0"
+   start="sonic_monitor_inst_sonic_rx_monitor_sink_bfm.src"
+   end="sonic_monitor_inst.sonic_rx_monitor_sink" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_monitor_inst_clk_in_bfm.clk"
+   end="sonic_monitor_inst_sonic_tx_monitor_src_bfm.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="sonic_monitor_inst_reset_bfm.reset"
+   end="sonic_monitor_inst_sonic_tx_monitor_src_bfm.clk_reset" />
+ <connection
+   kind="avalon_streaming"
+   version="11.0"
+   start="sonic_monitor_inst.sonic_tx_monitor_src"
+   end="sonic_monitor_inst_sonic_tx_monitor_src_bfm.sink" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_monitor_inst_clk_in_bfm.clk"
+   end="sonic_monitor_inst_sonic_tx_monitor_sink_bfm.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="sonic_monitor_inst_reset_bfm.reset"
+   end="sonic_monitor_inst_sonic_tx_monitor_sink_bfm.clk_reset" />
+ <connection
+   kind="avalon_streaming"
+   version="11.0"
+   start="sonic_monitor_inst_sonic_tx_monitor_sink_bfm.src"
+   end="sonic_monitor_inst.sonic_tx_monitor_sink" />
+</system>

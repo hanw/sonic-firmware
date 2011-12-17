@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="sonic_rp_ep_sim/simulation/submodules/altera_reset_controller.v"
+   type="VERILOG" />
+ <file
+   path="sonic_rp_ep_sim/simulation/submodules/altera_reset_synchronizer.v"
+   type="VERILOG" />
+ <file
+   path="sonic_rp_ep_sim/simulation/submodules/sonic_fast_sim_top.sv"
+   type="SYSTEM_VERILOG" />
+ <file path="sonic_rp_ep_sim/simulation/sonic_rp_ep_sim.v" type="VERILOG" />
+ <topLevel name="sonic_rp_ep_sim" />
+ <deviceFamily name="Stratix IV" />
+</simPackage>

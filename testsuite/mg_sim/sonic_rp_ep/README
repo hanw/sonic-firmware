@@ -1,0 +1,171 @@
+===============================================================================
+                                    README
+===============================================================================
+The purpose of having a PCIe emulator is to accelerate the testing of PCIe 
+interface between SoNIC application and Host PC. This includes, but not limited
+to, DMA read and write, PCI bus arbitration, etc.
+
+One of the design goal of the PCIe emulator is to be platform independent,
+meaning that the same emulator should be able for both Xilinx and Altera FPGA.
+The Altera PCI endpoint design uses the Altera-specific Avalon interface. To
+test the Avalon interface, the simplest way is to use the Avalon verification IP
+suite and the BFM interface. Therefore, we design a wrapper of the Avalon BFM
+functions, and make the interface to the wrapper a shared standard interface.
+
+The PCIe emulator contains different test cases. Examples are PCI BAR read,
+BAR write, DMA write, DMA read, etc. Each of the test cases should be a complete
+test environment and reporting entity. Test cases invokes the shared PCI
+transaction implmenetation from the verification library. PCI transaction
+library should be implemented using the OVM verification library in SystemVerilog.
+
+A general setup of the verification testbench is shown below:
+
+            +----------+      +-----------------+
+            |          |<---+ |                 |
+            |----------|+---> |    TEST CODE    |
+            |          |      |                 |
+            |          |      +-----------------+
+            | Global   |             ^ +
+            | Packages |             | |              +----------------+
+            | and      |             + v              |                |
+            | Functions|      +-----------------+     |                |
+            |          |      |                 |     |     DUT        |
+            |          |<----+|       BFM       |+--->|                |
+            |          |+---->|                 |<---+|                |
+            |          |      |                 |     |                |
+            +----------+      +-----------------+     +----------------+
+
+One method of creating high level test constructs is to use functions and procedures
+in Verilog to represent bus cycle operations. These functions and procedures resides
+in a package, allowing global accessibility to the BFM and test code with Verilog 
+use clauses. The procedures are viewed from programmer's point of view, such as
+memory or I/O cycles. For example, PCI express bus operations can reduce to following
+types of bus cycles: mem_rd_32, mem_rd_32_lock, mem_rd_64, mem_rd_64_lock, io_rd,
+msg_no_data, cpl_no_data, cpl_lock_no_data, mem_wr_32, mem_wr_32_lock, io_wr, cpl_data,
+cpl_lock_data, msg_data.
+
+The speedy simulation setup is shown as below. Our goal is to reuse as much as code
+from the Altera PCIe simulation as possible, while avoid the long simulation time
+associated with link training and end-point configuration. 
+
+The root port application contains PCIe driver. It issues bar_wr/rd, and dma_wr/rd
+to sonic application. The PCIe BFM driver is converted to Avalon ST transaction by
+the altpcietb_bfm_vc_intf_128.v module. The AST signals are directly connected to
+the sonic_application or the arbitrated two channel top wrapper to bypass root port
+and endpoint model.
+
+                    +-----------+         +-----------+
+                    |ROOT PORT  |         |   SONIC   |
+                    |APPLICATION|         |APPLICATION|
+                    +-----------+         +-----------+
+                    +-----------+               ^
+                    |BFM_VC_INTF|               |
+                    |  128 bits |               |
+                    +-----------+               | AST
+                         +                      |
+                         |     Avalon ST intf   |
+                         +---------------------++
+
+We created a top module (sonic_pcie_simulation_top.sv) for the above setup, and 
+it should be used as the top module for speedy pcie simulation. 
+
+Skeleton of sonic_pcie_simulation_top.sv:
+
+      altpcietb_bfm_vc_intf_ast  # (
+        .AVALON_ST_128       ((ast_width_hwtcl=="Avalon-ST 128-bit")?1:0),
+        .ECRC_FORWARD_CHECK  (0),
+        .ECRC_FORWARD_GENER  (0),
+        .VC_NUM              (0)
+          ) app_vc0 (
+        .cfg_io_bas    (cfg_io_bas),
+        .cfg_np_bas    (cfg_np_bas),
+        .cfg_pr_bas    (cfg_pr_bas),
+        .clk_in        (pld_clk),
+        .rstn          (srstn_rr),
+        .rx_mask       (rx_st_mask),
+        .rx_st_be      ((ast_width_hwtcl=="Avalon-ST 128-bit")?rx_st_be  :{8'h0,rx_st_be}),
+        .rx_st_data    ((ast_width_hwtcl=="Avalon-ST 128-bit")?rx_st_data:{64'h0,rx_st_data}),
+        .rx_st_empty   (rx_st_empty[0]),
+        .rx_st_eop     (rx_st_eop),
+        .rx_st_ready   (rx_st_ready),
+        .rx_st_sop     (rx_st_sop),
+        .rx_st_valid   (rx_st_valid),
+        .tx_cred       (36'hFFFFFFFFF),
+        .tx_fifo_empty (1'b1),
+        .tx_st_data    (tx_st_data_int),
+        .tx_st_empty   (tx_st_empty[0]),
+        .tx_st_eop     (tx_st_eop),
+        .tx_st_ready   (tx_st_ready),
+        .tx_st_sop     (tx_st_sop),
+        .tx_st_valid   (tx_st_valid)
+      );
+      assign tx_st_data[port_width_data_hwtcl-1:0]  = tx_st_data_int[port_width_data_hwtcl-1:0];
+      assign tx_st_err     = 1'b0;
+
+      altpcietb_bfm_log_common bfm_log_common ( .dummy_out (bfm_log_common_dummy_out));
+      altpcietb_bfm_req_intf_common bfm_req_intf_common ( .dummy_out (bfm_req_intf_common_dummy_out));
+      altpcietb_bfm_shmem_common bfm_shmem_common ( .dummy_out (bfm_shmem_common_dummy_out));
+      altpcietb_ltssm_mon ltssm_mon ( .dummy_out (ltssm_dummy_out), .ep_ltssm (5'h0), .rp_clk (sim_pipe_pclk_out), .rp_ltssm (ltssmstate), .rstn (npor));
+
+      altpcietb_bfm_driver_rp # (
+         .TEST_LEVEL(1)
+         ) drvr (
+         .INTA (swdn_out[0]),
+         .INTB (swdn_out[1]),
+         .INTC (swdn_out[2]),
+         .INTD (swdn_out[3]),
+         .clk_in (sim_pipe_pclk_out),
+         .dummy_out (driver_rp_dummy_out),
+         .rstn (srstn_rr));
+    
+      sonic_application_top (
+        // Directly connected to bfm_vc_intf_128
+	// AST Rx
+        // AST Tx
+      );
+      
+NOTE: Simulation like this is fast, however limited to the mem_wr and mem_rd transaction.
+The configuration rd and wr transactions are not simulated, because those TLP packet must
+be handled by the endpoint model itself, which is not included in the testbench. (We only
+send TLP between RP transaction layer and ERP transaction layer). Routines, such as dma_set_msi,
+is not supported. 
+
+The RP AST Tx interface has the following signals:
+- tx_st_ready: matched with EP AST Rx rx_st_ready.
+- tx_st_valid: matched with EP AST Rx rx_st_valid.
+- tx_st_sop:   matched with EP AST Rx rx_st_sop.
+- tx_st_eop:   matched with EP AST Rx rx_st_eop.
+- tx_st_empty: matched with EP AST Rx rx_st_empty.
+- tx_st_data:  matched with EP AST Rx rx_st_data.
+- tx_st_err:   matched with EP AST Rx rx_st_err.
+
+
+The corresponding EP AST Rx interface should have the matching signals, however, PCIe Hard IP virtual channel
+implements _BE and _BARDEC signals, that are specific to Altera.
+
+The RP AST Rx interface has the following signals:
+- rx_st_valid: matched.
+- rx_st_ready: matched.
+- rx_st_sop:   matched.
+- rx_st_eop:   matched.
+- rx_st_empty: matched.
+- rx_st_data:  matched.
+- rx_st_err:   matched.
+- rx_st_be:    not matched.
+- rx_st_bardec: not matched.
+
+We need to generate the rx_st_be and rx_st_bardec signals with a custom module.
+According to PCIe user guide. 
+rx_st_bardec[7:0] is the decoded BAR bits for the TLP. They corresponds to the transaction layer's rx_desc[135:128].
+Valid for MRd, MWr, IOWR, and IORD TLPs; ignored for the CPL or message TLPs. They are valid on the first cycle
+of 128-bit datapath. 
+
+rx_st_be<n> [15:0]: are the byte enables corresponding to the transaction layer's rx_be. The byte enables signals
+only apply to PCI Express TLP payload fields. When using 128-bit Avalon-ST bus, the width is 16. The same information
+can be derived from FBE and LBE field of TLP header. The correspondence between byte enables and data is as follows:
+rx_st_data[63:56] = rx_st_be[7].
+rx_st_data[55:48] = rx_st_be[6].
+... ...
+
+Tx interface should generate the above two signals that we mentioned. 
+

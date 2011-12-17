@@ -105,7 +105,7 @@ module sonic_rc_slave #(
 	  .AVALON_WDATA     (AVALON_WDATA),
 	  .AVALON_BE_WIDTH  (AVALON_BYTE_WIDTH),
 	  .MEM_ADDR_WIDTH   (AVALON_WADDR),
-      .PORT_NUM         (PORT_NUM)
+				     .PORT_NUM         (PORT_NUM)
 	  ) sonic_rxtx_mem_intf (
 	  .clk_in       (clk_in),
 	  .rstn         (rstn),

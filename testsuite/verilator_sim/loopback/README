@@ -1,0 +1,11 @@
+pages --> rx_channel --> tx_channel --> pages
+
+diff two pages.
+
+FAILED:
+  Sync-header ring has one cycle read delay.
+  Data ring does not have that delay.
+  The select signal chose the wrong signal at the boundary of 0x7 and 0x8.
+  If we delay select signal, then the data ring won't be correct.
+
+  The sim_main logging double-stores the first row of sync header.

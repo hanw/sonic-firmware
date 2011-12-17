@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags=""
+   categories="" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element sonic_application_top_testbench_inst
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_cfg_linkcsr_bfm
+   {
+      datum _sortIndex
+      {
+         value = "17";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_clk_bfm
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_cpl_err_bfm
+   {
+      datum _sortIndex
+      {
+         value = "12";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_cpl_pending_bfm
+   {
+      datum _sortIndex
+      {
+         value = "13";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_err_desc_bfm
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_gen2_speed_bfm
+   {
+      datum _sortIndex
+      {
+         value = "18";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_legacy_irq_bfm
+   {
+      datum _sortIndex
+      {
+         value = "5";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_msi_irq_bfm
+   {
+      datum _sortIndex
+      {
+         value = "6";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_pex_msi_num_bfm
+   {
+      datum _sortIndex
+      {
+         value = "8";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_pma_rx_ready_bfm
+   {
+      datum _sortIndex
+      {
+         value = "20";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_pma_tx_ready_bfm
+   {
+      datum _sortIndex
+      {
+         value = "19";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_reset_bfm
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_rx_st_bfm
+   {
+      datum _sortIndex
+      {
+         value = "9";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_rx_st_misc_bfm
+   {
+      datum _sortIndex
+      {
+         value = "11";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_tl_cfg_bfm
+   {
+      datum _sortIndex
+      {
+         value = "14";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_tx_st_bfm
+   {
+      datum _sortIndex
+      {
+         value = "10";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_tx_st_cred_bfm
+   {
+      datum _sortIndex
+      {
+         value = "15";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_tx_st_fifo_empty_bfm
+   {
+      datum _sortIndex
+      {
+         value = "16";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_xcvr_rx_clkout_bfm
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+   element sonic_application_top_testbench_inst_xcvr_tx_clkout_bfm
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="deviceFamily" value="STRATIXIV" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="maxAdditionalLatency" value="1" />
+ <parameter name="projectName" value="" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="1" />
+ <parameter name="timeStamp" value="1310580224296" />
+ <module
+   kind="sonic_application_top_testbench"
+   version="1.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst">
+  <parameter name="AUTO_GENERATION_ID" value="0" />
+  <parameter name="AUTO_UNIQUE_ID">sonic_application_top_testbench_inst</parameter>
+  <parameter name="AUTO_DEVICE_FAMILY" value="Stratix IV" />
+  <parameter name="AUTO_XCVR_RX_CLKOUT_CLOCK_RATE" value="0" />
+  <parameter name="AUTO_XCVR_RX_CLKOUT_CLOCK_DOMAIN" value="3" />
+  <parameter name="AUTO_XCVR_RX_CLKOUT_RESET_DOMAIN" value="3" />
+  <parameter name="AUTO_XCVR_TX_CLKOUT_CLOCK_RATE" value="0" />
+  <parameter name="AUTO_XCVR_TX_CLKOUT_CLOCK_DOMAIN" value="4" />
+  <parameter name="AUTO_XCVR_TX_CLKOUT_RESET_DOMAIN" value="4" />
+  <parameter name="AUTO_CLK_CLOCK_RATE" value="0" />
+  <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="1" />
+  <parameter name="AUTO_CLK_RESET_DOMAIN" value="1" />
+ </module>
+ <module
+   kind="altera_avalon_clock_source"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_xcvr_rx_clkout_bfm">
+  <parameter name="CLOCK_RATE" value="257" />
+ </module>
+ <module
+   kind="altera_avalon_clock_source"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_xcvr_tx_clkout_bfm">
+  <parameter name="CLOCK_RATE" value="257" />
+ </module>
+ <module
+   kind="altera_avalon_clock_source"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_clk_bfm">
+  <parameter name="CLOCK_RATE" value="250" />
+ </module>
+ <module
+   kind="altera_avalon_reset_source"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_reset_bfm">
+  <parameter name="ASSERT_HIGH_RESET" value="0" />
+  <parameter name="INITIAL_RESET_CYCLES" value="50" />
+ </module>
+ <module
+   kind="altera_conduit_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_legacy_irq_bfm">
+  <parameter name="SIGNAL_ROLES" value="sts,ack" />
+  <parameter name="SIGNAL_WIDTHS" value="1,1" />
+  <parameter name="SIGNAL_DIRECTIONS" value="input,output" />
+ </module>
+ <module
+   kind="altera_conduit_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_msi_irq_bfm">
+  <parameter name="SIGNAL_ROLES" value="num,ack,req,tc" />
+  <parameter name="SIGNAL_WIDTHS" value="5,1,1,3" />
+  <parameter name="SIGNAL_DIRECTIONS">input,output,input,input</parameter>
+ </module>
+ <module
+   kind="altera_conduit_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_err_desc_bfm">
+  <parameter name="SIGNAL_ROLES" value="export" />
+  <parameter name="SIGNAL_WIDTHS" value="128" />
+  <parameter name="SIGNAL_DIRECTIONS" value="input" />
+ </module>
+ <module
+   kind="altera_conduit_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_pex_msi_num_bfm">
+  <parameter name="SIGNAL_ROLES" value="export" />
+  <parameter name="SIGNAL_WIDTHS" value="5" />
+  <parameter name="SIGNAL_DIRECTIONS" value="input" />
+ </module>
+ <module
+   kind="altera_avalon_st_source_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_rx_st_bfm">
+  <parameter name="USE_PACKET" value="1" />
+  <parameter name="USE_CHANNEL" value="0" />
+  <parameter name="USE_ERROR" value="1" />
+  <parameter name="USE_READY" value="1" />
+  <parameter name="USE_VALID" value="1" />
+  <parameter name="USE_EMPTY" value="1" />
+  <parameter name="ST_SYMBOL_W" value="128" />
+  <parameter name="ST_NUMSYMBOLS" value="1" />
+  <parameter name="ST_CHANNEL_W" value="1" />
+  <parameter name="ST_ERROR_W" value="1" />
+  <parameter name="ST_READY_LATENCY" value="0" />
+  <parameter name="ST_BEATSPERCYCLE" value="1" />
+  <parameter name="ST_MAX_CHANNELS" value="0" />
+ </module>
+ <module
+   kind="altera_avalon_st_sink_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_tx_st_bfm">
+  <parameter name="USE_PACKET" value="1" />
+  <parameter name="USE_CHANNEL" value="0" />
+  <parameter name="USE_ERROR" value="1" />
+  <parameter name="USE_READY" value="1" />
+  <parameter name="USE_VALID" value="1" />
+  <parameter name="USE_EMPTY" value="1" />
+  <parameter name="ST_SYMBOL_W" value="128" />
+  <parameter name="ST_NUMSYMBOLS" value="1" />
+  <parameter name="ST_CHANNEL_W" value="1" />
+  <parameter name="ST_ERROR_W" value="1" />
+  <parameter name="ST_READY_LATENCY" value="0" />
+  <parameter name="ST_BEATSPERCYCLE" value="1" />
+  <parameter name="ST_MAX_CHANNELS" value="0" />
+ </module>
+ <module
+   kind="altera_conduit_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_rx_st_misc_bfm">
+  <parameter name="SIGNAL_ROLES">stream_mask0,st_be0,st_bardec0</parameter>
+  <parameter name="SIGNAL_WIDTHS" value="1,16,8" />
+  <parameter name="SIGNAL_DIRECTIONS" value="input,output,output" />
+ </module>
+ <module
+   kind="altera_conduit_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_cpl_err_bfm">
+  <parameter name="SIGNAL_ROLES" value="export" />
+  <parameter name="SIGNAL_WIDTHS" value="7" />
+  <parameter name="SIGNAL_DIRECTIONS" value="input" />
+ </module>
+ <module
+   kind="altera_conduit_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_cpl_pending_bfm">
+  <parameter name="SIGNAL_ROLES" value="export" />
+  <parameter name="SIGNAL_WIDTHS" value="1" />
+  <parameter name="SIGNAL_DIRECTIONS" value="input" />
+ </module>
+ <module
+   kind="altera_conduit_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_tl_cfg_bfm">
+  <parameter name="SIGNAL_ROLES">msicsr,prmcsr,devcsr,busdev,tcvcmap</parameter>
+  <parameter name="SIGNAL_WIDTHS" value="16,32,32,13,24" />
+  <parameter name="SIGNAL_DIRECTIONS">output,output,output,output,output</parameter>
+ </module>
+ <module
+   kind="altera_conduit_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_tx_st_cred_bfm">
+  <parameter name="SIGNAL_ROLES" value="export" />
+  <parameter name="SIGNAL_WIDTHS" value="36" />
+  <parameter name="SIGNAL_DIRECTIONS" value="output" />
+ </module>
+ <module
+   kind="altera_conduit_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_tx_st_fifo_empty_bfm">
+  <parameter name="SIGNAL_ROLES" value="export" />
+  <parameter name="SIGNAL_WIDTHS" value="1" />
+  <parameter name="SIGNAL_DIRECTIONS" value="output" />
+ </module>
+ <module
+   kind="altera_conduit_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_cfg_linkcsr_bfm">
+  <parameter name="SIGNAL_ROLES" value="export" />
+  <parameter name="SIGNAL_WIDTHS" value="32" />
+  <parameter name="SIGNAL_DIRECTIONS" value="output" />
+ </module>
+ <module
+   kind="altera_conduit_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_gen2_speed_bfm">
+  <parameter name="SIGNAL_ROLES" value="export" />
+  <parameter name="SIGNAL_WIDTHS" value="1" />
+  <parameter name="SIGNAL_DIRECTIONS" value="input" />
+ </module>
+ <module
+   kind="altera_conduit_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_pma_tx_ready_bfm">
+  <parameter name="SIGNAL_ROLES" value="export" />
+  <parameter name="SIGNAL_WIDTHS" value="1" />
+  <parameter name="SIGNAL_DIRECTIONS" value="output" />
+ </module>
+ <module
+   kind="altera_conduit_bfm"
+   version="11.0"
+   enabled="1"
+   name="sonic_application_top_testbench_inst_pma_rx_ready_bfm">
+  <parameter name="SIGNAL_ROLES" value="export" />
+  <parameter name="SIGNAL_WIDTHS" value="1" />
+  <parameter name="SIGNAL_DIRECTIONS" value="output" />
+ </module>
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_xcvr_rx_clkout_bfm.clk"
+   end="sonic_application_top_testbench_inst.xcvr_rx_clkout" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_xcvr_tx_clkout_bfm.clk"
+   end="sonic_application_top_testbench_inst.xcvr_tx_clkout" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_clk_bfm.clk"
+   end="sonic_application_top_testbench_inst.clk" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_xcvr_rx_clkout_bfm.clk"
+   end="sonic_application_top_testbench_inst_reset_bfm.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_reset_bfm.reset"
+   end="sonic_application_top_testbench_inst.reset" />
+ <connection
+   kind="conduit"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_legacy_irq_bfm.conduit"
+   end="sonic_application_top_testbench_inst.legacy_irq">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_msi_irq_bfm.conduit"
+   end="sonic_application_top_testbench_inst.msi_irq">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_err_desc_bfm.conduit"
+   end="sonic_application_top_testbench_inst.err_desc">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_pex_msi_num_bfm.conduit"
+   end="sonic_application_top_testbench_inst.pex_msi_num">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_clk_bfm.clk"
+   end="sonic_application_top_testbench_inst_rx_st_bfm.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_reset_bfm.reset"
+   end="sonic_application_top_testbench_inst_rx_st_bfm.clk_reset" />
+ <connection
+   kind="avalon_streaming"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_rx_st_bfm.src"
+   end="sonic_application_top_testbench_inst.rx_st" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_clk_bfm.clk"
+   end="sonic_application_top_testbench_inst_tx_st_bfm.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_reset_bfm.reset"
+   end="sonic_application_top_testbench_inst_tx_st_bfm.clk_reset" />
+ <connection
+   kind="avalon_streaming"
+   version="11.0"
+   start="sonic_application_top_testbench_inst.tx_st"
+   end="sonic_application_top_testbench_inst_tx_st_bfm.sink" />
+ <connection
+   kind="conduit"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_rx_st_misc_bfm.conduit"
+   end="sonic_application_top_testbench_inst.rx_st_misc">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_cpl_err_bfm.conduit"
+   end="sonic_application_top_testbench_inst.cpl_err">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_cpl_pending_bfm.conduit"
+   end="sonic_application_top_testbench_inst.cpl_pending">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_tl_cfg_bfm.conduit"
+   end="sonic_application_top_testbench_inst.tl_cfg">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_tx_st_cred_bfm.conduit"
+   end="sonic_application_top_testbench_inst.tx_st_cred">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_tx_st_fifo_empty_bfm.conduit"
+   end="sonic_application_top_testbench_inst.tx_st_fifo_empty">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_cfg_linkcsr_bfm.conduit"
+   end="sonic_application_top_testbench_inst.cfg_linkcsr">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_gen2_speed_bfm.conduit"
+   end="sonic_application_top_testbench_inst.gen2_speed">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_pma_tx_ready_bfm.conduit"
+   end="sonic_application_top_testbench_inst.pma_tx_ready">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+ <connection
+   kind="conduit"
+   version="11.0"
+   start="sonic_application_top_testbench_inst_pma_rx_ready_bfm.conduit"
+   end="sonic_application_top_testbench_inst.pma_rx_ready">
+  <parameter name="endPort" value="" />
+  <parameter name="endPortLSB" value="0" />
+  <parameter name="startPort" value="" />
+  <parameter name="startPortLSB" value="0" />
+  <parameter name="width" value="0" />
+ </connection>
+</system>

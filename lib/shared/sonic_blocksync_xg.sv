@@ -1,22 +1,33 @@
+//                              -*- Mode: Verilog -*-
+// Filename        : sonic_blocksync_xg.sv
+// Description     : lock to sync header
+// Author          : Han Wang
+// Created On      : Wed Nov 23 17:41:03 2011
+// Last Modified By: Han Wang
+// Last Modified On: Wed Nov 23 17:41:03 2011
+// Update Count    : 1
+// Status          : Need to fix the bit order!
+
 /*
  * BLOCKSYNC State Machine
  * 
  */
   
-module sonic_blocksync_xg (clk, reset, valid, data_in, block_lock);
+module sonic_blocksync_xg (clk, reset, valid, data_in, block_lock, data_out);
    /* blocksync block for 10G ethernet stack*/
    input [65:0] data_in;
    input 	valid;
    input 	clk;
    input 	reset;
    output 	block_lock;
+   output [65:0] data_out;
    
    reg [2:0]  state;
    reg [31:0] sh_cnt;
    reg [31:0] sh_invalid_cnt;
    reg 	      sh_valid;
    reg 	      slip_done;
-   reg 	      test_sh;
+   reg	      test_sh;
    reg 	      block_lock;
    reg [65:0] rx_coded;
 
@@ -30,12 +41,15 @@ module sonic_blocksync_xg (clk, reset, valid, data_in, block_lock);
       
    parameter LOCK_INIT = 0, RESET_CNT = 1, TEST_SH = 2;
    parameter VALID_SH = 3, INVALID_SH = 4, GOOD_64 = 5, SLIP = 6;
- 
+
+   assign data_out = rx_coded;
+   
    /* output depends on state */
-   always @ (state) begin
+   always @ (state or valid) begin
       case (state)
 	LOCK_INIT: begin
 	   block_lock = 0;
+	   offset = 0;
 	   test_sh = 0;
 	end
 
@@ -43,6 +57,7 @@ module sonic_blocksync_xg (clk, reset, valid, data_in, block_lock);
 	   sh_cnt = 0;
 	   sh_invalid_cnt = 0;
 	   slip_done = 0;
+	   test_sh = valid;
 	end
 
 	TEST_SH: begin
@@ -51,23 +66,31 @@ module sonic_blocksync_xg (clk, reset, valid, data_in, block_lock);
 
 	VALID_SH: begin
 	   sh_cnt = sh_cnt + 1;
+	   test_sh = valid;
 	end
 
 	INVALID_SH: begin
 	   sh_cnt = sh_cnt + 1;
 	   sh_invalid_cnt = sh_invalid_cnt + 1;
+	   test_sh = valid;
 	end
 
 	GOOD_64: begin
 	   block_lock = 1;
+	   test_sh = valid;
 	end
 
-	SLIP: begin
+	SLIP: begin	   
+	   if (offset >= 66) offset = 0;
+	   else offset = offset + 1;
+	   slip_done = 1;
 	   block_lock = 0;
+	   test_sh = valid;
 	end	
       endcase // case (state)
    end
 
+  
    /* determine next state */
    always @ (posedge clk or posedge reset) begin
      if (reset) begin
@@ -130,45 +153,35 @@ module sonic_blocksync_xg (clk, reset, valid, data_in, block_lock);
       if (valid) begin
 	 rx_b1 <= data_in;
 	 rx_b2 <= rx_b1;
-	 rx_coded <= rx_b2 << offset | rx_b1 >> (66 - offset);
+	 rx_coded <= (rx_b1 << offset) | rx_b2 >> (66 - offset) ;
       end
    end
   
    /* generate sh_valid */
    always @ (posedge clk) begin
       if (test_sh & valid) begin
-	 sh_valid <= rx_b2[offset] ^ rx_b2[offset+1];
+	 sh_valid <= rx_coded[0] ^ rx_coded[1];
       end
    end
 
-   /* generate slip_done */
+   /* generate slip_done 
    always @ (state) begin
-      /* slip one bit to the right */
-      case (state)
+      // slip one bit to the right
+      case (state) 
 	SLIP: begin
-	   offset = offset + 1;
+	   if (offset >= 66) offset = 0;
+	   else offset = offset + 1;
 	   slip_done = 1;
 	end
       endcase // case (state)
    end
-
-   always @ (state) begin
-      case (state)
-	RESET_CNT,
-	VALID_SH,
-	INVALID_SH,
-	GOOD_64,
-	SLIP: begin
-	   if (valid)
-	     test_sh = 0;
-	end
-      endcase // case (state)
-   end // always @ (state)
-   
-   
+   */
+/*   always @ (state) begin
+      test_sh = (state == LOCK_INIT || state == TEST_SH) ? 0 : valid;
+   end
+*/      
 endmodule // sonic_blocksync_xg
 
-  
 
 //-----------------------------------------------------------------------------------------
 // Copyright 2011 Cornell University. All rights reserved.

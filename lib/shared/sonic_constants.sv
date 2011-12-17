@@ -39,6 +39,8 @@
 `define TLP_TYPE_IO          5'b00010 // TLP Type field -> IO
 
 `define TLP_TC_DEFAULT       3'b000   // Default TC of the TLP
+`define TLP_TC_CLASS_P0      3'b000   // TC class for Port 0
+`define TLP_TC_CLASS_P1      3'b101   // TC class for Port 1
 `define TLP_TD_DEFAULT       1'b0     // Default TD of the TLP
 `define TLP_EP_DEFAULT       1'b0     // Default EP of the TLP
 `define TLP_ATTR_DEFAULT     2'b0     // Default EP of the TLP
@@ -154,3 +156,5 @@
 `define TX_WRITE_ADDR_WIDTH			13
 `define TX_READ_ADDR_WIDTH			14
 
+`define TLP_TC_CLASS_P1 5
+`define TLP_TC_CLASS_P0 0

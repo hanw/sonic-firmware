@@ -1,0 +1,26 @@
+# system info sonic_monitor on 2011.12.07.02:30:55
+system_info:
+name,value
+DEVICE,
+DEVICE_FAMILY,Stratix IV
+GENERATION_ID,1323243054
+#
+#
+# Files generated for sonic_monitor on 2011.12.07.02:30:55
+files:
+filepath,kind,attributes,module,is_top
+sonic_monitor/simulation/sonic_monitor.v,VERILOG,,sonic_monitor,true
+sonic_monitor/simulation/submodules/verbosity_pkg.sv,SYSTEM_VERILOG,,altera_avalon_st_monitor,false
+sonic_monitor/simulation/submodules/altera_avalon_st_monitor_assertion.sv,SYSTEM_VERILOG,,altera_avalon_st_monitor,false
+sonic_monitor/simulation/submodules/altera_avalon_st_monitor_coverage.sv,SYSTEM_VERILOG,,altera_avalon_st_monitor,false
+sonic_monitor/simulation/submodules/altera_avalon_st_monitor_transactions.sv,SYSTEM_VERILOG,,altera_avalon_st_monitor,false
+sonic_monitor/simulation/submodules/altera_avalon_st_monitor.sv,SYSTEM_VERILOG,,altera_avalon_st_monitor,false
+sonic_monitor/simulation/submodules/altera_reset_controller.v,VERILOG,,altera_reset_controller,false
+sonic_monitor/simulation/submodules/altera_reset_synchronizer.v,VERILOG,,altera_reset_controller,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+sonic_monitor.sonic_rx_monitor,altera_avalon_st_monitor
+sonic_monitor.sonic_tx_monitor,altera_avalon_st_monitor
+sonic_monitor.rst_controller,altera_reset_controller
