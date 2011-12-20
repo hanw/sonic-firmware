@@ -19,14 +19,14 @@ module sonic_blocksync_xg (clk, reset, valid, data_in, block_lock, data_out);
    input 	valid;
    input 	clk;
    input 	reset;
-   output 	block_lock;
+   output 	block_lock; //latch.
    output [65:0] data_out;
    
    reg [2:0]  state;
-   reg [31:0] sh_cnt;
-   reg [31:0] sh_invalid_cnt;
+   reg [31:0] sh_cnt; //latch
+   reg [31:0] sh_invalid_cnt; //latch
    reg 	      sh_valid;
-   reg 	      slip_done;
+   reg 	      slip_done; //latch
    reg	      test_sh;
    reg 	      block_lock;
    reg [65:0] rx_coded;
@@ -37,7 +37,7 @@ module sonic_blocksync_xg (clk, reset, valid, data_in, block_lock, data_out);
    reg [65:0] rx_b2;
 
    /* verilator lint_off UNOPTFLAT */
-   reg [7:0]  offset;
+   reg [7:0]  offset; //latch
       
    parameter LOCK_INIT = 0, RESET_CNT = 1, TEST_SH = 2;
    parameter VALID_SH = 3, INVALID_SH = 4, GOOD_64 = 5, SLIP = 6;
@@ -45,7 +45,7 @@ module sonic_blocksync_xg (clk, reset, valid, data_in, block_lock, data_out);
    assign data_out = rx_coded;
    
    /* output depends on state */
-   always @ (state or valid) begin
+   always @ (posedge clk) begin
       case (state)
 	LOCK_INIT: begin
 	   block_lock = 0;
@@ -82,7 +82,7 @@ module sonic_blocksync_xg (clk, reset, valid, data_in, block_lock, data_out);
 
 	SLIP: begin	   
 	   if (offset >= 66) offset = 0;
-	   else offset = offset + 1;
+	   else offset = offset + 8'h1;
 	   slip_done = 1;
 	   block_lock = 0;
 	   test_sh = valid;

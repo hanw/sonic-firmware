@@ -236,6 +236,8 @@ module sonic_top_wrapper (
    wire 	   txelecidle5_ext;
    wire 	   txelecidle6_ext;
    wire 	   txelecidle7_ext;
+   wire [127:0]    monitor_out_0;
+   wire [127:0]    monitor_out_1;
 
    assign safe_mode = 1;
    assign local_rstn = safe_mode | local_rstn_ext;
@@ -400,6 +402,8 @@ module sonic_top_wrapper (
       .reset_nios(reset_nios),
       .set_lpbk(set_lpbk),
       .unset_lpbk(unset_lpbk),
+      .monitor_out_0(monitor_out_0),
+      .monitor_out_1(monitor_out_1),
       .tx_out0 (tx_out0),
       .tx_out1 (tx_out1),
       .tx_out2 (tx_out2),
@@ -508,86 +512,90 @@ module sonic_top_wrapper (
 						     .q(test_out_icm_crossed)
 						     );
    defparam test_out_crosser.WIDTH=9;
+
+   /*
+    * System Monitor Signal Assignment.
+    */
    
-   sonic_v1_15 SUT(  
-      
-		     .mm_clk_in_clk(clk_50MHz),
-		     .mm_clk_in_reset_reset_n(reset_n),
-		     .mdio_mdio_in(mdio_in_to_the_mdio),
-		     .mdio_mdc(mdc_from_the_mdio),
-		     .mdio_mdio_out(mdio_out_from_the_mdio),
-		     .mdio_mdio_oen(mdio_oen_from_the_mdio),
-		     .ref_clk_in_clk(clk_644MHz),
-		     .ref_clk_in_reset_reset_n(reset_n),
-		     .user_interface_write(user_write),        //user_interface.write
-		     .user_interface_read(user_read),          //.read
-		     .user_interface_byteenable(user_byteenable),   //.byteenable
-		     .user_interface_chipselect(user_chipselect),    //.chipselect
-		     .user_interface_datain_0(user_datain_0),      //.datain_0
-		     .user_interface_datain_1(user_datain_1),      //.datain_1
-		     .user_interface_datain_2(),         //                         .datain_2
-		     .user_interface_datain_3(),         //                         .datain_3
-		     .user_interface_datain_4(),         //                         .datain_4
-		     .user_interface_datain_5(),         //                         .datain_5
-		     .user_interface_datain_6(),         //                         .datain_6
-		     .user_interface_datain_7(),         //                         .datain_7
-		     .user_interface_datain_8(),         //                         .datain_8
-		     .user_interface_datain_9(),         //                         .datain_9
-		     .user_interface_datain_10(),         //                        .datain_10
-		     .user_interface_datain_11(),         //                        .datain_11
-		     .user_interface_datain_12(),         //                        .datain_12
-		     .user_interface_datain_13(),         //                        .datain_13
-		     .user_interface_datain_14(),         //                        .datain_14
-		     .user_interface_datain_15(),         //                        .datain_15
-		     .user_interface_dataout_0(user_dataout_0),    //               .dataout_0
-		     .user_interface_dataout_1(user_dataout_1),    //               .dataout_1
-		     .user_interface_dataout_2         (),         //               .dataout_2
-		     .user_interface_dataout_3         (),         //               .dataout_3
-		     .user_interface_dataout_4         (),         //               .dataout_4
-		     .user_interface_dataout_5         (),         //               .dataout_5
-		     .user_interface_dataout_6         (),         //               .dataout_6
-		     .user_interface_dataout_7         (),         //               .dataout_7
-		     .user_interface_dataout_8         (),         //               .dataout_8
-		     .user_interface_dataout_9         (),         //               .dataout_9
-		     .user_interface_dataout_10        (),         //               .dataout_10
-		     .user_interface_dataout_11        (),         //               .dataout_11
-		     .user_interface_dataout_12        (),         //               .dataout_12
-		     .user_interface_dataout_13        (),         //               .dataout_13
-		     .user_interface_dataout_14        (),         //               .dataout_14
-		     .user_interface_dataout_15        (),         //               .dataout_15
+   sonic_v1_15 SUT
+     (  
+	.mm_clk_in_clk(clk_50MHz),
+	.mm_clk_in_reset_reset_n(reset_n),
+	.mdio_mdio_in(mdio_in_to_the_mdio),
+	.mdio_mdc(mdc_from_the_mdio),
+	.mdio_mdio_out(mdio_out_from_the_mdio),
+	.mdio_mdio_oen(mdio_oen_from_the_mdio),
+	.ref_clk_in_clk(clk_644MHz),
+	.ref_clk_in_reset_reset_n(reset_n),
+	.user_interface_write(user_write),            // .write
+	.user_interface_read(user_read),              // .read
+	.user_interface_byteenable(user_byteenable),  // .byteenable
+	.user_interface_chipselect(user_chipselect),  // .chipselect
+	.user_interface_datain_0(user_datain_0),      // SFP+ xcvr control
+	.user_interface_datain_1(user_datain_1),      // Not used
+	.user_interface_datain_2(monitor_out_0[127:96]), // Chan0 Tx Wptr, Chan0 Rx Rptr
+	.user_interface_datain_3(monitor_out_0[95:64]),  // Chan1 Tx Wptr, Chan1 Rx Rptr
+	.user_interface_datain_4(monitor_out_0[63:32]),  // 
+	.user_interface_datain_5(monitor_out_0[31:0]),   // 
+	.user_interface_datain_6(monitor_out_1[127:96]), // .datain_6
+	.user_interface_datain_7(monitor_out_1[95:64]),  // .datain_7
+	.user_interface_datain_8(monitor_out_1[63:32]),  // .datain_8
+	.user_interface_datain_9(monitor_out_1[31:0]),   // .datain_9
+	.user_interface_datain_10(),                  // .datain_10
+	.user_interface_datain_11(),                  // .datain_11
+	.user_interface_datain_12(),                  // .datain_12
+	.user_interface_datain_13(),                  // .datain_13
+	.user_interface_datain_14(),                  // .datain_14
+	.user_interface_datain_15(),                  // .datain_15
+	.user_interface_dataout_0(user_dataout_0),    // .dataout_0
+	.user_interface_dataout_1(user_dataout_1),    // .dataout_1
+	.user_interface_dataout_2         (),         // .dataout_2
+	.user_interface_dataout_3         (),         // .dataout_3
+	.user_interface_dataout_4         (),         // .dataout_4
+	.user_interface_dataout_5         (),         // .dataout_5
+	.user_interface_dataout_6         (),         // .dataout_6
+	.user_interface_dataout_7         (),         // .dataout_7
+	.user_interface_dataout_8         (),         // .dataout_8
+	.user_interface_dataout_9         (),         // .dataout_9
+	.user_interface_dataout_10        (),         // .dataout_10
+	.user_interface_dataout_11        (),         // .dataout_11
+	.user_interface_dataout_12        (),         // .dataout_12
+	.user_interface_dataout_13        (),         // .dataout_13
+	.user_interface_dataout_14        (),         // .dataout_14
+	.user_interface_dataout_15        (),         // .dataout_15
 
-		     .mm_pipeline_bridge_waitrequest(),
-		     .mm_pipeline_bridge_readdata(),
-		     .mm_pipeline_bridge_readdatavalid(),
-		     .mm_pipeline_bridge_burstcount(),
-		     .mm_pipeline_bridge_writedata(0),
-		     .mm_pipeline_bridge_address(0),
-		     .mm_pipeline_bridge_write(0),
-		     .mm_pipeline_bridge_read(0),
-		     .mm_pipeline_bridge_byteenable(),
+	.mm_pipeline_bridge_waitrequest(),
+	.mm_pipeline_bridge_readdata(),
+	.mm_pipeline_bridge_readdatavalid(),
+	.mm_pipeline_bridge_burstcount(),
+	.mm_pipeline_bridge_writedata(0),
+	.mm_pipeline_bridge_address(0),
+	.mm_pipeline_bridge_write(0),
+	.mm_pipeline_bridge_read(0),
+	.mm_pipeline_bridge_byteenable(),
 
-		     // Only one channel atm.
-		     .tx_serial_data_export({tx_serial_data_1, tx_serial_data_0}),
-		     .rx_serial_data_export({rx_serial_data_1, rx_serial_data_0}),
+	// Only one channel atm.
+	.tx_serial_data_export({tx_serial_data_1, tx_serial_data_0}),
+	.rx_serial_data_export({rx_serial_data_1, rx_serial_data_0}),
 
-		     .pll_locked_export                (),         //  pll_locked.export
-		     .rx_is_lockedtoref_export         (),         //  rx_is_lockedtoref.export
-		     .rx_is_lockedtodata_export        (),         //  rx_is_lockedtodata.export
+	.pll_locked_export                (),         //  pll_locked.export
+	.rx_is_lockedtoref_export         (),         //  rx_is_lockedtoref.export
+	.rx_is_lockedtodata_export        (),         //  rx_is_lockedtodata.export
 
-		     // Interface with SoNIC PCIe app
-		     .rx_ready_export    (pma_rx_ready),
-		     .tx_ready_export    (pma_tx_ready),
-		     .rx_parallel_data_data (xcvr_rx_dataout[39:0]),
-		     .tx_parallel_data_data (xcvr_tx_datain[39:0]),
-		     .rx_clkout_clk  (xcvr_rx_clkout[0]),
-		     .tx_clkout_clk  (xcvr_tx_clkout[0]),
-		     .rx_parallel_data1_data (xcvr_rx_dataout[79:40]),
-		     .tx_parallel_data1_data (xcvr_tx_datain[79:40]),
-		     .rx_clkout_1_clk  (xcvr_rx_clkout[1]),
-		     .tx_clkout_1_clk  (xcvr_tx_clkout[1]),
+	// Interface with SoNIC PCIe app
+	.rx_ready_export    (pma_rx_ready),
+	.tx_ready_export    (pma_tx_ready),
+	.rx_parallel_data_data (xcvr_rx_dataout[39:0]),
+	.tx_parallel_data_data (xcvr_tx_datain[39:0]),
+	.rx_clkout_clk  (xcvr_rx_clkout[0]),
+	.tx_clkout_clk  (xcvr_tx_clkout[0]),
+	.rx_parallel_data1_data (xcvr_rx_dataout[79:40]),
+	.tx_parallel_data1_data (xcvr_tx_datain[79:40]),
+	.rx_clkout_1_clk  (xcvr_rx_clkout[1]),
+	.tx_clkout_1_clk  (xcvr_tx_clkout[1]),
 
-		     .nios_base_ext_export ({1'b0, unset_lpbk, set_lpbk, reset_nios})
-		     );
+	.nios_base_ext_export ({1'b0, unset_lpbk, set_lpbk, reset_nios})
+	);
 
    // MDIO ports connection
    assign mdio_in_out_from_the_mdio = !mdio_oen_from_the_mdio? mdio_out_from_the_mdio : 1'bz;

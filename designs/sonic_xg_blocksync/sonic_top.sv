@@ -111,6 +111,8 @@ module sonic_top (
                   rxpolarity6_ext,
                   rxpolarity7_ext,
                   test_out_icm,
+		  monitor_out_0,
+		  monitor_out_1,
                   tx_out0,
                   tx_out1,
                   tx_out2,
@@ -152,8 +154,7 @@ module sonic_top (
                   txelecidle5_ext,
                   txelecidle6_ext,
                   txelecidle7_ext
-                  )
-  ;
+                  );
 
    output           clk250_out;
    output           clk500_out;
@@ -216,7 +217,9 @@ module sonic_top (
    output           txelecidle5_ext;
    output           txelecidle6_ext;
    output           txelecidle7_ext;
-   
+   output wire [127:0]   monitor_out_0;
+   output wire [127:0]   monitor_out_1;
+      
    input [1:0] 	    xcvr_rx_clkout;
    input [1:0] 	    xcvr_tx_clkout;
    input [79:0]     xcvr_rx_dataout;
@@ -315,6 +318,7 @@ module sonic_top (
    wire             gen2_speed;
    wire [ 23: 0]    cfg_tcvcmap;
    wire             gnd_msi_stream_ready0;
+   wire             gnd_msi_stream_ready1;
    wire [  9: 0]    gnd_pm_data;
    wire             rx_mask1;
    wire             rx_ready1;
@@ -375,6 +379,7 @@ module sonic_top (
    wire [ 15: 0]    rx_st_be0;
    wire [127: 0]    rx_st_data0;
    wire             rx_st_empty0;
+   wire             rx_st_empty1;
    wire             rx_st_eop0;
    wire             rx_st_sop0;
    wire [ 81: 0]    rx_stream_data0;
@@ -491,7 +496,7 @@ module sonic_top (
    assign tx_st_err1 = tx_stream_data1[74];
    assign tx_st_data1 = {tx_stream_data1_1[63:0], tx_stream_data1[63:0]};
    assign tx_st_empty1 = tx_stream_data1[72];
-   assign rx_stream_data1 = {rx_st_be1[7:0], rx_st_sop1, rx_st_empty0, rx_st_bardec1, rx_st_data1[63:0]};
+   assign rx_stream_data1 = {rx_st_be1[7:0], rx_st_sop1, rx_st_empty1, rx_st_bardec1, rx_st_data1[63:0]};
    assign rx_stream_data1_1 = {rx_st_be1[15:0], rx_st_sop1, rx_st_eop1, rx_st_bardec1, rx_st_data1[127:64]};
    assign gnd_tx_stream_mask0 = 1'b0;
    assign gnd_tx_stream_mask1 = 1'b0;
@@ -557,6 +562,7 @@ module sonic_top (
       .rx_st_data0 (rx_st_data0),
       .rx_st_data1 (rx_st_data1),
       .rx_st_empty0 (rx_st_empty0),
+      .rx_st_empty1 (rx_st_empty1),
       .rx_st_eop0 (rx_st_eop0),
       .rx_st_eop1 (rx_st_eop1),
       .rx_st_err0 (open_rx_st_err0),
@@ -736,6 +742,19 @@ module sonic_top (
       .rstn (srstn)
       );
 
+   wire [31:0] 	    p1_prg_wrdata;           // P0 out, P1 in
+   wire [7:0] 	    p1_prg_addr;             // P0 out, P1 in
+   wire [31:0] 	    p1_dma_rd_prg_rddata;    // P0 in;  P1 out
+   wire [31:0] 	    p1_dma_wr_prg_rddata;    // P0 in;  P1 out
+   wire 	    p1_dma_rd_prg_wrena;     // P0 out; P1 in
+   wire 	    p1_dma_wr_prg_wrena;     // P0 out; P1 in
+   wire [31:0] 	    p1_irq_prg_rddata;       // P0 in;  P1 out
+   wire 	    p1_irq_prg_wrena;        // P0 out; P1 in
+   wire [31:0] 	    p1_cmd_prg_rddata;       // P0 in;  P1 out
+   wire 	    p1_cmd_prg_wrena;        // P0 out; P1 in
+   wire [15:0] 	    p1_rx_ecrc_bad_cnt;      // P0 in;  P1 out
+   wire [63:0] 	    p1_read_dma_status;      // P0 in;  P1 out
+   wire [63:0] 	    p1_write_dma_status;     // P0 in;  P1 out
 
    sonic_application_streaming_port app0
      (
@@ -761,6 +780,7 @@ module sonic_top (
       .reset_nios(reset_nios),
       .set_lpbk(set_lpbk),
       .unset_lpbk(unset_lpbk),
+      .monitor_out(monitor_out_0),
       .clk_in (pld_clk),
       .cpl_err (cpl_err_in),
       .cpl_pending (cpl_pending_icm0),
@@ -784,7 +804,21 @@ module sonic_top (
       .tx_stream_fifo_empty0 (tx_fifo_empty0),
       .tx_stream_mask0 (gnd_tx_stream_mask0),
       .tx_stream_ready0 (tx_stream_ready0),
-      .tx_stream_valid0 (tx_stream_valid0)
+      .tx_stream_valid0 (tx_stream_valid0),
+      /* Work around for TC */
+      .p1_prg_wrdata        (p1_prg_wrdata),
+      .p1_prg_addr          (p1_prg_addr),
+      .p1_dma_rd_prg_rddata (p1_dma_rd_prg_rddata),
+      .p1_dma_wr_prg_rddata (p1_dma_wr_prg_rddata),
+      .p1_dma_rd_prg_wrena  (p1_dma_rd_prg_wrena),
+      .p1_dma_wr_prg_wrena  (p1_dma_wr_prg_wrena),
+      .p1_irq_prg_rddata    (p1_irq_prg_rddata),
+      .p1_irq_prg_wrena     (p1_irq_prg_wrena),
+      .p1_cmd_prg_rddata    (p1_cmd_prg_rddata),
+      .p1_cmd_prg_wrena     (p1_cmd_prg_wrena),
+      .p1_rx_ecrc_bad_cnt   (p1_rx_ecrc_bad_cnt),
+      .p1_read_dma_status   (p1_read_dma_status),
+      .p1_write_dma_status  (p1_write_dma_status)
       );
 
    defparam app0.AVALON_WADDR = 13,
@@ -824,6 +858,7 @@ module sonic_top (
 /*      .reset_nios(reset_nios),
       .set_lpbk(set_lpbk),
       .unset_lpbk(unset_lpbk), */
+      .monitor_out(monitor_out_1),
       .clk_in (pld_clk),
       .cpl_err (open_cpl_err),
       .cpl_pending (cpl_pending_icm1),
@@ -847,7 +882,21 @@ module sonic_top (
       .tx_stream_fifo_empty0 (tx_fifo_empty1),
       .tx_stream_mask0 (gnd_tx_stream_mask1),
       .tx_stream_ready0 (tx_stream_ready1),
-      .tx_stream_valid0 (tx_stream_valid1)
+      .tx_stream_valid0 (tx_stream_valid1),
+      /* Work around for TC */
+      .p1_prg_wrdata        (p1_prg_wrdata),
+      .p1_prg_addr          (p1_prg_addr),
+      .p1_dma_rd_prg_rddata (p1_dma_rd_prg_rddata),
+      .p1_dma_wr_prg_rddata (p1_dma_wr_prg_rddata),
+      .p1_dma_rd_prg_wrena  (p1_dma_rd_prg_wrena),
+      .p1_dma_wr_prg_wrena  (p1_dma_wr_prg_wrena),
+      .p1_irq_prg_rddata    (p1_irq_prg_rddata),
+      .p1_irq_prg_wrena     (p1_irq_prg_wrena),
+      .p1_cmd_prg_rddata    (p1_cmd_prg_rddata),
+      .p1_cmd_prg_wrena     (p1_cmd_prg_wrena),
+      .p1_rx_ecrc_bad_cnt   (p1_rx_ecrc_bad_cnt),
+      .p1_read_dma_status   (p1_read_dma_status),
+      .p1_write_dma_status  (p1_write_dma_status)
       );
 
    defparam app1.AVALON_WADDR = 13,

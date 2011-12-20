@@ -34,148 +34,220 @@
 // expressly does not recommend, suggest or require that this reference design file be
 // used in combination with any other product not provided by Altera.
 //-----------------------------------------------------------------------------
-module sonic_rc_slave #(
-	parameter AVALON_WDATA          = 128,
-	parameter AVALON_WADDR          = 12,
-	parameter AVALON_ST_128         = 0,
-	parameter AVALON_BYTE_WIDTH     = AVALON_WDATA/8,
+module sonic_rc_slave 
+  #(
+    parameter AVALON_WDATA          = 128,
+    parameter AVALON_WADDR          = 12,
+    parameter AVALON_ST_128         = 0,
+    parameter AVALON_BYTE_WIDTH     = AVALON_WDATA/8,
     parameter PORT_NUM = 0
-	) (
+    ) (
 
-	input           clk_in,
-	input           rstn,
-	input [31:0]    dma_rd_prg_rddata,
-	input [31:0]    dma_wr_prg_rddata,
-	input [31:0]    irq_prg_rddata,
-	input [31:0]    cmd_prg_rddata,
-	input [31:0]    tx_prg_rddata,
+       input           clk_in,
+       input           rstn,
+       input [31:0]    dma_rd_prg_rddata,
+       input [31:0]    dma_wr_prg_rddata,
+       input [31:0]    irq_prg_rddata,
+       input [31:0]    cmd_prg_rddata,
+       input [31:0]    tx_prg_rddata,
 
-	output [7:0]    prg_addr,
-	output [31:0]   prg_wrdata,
+       output [7:0]    prg_addr,
+       output [31:0]   prg_wrdata,
 
-	output          dma_wr_prg_wrena,
-	output          dma_rd_prg_wrena,
-	output			irq_prg_wrena,
-	output			cmd_prg_wrena,
-	output			tx_prg_wrena,
+       output          dma_wr_prg_wrena,
+       output          dma_rd_prg_wrena,
+       output	       irq_prg_wrena,
+       output	       cmd_prg_wrena,
+       output	       tx_prg_wrena,
 
-	output          mem_wr_ena,  // rename this to write_downstream
-	output          mem_rd_ena,
+       output          mem_wr_ena,  // rename this to write_downstream
+       output          mem_rd_ena,
 
-	input [15:0]    rx_ecrc_bad_cnt,
-	input [63:0]    read_dma_status,
-	input [63:0]    write_dma_status,
-	input [12:0]    cfg_busdev,
-	input           rx_req  ,
-	input[135:0]    rx_desc ,
-	input[127:0]    rx_data ,
-	input[15:0]     rx_be,
-	input           rx_dv   ,
-	input           rx_dfr  ,
-	output          rx_ack  ,
-	output          rx_ws   ,
-	input           tx_ws ,
-	input           tx_ack ,
-	output[127:0]   tx_data,
-	output [127:0]  tx_desc,
-	output          tx_dfr ,
-	output          tx_dv  ,
-	output          tx_req ,
-	output          tx_busy,
-	output          tx_ready,
-	input           tx_sel,
-	input                          mem_rd_data_valid,
-	output [AVALON_WADDR-1:0]      mem_rd_addr ,
-	input [AVALON_WDATA-1:0]       mem_rd_data  ,
-	output [AVALON_WADDR-1:0]      mem_wr_addr ,
-	output [AVALON_WDATA-1:0]      mem_wr_data ,
-	output                         sel_epmem       ,
-	output [AVALON_BYTE_WIDTH-1:0] mem_wr_be
+       input [15:0]    rx_ecrc_bad_cnt,
+       input [63:0]    read_dma_status,
+       input [63:0]    write_dma_status,
+       input [12:0]    cfg_busdev,
+       input           rx_req  ,
+       input[135:0]    rx_desc ,
+       input[127:0]    rx_data ,
+       input[15:0]     rx_be,
+       input           rx_dv   ,
+       input           rx_dfr  ,
+       output          rx_ack  ,
+       output          rx_ws   ,
+       input           tx_ws ,
+       input           tx_ack ,
+       output[127:0]   tx_data,
+       output [127:0]  tx_desc,
+       output          tx_dfr ,
+       output          tx_dv  ,
+       output          tx_req ,
+       output          tx_busy,
+       output          tx_ready,
+       input           tx_sel,
+       input                          mem_rd_data_valid,
+       output [AVALON_WADDR-1:0]      mem_rd_addr,
+       input [AVALON_WDATA-1:0]       mem_rd_data,
+       output [AVALON_WADDR-1:0]      mem_wr_addr,
+       output [AVALON_WDATA-1:0]      mem_wr_data,
+       output                         sel_epmem,
+       output [AVALON_BYTE_WIDTH-1:0] mem_wr_be,
+       /* Work around for TC */
+       output [31:0] prg_wrdata_p1,
+       output [7:0]  prg_addr_p1,
+       input  [31:0] dma_rd_prg_rddata_p1,
+       input  [31:0] dma_wr_prg_rddata_p1,
+       output        dma_rd_prg_wrena_p1,
+       output        dma_wr_prg_wrena_p1,
+       input  [31:0] irq_prg_rddata_p1,
+       output        irq_prg_wrena_p1,
+       input  [31:0] cmd_prg_rddata_p1,
+       output        cmd_prg_wrena_p1,
+       input  [15:0] rx_ecrc_bad_cnt_p1,
+       input  [63:0] read_dma_status_p1,
+       input  [63:0] write_dma_status_p1
+       );
+
+   wire 			      sel_ep_reg;
+   wire 			      sel_ep_reg_p1;
+   wire [31:0] 			      reg_rd_data;
+   wire 			      reg_rd_data_valid;
+   wire [7:0] 			      reg_rd_addr;
+   wire [7:0] 			      reg_wr_addr;
+   wire [31:0] 			      reg_wr_data;
+
+   sonic_rxtx_downstream_intf 
+     #(
+       .AVALON_ST_128    (AVALON_ST_128),
+       .AVALON_WDATA     (AVALON_WDATA),
+       .AVALON_BE_WIDTH  (AVALON_BYTE_WIDTH),
+       .MEM_ADDR_WIDTH   (AVALON_WADDR),
+       .PORT_NUM         (PORT_NUM)
+       ) sonic_rxtx_mem_intf 
+       (
+	.clk_in       (clk_in),
+	.rstn         (rstn),
+	.cfg_busdev   (cfg_busdev),
+
+	.rx_req       (rx_req),
+	.rx_desc      (rx_desc),
+	.rx_data      (rx_data[AVALON_WDATA-1:0]),
+	.rx_be        (rx_be[AVALON_BYTE_WIDTH-1:0]),
+	.rx_dv        (rx_dv),
+	.rx_dfr       (rx_dfr),
+	.rx_ack       (rx_ack),
+	.rx_ws        (rx_ws),
+
+	.tx_ws        (tx_ws),
+	.tx_ack       (tx_ack),
+	.tx_desc      (tx_desc),
+	.tx_data      (tx_data[AVALON_WDATA-1:0]),
+	.tx_dfr       (tx_dfr),
+	.tx_dv        (tx_dv),
+	.tx_req       (tx_req),
+	.tx_busy      (tx_busy ),
+	.tx_ready     (tx_ready),
+	.tx_sel       (tx_sel ),
+
+	.mem_rd_data_valid (mem_rd_data_valid),
+	.mem_rd_addr       (mem_rd_addr),
+	.mem_rd_data       (mem_rd_data),
+	.mem_rd_ena        (mem_rd_ena),
+	.mem_wr_ena        (mem_wr_ena),
+	.mem_wr_addr       (mem_wr_addr),
+	.mem_wr_data       (mem_wr_data),
+	.mem_wr_be         (mem_wr_be),
+	.sel_epmem         (sel_epmem),
+
+	.sel_ctl_sts       (sel_ep_reg),
+	.sel_ctl_sts_p1    (sel_ep_reg_p1),
+	.reg_rd_data       (reg_rd_data),
+	.reg_rd_data_valid (reg_rd_data_valid),
+	.reg_wr_addr       (reg_wr_addr),
+	.reg_rd_addr       (reg_rd_addr),
+	.reg_wr_data       (reg_wr_data)
 	);
 
-	wire          sel_ep_reg;
-	wire [31:0]   reg_rd_data;
-	wire          reg_rd_data_valid;
-	wire [7:0]    reg_rd_addr;
-	wire [7:0]    reg_wr_addr;
-	wire [31:0]   reg_wr_data;
+   /*
+    * select reg_rd_data and reg_rd_data_valid, depends on sel_ep_reg value.
+    */
+   wire [31:0] 			      reg_rd_data_p0;
+   wire 			      reg_rd_data_valid_p0;
+   wire [31:0] 			      reg_rd_data_p1;
+   wire 			      reg_rd_data_valid_p1;
 
-	sonic_rxtx_downstream_intf #(
-	  .AVALON_ST_128    (AVALON_ST_128),
-	  .AVALON_WDATA     (AVALON_WDATA),
-	  .AVALON_BE_WIDTH  (AVALON_BYTE_WIDTH),
-	  .MEM_ADDR_WIDTH   (AVALON_WADDR),
-				     .PORT_NUM         (PORT_NUM)
-	  ) sonic_rxtx_mem_intf (
-	  .clk_in       (clk_in),
-	  .rstn         (rstn),
-	  .cfg_busdev   (cfg_busdev),
+   assign reg_rd_data = (sel_ep_reg == 1) ? reg_rd_data_p0 :
+			((sel_ep_reg_p1 == 1) ? reg_rd_data_p1 : 32'b0);
+   assign reg_rd_data_valid = (sel_ep_reg == 1) ? reg_rd_data_valid_p0 : 
+			      ((sel_ep_reg_p1 == 1) ? reg_rd_data_valid_p1 : 1'b0);
+      
+   sonic_reg_access bar_reg_access   
+     (
+      .clk_in            (clk_in),
+      .rstn              (rstn),
+      .prg_wrdata	 (prg_wrdata),
+      .prg_addr		 (prg_addr),
 
-	  .rx_req       (rx_req),
-	  .rx_desc      (rx_desc),
-	  .rx_data      (rx_data[AVALON_WDATA-1:0]),
-	  .rx_be        (rx_be[AVALON_BYTE_WIDTH-1:0]),
-	  .rx_dv        (rx_dv),
-	  .rx_dfr       (rx_dfr),
-	  .rx_ack       (rx_ack),
-	  .rx_ws        (rx_ws),
+      .dma_rd_prg_rddata (dma_rd_prg_rddata),
+      .dma_wr_prg_rddata (dma_wr_prg_rddata),
+      .dma_rd_prg_wrena  (dma_rd_prg_wrena),
+      .dma_wr_prg_wrena  (dma_wr_prg_wrena),
+      .irq_prg_rddata	 (irq_prg_rddata),
+      .irq_prg_wrena	 (irq_prg_wrena),
+      .cmd_prg_rddata    (cmd_prg_rddata),
+      .cmd_prg_wrena     (cmd_prg_wrena),
 
-	  .tx_ws        (tx_ws),
-	  .tx_ack       (tx_ack),
-	  .tx_desc      (tx_desc),
-	  .tx_data      (tx_data[AVALON_WDATA-1:0]),
-	  .tx_dfr       (tx_dfr),
-	  .tx_dv        (tx_dv),
-	  .tx_req       (tx_req),
-	  .tx_busy      (tx_busy ),
-	  .tx_ready     (tx_ready),
-	  .tx_sel       (tx_sel ),
+      .sel_ep_reg        (sel_ep_reg),
+      .reg_rd_data       (reg_rd_data_p0),
+      .reg_rd_data_valid (reg_rd_data_valid_p0),
+      .reg_wr_ena        (mem_wr_ena),
+      .reg_rd_ena        (mem_rd_ena),
+      .reg_rd_addr       (reg_rd_addr),
+      .reg_wr_addr       (reg_wr_addr),
+      .reg_wr_data       (reg_wr_data),
 
-	  .mem_rd_data_valid (mem_rd_data_valid),
-	  .mem_rd_addr       (mem_rd_addr),
-	  .mem_rd_data       (mem_rd_data),
-	  .mem_rd_ena        (mem_rd_ena),
-	  .mem_wr_ena        (mem_wr_ena),
-	  .mem_wr_addr       (mem_wr_addr),
-	  .mem_wr_data       (mem_wr_data),
-	  .mem_wr_be         (mem_wr_be),
-	  .sel_epmem         (sel_epmem),
+      .rx_ecrc_bad_cnt   (rx_ecrc_bad_cnt),
+      .read_dma_status   (read_dma_status),
+      .write_dma_status  (write_dma_status)
+      );
 
-	  .sel_ctl_sts       (sel_ep_reg),
-	  .reg_rd_data       (reg_rd_data),
-	  .reg_rd_data_valid (reg_rd_data_valid),
-	  .reg_wr_addr       (reg_wr_addr),
-	  .reg_rd_addr       (reg_rd_addr),
-	  .reg_wr_data       (reg_wr_data)
-	);
+   /*
+    * In channel 0, we add_in another sonic_reg_access module,
+    * to control the reg access for port1 registers.
+    * Workaround for VC1 if the TC field can not be modified by software.
+    * If sel_ep_reg_p1 is 0, then wr_ena and rd_ena are both 0.
+    * 
+    */
 
-	sonic_reg_access bar_reg_access   (
-		.clk_in            (clk_in),
-		.rstn              (rstn),
-		.prg_wrdata		   (prg_wrdata),
-		.prg_addr		   (prg_addr),
+    sonic_reg_access bar3_reg_access 
+      (
+      .clk_in            (clk_in),
+      .rstn              (rstn),
+      .prg_wrdata	 (prg_wrdata_p1),   // Out P1
+      .prg_addr		 (prg_addr_p1),     // Out P1
 
-		.dma_rd_prg_rddata (dma_rd_prg_rddata),
-		.dma_wr_prg_rddata (dma_wr_prg_rddata),
-		.dma_rd_prg_wrena  (dma_rd_prg_wrena),
-		.dma_wr_prg_wrena  (dma_wr_prg_wrena),
-		.irq_prg_rddata	   (irq_prg_rddata),
-		.irq_prg_wrena	   (irq_prg_wrena),
-		.cmd_prg_rddata    (cmd_prg_rddata),
-		.cmd_prg_wrena     (cmd_prg_wrena),
+      .dma_rd_prg_rddata (dma_rd_prg_rddata_p1), // In P1
+      .dma_wr_prg_rddata (dma_wr_prg_rddata_p1), // In P1
+      .dma_rd_prg_wrena  (dma_rd_prg_wrena_p1),  // Out P1
+      .dma_wr_prg_wrena  (dma_wr_prg_wrena_p1),  // Out P1
+      .irq_prg_rddata	 (irq_prg_rddata_p1), // In P1
+      .irq_prg_wrena	 (irq_prg_wrena_p1),  // Out P1
+      .cmd_prg_rddata    (cmd_prg_rddata_p1), // In P1
+      .cmd_prg_wrena     (cmd_prg_wrena_p1),  // Out P1
 
-		.sel_ep_reg        (sel_ep_reg),
-		.reg_rd_data       (reg_rd_data),
-		.reg_rd_data_valid (reg_rd_data_valid),
-		.reg_wr_ena        (mem_wr_ena),
-		.reg_rd_ena        (mem_rd_ena),
-		.reg_rd_addr       (reg_rd_addr),
-		.reg_wr_addr       (reg_wr_addr),
-		.reg_wr_data       (reg_wr_data),
+      .sel_ep_reg        (sel_ep_reg_p1),     // In rxtx
+      .reg_rd_data       (reg_rd_data_p1),    // In rxtx
+      .reg_rd_data_valid (reg_rd_data_valid_p1), // In rxtx
+      .reg_wr_ena        (mem_wr_ena),     // In rxtx
+      .reg_rd_ena        (mem_rd_ena),     // In rxtx
+      .reg_rd_addr       (reg_rd_addr),    // rxtx
+      .reg_wr_addr       (reg_wr_addr),    // rxtx
+      .reg_wr_data       (reg_wr_data),    // rxtx
 
-		.rx_ecrc_bad_cnt   (rx_ecrc_bad_cnt),
-		.read_dma_status   (read_dma_status),
-		.write_dma_status  (write_dma_status)
-	);
-
+      .rx_ecrc_bad_cnt   (rx_ecrc_bad_cnt_p1),  // In P1
+      .read_dma_status   (read_dma_status_p1),  // In P1
+      .write_dma_status  (write_dma_status_p1)  // In P1
+       );
+   
+   
 endmodule

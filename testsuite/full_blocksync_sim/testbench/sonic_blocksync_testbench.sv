@@ -560,7 +560,6 @@ module sonic_blocksync_testbench (/*AUTOARG*/
 
    assign pma_tx_ready = 1;
    assign pma_rx_ready = 1;
-   assign unset_lpbk = 1;
 
    sonic_top ep
      (

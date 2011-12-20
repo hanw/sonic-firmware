@@ -64,7 +64,7 @@ module sonic_irq_ctl # (
 
 	// RX info
 	input logic [`RX_WRITE_ADDR_WIDTH-1:0]	rx_ring_wptr,
-	output logic [31:0]						rx_block_size,
+        output logic [31:0]			rx_block_size,
 
 	// Force Flush RC values
 	input logic				force_flush_rc,

@@ -30,8 +30,11 @@ def conv_bits_to_hex (file_in, file_out):
     fbits.close()
     print('Done!\n')
 
-conv_136_to_128("rp_desc.lst", "rp_desc.bits")
-conv_bits_to_hex("rp_desc.bits", "rp_desc.hex")
-conv_bits_to_hex("app0_desc.lst", "app0_desc.hex")
-conv_bits_to_hex("app1_desc.lst", "app1_desc.hex")
+conv_136_to_128("rp_after_combine_ctrl_module.lst", "rp_after_combine_ctrl_module.bits")
+conv_bits_to_hex("rp_after_combine_ctrl_module.bits", "rp_after_combine_ctrl_module.hex")
+
+#conv_136_to_128("rp_desc.lst", "rp_desc.bits")
+#conv_bits_to_hex("rp_desc.bits", "rp_desc.hex")
+#conv_bits_to_hex("app0_desc.lst", "app0_desc.hex")
+#conv_bits_to_hex("app1_desc.lst", "app1_desc.hex")
 

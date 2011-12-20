@@ -764,8 +764,6 @@
 #  			  /home/hwang/questasim/install/questa_sim/linux/vlog +define+SYNTHESIS=1 +incdir+../../../lib/shared/+../../../lib/sonic/common/testbench/ -novopt -work work  -sv sonic_chaining_testbench.v sonictb_bfm_driver_chaining.sv test_program.sv sim_top.sv 
 # QuestaSim vlog 10.0c Compiler 2011.07 Jul 21 2011
 # -- Compiling module sonic_chaining_testbench
-# ** Warning: ../../../lib/shared//sonic_constants.sv(159): (vlog-2263) Redefinition of macro: TLP_TC_CLASS_P1.
-# ** Warning: ../../../lib/shared//sonic_constants.sv(160): (vlog-2263) Redefinition of macro: TLP_TC_CLASS_P0.
 # -- Compiling module sonictb_bfm_driver_chaining
 # -- Compiling module test_program
 # -- Importing package verbosity_pkg
@@ -1147,9 +1145,6 @@
 # Loading work.sonic_sync_ring_128_2
 # Loading work.sonic_dpram_async_64_2
 # Loading work.sonic_gearbox_66_40
-# Loading work.sonic_rc_slave
-# Loading work.sonic_rxtx_downstream_intf
-# Loading work.sonic_reg_access
 # Loading work.altpcietb_bfm_log_common
 # Loading work.altpcietb_bfm_req_intf_common
 # Loading work.altpcietb_bfm_shmem_common
@@ -1201,12 +1196,25 @@
 # Loading altera_mf_ver.ttn_scale_cntr
 # Loading work.sonic_write_dma_requester_128
 # Loading work.sonic_read_dma_requester_128
+# Loading work.sonic_rc_slave
+# Loading work.sonic_rxtx_downstream_intf
+# Loading work.sonic_reg_access
 # Loading work.altpcierd_tx_req_reg
 # Loading work.altpcierd_cdma_ast_tx_128
 # Loading work.altpcierd_cdma_ast_rx_128
 # Refreshing /home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-twovc/testsuite/full_blocksync_sim/testbench/work.altera_reset_synchronizer
 # Loading work.altera_reset_synchronizer
-# ** Warning: (vsim-PLI-3691) test_program.sv(111): Expected a system task, not a system function '$fscanf'.
+# ** Error: Unable to lock WLF file "vsim.wlf". Retrying 1 times, errno 11
+# ** Error: Unable to lock WLF file "vsim.wlf". Retrying 2 times, errno 11
+# ** Error: Unable to lock WLF file "vsim.wlf". Retrying 3 times, errno 11
+# ** Error: Cannot lock WLF file: "vsim.wlf"
+#           errno 11: Resource temporarily unavailable.
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by:   Hostname:   ProcessID: 35
+#           Attempting to use alternate WLF file "./wlftJ9h2q9".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftJ9h2q9
+# ** Warning: (vsim-PLI-3691) test_program.sv(114): Expected a system task, not a system function '$fscanf'.
 #         Region: /sim_top/pgm/chan0_xcvr_src
 # ** Warning: (vsim-3017) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(67174): [TFMPC] - Too few port connections. Expected 37, found 34.
 #         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/rp/rp/nl00O0i
@@ -1237,7 +1245,11 @@
 # ** Warning: (vsim-3017) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(164809): [TFMPC] - Too few port connections. Expected 158, found 157.
 #         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/rp/rp/nl0i1OO
 # ** Warning: (vsim-3722) ../../../lib/sonic/common/testbench/altpcietb_bfm_rpvar_64b_x8_gen2_pipen1b.vo(164809): [TFMPC] - Missing connection for port 'wareset'.
-# ** Warning: (vsim-3015) ../../../designs/sonic_xg_blocksync/sonic_top.sv(687): [PCDPC] - Port size (9 or 9) does not match connection size (64) for port 'test_out'. The port definition is at: ../../../designs/sonic_xg_blocksync/top_plus.v(154).
+# ** Warning: (vsim-3017) ./sonic_blocksync_sim/testbench/sonic_blocksync_sim_tb/simulation/submodules/sonic_blocksync_testbench.sv(696): [TFMPC] - Too few port connections. Expected 129, found 127.
+#         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/ep
+# ** Warning: (vsim-3722) ./sonic_blocksync_sim/testbench/sonic_blocksync_sim_tb/simulation/submodules/sonic_blocksync_testbench.sv(696): [TFMPC] - Missing connection for port 'monitor_out_0'.
+# ** Warning: (vsim-3722) ./sonic_blocksync_sim/testbench/sonic_blocksync_sim_tb/simulation/submodules/sonic_blocksync_testbench.sv(696): [TFMPC] - Missing connection for port 'monitor_out_1'.
+# ** Warning: (vsim-3015) ../../../designs/sonic_xg_blocksync/sonic_top.sv(691): [PCDPC] - Port size (9 or 9) does not match connection size (64) for port 'test_out'. The port definition is at: ../../../designs/sonic_xg_blocksync/top_plus.v(154).
 #         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/ep/ep_plus
 # ** Warning: (vsim-3017) ../../../designs/sonic_xg_blocksync/top_plus.v(727): [TFMPC] - Too few port connections. Expected 219, found 199.
 #         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/ep/ep_plus/epmap
@@ -1311,11 +1323,11 @@
 # ** Warning: (vsim-3722) ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_pll_125_250.v(84): [TFMPC] - Missing connection for port 'icdrclk'.
 # ** Warning: (vsim-8607) /home/hwang/altera/11.0/quartus/eda/sim_lib/altera_mf.v(39922): Non-positive replication multiplier inside concat. Replication will be ignored.
 # ** Warning: (vsim-8607) /home/hwang/altera/11.0/quartus/eda/sim_lib/altera_mf.v(39922): Non-positive replication multiplier inside concat. Replication will be ignored.
-# ** Warning: (vsim-3017) ../../../designs/sonic_xg_blocksync/sonic_top.sv(851): [TFMPC] - Too few port connections. Expected 46, found 43.
+# ** Warning: (vsim-3017) ../../../designs/sonic_xg_blocksync/sonic_top.sv(898): [TFMPC] - Too few port connections. Expected 60, found 57.
 #         Region: /sim_top/tb/sonic_blocksync_sim_inst/sonic_blocksync_sim_top_0/ep/app1
-# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/sonic_top.sv(851): [TFMPC] - Missing connection for port 'reset_nios'.
-# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/sonic_top.sv(851): [TFMPC] - Missing connection for port 'set_lpbk'.
-# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/sonic_top.sv(851): [TFMPC] - Missing connection for port 'unset_lpbk'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/sonic_top.sv(898): [TFMPC] - Missing connection for port 'reset_nios'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/sonic_top.sv(898): [TFMPC] - Missing connection for port 'set_lpbk'.
+# ** Warning: (vsim-3722) ../../../designs/sonic_xg_blocksync/sonic_top.sv(898): [TFMPC] - Missing connection for port 'unset_lpbk'.
 # ** Warning: (vsim-8607) /home/hwang/altera/11.0/quartus/eda/sim_lib/altera_mf.v(39922): Non-positive replication multiplier inside concat. Replication will be ignored.
 # ** Warning: (vsim-8607) /home/hwang/altera/11.0/quartus/eda/sim_lib/altera_mf.v(39922): Non-positive replication multiplier inside concat. Replication will be ignored.
 #  			  do wave.do 
@@ -1326,6 +1338,7 @@ run -all
 # created write thread           0.
 # created read thread           1.
 # created write thread           1.
+# created read thread           0.
 # Warning: read_during_write_mode_mixed_ports is assumed as   OLD_DATA
 # Time: 0  Instance: sim_top.tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.ep.app0.chaining_dma_arb.dma_read.genblk1.genblk1.read_requester_128.tag_dpram
 # Warning: read_during_write_mode_mixed_ports is assumed as   OLD_DATA
@@ -1663,7 +1676,7 @@ run -all
 # INFO:           32868 ns 00000A10 00000000 00000000 00000000 00000000                                                        
 # INFO:           32868 ns 00000A20 00000000 00000000 00000000 00000000                                                        
 # INFO:           32868 ns 00000A30 00000000                                                                                   
-# INFO:           32868 ns CMD_TEST: rc_response_address 0x00000000 00000040                                                   
+# INFO:           32868 ns CMD_TEST: rc_response_address 0x00000000 00001800                                                   
 # INFO:           32940 ns                                                                                                     
 # INFO:           32940 ns Shared Memory Data Display:                                                                         
 # INFO:           32940 ns Address  Data                                                                                       
@@ -1767,7 +1780,7 @@ run -all
 # INFO:           38960 ns 00000C10 00000000 00000000 00000000 00000000                                                        
 # INFO:           38960 ns 00000C20 00000000 00000000 00000000 00000000                                                        
 # INFO:           38960 ns 00000C30 00000000                                                                                   
-# INFO:           38960 ns CMD_TEST: rc_response_address 0x00000000 00000240                                                   
+# INFO:           38960 ns CMD_TEST: rc_response_address 0x00000000 00001A00                                                   
 # INFO:           39032 ns                                                                                                     
 # INFO:           39032 ns Shared Memory Data Display:                                                                         
 # INFO:           39032 ns Address  Data                                                                                       
@@ -1819,168 +1832,46 @@ run -all
 # INFO:           41522 ns 00000C10 00000000 00000000 00000000 00000000                                                        
 # INFO:           41522 ns 00000C20 00000000 00000000 00000000 00000000                                                        
 # INFO:           41522 ns 00000C30 00000000                                                                                   
-# INFO:           42522 ns ---------                                                                                           
-# INFO:           42522 ns TASK:dma_set_msi READ                                                                               
-# INFO:           42522 ns  Message Signaled Interrupt Configuration                                                           
-# INFO:           42522 ns   msi_address (RC memory)= 0x07F0                                                                   
-# INFO:           42826 ns   msi_control_register = 0x0084                                                                     
-# INFO:           44066 ns   msi_expected = 0x0000                                                                             
-# INFO:           44066 ns   msi_capabilities address = 0x0050                                                                 
-# INFO:           44066 ns   multi_message_enable = 0x0002                                                                     
-# INFO:           44066 ns   msi_number = 0000                                                                                 
-# INFO:           44066 ns   msi_traffic_class = 0000                                                                          
-# INFO:           58853 ns ---------                                                                                           
-# INFO:           58853 ns TASK:dma_wr_test                                                                                    
-# INFO:           58853 ns    DMA: Write                                                                                       
-# INFO:           58853 ns ---------                                                                                           
-# INFO:           58853 ns TASK:dma_set_wr_desc_data                                                                           
-# INFO:           58853 ns ---------                                                                                           
-# INFO:           58853 ns TASK:dma_set_header WRITE                                                                           
-# INFO:           58853 ns Writing Descriptor header                                                                           
-# INFO:           58893 ns data content of the DT header                                                                       
-# INFO:           58893 ns                                                                                                     
-# INFO:           58893 ns Shared Memory Data Display:                                                                         
-# INFO:           58893 ns Address  Data                                                                                       
-# INFO:           58893 ns -------  ----                                                                                       
-# INFO:           58893 ns 00000800 00000004 00000000 00000800 CAFEFADE                                                        
-# INFO:           58893 ns ---------                                                                                           
-# INFO:           58893 ns TASK:dma_set_rclast                                                                                 
-# INFO:           58893 ns    Start WRITE DMA : RC issues MWr (RCLast=0003)                                                    
-# INFO:           58909 ns ---------                                                                                           
-# INFO:           59008 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (0000FADE)  expected data (00000003)     
-# INFO:           61008 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000000)  expected data (00000003)     
-# INFO:           62108 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000001)  expected data (00000003)     
-# INFO:           63208 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000002)  expected data (00000003)     
-# INFO:           64308 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000003)  expected data (00000003)     
-# INFO:           64308 ns TASK:rcmem_poll   ---> Received Expected Data (00000003)                                            
-# INFO:           64316 ns ---------                                                                                           
-# INFO:           64316 ns Completed DMA Write                                                                                 
-# INFO:           72369 ns ---------                                                                                           
-# INFO:           72369 ns TASK:dma_wr_test                                                                                    
-# INFO:           72369 ns    DMA: Write                                                                                       
-# INFO:           72369 ns ---------                                                                                           
-# INFO:           72369 ns TASK:dma_set_wr_desc_data                                                                           
-# INFO:           72369 ns ---------                                                                                           
-# INFO:           72369 ns TASK:dma_set_header WRITE                                                                           
-# INFO:           72369 ns Writing Descriptor header                                                                           
-# INFO:           72409 ns data content of the DT header                                                                       
-# INFO:           72409 ns                                                                                                     
-# INFO:           72409 ns Shared Memory Data Display:                                                                         
-# INFO:           72409 ns Address  Data                                                                                       
-# INFO:           72409 ns -------  ----                                                                                       
-# INFO:           72409 ns 00000800 00000004 00000000 00000800 CAFEFADE                                                        
-# INFO:           72409 ns ---------                                                                                           
-# INFO:           72409 ns TASK:dma_set_rclast                                                                                 
-# INFO:           72409 ns    Start WRITE DMA : RC issues MWr (RCLast=0003)                                                    
-# INFO:           72425 ns ---------                                                                                           
-# INFO:           72524 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (0000FADE)  expected data (00000003)     
-# INFO:           74524 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000000)  expected data (00000003)     
-# INFO:           75624 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000001)  expected data (00000003)     
-# INFO:           76724 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000002)  expected data (00000003)     
-# INFO:           77824 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000003)  expected data (00000003)     
-# INFO:           77824 ns TASK:rcmem_poll   ---> Received Expected Data (00000003)                                            
-# INFO:           77832 ns ---------                                                                                           
-# INFO:           77832 ns Completed DMA Write                                                                                 
-# INFO:           85877 ns ---------                                                                                           
-# INFO:           85877 ns TASK:dma_wr_test                                                                                    
-# INFO:           85877 ns    DMA: Write                                                                                       
-# INFO:           85877 ns ---------                                                                                           
-# INFO:           85877 ns TASK:dma_set_wr_desc_data                                                                           
-# INFO:           85877 ns ---------                                                                                           
-# INFO:           85877 ns TASK:dma_set_header WRITE                                                                           
-# INFO:           85877 ns Writing Descriptor header                                                                           
-# INFO:           85917 ns data content of the DT header                                                                       
-# INFO:           85917 ns                                                                                                     
-# INFO:           85917 ns Shared Memory Data Display:                                                                         
-# INFO:           85917 ns Address  Data                                                                                       
-# INFO:           85917 ns -------  ----                                                                                       
-# INFO:           85917 ns 00000800 00000003 00000000 00000800 CAFEFADE                                                        
-# INFO:           85917 ns ---------                                                                                           
-# INFO:           85917 ns TASK:dma_set_rclast                                                                                 
-# INFO:           85917 ns    Start WRITE DMA : RC issues MWr (RCLast=0002)                                                    
-# INFO:           85933 ns ---------                                                                                           
-# INFO:           86032 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (0000FADE)  expected data (00000002)     
-# INFO:           88032 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000000)  expected data (00000002)     
-# INFO:           89132 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000001)  expected data (00000002)     
-# INFO:           90232 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000002)  expected data (00000002)     
-# INFO:           90232 ns TASK:rcmem_poll   ---> Received Expected Data (00000002)                                            
-# INFO:           90240 ns ---------                                                                                           
-# INFO:           90240 ns Completed DMA Write                                                                                 
-# INFO:           99393 ns ---------                                                                                           
-# INFO:           99393 ns TASK:dma_wr_test                                                                                    
-# INFO:           99393 ns    DMA: Write                                                                                       
-# INFO:           99393 ns ---------                                                                                           
-# INFO:           99393 ns TASK:dma_set_wr_desc_data                                                                           
-# INFO:           99393 ns ---------                                                                                           
-# INFO:           99393 ns TASK:dma_set_header WRITE                                                                           
-# INFO:           99393 ns Writing Descriptor header                                                                           
-# INFO:           99433 ns data content of the DT header                                                                       
-# INFO:           99433 ns                                                                                                     
-# INFO:           99433 ns Shared Memory Data Display:                                                                         
-# INFO:           99433 ns Address  Data                                                                                       
-# INFO:           99433 ns -------  ----                                                                                       
-# INFO:           99433 ns 00000800 00000004 00000000 00000800 CAFEFADE                                                        
-# INFO:           99433 ns ---------                                                                                           
-# INFO:           99433 ns TASK:dma_set_rclast                                                                                 
-# INFO:           99433 ns    Start WRITE DMA : RC issues MWr (RCLast=0003)                                                    
-# INFO:           99449 ns ---------                                                                                           
-# INFO:           99548 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (0000FADE)  expected data (00000003)     
-# INFO:          101548 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000000)  expected data (00000003)     
-# INFO:          102648 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000001)  expected data (00000003)     
-# INFO:          103748 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000002)  expected data (00000003)     
-# INFO:          104848 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000003)  expected data (00000003)     
-# INFO:          104848 ns TASK:rcmem_poll   ---> Received Expected Data (00000003)                                            
-# INFO:          104856 ns ---------                                                                                           
-# INFO:          104856 ns Completed DMA Write                                                                                 
-# INFO:          112909 ns ---------                                                                                           
-# INFO:          112909 ns TASK:dma_wr_test                                                                                    
-# INFO:          112909 ns    DMA: Write                                                                                       
-# INFO:          112909 ns ---------                                                                                           
-# INFO:          112909 ns TASK:dma_set_wr_desc_data                                                                           
-# INFO:          112909 ns ---------                                                                                           
-# INFO:          112909 ns TASK:dma_set_header WRITE                                                                           
-# INFO:          112909 ns Writing Descriptor header                                                                           
-# INFO:          112949 ns data content of the DT header                                                                       
-# INFO:          112949 ns                                                                                                     
-# INFO:          112949 ns Shared Memory Data Display:                                                                         
-# INFO:          112949 ns Address  Data                                                                                       
-# INFO:          112949 ns -------  ----                                                                                       
-# INFO:          112949 ns 00000800 00000004 00000000 00000800 CAFEFADE                                                        
-# INFO:          112949 ns ---------                                                                                           
-# INFO:          112949 ns TASK:dma_set_rclast                                                                                 
-# INFO:          112949 ns    Start WRITE DMA : RC issues MWr (RCLast=0003)                                                    
-# INFO:          112965 ns ---------                                                                                           
-# INFO:          113064 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (0000FADE)  expected data (00000003)     
-# INFO:          115064 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000000)  expected data (00000003)     
-# INFO:          116164 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000001)  expected data (00000003)     
-# INFO:          117264 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000002)  expected data (00000003)     
-# INFO:          118364 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000003)  expected data (00000003)     
-# INFO:          118364 ns TASK:rcmem_poll   ---> Received Expected Data (00000003)                                            
-# INFO:          118372 ns ---------                                                                                           
-# INFO:          118372 ns Completed DMA Write                                                                                 
-# INFO:          126437 ns ---------                                                                                           
-# INFO:          126437 ns TASK:dma_wr_test                                                                                    
-# INFO:          126437 ns    DMA: Write                                                                                       
-# INFO:          126437 ns ---------                                                                                           
-# INFO:          126437 ns TASK:dma_set_wr_desc_data                                                                           
-# INFO:          126437 ns ---------                                                                                           
-# INFO:          126437 ns TASK:dma_set_header WRITE                                                                           
-# INFO:          126437 ns Writing Descriptor header                                                                           
-# INFO:          126477 ns data content of the DT header                                                                       
-# INFO:          126477 ns                                                                                                     
-# INFO:          126477 ns Shared Memory Data Display:                                                                         
-# INFO:          126477 ns Address  Data                                                                                       
-# INFO:          126477 ns -------  ----                                                                                       
-# INFO:          126477 ns 00000800 00000004 00000000 00000800 CAFEFADE                                                        
-# INFO:          126477 ns ---------                                                                                           
-# INFO:          126477 ns TASK:dma_set_rclast                                                                                 
-# INFO:          126477 ns    Start WRITE DMA : RC issues MWr (RCLast=0003)                                                    
-# INFO:          126493 ns ---------                                                                                           
-# INFO:          126592 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (0000FADE)  expected data (00000003)     
-# INFO:          128592 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000000)  expected data (00000003)     
-# INFO:          129692 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000001)  expected data (00000003)     
-# INFO:          130792 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000002)  expected data (00000003)     
-# INFO:          131892 ns TASK:rcmem_poll  Polling RC Address0000080C   current data (00000003)  expected data (00000003)     
-# INFO:          131892 ns TASK:rcmem_poll   ---> Received Expected Data (00000003)                                            
-# INFO:          131900 ns ---------                                                                                           
-# INFO:          131900 ns Completed DMA Write                                                                                 
+# read dma test started at bar           2 ...
+# INFO:           42524 ns ---------                                                                                           
+# INFO:           42524 ns TASK:chained_dma_test                                                                               
+# INFO:           42524 ns    DMA: Read                                                                                        
+# INFO:           42524 ns ---------                                                                                           
+# INFO:           42524 ns TASK:dma_rd_test                                                                                    
+# INFO:           42524 ns ---------                                                                                           
+# INFO:           42524 ns TASK:dma_set_rd_desc_data                                                                           
+# INFO:           42524 ns ---------                                                                                           
+# INFO:           42524 ns TASK:dma_set_msi READ                                                                               
+# INFO:           42524 ns  Message Signaled Interrupt Configuration                                                           
+# INFO:           42524 ns   msi_address (RC memory)= 0x07F0                                                                   
+# INFO:           42828 ns   msi_control_register = 0x0084                                                                     
+# INFO:           44068 ns   msi_expected = 0xB0FC                                                                             
+# INFO:           44068 ns   msi_capabilities address = 0x0050                                                                 
+# INFO:           44068 ns   multi_message_enable = 0x0002                                                                     
+# INFO:           44068 ns   msi_number = 0000                                                                                 
+# INFO:           44068 ns   msi_traffic_class = 0000                                                                          
+# INFO:           44068 ns ---------                                                                                           
+# INFO:           44068 ns TASK:dma_set_header READ                                                                            
+# INFO:           44068 ns Writing Descriptor header                                                                           
+# INFO:           44108 ns data content of the DT header                                                                       
+# INFO:           44108 ns                                                                                                     
+# INFO:           44108 ns Shared Memory Data Display:                                                                         
+# INFO:           44108 ns Address  Data                                                                                       
+# INFO:           44108 ns -------  ----                                                                                       
+# INFO:           44108 ns 00005800 00000003 00000000 00005800 CAFEFADE                                                        
+# INFO:           44108 ns ---------                                                                                           
+# INFO:           44108 ns TASK:dma_set_rclast                                                                                 
+# INFO:           44108 ns    Start READ DMA : RC issues MWr (RCLast=0002)                                                     
+# INFO:           44124 ns ---------                                                                                           
+# INFO:           44132 ns TASK:msi_poll    Polling MSI Address:07F0---> Data:FADE......                                       
+# INFO:           44224 ns TASK:rcmem_poll  Polling RC Address0000580C   current data (0000FADE)  expected data (00000002)     
+#             49351000: INFO:                49351 ns: Received rx_ring_ptr update 0000000b.
+# INFO:           49364 ns TASK:msi_poll    Received DMA Read MSI(0000) : B0FC                                                 
+# INFO:           61524 ns TASK:rcmem_poll  Polling RC Address0000580C   current data (00000000)  expected data (00000002)     
+# INFO:           71824 ns TASK:rcmem_poll  Polling RC Address0000580C   current data (00000002)  expected data (00000002)     
+# INFO:           71824 ns TASK:rcmem_poll   ---> Received Expected Data (00000002)                                            
+# INFO:           71832 ns ---------                                                                                           
+# INFO:           71832 ns Completed DMA Read                                                                                  
+# read dma test finished at bar           2 ...
+# SUCCESS: Simulation stopped due to successful completion!
+# Break in Function ebfm_log_stop_sim at sonictb_bfm_driver_chaining.sv line 354

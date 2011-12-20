@@ -29,7 +29,7 @@ module sonic_calc_address (/*AUTOARG*/
 	next_address <= 0;
       else begin
 	 if (incr && ena) begin
-	    next_address <= next_address + 1;
+	    next_address <= next_address + 14'h1;
 	 end
       end
    end

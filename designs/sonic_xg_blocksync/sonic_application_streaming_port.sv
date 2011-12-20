@@ -161,25 +161,41 @@ module sonic_application_streaming_port #
      output	reset_nios,
      output	set_lpbk,
      output	unset_lpbk,
-
+     
+     // Workaround for controlling BAR3 registers from Channel0.
+     inout [31:0] p1_prg_wrdata,           // P0 out, P1 in
+     inout [7:0]  p1_prg_addr,             // P0 out, P1 in
+     inout [31:0] p1_dma_rd_prg_rddata,    // P0 in,  P1 out
+     inout [31:0] p1_dma_wr_prg_rddata,    // P0 in,  P1 out
+     inout        p1_dma_rd_prg_wrena,     // P0 out, P1 in
+     inout        p1_dma_wr_prg_wrena,     // P0 out, P1 in
+     inout [31:0] p1_irq_prg_rddata,       // P0 in,  P1 out
+     inout        p1_irq_prg_wrena,        // P0 out, P1 in
+     inout [31:0] p1_cmd_prg_rddata,       // P0 in,  P1 out
+     inout        p1_cmd_prg_wrena,        // P0 out, P1 in
+     inout [15:0] p1_rx_ecrc_bad_cnt,      // P0 in,  P1 out
+     inout [63:0] p1_read_dma_status,      // P0 in,  P1 out
+     inout [63:0] p1_write_dma_status,     // P0 in,  P1 out
+  
      input clk_in  ,
-     input rstn
+     input rstn,
+     output [127:0] monitor_out
      );
-   
+	  
    // Receive section channel 0
-   wire    open_rx_retry0;
-   wire    open_rx_mask0 ;
-   wire [7:0] open_rx_be0   ;
+   wire 	    open_rx_retry0;
+   wire 	    open_rx_mask0 ;
+   wire [7:0] 	    open_rx_be0   ;
 
-   wire       rx_ack0  ;
-   wire       rx_ws0   ;
-   wire       rx_req0  ;
-   wire [135:0] rx_desc0 ;
-   wire [127:0] rx_data0 ;
-   wire [15:0] 	rx_be0   ;
-   wire 	rx_dv0   ;
-   wire 	rx_dfr0  ;
-   wire [15:0] 	rx_ecrc_bad_cnt;
+   wire 	    rx_ack0  ;
+   wire 	    rx_ws0   ;
+   wire 	    rx_req0  ;
+   wire [135:0]     rx_desc0 ;
+   wire [127:0]     rx_data0 ;
+   wire [15:0] 	    rx_be0   ;
+   wire 	    rx_dv0   ;
+   wire 	    rx_dfr0  ;
+   wire [15:0] 	    rx_ecrc_bad_cnt;
 
    //transmit section channel 0
    wire 	tx_req0 ;
@@ -372,7 +388,7 @@ module sonic_application_streaming_port #
 	 wire [15:0]  rxdata_be;   // rx byte enables
 	 assign rxdata_be = {rx_stream_data0_0_reg[77:74], rx_stream_data0_0_reg[81:78],
                              rx_stream_data0_1_reg[77:74], rx_stream_data0_1_reg[81:78]};
-
+ 
 	 assign rxdata = {
 			  rx_stream_data0_0_reg[73],    //rx_sop0 [139]
 			  rx_stream_data0_0_reg[72],    //rx_eop0 [138]
@@ -617,11 +633,11 @@ module sonic_application_streaming_port #
 
 
    // states for msi_req_state
-   parameter MSI_MON_IDLE         = 4'h0;
-   parameter MSI_WAIT_LOCAL_EMPTY = 4'h1;
-   parameter MSI_WAIT_LATENCY     = 4'h2;
-   parameter MSI_WAIT_CORE_EMPTY  = 4'h3;
-   parameter MSI_WAIT_CORE_ACK    = 4'h4;
+   localparam MSI_MON_IDLE         = 4'h0;
+   localparam MSI_WAIT_LOCAL_EMPTY = 4'h1;
+   localparam MSI_WAIT_LATENCY     = 4'h2;
+   localparam MSI_WAIT_CORE_EMPTY  = 4'h3;
+   localparam MSI_WAIT_CORE_ACK    = 4'h4;
 
    // this state machine synchronizes the app_msi_req
    // generation to the tx streaming datapath so that
@@ -759,6 +775,8 @@ module sonic_application_streaming_port #
 	.set_lpbk(set_lpbk),
 	.unset_lpbk(unset_lpbk),
 
+	.monitor_out (monitor_out),
+	
 	.rx_req0    (rx_req0),
 	.rx_ack0    (rx_ack0),
 	.rx_data0   (rx_data0),
@@ -778,9 +796,23 @@ module sonic_application_streaming_port #
 	.tx_dfr0    (tx_dfr0),
 	.tx_dv0     (tx_dv0),
 	.tx_err0    (tx_err0),
-	.tx_ws0     (tx_ws0));
+	.tx_ws0     (tx_ws0),
 
-
+	/* Work around for TC */
+	.p1_prg_wrdata        (p1_prg_wrdata),
+	.p1_prg_addr          (p1_prg_addr),
+	.p1_dma_rd_prg_rddata (p1_dma_rd_prg_rddata),
+	.p1_dma_wr_prg_rddata (p1_dma_wr_prg_rddata),
+	.p1_dma_rd_prg_wrena  (p1_dma_rd_prg_wrena),
+	.p1_dma_wr_prg_wrena  (p1_dma_wr_prg_wrena),
+	.p1_irq_prg_rddata    (p1_irq_prg_rddata),
+	.p1_irq_prg_wrena     (p1_irq_prg_wrena),
+	.p1_cmd_prg_rddata    (p1_cmd_prg_rddata),
+	.p1_cmd_prg_wrena     (p1_cmd_prg_wrena),
+	.p1_rx_ecrc_bad_cnt   (p1_rx_ecrc_bad_cnt),
+	.p1_read_dma_status   (p1_read_dma_status),
+	.p1_write_dma_status  (p1_write_dma_status)
+	);
 
 endmodule
 

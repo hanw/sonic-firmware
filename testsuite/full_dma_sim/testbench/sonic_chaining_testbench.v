@@ -537,8 +537,8 @@ module sonic_chaining_testbench
       .rstn (pcie_rstn)
     );
 
-    wire [1:0]      xcvr_rx_clkout;
-    wire [1:0]      xcvr_tx_clkout;
+    reg [1:0]      xcvr_rx_clkout;
+    reg [1:0]      xcvr_tx_clkout;
     wire [79:0] xcvr_rx_dataout;
     wire [79:0] xcvr_tx_datain;
     wire        pma_tx_ready;
@@ -549,8 +549,7 @@ module sonic_chaining_testbench
 
     assign pma_tx_ready = 1;
     assign pma_rx_ready = 1;
-    assign unset_lpbk = 1;
-
+   
   sonic_top ep
     (
       .clk250_out (ep_clk250_out),
@@ -1048,7 +1047,16 @@ module sonic_chaining_testbench
       .rp_rstn (rp_rstn)
     );
 
+   initial begin
+      xcvr_tx_clkout = 0;
+      xcvr_rx_clkout = 0;
+   end
 
-
+   always begin
+      #5;
+      xcvr_tx_clkout = ~xcvr_tx_clkout;
+      xcvr_rx_clkout = ~xcvr_rx_clkout;
+   end
+   
 endmodule
 

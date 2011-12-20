@@ -118,6 +118,7 @@ module sonic_single_port_logic
       output		set_lpbk,
       output		unset_lpbk,
 
+      output [127:0] monitor_out,
       // Receive section channel 0
       output       rx_ack0  ,
       output       rx_mask0 ,
@@ -143,7 +144,22 @@ module sonic_single_port_logic
       input                    cpld_rx_buffer_ready,
       input [TXCRED_WIDTH-1:0] tx_cred0,
       input [15:0]             rx_buffer_cpl_max_dw,  // specifify the maximum amount of data available in RX Buffer for a given MRd
-      input                    tx_stream_ready0
+      input                    tx_stream_ready0,
+
+      // Workaround for controlling BAR3 registers from Channel0.
+      inout [31:0] p1_prg_wrdata,           // P0 out, P1 in
+      inout [7:0]  p1_prg_addr,             // P0 out, P1 in
+      inout [31:0] p1_dma_rd_prg_rddata,    // P0 in,  P1 out
+      inout [31:0] p1_dma_wr_prg_rddata,    // P0 in,  P1 out
+      inout        p1_dma_rd_prg_wrena,     // P0 out, P1 in
+      inout        p1_dma_wr_prg_wrena,     // P0 out, P1 in
+      inout [31:0] p1_irq_prg_rddata,       // P0 in,  P1 out
+      inout        p1_irq_prg_wrena,        // P0 out, P1 in
+      inout [31:0] p1_cmd_prg_rddata,       // P0 in,  P1 out
+      inout        p1_cmd_prg_wrena,        // P0 out, P1 in
+      inout [15:0] p1_rx_ecrc_bad_cnt,      // P0 in,  P1 out
+      inout [63:0] p1_read_dma_status,      // P0 in,  P1 out
+      inout [63:0] p1_write_dma_status      // P0 in,  P1 out
       );
 
    // Local functions
@@ -245,7 +261,7 @@ module sonic_single_port_logic
    // PCI control signals
    reg 				pci_bus_master_enable;
    reg 				pci_mem_addr_space_decoder_enable;
-
+      
    always @ (posedge clk_in) begin
       rx_req_reg <= rx_req0;
       rx_req_p1   <= rx_req_p0;
@@ -681,8 +697,14 @@ module sonic_single_port_logic
 			    .force_flush_rc(~sw_rstn)
 			    );
    defparam sonic_irq.PORT_NUM = PORT_NUM;
-   
 
+   // Monitor Signal, see Documentation.
+   assign monitor_out = {enable_sfp1, 1'b0 , tx_ring_rptr, pma_rx_ready, pma_tx_ready, rx_ring_wptr,
+                         32'h0,
+                         32'h0,
+                         32'h0
+                         };
+   
    /*
     *
     *  Rx Channel 66-bit version
@@ -949,66 +971,222 @@ module sonic_single_port_logic
    assign tx_desc_dmard_mux=(tx_sel_slave==1'b0)?tx_desc_dmard:tx_desc_pcnt;
 
 
-   sonic_rc_slave#(
-		   .AVALON_ST_128    (AVALON_ST_128),
-		   .AVALON_WDATA     (AVALON_WDATA),	
-		   .AVALON_BYTE_WIDTH  (AVALON_BYTE_WIDTH),
-		   .AVALON_WADDR   (AVALON_WADDR),
-		   .PORT_NUM         (PORT_NUM)
-		   ) sonic_rc_slave(
-				    .clk_in     (clk_in),
-				    .rstn       (g_rstn),
+   /*
+    * Generate the tri-state buffer for TC workaround.
+    * 
+    */
+   wire [31:0] 	 prg_wrdata_p1;
+   wire [7:0] 	 prg_addr_p1;
+   wire 	 dma_rd_prg_wrena_p1;
+   wire 	 dma_wr_prg_wrena_p1;
+   wire 	 irq_prg_wrena_p1;
+   wire 	 cmd_prg_wrena_p1;
+   wire [31:0] 	 dma_rd_prg_rddata_p1;
+   wire [31:0]	 dma_wr_prg_rddata_p1;
+   wire [31:0]	 irq_prg_rddata_p1;
+   wire [31:0]	 cmd_prg_rddata_p1;
+   wire [15:0]	 rx_ecrc_bad_cnt_p1;
+   wire [63:0]	 read_dma_status_p1;
+   wire [63:0]	 write_dma_status_p1;
+      
+   assign p1_prg_wrdata = (PORT_NUM == 0) ? prg_wrdata_p1 : 32'bZ;
+   assign p1_prg_addr   = (PORT_NUM == 0) ? prg_addr_p1   : 8'bZ;
+   assign p1_dma_rd_prg_wrena = (PORT_NUM == 0) ? dma_rd_prg_wrena_p1 : 1'bZ;
+   assign p1_dma_wr_prg_wrena = (PORT_NUM == 0) ? dma_wr_prg_wrena_p1 : 1'bZ;
+   assign p1_irq_prg_wrena    = (PORT_NUM == 0) ? irq_prg_wrena_p1    : 1'bZ;
+   assign p1_cmd_prg_wrena    = (PORT_NUM == 0) ? cmd_prg_wrena_p1    : 1'bZ;
+   
+   assign p1_dma_rd_prg_rddata = (PORT_NUM == 1) ? dma_rd_prg_rddata : 32'bZ;
+   assign p1_dma_wr_prg_rddata = (PORT_NUM == 1) ? dma_wr_prg_rddata : 32'bZ;
+   assign p1_irq_prg_rddata    = (PORT_NUM == 1) ? rc_slave_irq_prg_rddata    : 32'bZ;
+   assign p1_cmd_prg_rddata    = (PORT_NUM == 1) ? cmd_prg_rddata    : 32'bZ;
+   assign p1_rx_ecrc_bad_cnt   = (PORT_NUM == 1) ? rx_ecrc_bad_cnt   : 16'bZ;
+   assign p1_read_dma_status   = (PORT_NUM == 1) ? read_dma_status   : 64'bZ;
+   assign p1_write_dma_status  = (PORT_NUM == 1) ? write_dma_status  : 64'bZ;
 
-				    .rx_req     (rx_req0),
-				    .rx_desc    (rx_desc0),
-				    .rx_data    (rx_data0[AVALON_WDATA-1:0]),
-				    .rx_be      (rx_be0[AVALON_BYTE_WIDTH-1:0]),
-				    .rx_dv      (rx_dv0),
-				    .rx_dfr     (rx_dfr0),
-				    .rx_ack     (rx_ack_pcnt),
-				    .rx_ws      (rx_ws_pcnt),
+   generate
+      if (PORT_NUM == 0) begin
+	 assign dma_rd_prg_rddata_p1 = p1_dma_rd_prg_rddata;
+	 assign dma_wr_prg_rddata_p1 = p1_dma_wr_prg_rddata;
+	 assign irq_prg_rddata_p1    = p1_irq_prg_rddata;
+	 assign cmd_prg_rddata_p1    = p1_cmd_prg_rddata;
+	 assign rx_ecrc_bad_cnt_p1   = p1_rx_ecrc_bad_cnt;
+	 assign read_dma_status_p1   = p1_read_dma_status;
+	 assign write_dma_status_p1  = p1_write_dma_status;
+      end
+      else begin
+	 assign rc_slave_prg_wrdata  = p1_prg_wrdata;
+	 assign rc_slave_prg_addr    = p1_prg_addr;
+	 assign dma_rd_prg_wrena     = p1_dma_rd_prg_wrena;
+	 assign dma_wr_prg_wrena     = p1_dma_wr_prg_wrena;
+	 assign rc_slave_irq_prg_wrena        = p1_irq_prg_wrena;
+	 assign cmd_prg_wrena        = p1_cmd_prg_wrena;
+      end
+   endgenerate
 
-				    .tx_ws      (tx_ws0),
-				    .tx_ack     (tx_ack0),
-				    .tx_desc    (tx_desc_pcnt),
-				    .tx_data    (tx_data_pcnt[AVALON_WDATA-1:0]),
-				    .tx_dfr     (tx_dfr_pcnt),
-				    .tx_dv      (tx_dv_pcnt),
-				    .tx_req     (tx_req_pcnt),
-				    .tx_busy    (tx_busy_pcnt ),
-				    .tx_ready   (tx_ready_pcnt),
-				    .tx_sel     (tx_sel_pcnt  ),
+   generate
+      if (PORT_NUM == 0) begin
+	 sonic_rc_slave#(
+			 .AVALON_ST_128    (AVALON_ST_128),
+			 .AVALON_WDATA     (AVALON_WDATA),	
+			 .AVALON_BYTE_WIDTH  (AVALON_BYTE_WIDTH),
+			 .AVALON_WADDR   (AVALON_WADDR),
+			 .PORT_NUM         (PORT_NUM)
+			 ) sonic_rc_slave(
+					  .clk_in     (clk_in),
+					  .rstn       (g_rstn),
 
-				    .mem_rd_data_valid (1'b0),
-				    .mem_rd_addr       (),		
-				    .mem_rd_data       (128'h0),	
-				    .mem_rd_ena        (),			
-				    .mem_wr_ena        (),
-				    .mem_wr_addr       (),
-				    .mem_wr_data       (),
-				    .mem_wr_be         (),
-				    .sel_epmem         (),
+					  .rx_req     (rx_req0),
+					  .rx_desc    (rx_desc0),
+					  .rx_data    (rx_data0[AVALON_WDATA-1:0] ),
+					  .rx_be      (rx_be0[AVALON_BYTE_WIDTH-1:0]),
+					  .rx_dv      (rx_dv0),
+					  .rx_dfr     (rx_dfr0),
+					  .rx_ack     (rx_ack_pcnt),
+					  .rx_ws      (rx_ws_pcnt),
 
-				    .prg_wrdata    (rc_slave_prg_wrdata),
-				    .prg_addr      (rc_slave_prg_addr),		
+					  .tx_ws      (tx_ws0),
+					  .tx_ack     (tx_ack0),
+					  .tx_desc    (tx_desc_pcnt),
+					  .tx_data    (tx_data_pcnt[AVALON_WDATA-1:0]),
+					  .tx_dfr     (tx_dfr_pcnt),
+					  .tx_dv      (tx_dv_pcnt),
+					  .tx_req     (tx_req_pcnt),
+					  .tx_busy    (tx_busy_pcnt ),
+					  .tx_ready   (tx_ready_pcnt),
+					  .tx_sel     (tx_sel_pcnt  ),
 
-				    .dma_rd_prg_rddata (dma_rd_prg_rddata),
-				    .dma_wr_prg_rddata (dma_wr_prg_rddata),
-				    .dma_rd_prg_wrena  (dma_rd_prg_wrena),
-				    .dma_wr_prg_wrena  (dma_wr_prg_wrena),
-				    .irq_prg_rddata	   (rc_slave_irq_prg_rddata),
-				    .irq_prg_wrena     (rc_slave_irq_prg_wrena),
-				    .cmd_prg_rddata    (cmd_prg_rddata),
-				    .cmd_prg_wrena     (cmd_prg_wrena),
-				    .tx_prg_rddata	   (rc_slave_tx_prg_rddata),		
-				    .tx_prg_wrena	   (rc_slave_tx_prg_wrena),
+					  .mem_rd_data_valid (1'b0),
+					  .mem_rd_addr       (),		
+					  .mem_rd_data       (128'h0),	
+					  .mem_rd_ena        (),			
+					  .mem_wr_ena        (),
+					  .mem_wr_addr       (),
+					  .mem_wr_data       (),
+					  .mem_wr_be         (),
+					  .sel_epmem         (),
+					  
+					  /* 
+					   * this.regvalue
+					   */
+					  .prg_wrdata    (rc_slave_prg_wrdata),
+					  .prg_addr      (rc_slave_prg_addr),		
+					  .dma_rd_prg_rddata (dma_rd_prg_rddata),
+					  .dma_wr_prg_rddata (dma_wr_prg_rddata),
+					  .dma_rd_prg_wrena  (dma_rd_prg_wrena),
+					  .dma_wr_prg_wrena  (dma_wr_prg_wrena),
+					  .irq_prg_rddata    (rc_slave_irq_prg_rddata),
+					  .irq_prg_wrena     (rc_slave_irq_prg_wrena),
+					  .cmd_prg_rddata    (cmd_prg_rddata),
+					  .cmd_prg_wrena     (cmd_prg_wrena),
+					  .tx_prg_rddata     (rc_slave_tx_prg_rddata),		
+					  .tx_prg_wrena      (rc_slave_tx_prg_wrena),
 
-				    .rx_ecrc_bad_cnt   (rx_ecrc_bad_cnt),
-				    .read_dma_status   (read_dma_status),
-				    .write_dma_status  (write_dma_status),
-				    .cfg_busdev (cfg_busdev_reg)
-				    );
+					  .rx_ecrc_bad_cnt   (rx_ecrc_bad_cnt),
+					  .read_dma_status   (read_dma_status),
+					  .write_dma_status  (write_dma_status),
 
+					  /*
+					   * other.regvalue
+					   */
+					  .prg_wrdata_p1        (prg_wrdata_p1),
+					  .prg_addr_p1          (prg_addr_p1),
+					  .dma_rd_prg_rddata_p1 (dma_rd_prg_rddata_p1),
+					  .dma_wr_prg_rddata_p1 (dma_wr_prg_rddata_p1),
+					  .dma_rd_prg_wrena_p1  (dma_rd_prg_wrena_p1),
+					  .dma_wr_prg_wrena_p1  (dma_wr_prg_wrena_p1),
+					  .irq_prg_rddata_p1    (irq_prg_rddata_p1),
+					  .irq_prg_wrena_p1     (irq_prg_wrena_p1),
+					  .cmd_prg_rddata_p1    (cmd_prg_rddata_p1),
+					  .cmd_prg_wrena_p1     (cmd_prg_wrena_p1),
+					  .rx_ecrc_bad_cnt_p1   (rx_ecrc_bad_cnt_p1),
+					  .read_dma_status_p1   (read_dma_status_p1),
+					  .write_dma_status_p1  (write_dma_status_p1),
+					  
+					  .cfg_busdev (cfg_busdev_reg)
+					  );
+      end // if (PORT_NUM == 0)
+      else begin
+	 // Port 1 does not need sonic_rc_slave.
+	 sonic_rc_slave#(
+			 .AVALON_ST_128    (AVALON_ST_128),
+			 .AVALON_WDATA     (AVALON_WDATA),	
+			 .AVALON_BYTE_WIDTH  (AVALON_BYTE_WIDTH),
+			 .AVALON_WADDR   (AVALON_WADDR),
+			 .PORT_NUM         (PORT_NUM)
+			 ) sonic_rc_slave(
+					  .clk_in     (clk_in),
+					  .rstn       (g_rstn),
+
+					  .rx_req     (rx_req0),
+					  .rx_desc    (rx_desc0),
+					  .rx_data    (rx_data0[AVALON_WDATA-1:0]),
+					  .rx_be      (rx_be0[AVALON_BYTE_WIDTH-1:0]),
+					  .rx_dv      (rx_dv0),
+					  .rx_dfr     (rx_dfr0),
+					  .rx_ack     (rx_ack_pcnt),
+					  .rx_ws      (rx_ws_pcnt),
+
+					  .tx_ws      (tx_ws0),
+					  .tx_ack     (tx_ack0),
+					  .tx_desc    (tx_desc_pcnt),
+					  .tx_data    (tx_data_pcnt[AVALON_WDATA-1:0]),
+					  .tx_dfr     (tx_dfr_pcnt),
+					  .tx_dv      (tx_dv_pcnt),
+					  .tx_req     (tx_req_pcnt),
+					  .tx_busy    (tx_busy_pcnt ),
+					  .tx_ready   (tx_ready_pcnt),
+					  .tx_sel     (tx_sel_pcnt  ),
+
+					  .mem_rd_data_valid (1'b0),
+					  .mem_rd_addr       (),		
+					  .mem_rd_data       (128'h0),	
+					  .mem_rd_ena        (),			
+					  .mem_wr_ena        (),
+					  .mem_wr_addr       (),
+					  .mem_wr_data       (),
+					  .mem_wr_be         (),
+					  .sel_epmem         (),
+
+					  .prg_wrdata    (),
+					  .prg_addr      (),		
+
+					  /* 
+					   * this.regvalue
+					   */
+					  .dma_rd_prg_rddata (),
+					  .dma_wr_prg_rddata (),
+					  .dma_rd_prg_wrena  (),
+					  .dma_wr_prg_wrena  (),
+					  .irq_prg_rddata    (),
+					  .irq_prg_wrena     (),
+					  .cmd_prg_rddata    (),
+					  .cmd_prg_wrena     (),
+					  .tx_prg_rddata     (),		
+					  .tx_prg_wrena      (),
+					  .rx_ecrc_bad_cnt   (),
+					  .read_dma_status   (),
+					  .write_dma_status  (),
+
+					  .prg_wrdata_p1 (),
+					  .prg_addr_p1   (),
+					  .dma_rd_prg_rddata_p1 (),
+					  .dma_wr_prg_rddata_p1 (),
+					  .dma_rd_prg_wrena_p1  (),
+					  .dma_wr_prg_wrena_p1  (),
+					  .irq_prg_rddata_p1    (),
+					  .irq_prg_wrena_p1     (),
+					  .cmd_prg_rddata_p1    (),
+					  .cmd_prg_wrena_p1     (),
+					  .rx_ecrc_bad_cnt_p1   (),
+					  .read_dma_status_p1   (),
+					  .write_dma_status_p1  (),					  
+					  .cfg_busdev ()
+					  );
+
+      end // else: !if(PORT_NUM == 0)
+   endgenerate
+   
 
    //------------------------------------------------------------
    // RX signal controls
@@ -1049,7 +1227,7 @@ module sonic_single_port_logic
 			       tx_desc_dmard_mux[124:120];
 
    assign tx_desc0[119]     = `RESERVED_1BIT   ;
-   assign tx_desc0[118:116] = (PORT_NUM == 0) ? `TLP_TC_CLASS_P0 : `TLP_TC_CLASS_P1  ;
+   assign tx_desc0[118:116] = (PORT_NUM == 0) ? `TLP_TC_CLASS_CH_ZERO : `TLP_TC_CLASS_CH_ONE  ;
    assign tx_desc0[115:112] = `RESERVED_4BIT   ;
    assign tx_desc0[111]     = `TLP_TD_DEFAULT  ;
    assign tx_desc0[110]     = `TLP_EP_DEFAULT  ;

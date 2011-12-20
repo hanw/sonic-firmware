@@ -46,14 +46,25 @@ set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/lib/sonic/pcie/ip_compile
 set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_hip_pipen1b.v
 set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/lib/sonic/pcie/ip_compiler_for_pci_express-library/pciexp_dcram.v
 set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcie_reconfig_4sgx.v
+set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/lib/sonic/pcie/ip_compiler_for_pci_express-library/altpcierd_reconfig_clk_pll.v
 set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_blocksync/top_plus.v
 set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_blocksync/top_rs_hip.v
-set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_blocksync/top_example_chaining_pipen1b.v
 set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_blocksync/altpcierd_cdma_ast_msi.v
 set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_blocksync/altpcierd_cdma_ast_tx_128.v
 set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_blocksync/altpcierd_cdma_ast_rx_128.v
+set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_blocksync/altpcierd_compliance_test.v
+set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_blocksync/altpcierd_tl_cfg_sample.v
+set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_blocksync/altpcierd_cplerr_lmi.v
+set_global_assignment -name VERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_blocksync/altpcierd_cpld_rx_buffer.v
 
 # System Verilog Files
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/sonic_irq_ctl.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/sonic_irq_generator.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/sonic_irq_prg_reg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/sonic_blocksync_xg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/sonic_rc_slave.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/sonic_rxtx_downstream_intf.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/sonic_reg_access.sv
 set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/dma/sonic_read_dma_requester_128.sv
 set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/dma/sonic_write_dma_requester_128.sv
 set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/dma/sonic_dma_descriptor.sv
@@ -81,7 +92,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/circbuf/
 set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/circbuf/sonic_tx_ctl_66.sv
 set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/eth/sonic_gearbox_40_66.sv
 set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/eth/sonic_gearbox_66_40.sv
-set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_blocksync/sonic_application_core_logic.sv
 set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_blocksync/sonic_application_streaming_port.sv
 set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_blocksync/sonic_top.sv
 set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/designs/sonic_xg_blocksync/sonic_top_wrapper.sv

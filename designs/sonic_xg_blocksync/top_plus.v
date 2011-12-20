@@ -134,6 +134,7 @@ module top_plus (
                    rx_st_data0,
                    rx_st_data1,
                    rx_st_empty0,
+                   rx_st_empty1,
                    rx_st_eop0,
                    rx_st_eop1,
                    rx_st_err0,
@@ -227,6 +228,7 @@ module top_plus (
   output  [127: 0] rx_st_data0;
   output  [127: 0] rx_st_data1;
   output           rx_st_empty0;
+  output           rx_st_empty1;
   output           rx_st_eop0;
   output           rx_st_eop1;
   output           rx_st_err0;
@@ -438,6 +440,7 @@ module top_plus (
   wire    [127: 0] rx_st_data0;
   wire    [127: 0] rx_st_data1;
   wire             rx_st_empty0;
+  wire             rx_st_empty1;
   wire             rx_st_eop0;
   wire             rx_st_eop1;
   wire             rx_st_err0;
@@ -591,6 +594,7 @@ module top_plus (
       .rx_st_data0 (rx_st_data0),
       .rx_st_data1 (rx_st_data1),
       .rx_st_empty0 (rx_st_empty0),
+      .rx_st_empty1 (rx_st_empty1),
       .rx_st_eop0 (rx_st_eop0),
       .rx_st_eop1 (rx_st_eop1),
       .rx_st_err0 (rx_st_err0),

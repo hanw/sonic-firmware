@@ -75,7 +75,7 @@ module sonic_tx_ctl_66 (/*AUTOARG*/
 	       if (rdusedqwords - 1 > rdusedqwords)
 		 rd_cpld_qword_count <= rdusedqwords;
 	       else
-		 rd_cpld_qword_count <= rdusedqwords - 1;
+		 rd_cpld_qword_count <= rdusedqwords - 14'h1;
 	    end
 	    else begin
 	       rd_cpld_qword_count <= rdusedqwords;
@@ -87,7 +87,7 @@ module sonic_tx_ctl_66 (/*AUTOARG*/
 	       if (rd_cpld_qword_count - 1 > rd_cpld_qword_count)
 		 rd_cpld_qword_count <= rd_cpld_qword_count;
 	       else
-		 rd_cpld_qword_count <= rd_cpld_qword_count - 1;
+		 rd_cpld_qword_count <= rd_cpld_qword_count - 14'h1;
 	    end
 	 end
       end

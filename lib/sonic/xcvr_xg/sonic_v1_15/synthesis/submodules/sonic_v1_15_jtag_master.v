@@ -3,7 +3,7 @@
 // This file was auto-generated from altera_jtag_avalon_master_hw.tcl.  If you edit it your changes
 // will probably be lost.
 // 
-// Generated using SOPC Builder version 11.0 157 at 2011.11.10.17:40:44
+// Generated using SOPC Builder version 11.0 157 at 2011.12.17.14:15:24
 
 `timescale 1 ps / 1 ps
 module sonic_v1_15_jtag_master #(

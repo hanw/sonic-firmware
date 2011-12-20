@@ -64,13 +64,13 @@ module sonic_reg_access   (
 	input [63:0]      write_dma_status,
 
 	output reg [31:0] prg_wrdata,		// data to write
-	output reg [7:0]  prg_addr,			// address of reg to write (offset from BAR2 base)
-	output reg [31:0] reg_rd_data,			// register read data
+	output reg [7:0]  prg_addr,		// address of reg to write (offset from BAR2 base)
+	output reg [31:0] reg_rd_data,		// register read data
 	output reg        reg_rd_data_valid,	// pulse.  means reg_rd_data is valid
-	output reg        dma_rd_prg_wrena,		// wrena for dma_rd reg
-	output reg        dma_wr_prg_wrena,		// wrena for dma_wr reg
-	output reg		  irq_prg_wrena,		// wrena for rx irq generator
-	output reg		  cmd_prg_wrena		// wrena for cmd module
+	output reg        dma_rd_prg_wrena,	// wrena for dma_rd reg
+	output reg        dma_wr_prg_wrena,	// wrena for dma_wr reg
+	output reg	  irq_prg_wrena,	// wrena for rx irq generator
+	output reg	  cmd_prg_wrena		// wrena for cmd module
 	);
 
 	// Module Address Decode - 2 MSB's

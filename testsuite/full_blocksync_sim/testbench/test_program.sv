@@ -15,6 +15,7 @@
 `define DRIVER tb.sonic_blocksync_sim_inst.sonic_blocksync_sim_top_0.drvr
 
 `define NUMBER_OF_TRANSACTIONS 60000
+`define NUM_OF_LOOP 10
 
 module test_program();
 
@@ -74,6 +75,7 @@ module test_program();
       reg [31:0] read_data;
       reg [31:0] rx_ring_ptr;
       reg [31:0] dwords_to_fetch;
+      string 	 message;
       
       rx_ring_ptr = 0;
       
@@ -81,7 +83,7 @@ module test_program();
       while(1)
 	begin
 	   // SCR_MEMSLAVE based at 0x40.
-	   read_data = `DRIVER.shmem_read(32'h0000_0048, 4) & 32'h3FFF;
+	   read_data = `DRIVER.config_thread.shmem_read(32'h0000_1800, 4) & 32'h3FFF;
 	   // if enough data buffered in rx ring, issue a DMA.
 	   if (read_data != 0 && rx_ring_ptr != read_data)
 	     begin
@@ -91,13 +93,15 @@ module test_program();
 		  dwords_to_fetch = 32'h4000 + read_data - rx_ring_ptr;
 		
 		rx_ring_ptr = read_data;
-		
+		$sformat(message, "%d %s: Received rx_ring_ptr update %08x.", ($time/1000), "ns", read_data);
+		print(VERBOSITY_INFO, message);
+				
 		// dma rd is counted in number of Owords, thus, divide dwords_to_fetch by 2.
-		`DRIVER.issue_dma_wr(`DRIVER.BAR_TABLE_POINTER, 2, 0, 0, dwords_to_fetch[31:1]);
+		//`DRIVER.issue_dma_wr(`DRIVER.BAR_TABLE_POINTER, 2, 0, 0, dwords_to_fetch[31:1]);
 	     end
 	   else 
 	     #1000; //wait
-	end
+ 	end
    endtask // dma_driver
    
    /*
@@ -105,15 +109,14 @@ module test_program();
     */
    task chan0_xcvr_src;
       #43000000; // Wait for PCIe initialization completion & BAR commands.
-      
-      for (i = 0; i < `NUMBER_OF_TRANSACTIONS; i++)
-	begin
-	   $fscanf (vec_in, "%h", data);
-	   src_transaction.data = data;
-	   src_ch0_push_transaction(src_transaction);
-	   #1; //push again in next clock cycle
-	end   
-      
+
+      for (i = 0; i < `NUMBER_OF_TRANSACTIONS; i++) begin
+	 $fscanf (vec_in, "%h", data);
+	 src_transaction.data = data;
+	 src_ch0_push_transaction(src_transaction);
+	 #100; //push again in next clock cycle
+      end   
+
    endtask // chan0_xcvr_src
 
    task test_program;
@@ -144,6 +147,9 @@ module test_program();
 
 	test_program();
 	
+	while(1) begin
+	   @(idle);
+	end	
      end // initial begin
 
 endmodule // test_program

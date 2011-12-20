@@ -156,10 +156,10 @@ module sonictb_bfm_driver_chaining (input clk_in,
    localparam RCSLAVE_MAXLEN = 10;  // maximum number of read/write
 
    localparam TIMEOUT_POLLING       = 2048;  // number of clock' for timout
-   // using the chaining DMA module
+   // using the chaining DMA module 
 
    localparam TC_CLASS_P0 = 0;
-   localparam TC_CLASS_P1 = 5;
+   localparam TC_CLASS_P1 = 0;
    
    // Descriptor Table Parameters
    localparam DT_EPLAST = 4'hc;
@@ -173,9 +173,6 @@ module sonictb_bfm_driver_chaining (input clk_in,
     * 0x0000_0001_0000_2800
     * 0x0000_0001_0000_3800
     */
-   localparam integer 			   XCVR_WR_DESC_LENGTH = 1024;
-   localparam integer 			   XCVR_RD_DESC_LENGTH = 1024;  
-   
    localparam integer 			   WR_DIRECTION        = 1;
    localparam integer 			   WR_DESCRIPTOR_DEPTH = 4;        // 4 DWORDS
    localparam integer 			   WR_BDT_LSB          = SCR_MEM;
@@ -184,8 +181,8 @@ module sonictb_bfm_driver_chaining (input clk_in,
 
    localparam integer 			   WR_DESC0_CTL_MSI      = 0;
    localparam integer 			   WR_DESC0_CTL_EPLAST   = 1;      // send EPLast update when done with this descriptor
+   localparam integer 			   WR_DESC0_LENGTH       = 8192;
 //   localparam integer 			   WR_DESC0_LENGTH       = 4096;
-   localparam integer 			   WR_DESC0_LENGTH       = 512;
    localparam integer 			   WR_DESC0_EPADDR       = 0;
    localparam integer 			   WR_DESC0_RCADDR_MSB   = 1;
    localparam integer 			   WR_DESC0_RCADDR_LSB   = WR_BDT_LSB+4096;
@@ -194,19 +191,19 @@ module sonictb_bfm_driver_chaining (input clk_in,
    localparam integer 			   WR_DESC1_CTL_MSI      = 0;
    localparam integer 			   WR_DESC1_CTL_EPLAST   = 0;
 //   localparam integer 			   WR_DESC1_LENGTH       = 4096;
-   localparam integer 			   WR_DESC1_LENGTH       = 512;
-   localparam integer 			   WR_DESC1_EPADDR       = 0;
+   localparam integer 			   WR_DESC1_LENGTH       = 8192;
+   localparam integer 			   WR_DESC1_EPADDR       = 8192;
    localparam integer 			   WR_DESC1_RCADDR_MSB   = 1;
-   localparam integer 			   WR_DESC1_RCADDR_LSB   = WR_BDT_LSB+8192;
+   localparam integer 			   WR_DESC1_RCADDR_LSB   = WR_BDT_LSB+12288;
    localparam integer 			   WR_DESC1_INIT_BFM_MEM = 64'h0000_0000_2525_0001;
 
-   localparam integer 			   WR_DESC2_CTL_MSI      = 0;     // send MSI when done with this descriptor
+   localparam integer 			   WR_DESC2_CTL_MSI      = 1;     // send MSI when done with this descriptor
    localparam integer 			   WR_DESC2_CTL_EPLAST   = 1;     // send EPLast update when done with this descriptor
 //   localparam integer 			   WR_DESC2_LENGTH       = 4096;
-   localparam integer 			   WR_DESC2_LENGTH       = 512;
+   localparam integer 			   WR_DESC2_LENGTH       = 8192;
    localparam integer 			   WR_DESC2_EPADDR       = 0;
    localparam integer 			   WR_DESC2_RCADDR_MSB   = 1;
-   localparam integer 			   WR_DESC2_RCADDR_LSB   = WR_BDT_LSB+12288;
+   localparam integer 			   WR_DESC2_RCADDR_LSB   = WR_BDT_LSB+20480;
    localparam integer 			   WR_DESC2_INIT_BFM_MEM = 64'h0000_0000_3535_0001;
 
    // READ DMA DESCRIPTOR TABLE Content, Port 0
@@ -218,14 +215,14 @@ module sonictb_bfm_driver_chaining (input clk_in,
     */
    localparam integer 			   RD_DIRECTION        = 0;
    localparam integer 			   RD_DESCRIPTOR_DEPTH = 4;
-   localparam integer 			   RD_BDT_LSB          = SCR_MEM+256;
+   localparam integer 			   RD_BDT_LSB          = SCR_MEM+20480;
    localparam integer 			   RD_BDT_MSB          = 0;
    localparam integer 			   RD_FIRST_DESCRIPTOR = RD_BDT_LSB+16;
 
    localparam integer 			   RD_DESC0_CTL_MSI      = WR_DESC0_CTL_MSI;
    localparam integer 			   RD_DESC0_CTL_EPLAST   = WR_DESC0_CTL_EPLAST;
 //   localparam integer 			   RD_DESC0_LENGTH       = 4096;
-   localparam integer 			   RD_DESC0_LENGTH       = 512;
+   localparam integer 			   RD_DESC0_LENGTH       = 8192;
    localparam integer 			   RD_DESC0_EPADDR       = 0;
    localparam integer 			   RD_DESC0_RCADDR_MSB   = 1;
    localparam integer 			   RD_DESC0_RCADDR_LSB   = RD_BDT_LSB+4096;
@@ -234,19 +231,19 @@ module sonictb_bfm_driver_chaining (input clk_in,
    localparam integer 			   RD_DESC1_CTL_MSI      = WR_DESC1_CTL_MSI;
    localparam integer 			   RD_DESC1_CTL_EPLAST   = WR_DESC1_CTL_EPLAST;
 //   localparam integer 			   RD_DESC1_LENGTH       = 4096;
-   localparam integer 			   RD_DESC1_LENGTH       = 512;
-   localparam integer 			   RD_DESC1_EPADDR       = 4096;
+   localparam integer 			   RD_DESC1_LENGTH       = 8192;
+   localparam integer 			   RD_DESC1_EPADDR       = 8192;
    localparam integer 			   RD_DESC1_RCADDR_MSB   = 1;
-   localparam integer 			   RD_DESC1_RCADDR_LSB   = RD_BDT_LSB+8192;
+   localparam integer 			   RD_DESC1_RCADDR_LSB   = RD_BDT_LSB+12288;
    localparam integer 			   RD_DESC1_INIT_BFM_MEM = 64'h0000_0000_BBBB_0001;
 
    localparam integer 			   RD_DESC2_CTL_MSI      = WR_DESC2_CTL_MSI;
    localparam integer 			   RD_DESC2_CTL_EPLAST   = WR_DESC2_CTL_EPLAST;
+   localparam integer 			   RD_DESC2_LENGTH       = 8192;
 //   localparam integer 			   RD_DESC2_LENGTH       = 4096;
-   localparam integer 			   RD_DESC2_LENGTH       = 512;
    localparam integer 			   RD_DESC2_EPADDR       = 0;
    localparam integer 			   RD_DESC2_RCADDR_MSB   = 1;
-   localparam integer 			   RD_DESC2_RCADDR_LSB   = RD_BDT_LSB+12288;
+   localparam integer 			   RD_DESC2_RCADDR_LSB   = RD_BDT_LSB+20480;
    localparam integer 			   RD_DESC2_INIT_BFM_MEM = 64'h0000_0000_CCCC_0001;
 
    // Information used by driver for polling Chaining DMA status for completion.
@@ -300,7 +297,9 @@ module sonictb_bfm_driver_chaining (input clk_in,
     * Resource Control Mutex, used for managing the PCIe bus between multiple threads.
     */
    semaphore 				   sem;
-   
+   event 				   idle;
+
+
    // purpose: sets the suppressed_msg_mask
    task ebfm_log_set_suppressed_msg_mask;
       input [EBFM_MSG_ERROR_CONTINUE:EBFM_MSG_DEBUG] msg_mask;
@@ -631,6 +630,167 @@ module sonictb_bfm_driver_chaining (input clk_in,
       end
    endfunction
 
+   // ebfm_display_verb
+   // overload ebfm_display by turning on/off verbose when DISPLAY_ALL>0
+   function ebfm_display_verb(
+			      input integer msg_type,
+			      input [EBFM_MSG_MAX_LEN*8:1] message);
+      reg 						   unused_result;
+      begin
+	 if (DISPLAY_ALL==1)
+           unused_result = ebfm_display(msg_type, message);
+	 ebfm_display_verb = 1'b0 ;
+      end
+   endfunction // ebfm_display_verb
+   
+   // purpose: Describes the attributes of the BAR and the assigned address
+   task describe_bar;
+      input bar_num;
+      integer bar_num;
+      input   bar_lsb;
+      integer bar_lsb;
+      input [63:0] bar;
+      input 	   addr_unused ;
+
+      reg [(6)*8:1] bar_num_str;
+      reg [(10)*8:1] bar_size_str;
+      reg [(16)*8:1] bar_type_str;
+      reg 	     bar_enabled;
+      reg [(17)*8:1] addr_str;
+
+      reg 	     dummy ;
+
+      begin  // describe_bar
+         bar_enabled  = 1'b1 ;
+         case (bar_lsb)
+           4  : bar_size_str = " 16 Bytes ";
+           5  : bar_size_str = " 32 Bytes ";
+           6  : bar_size_str = " 64 Bytes ";
+           7  : bar_size_str = "128 Bytes ";
+           8  : bar_size_str = "256 Bytes ";
+           9  : bar_size_str = "512 Bytes ";
+           10 : bar_size_str = "  1 KBytes";
+           11 : bar_size_str = "  2 KBytes";
+           12 : bar_size_str = "  4 KBytes";
+           13 : bar_size_str = "  8 KBytes";
+           14 : bar_size_str = " 16 KBytes";
+           15 : bar_size_str = " 32 KBytes";
+           16 : bar_size_str = " 64 KBytes";
+           17 : bar_size_str = "128 KBytes";
+           18 : bar_size_str = "256 KBytes";
+           19 : bar_size_str = "512 KBytes";
+           20 : bar_size_str = "  1 MBytes";
+           21 : bar_size_str = "  2 MBytes";
+           22 : bar_size_str = "  4 MBytes";
+           23 : bar_size_str = "  8 MBytes";
+           24 : bar_size_str = " 16 MBytes";
+           25 : bar_size_str = " 32 MBytes";
+           26 : bar_size_str = " 64 MBytes";
+           27 : bar_size_str = "128 MBytes";
+           28 : bar_size_str = "256 MBytes";
+           29 : bar_size_str = "512 MBytes";
+           30 : bar_size_str = "  1 GBytes";
+           31 : bar_size_str = "  2 GBytes";
+           32 : bar_size_str = "  4 GBytes";
+           33 : bar_size_str = "  8 GBytes";
+           34 : bar_size_str = " 16 GBytes";
+           35 : bar_size_str = " 32 GBytes";
+           36 : bar_size_str = " 64 GBytes";
+           37 : bar_size_str = "128 GBytes";
+           38 : bar_size_str = "256 GBytes";
+           39 : bar_size_str = "512 GBytes";
+           40 : bar_size_str = "  1 TBytes";
+           41 : bar_size_str = "  2 TBytes";
+           42 : bar_size_str = "  4 TBytes";
+           43 : bar_size_str = "  8 TBytes";
+           44 : bar_size_str = " 16 TBytes";
+           45 : bar_size_str = " 32 TBytes";
+           46 : bar_size_str = " 64 TBytes";
+           47 : bar_size_str = "128 TBytes";
+           48 : bar_size_str = "256 TBytes";
+           49 : bar_size_str = "512 TBytes";
+           50 : bar_size_str = "  1 PBytes";
+           51 : bar_size_str = "  2 PBytes";
+           52 : bar_size_str = "  4 PBytes";
+           53 : bar_size_str = "  8 PBytes";
+           54 : bar_size_str = " 16 PBytes";
+           55 : bar_size_str = " 32 PBytes";
+           56 : bar_size_str = " 64 PBytes";
+           57 : bar_size_str = "128 PBytes";
+           58 : bar_size_str = "256 PBytes";
+           59 : bar_size_str = "512 PBytes";
+           60 : bar_size_str = "  1 EBytes";
+           61 : bar_size_str = "  2 EBytes";
+           62 : bar_size_str = "  4 EBytes";
+           63 : bar_size_str = "  8 EBytes";
+           default :
+             begin
+                bar_size_str = "Disabled  ";
+                bar_enabled = 0;
+             end
+         endcase
+         if (bar_num == 6)
+           begin
+              bar_num_str = "ExpROM";
+           end
+         else
+           begin
+              bar_num_str = {"BAR", dimage1(bar_num), "  "};
+           end
+         if (bar_enabled)
+           begin
+              if ((bar[2]) == 1'b1)
+		begin
+		   bar_num_str = {"BAR", dimage1(bar_num+1), ":", dimage1(bar_num)};
+		end
+              if (addr_unused == 1'b1 )
+		begin
+                   addr_str = "Not used in RP   ";
+		end
+              else
+		begin
+                   if ( (bar[32] == 1'b0) | (bar[32] == 1'b1) )
+                     begin
+			if ((bar[2]) == 1'b1)
+                          begin
+                             addr_str[136:73] = himage8(bar[63:32]);
+                          end
+			else
+                          begin
+                             addr_str[136:73] = "        ";
+                          end
+			addr_str[72:65] = " ";
+			addr_str[64:1] = himage8({bar[31:4], 4'b0000});
+                     end
+                   else
+                     begin
+			addr_str = "Unassigned!!!    ";
+                     end // else: !if( (bar[32] == 1'b0) | (bar[32] == 1'b1) )
+		end // else: !if(addr_unused == 1'b1 )
+              if ((bar[0]) == 1'b1)
+		begin
+                   bar_type_str = "IO Space        ";
+		end
+              else
+		begin
+		   if ((bar[3]) == 1'b1)
+		     begin
+			bar_type_str = "Prefetchable    ";
+		     end
+		   else
+		     begin
+			bar_type_str = "Non-Prefetchable";
+		     end
+		end
+              dummy = ebfm_display(EBFM_MSG_INFO, {bar_num_str, " ", bar_size_str,
+						   " ", addr_str, " ", bar_type_str});
+           end
+         else
+           begin
+              dummy = ebfm_display(EBFM_MSG_INFO, {bar_num_str, " ", bar_size_str});
+           end
+      end
+   endtask
 
    parameter SHMEM_FILL_ZERO = 0;
    parameter SHMEM_FILL_BYTE_INC = 1;
@@ -644,6 +804,8 @@ module sonictb_bfm_driver_chaining (input clk_in,
    parameter SCR_SIZE = 64;
    parameter CFG_SCRATCH_SPACE = SHMEM_SIZE - BAR_TABLE_SIZE - SCR_SIZE;
 
+class dma_thread;
+   
    task shmem_write;
       input addr;
       integer addr;
@@ -1641,10 +1803,12 @@ module sonictb_bfm_driver_chaining (input clk_in,
 
       begin
          info_v = {193{1'b0}} ;
-	 sem.get(1);
+
          // Get a TAG
+	 sem.get(1);
          i_need_handle = compl_wait | need_handle;
          req_intf_get_tag(tag_v, i_need_handle, lcladdr);
+	 
          // Assemble the request
          if ((bus_num == RP_PRI_BUS_NUM) & (dev_num == RP_PRI_DEV_NUM))
            begin
@@ -1668,8 +1832,8 @@ module sonictb_bfm_driver_chaining (input clk_in,
          info_v[43:34] = (regb_ad / 4) ;
          info_v[33:32] = 2'b00; // RR
          // Make the request
-	 
          req_intf_vc_req(info_v);
+
          // Wait for completion if specified to do so
          if (compl_wait == 1'b1)
            begin
@@ -1678,7 +1842,7 @@ module sonictb_bfm_driver_chaining (input clk_in,
          else
            begin
               compl_status = "UUU";
-           end
+           end	 
          // Return the handle
          if (need_handle == 1'b0)
            begin
@@ -1688,9 +1852,7 @@ module sonictb_bfm_driver_chaining (input clk_in,
            begin
               handle = tag_v;
            end
-
 	 sem.put(1);
-	 
       end
    endtask
 
@@ -1773,11 +1935,11 @@ module sonictb_bfm_driver_chaining (input clk_in,
 
       begin
          info_v = {193{1'b0}} ;
-	 sem.get(1);
-
          // Get a TAG
+	 sem.get(1);
          i_need_handle = compl_wait | need_handle;
          req_intf_get_tag(tag_v, i_need_handle, -1);
+	 
          // Assemble the request
          info_v[192] = imm_valid;
          info_v[191:160] = imm_data;
@@ -1804,6 +1966,7 @@ module sonictb_bfm_driver_chaining (input clk_in,
          info_v[43:34] = (regb_ad / 4) ;
          info_v[33:32] = 2'b00; // RR
          // Make the request
+	 
          req_intf_vc_req(info_v);
          // Wait for completion if specified to do so
          if (compl_wait == 1'b1)
@@ -1958,6 +2121,7 @@ module sonictb_bfm_driver_chaining (input clk_in,
       integer 	   baddr_v;
 
       begin
+
          info_v = {193{1'b0}} ;
          // ebfm_memwr_imm
          baddr_v = pcie_addr[11:0];
@@ -1984,11 +2148,10 @@ module sonictb_bfm_driver_chaining (input clk_in,
          info_v[79:72] = 8'h00 ;
          info_v[71:68] = ebfm_calc_lastbe(baddr_v, byte_len);
          info_v[67:64] = ebfm_calc_firstbe(baddr_v, byte_len);
+
          // Make the request
 	 sem.get(1);
-	 
          req_intf_vc_req(info_v);
-
 	 sem.put(1);
 	 
       end
@@ -2017,10 +2180,12 @@ module sonictb_bfm_driver_chaining (input clk_in,
 
       begin
          info_v = {193{1'b0}} ;
-  	 sem.get(1);
-	 // Get a TAG
+         // Get a TAG
+	 sem.get(1);
          i_need_handle = compl_wait | need_handle;
          req_intf_get_tag(tag_v, i_need_handle, lcladdr);
+	 sem.put(1);
+	 
          baddr_v = pcie_addr[11:0];
          // Assemble the request
          info_v[159:128] = lcladdr ;
@@ -2045,6 +2210,8 @@ module sonictb_bfm_driver_chaining (input clk_in,
          info_v[71:68] = ebfm_calc_lastbe(baddr_v, byte_len);
          info_v[67:64] = ebfm_calc_firstbe(baddr_v, byte_len);
          // Make the request
+	 sem.get(1);
+	 
          req_intf_vc_req(info_v);
          // Wait for completion if specified to do so
          if (compl_wait == 1'b1)
@@ -2159,7 +2326,7 @@ module sonictb_bfm_driver_chaining (input clk_in,
               cbar = cbar + pcie_offset;
               ebfm_memwr_imm(cbar, imm_data, byte_len,
 			     tclass);
-           end
+           end // else: !if((cbar[0]) == 1'b1)
       end
    endtask
 
@@ -2519,154 +2686,6 @@ module sonictb_bfm_driver_chaining (input clk_in,
       end
    endtask
 
-   // purpose: Describes the attributes of the BAR and the assigned address
-   task describe_bar;
-      input bar_num;
-      integer bar_num;
-      input   bar_lsb;
-      integer bar_lsb;
-      input [63:0] bar;
-      input 	   addr_unused ;
-
-      reg [(6)*8:1] bar_num_str;
-      reg [(10)*8:1] bar_size_str;
-      reg [(16)*8:1] bar_type_str;
-      reg 	     bar_enabled;
-      reg [(17)*8:1] addr_str;
-
-      reg 	     dummy ;
-
-      begin  // describe_bar
-         bar_enabled  = 1'b1 ;
-         case (bar_lsb)
-           4  : bar_size_str = " 16 Bytes ";
-           5  : bar_size_str = " 32 Bytes ";
-           6  : bar_size_str = " 64 Bytes ";
-           7  : bar_size_str = "128 Bytes ";
-           8  : bar_size_str = "256 Bytes ";
-           9  : bar_size_str = "512 Bytes ";
-           10 : bar_size_str = "  1 KBytes";
-           11 : bar_size_str = "  2 KBytes";
-           12 : bar_size_str = "  4 KBytes";
-           13 : bar_size_str = "  8 KBytes";
-           14 : bar_size_str = " 16 KBytes";
-           15 : bar_size_str = " 32 KBytes";
-           16 : bar_size_str = " 64 KBytes";
-           17 : bar_size_str = "128 KBytes";
-           18 : bar_size_str = "256 KBytes";
-           19 : bar_size_str = "512 KBytes";
-           20 : bar_size_str = "  1 MBytes";
-           21 : bar_size_str = "  2 MBytes";
-           22 : bar_size_str = "  4 MBytes";
-           23 : bar_size_str = "  8 MBytes";
-           24 : bar_size_str = " 16 MBytes";
-           25 : bar_size_str = " 32 MBytes";
-           26 : bar_size_str = " 64 MBytes";
-           27 : bar_size_str = "128 MBytes";
-           28 : bar_size_str = "256 MBytes";
-           29 : bar_size_str = "512 MBytes";
-           30 : bar_size_str = "  1 GBytes";
-           31 : bar_size_str = "  2 GBytes";
-           32 : bar_size_str = "  4 GBytes";
-           33 : bar_size_str = "  8 GBytes";
-           34 : bar_size_str = " 16 GBytes";
-           35 : bar_size_str = " 32 GBytes";
-           36 : bar_size_str = " 64 GBytes";
-           37 : bar_size_str = "128 GBytes";
-           38 : bar_size_str = "256 GBytes";
-           39 : bar_size_str = "512 GBytes";
-           40 : bar_size_str = "  1 TBytes";
-           41 : bar_size_str = "  2 TBytes";
-           42 : bar_size_str = "  4 TBytes";
-           43 : bar_size_str = "  8 TBytes";
-           44 : bar_size_str = " 16 TBytes";
-           45 : bar_size_str = " 32 TBytes";
-           46 : bar_size_str = " 64 TBytes";
-           47 : bar_size_str = "128 TBytes";
-           48 : bar_size_str = "256 TBytes";
-           49 : bar_size_str = "512 TBytes";
-           50 : bar_size_str = "  1 PBytes";
-           51 : bar_size_str = "  2 PBytes";
-           52 : bar_size_str = "  4 PBytes";
-           53 : bar_size_str = "  8 PBytes";
-           54 : bar_size_str = " 16 PBytes";
-           55 : bar_size_str = " 32 PBytes";
-           56 : bar_size_str = " 64 PBytes";
-           57 : bar_size_str = "128 PBytes";
-           58 : bar_size_str = "256 PBytes";
-           59 : bar_size_str = "512 PBytes";
-           60 : bar_size_str = "  1 EBytes";
-           61 : bar_size_str = "  2 EBytes";
-           62 : bar_size_str = "  4 EBytes";
-           63 : bar_size_str = "  8 EBytes";
-           default :
-             begin
-                bar_size_str = "Disabled  ";
-                bar_enabled = 0;
-             end
-         endcase
-         if (bar_num == 6)
-           begin
-              bar_num_str = "ExpROM";
-           end
-         else
-           begin
-              bar_num_str = {"BAR", dimage1(bar_num), "  "};
-           end
-         if (bar_enabled)
-           begin
-              if ((bar[2]) == 1'b1)
-		begin
-		   bar_num_str = {"BAR", dimage1(bar_num+1), ":", dimage1(bar_num)};
-		end
-              if (addr_unused == 1'b1 )
-		begin
-                   addr_str = "Not used in RP   ";
-		end
-              else
-		begin
-                   if ( (bar[32] == 1'b0) | (bar[32] == 1'b1) )
-                     begin
-			if ((bar[2]) == 1'b1)
-                          begin
-                             addr_str[136:73] = himage8(bar[63:32]);
-                          end
-			else
-                          begin
-                             addr_str[136:73] = "        ";
-                          end
-			addr_str[72:65] = " ";
-			addr_str[64:1] = himage8({bar[31:4], 4'b0000});
-                     end
-                   else
-                     begin
-			addr_str = "Unassigned!!!    ";
-                     end // else: !if( (bar[32] == 1'b0) | (bar[32] == 1'b1) )
-		end // else: !if(addr_unused == 1'b1 )
-              if ((bar[0]) == 1'b1)
-		begin
-                   bar_type_str = "IO Space        ";
-		end
-              else
-		begin
-		   if ((bar[3]) == 1'b1)
-		     begin
-			bar_type_str = "Prefetchable    ";
-		     end
-		   else
-		     begin
-			bar_type_str = "Non-Prefetchable";
-		     end
-		end
-              dummy = ebfm_display(EBFM_MSG_INFO, {bar_num_str, " ", bar_size_str,
-						   " ", addr_str, " ", bar_type_str});
-           end
-         else
-           begin
-              dummy = ebfm_display(EBFM_MSG_INFO, {bar_num_str, " ", bar_size_str});
-           end
-      end
-   endtask
 
    // purpose: configure a set of bars
    task ebfm_cfg_bars;
@@ -4237,12 +4256,12 @@ module sonictb_bfm_driver_chaining (input clk_in,
 	 ebfm_cfg_vc(1/*bus*/, 1/*dev*/, 0/*func*/, 1/*n_vc*/, 1/*enable*/, 8'hF0/*tcvcmap*/);
 	 ebfm_cfg_vc(0/*bus*/, 0/*dev*/, 0/*func*/, 0/*n_vc*/, 1/*enable*/, 8'hFF/*tcvcmap*/);
 	 ebfm_cfg_vc(0/*bus*/, 0/*dev*/, 0/*func*/, 1/*n_vc*/, 1/*enable*/, 8'h00/*tcvcmap*/);
-	 	 
+	 	  
 	 ebfm_display_vc_regs(0/*rp*/, 1/*bnm*/, 1/*dev*/, 0/*func*/, CFG_SCRATCH_SPACE + 32);
 	 ebfm_display_vc_regs(1/*rp*/, 0/*bnm*/, 0/*dev*/, 0/*func*/, CFG_SCRATCH_SPACE + 32);
 	 
          // Protect the critical BFM data from being accidentally overwritten.
-         bfm_shmem_common.protect_bfm_shmem = 1'b1;
+         bfm_shmem_common.protect_bfm_shmem = 1'b1; 
 
       end
    endtask
@@ -4344,18 +4363,7 @@ module sonictb_bfm_driver_chaining (input clk_in,
    // The clk_in and rstn signals are provided for possible use in controlling
    // the transactions issued, they are not currently used.
 
-   // ebfm_display_verb
-   // overload ebfm_display by turning on/off verbose when DISPLAY_ALL>0
-   function ebfm_display_verb(
-			      input integer msg_type,
-			      input [EBFM_MSG_MAX_LEN*8:1] message);
-      reg 						   unused_result;
-      begin
-	 if (DISPLAY_ALL==1)
-           unused_result = ebfm_display(msg_type, message);
-	 ebfm_display_verb = 1'b0 ;
-      end
-   endfunction
+
 
    /////////////////////////////////////////////////////////////////////////
    //
@@ -4662,7 +4670,7 @@ module sonictb_bfm_driver_chaining (input clk_in,
 	 shmem_fill(dt_bdt_lsb+12,SHMEM_FILL_DWORD_INC,4,32'hCAFE_FADE);
 
 	 unused_result = ebfm_display_verb(EBFM_MSG_INFO, "data content of the DT header");
-	 //if (DISPLAY_ALL==1)
+	 if (DISPLAY_ALL==1)
            unused_result =shmem_display(dt_bdt_lsb,4*4,4,dt_bdt_lsb+(4*4),EBFM_MSG_INFO);
       end
 
@@ -4767,10 +4775,8 @@ module sonictb_bfm_driver_chaining (input clk_in,
    //   setup_bar : BAR to be used for setting up
    //
    task dma_set_wr_desc_data (
-			      input integer bar_table,
-			      input integer setup_bar,
-			      input integer xcvr_test,
-			      input integer num_descriptors
+			      input integer bar_table    ,
+			      input integer setup_bar
 			      );
 
       reg 				    unused_result ;
@@ -4798,6 +4804,8 @@ module sonictb_bfm_driver_chaining (input clk_in,
 	 unused_result = ebfm_display_verb(EBFM_MSG_INFO, `STR_SEP);
 	 unused_result = ebfm_display_verb(EBFM_MSG_INFO, "TASK:dma_set_wr_desc_data");
 
+
+
 	 if (setup_bar == 2) begin
 	    wr_first_descriptor = WR_FIRST_DESCRIPTOR;
 	    wr_desc0_rcaddr_lsb = WR_DESC0_RCADDR_LSB;
@@ -4819,87 +4827,64 @@ module sonictb_bfm_driver_chaining (input clk_in,
 
 	    wr_desc2_rcaddr_lsb = WR_DESC2_RCADDR_LSB + 16'h3000;
 	    wr_desc2_init_bfm_mem = WR_DESC2_INIT_BFM_MEM;
-	 end // if (setup_bar == 3)
-	 
-	 if (xcvr_test == 0)
-	   begin
-	      // First Descriptor
-	      descriptor_addr = wr_first_descriptor;
-	      // Assemble Descriptor Control Field
-	      loop_control_field = ((2**17) * WR_DESC0_CTL_EPLAST) + ((2**16) * WR_DESC0_CTL_MSI);  
-	      shmem_write(descriptor_addr  ,  (loop_control_field + WR_DESC0_LENGTH)     ,4);
-	      shmem_write(descriptor_addr+4,  WR_DESC0_EPADDR     ,4);
-	      shmem_write(descriptor_addr+8,  WR_DESC0_RCADDR_MSB ,4);
-	      shmem_write(descriptor_addr+12, wr_desc0_rcaddr_lsb ,4);
-	      shmem_fill(wr_desc0_rcaddr_lsb,SHMEM_FILL_DWORD_INC,
-			 WR_DESC0_LENGTH*4,WR_DESC0_INIT_BFM_MEM);
+	 end
 
-	      // Display descriptor table of DMA Write
-	      if (NUMBER_OF_DESCRIPTORS>3)
-		begin
-		   for (i=1;i<NUMBER_OF_DESCRIPTORS-1;i=i+1)
-		     begin
-			descriptor_addr = wr_first_descriptor + 16*i;
-			// Assemble Descriptor Control Field
-			loop_control_field = ((2**17) * WR_DESC1_CTL_EPLAST) + ((2**16) * WR_DESC1_CTL_MSI);   
-			loop_DW0        = loop_control_field + WR_DESC1_LENGTH + i*MEM_DESCR_LENGTH_INC;
-			loop_DW1        = WR_DESC1_EPADDR ;
-			loop_DW2        = WR_DESC1_RCADDR_MSB;
-			loop_DW3        = wr_desc1_rcaddr_lsb;
-			shmem_write(descriptor_addr  ,  loop_DW0 ,4);
-			shmem_write(descriptor_addr+4,  loop_DW1 ,4);
-			shmem_write(descriptor_addr+8,  loop_DW2 ,4);
-			shmem_write(descriptor_addr+12, loop_DW3 ,4);
-			if (i==1)
-			  shmem_fill(wr_desc1_rcaddr_lsb,SHMEM_FILL_DWORD_INC, loop_DW0*4,
-				     WR_DESC1_INIT_BFM_MEM);
-		     end
-		   i = NUMBER_OF_DESCRIPTORS-2;
-		end
-	      else
-		begin
-		   i = 1;
-		   // Descriptor 1
-		   descriptor_addr = wr_first_descriptor+16;
-		   // Assemble Descriptor Control Field
-		   loop_control_field = ((2**17) * WR_DESC1_CTL_EPLAST) + ((2**16) * WR_DESC1_CTL_MSI);   		
-		   shmem_write(descriptor_addr  ,  loop_control_field + WR_DESC1_LENGTH     ,4);
-		   shmem_write(descriptor_addr+4,  WR_DESC1_EPADDR     ,4);
-		   shmem_write(descriptor_addr+8,  WR_DESC1_RCADDR_MSB ,4);
-		   shmem_write(descriptor_addr+12, wr_desc1_rcaddr_lsb ,4);
-		   shmem_fill(wr_desc1_rcaddr_lsb,SHMEM_FILL_DWORD_INC,
-			      WR_DESC1_LENGTH*4,WR_DESC1_INIT_BFM_MEM);
-		end
-
-	      // Last Descriptor
-	      descriptor_addr = wr_first_descriptor+16*(i+1);
-	      // Assemble Descriptor Control Field
-	      loop_control_field = ((2**17) * WR_DESC2_CTL_EPLAST) + ((2**16) * WR_DESC2_CTL_MSI);
-	      shmem_write(descriptor_addr  ,  loop_control_field + WR_DESC2_LENGTH     ,4);
-	      shmem_write(descriptor_addr+4,  WR_DESC2_EPADDR     ,4);
-	      shmem_write(descriptor_addr+8,  WR_DESC2_RCADDR_MSB ,4);
-	      shmem_write(descriptor_addr+12, wr_desc2_rcaddr_lsb ,4);
-	      shmem_fill(wr_desc2_rcaddr_lsb,SHMEM_FILL_DWORD_INC,
-			 WR_DESC2_LENGTH*4,WR_DESC2_INIT_BFM_MEM);
-	   end // if (xcvr_test == 0)
-	 else // For XCVR test, assume each DMA is 0x1000 in size.
+	 // First Descriptor
+	 descriptor_addr = wr_first_descriptor; //
+	 loop_control_field = ((2**17) * WR_DESC0_CTL_EPLAST) + ((2**16) * WR_DESC0_CTL_MSI);   // Assemble Descriptor Control Field
+	 shmem_write(descriptor_addr  ,  (loop_control_field + WR_DESC0_LENGTH)     ,4);
+	 shmem_write(descriptor_addr+4,  WR_DESC0_EPADDR     ,4);
+	 shmem_write(descriptor_addr+8,  WR_DESC0_RCADDR_MSB ,4);
+	 shmem_write(descriptor_addr+12, wr_desc0_rcaddr_lsb ,4);
+	 shmem_fill(wr_desc0_rcaddr_lsb,SHMEM_FILL_DWORD_INC,
+                    WR_DESC0_LENGTH*4,WR_DESC0_INIT_BFM_MEM);
+	 // Display descriptor table of DMA Write
+	 if (NUMBER_OF_DESCRIPTORS>3)
 	   begin
-	      for (i = 0; i < num_descriptors ; i++)
+              for (i=1;i<NUMBER_OF_DESCRIPTORS-1;i=i+1)
 		begin
-		   descriptor_addr = wr_first_descriptor + 16 * i;
-		   // Assemble Descriptor Control Field
-		   loop_control_field = ((2**17) * WR_DESC0_CTL_EPLAST) + ((2**16) * WR_DESC0_CTL_MSI);  
-		   shmem_write(descriptor_addr  ,  (loop_control_field + XCVR_WR_DESC_LENGTH)     ,4);
-		   shmem_write(descriptor_addr+4,  32'h1000 * i ,4); 
-		   shmem_write(descriptor_addr+8,  WR_DESC0_RCADDR_MSB ,4);
-		   shmem_write(descriptor_addr+12, wr_desc0_rcaddr_lsb + XCVR_WR_DESC_LENGTH * i ,4);
-		  // shmem_fill(wr_desc0_rcaddr_lsb,SHMEM_FILL_DWORD_INC,
-		//	      XCVR_WR_DESC_LENGTH*4,WR_DESC0_INIT_BFM_MEM);
-		end // for (i = 0; i < num_descriptors ; i++)
-	   end // else: !if(xcvr_test == 0)
+		   descriptor_addr = wr_first_descriptor + 16*i;
+		   loop_control_field = ((2**17) * WR_DESC1_CTL_EPLAST) + ((2**16) * WR_DESC1_CTL_MSI);   // Assemble Descriptor Control Field
+		   loop_DW0        = loop_control_field + WR_DESC1_LENGTH + i*MEM_DESCR_LENGTH_INC;
+		   loop_DW1        = WR_DESC1_EPADDR ;
+		   loop_DW2        = WR_DESC1_RCADDR_MSB;
+		   loop_DW3        = wr_desc1_rcaddr_lsb;
+		   shmem_write(descriptor_addr  ,  loop_DW0 ,4);
+		   shmem_write(descriptor_addr+4,  loop_DW1 ,4);
+		   shmem_write(descriptor_addr+8,  loop_DW2 ,4);
+		   shmem_write(descriptor_addr+12, loop_DW3 ,4);
+		   if (i==1)
+		     shmem_fill(wr_desc1_rcaddr_lsb,SHMEM_FILL_DWORD_INC, loop_DW0*4,
+				WR_DESC1_INIT_BFM_MEM);
+		end
+              i = NUMBER_OF_DESCRIPTORS-2;
+	   end
+	 else
+	   begin
+              i = 1;
+              // Descriptor 1
+              descriptor_addr = wr_first_descriptor+16;
+              loop_control_field = ((2**17) * WR_DESC1_CTL_EPLAST) + ((2**16) * WR_DESC1_CTL_MSI);   // Assemble Descriptor Control Field
+              shmem_write(descriptor_addr  ,  loop_control_field + WR_DESC1_LENGTH     ,4);
+              shmem_write(descriptor_addr+4,  WR_DESC1_EPADDR     ,4);
+              shmem_write(descriptor_addr+8,  WR_DESC1_RCADDR_MSB ,4);
+              shmem_write(descriptor_addr+12, wr_desc1_rcaddr_lsb ,4);
+              shmem_fill(wr_desc1_rcaddr_lsb,SHMEM_FILL_DWORD_INC,
+			 WR_DESC1_LENGTH*4,WR_DESC1_INIT_BFM_MEM);
+	   end
+
+	 // Last Descriptor
+	 descriptor_addr = wr_first_descriptor+16*(i+1);
+	 loop_control_field = ((2**17) * WR_DESC2_CTL_EPLAST) + ((2**16) * WR_DESC2_CTL_MSI);   // Assemble Descriptor Control Field
+	 shmem_write(descriptor_addr  ,  loop_control_field + WR_DESC2_LENGTH     ,4);
+	 shmem_write(descriptor_addr+4,  WR_DESC2_EPADDR     ,4);
+	 shmem_write(descriptor_addr+8,  WR_DESC2_RCADDR_MSB ,4);
+	 shmem_write(descriptor_addr+12, wr_desc2_rcaddr_lsb ,4);
+	 shmem_fill(wr_desc2_rcaddr_lsb,SHMEM_FILL_DWORD_INC,
+                    WR_DESC2_LENGTH*4,WR_DESC2_INIT_BFM_MEM);
       end
-      
    endtask
+
 
    /////////////////////////////////////////////////////////////////////////
    //
@@ -4942,8 +4927,7 @@ module sonictb_bfm_driver_chaining (input clk_in,
    task dma_set_rd_desc_data
      (
       input integer bar_table,
-      input integer setup_bar,
-      input integer xcvr_test
+      input integer setup_bar
       );
       // HEADER PARAMETERS
 
@@ -4996,75 +4980,59 @@ module sonictb_bfm_driver_chaining (input clk_in,
 	 
 	 //program BFM share memory :
 
-	 if (xcvr_test == 0)
+	 // First Descriptor
+	 descriptor_addr = rd_first_descriptor;
+	 loop_control_field = ((2**17) * RD_DESC0_CTL_EPLAST) + ((2**16) * RD_DESC0_CTL_MSI);   // Assemble Descriptor Control Field
+	 shmem_write(descriptor_addr  ,  loop_control_field + RD_DESC0_LENGTH     ,4);
+	 shmem_write(descriptor_addr+4,  RD_DESC0_EPADDR     ,4);
+	 shmem_write(descriptor_addr+8,  RD_DESC0_RCADDR_MSB ,4);
+	 shmem_write(descriptor_addr+12, rd_desc0_rcaddr_lsb ,4);
+	 shmem_fill(rd_desc0_rcaddr_lsb,SHMEM_FILL_DWORD_INC,RD_DESC0_LENGTH*4,
+                    RD_DESC0_INIT_BFM_MEM);
+
+	 if (NUMBER_OF_DESCRIPTORS>3)
 	   begin
-	      // First Descriptor
-	      descriptor_addr = rd_first_descriptor;
-	      loop_control_field = ((2**17) * RD_DESC0_CTL_EPLAST) + ((2**16) * RD_DESC0_CTL_MSI);   // Assemble Descriptor Control Field
-	      shmem_write(descriptor_addr  ,  loop_control_field + RD_DESC0_LENGTH     ,4);
-	      shmem_write(descriptor_addr+4,  RD_DESC0_EPADDR     ,4);
-	      shmem_write(descriptor_addr+8,  RD_DESC0_RCADDR_MSB ,4);
-	      shmem_write(descriptor_addr+12, rd_desc0_rcaddr_lsb ,4);
-	      shmem_fill(rd_desc0_rcaddr_lsb,SHMEM_FILL_DWORD_INC,RD_DESC0_LENGTH*4,
-			 RD_DESC0_INIT_BFM_MEM);
-
-	      if (NUMBER_OF_DESCRIPTORS>3)
+              for (i=1;i<NUMBER_OF_DESCRIPTORS-1;i=i+1)
 		begin
-		   for (i=1;i<NUMBER_OF_DESCRIPTORS-1;i=i+1)
-		     begin
-			descriptor_addr = rd_first_descriptor + 16*i;
-			loop_control_field = ((2**17) * RD_DESC1_CTL_EPLAST) + ((2**16) * RD_DESC1_CTL_MSI);   // Assemble Descriptor Control Field
-			loop_DW0        = loop_control_field + RD_DESC1_LENGTH + i*MEM_DESCR_LENGTH_INC;
-			loop_DW1        = RD_DESC1_EPADDR ;
-			loop_DW2        = RD_DESC1_RCADDR_MSB;
-			loop_DW3        = rd_desc1_rcaddr_lsb;
-			shmem_write(descriptor_addr  ,  loop_DW0 ,4);
-			shmem_write(descriptor_addr+4,  loop_DW1 ,4);
-			shmem_write(descriptor_addr+8,  loop_DW2 ,4);
-			shmem_write(descriptor_addr+12, loop_DW3 ,4);
-			if (i==1)
-			  shmem_fill(rd_desc1_rcaddr_lsb,SHMEM_FILL_DWORD_INC, loop_DW0*4,
-				     RD_DESC1_INIT_BFM_MEM);
-		     end
-		   i = NUMBER_OF_DESCRIPTORS-2;
-		end
-	      else
-		begin
-		   // Descriptor 1
-		   i = 1;
-		   descriptor_addr = rd_first_descriptor+16;
+		   descriptor_addr = rd_first_descriptor + 16*i;
 		   loop_control_field = ((2**17) * RD_DESC1_CTL_EPLAST) + ((2**16) * RD_DESC1_CTL_MSI);   // Assemble Descriptor Control Field
-		   shmem_write(descriptor_addr  ,  loop_control_field + RD_DESC1_LENGTH     ,4);
-		   shmem_write(descriptor_addr+4,  RD_DESC1_EPADDR     ,4);
-		   shmem_write(descriptor_addr+8,  RD_DESC1_RCADDR_MSB ,4);
-		   shmem_write(descriptor_addr+12, rd_desc1_rcaddr_lsb ,4);
-		   shmem_fill(rd_desc1_rcaddr_lsb, SHMEM_FILL_DWORD_INC,
-			      RD_DESC1_LENGTH*4,RD_DESC1_INIT_BFM_MEM);
+		   loop_DW0        = loop_control_field + RD_DESC1_LENGTH + i*MEM_DESCR_LENGTH_INC;
+		   loop_DW1        = RD_DESC1_EPADDR ;
+		   loop_DW2        = RD_DESC1_RCADDR_MSB;
+		   loop_DW3        = rd_desc1_rcaddr_lsb;
+		   shmem_write(descriptor_addr  ,  loop_DW0 ,4);
+		   shmem_write(descriptor_addr+4,  loop_DW1 ,4);
+		   shmem_write(descriptor_addr+8,  loop_DW2 ,4);
+		   shmem_write(descriptor_addr+12, loop_DW3 ,4);
+		   if (i==1)
+		     shmem_fill(rd_desc1_rcaddr_lsb,SHMEM_FILL_DWORD_INC, loop_DW0*4,
+				RD_DESC1_INIT_BFM_MEM);
 		end
-
-	      // Last Descriptor
-	      descriptor_addr = rd_first_descriptor+16*(i+1);
-	      loop_control_field = ((2**17) * RD_DESC2_CTL_EPLAST) + ((2**16) * RD_DESC2_CTL_MSI);   // Assemble Descriptor Control Field
-	      shmem_write(descriptor_addr  ,  loop_control_field + RD_DESC2_LENGTH     ,4);
-	      shmem_write(descriptor_addr+4,  RD_DESC2_EPADDR     ,4);
-	      shmem_write(descriptor_addr+8,  RD_DESC2_RCADDR_MSB ,4);
-	      shmem_write(descriptor_addr+12, rd_desc2_rcaddr_lsb ,4);
-	      shmem_fill(rd_desc2_rcaddr_lsb,SHMEM_FILL_DWORD_INC,
-			 RD_DESC2_LENGTH*4,RD_DESC2_INIT_BFM_MEM);
-	   end // if (xcvr_test == 0)
+              i = NUMBER_OF_DESCRIPTORS-2;
+	   end
 	 else
 	   begin
-	      // First Descriptor
-	      descriptor_addr = rd_first_descriptor;
-	      loop_control_field = ((2**17) * RD_DESC0_CTL_EPLAST) + ((2**16) * RD_DESC0_CTL_MSI);   // Assemble Descriptor Control Field
-	      shmem_write(descriptor_addr  ,  loop_control_field + XCVR_RD_DESC_LENGTH     ,4);
-	      shmem_write(descriptor_addr+4,  RD_DESC0_EPADDR     ,4);
-	      shmem_write(descriptor_addr+8,  RD_DESC0_RCADDR_MSB ,4);
-	      shmem_write(descriptor_addr+12, rd_desc0_rcaddr_lsb ,4);
-	      shmem_fill(rd_desc0_rcaddr_lsb,SHMEM_FILL_DWORD_INC,XCVR_RD_DESC_LENGTH*4,
-			 RD_DESC0_INIT_BFM_MEM);	      
-	   end // else: !if(xcvr_test == 0)
-	 
+              // Descriptor 1
+              i = 1;
+              descriptor_addr = rd_first_descriptor+16;
+              loop_control_field = ((2**17) * RD_DESC1_CTL_EPLAST) + ((2**16) * RD_DESC1_CTL_MSI);   // Assemble Descriptor Control Field
+              shmem_write(descriptor_addr  ,  loop_control_field + RD_DESC1_LENGTH     ,4);
+              shmem_write(descriptor_addr+4,  RD_DESC1_EPADDR     ,4);
+              shmem_write(descriptor_addr+8,  RD_DESC1_RCADDR_MSB ,4);
+              shmem_write(descriptor_addr+12, rd_desc1_rcaddr_lsb ,4);
+              shmem_fill(rd_desc1_rcaddr_lsb, SHMEM_FILL_DWORD_INC,
+			 RD_DESC1_LENGTH*4,RD_DESC1_INIT_BFM_MEM);
+	   end
+
+	 // Last Descriptor
+	 descriptor_addr = rd_first_descriptor+16*(i+1);
+	 loop_control_field = ((2**17) * RD_DESC2_CTL_EPLAST) + ((2**16) * RD_DESC2_CTL_MSI);   // Assemble Descriptor Control Field
+	 shmem_write(descriptor_addr  ,  loop_control_field + RD_DESC2_LENGTH     ,4);
+	 shmem_write(descriptor_addr+4,  RD_DESC2_EPADDR     ,4);
+	 shmem_write(descriptor_addr+8,  RD_DESC2_RCADDR_MSB ,4);
+	 shmem_write(descriptor_addr+12, rd_desc2_rcaddr_lsb ,4);
+	 shmem_fill(rd_desc2_rcaddr_lsb,SHMEM_FILL_DWORD_INC,
+                    RD_DESC2_LENGTH*4,RD_DESC2_INIT_BFM_MEM);
       end
    endtask
 
@@ -5299,7 +5267,7 @@ module sonictb_bfm_driver_chaining (input clk_in,
 	 unused_result = ebfm_display_verb(EBFM_MSG_INFO, "TASK:dma_rd_test");
 
 	 // Read descriptor table in the RC Memory
-	 dma_set_rd_desc_data(bar_table, setup_bar, 0);
+	 dma_set_rd_desc_data(bar_table, setup_bar);
 
 	 use_msi    = use_global_msi    | (NUM_MSI_EXPECTED > 0);
 	 use_eplast = use_global_eplast | (NUM_EPLAST_EXPECTED > 0);
@@ -5401,140 +5369,6 @@ module sonictb_bfm_driver_chaining (input clk_in,
 
    endtask
 
-   /*
-    * Task: Single Descriptor DMA write.
-    * Used by test_program.sv with XCVR BFM test.
-    * Input: current wptr of Rx Ring.
-    * 
-    */
-   task issue_dma_wr(
-		     input integer bar_table,
-		     input integer setup_bar,
-		     input integer use_global_msi,
-		     input integer use_global_eplast,
-		     input integer dwords_to_fetch
-		     );
-
-      localparam integer 	  MSI_ADDRESS = SCR_MEM-16;
-      localparam integer 	  MSI_DATA    = 16'hb0fe;
-
-      reg 			  unused_result ;
-      integer 			  RCLast;
-
-      reg [4:0] 		  msi_number          ;
-      reg [2:0] 		  msi_traffic_class   ;
-      reg [2:0] 		  multi_message_enable;
-      integer 			  msi_address         ;
-
-      integer 			  msi_expected_dmawr ;
-      integer 			  msi_expected_dmard ;
-
-      integer 			  msi_received ;
-      integer 			  msi_count    ;
-      integer 			  max_count    ;
-      integer 			  i    ;
-      reg [31:0] 		  track_rclast_loop;
-
-      reg 			  use_msi;
-      reg 			  use_eplast;
-
-      reg [4:0] 		  msi_number_int          ;
-      reg [2:0] 		  msi_traffic_class_int   ;
-      reg [2:0] 		  multi_message_enable_int;
-
-      integer 			  wr_bdt_lsb;
-      integer 			  tc_class;
-      integer 			  num_port;
-      integer 			  num_descriptors;
-      
-      begin
-	 num_descriptors = dwords_to_fetch / 32'h200;
-	 	 
-	 if (setup_bar == 2) begin
-	    wr_bdt_lsb = WR_BDT_LSB;
-	 end
-	 else if (setup_bar == 3) begin
-	    wr_bdt_lsb = WR_BDT_LSB + 16'h3000;
-	 end
-
-	 num_port = setup_bar - 2;
-	 
-	 tc_class = (num_port == 1) ? TC_CLASS_P1 : TC_CLASS_P0;
-	 	 
-	 unused_result = ebfm_display_verb(EBFM_MSG_INFO, `STR_SEP);
-	 unused_result = ebfm_display_verb(EBFM_MSG_INFO, "TASK:dma_wr_test");
-	 unused_result = ebfm_display_verb(EBFM_MSG_INFO,"   DMA: Write");
-
-	 // write write descriptor table in the RC Memory
-		  
-	 dma_set_wr_desc_data(bar_table, setup_bar, 1, num_descriptors);
-
-	 use_msi    = use_global_msi    | (NUM_MSI_EXPECTED > 0);
-	 use_eplast = use_global_eplast | (NUM_EPLAST_EXPECTED > 0);
-
-	 // Set MSI for DMA Writew
-	 if (use_msi==1)
-           dma_set_msi( bar_table,  // Pointer to the BAR sizing and
-                        setup_bar,  // BAR to be used for setting up
-                        1,          // bus_num
-                        1,          // dev_num
-                        0,          // fnc_num
-                        WR_DIRECTION,          // Direction
-                        MSI_ADDRESS,// MSI RC memeory address
-                        MSI_DATA,   // MSI Cfg data value
-                        msi_number, // msi_number
-                        msi_traffic_class, //msi traffic class
-                        multi_message_enable,// number of msi
-                        msi_expected_dmawr // expexted MSI data value
-                        );
-	 msi_number_int           = (use_msi == 1'b1) ? msi_number : 5'h0;
-	 msi_traffic_class_int    = (use_msi == 1'b1) ? msi_number : 3'h0;
-	 multi_message_enable_int = (use_msi == 1'b1) ? msi_number : 3'h0;
-
-	 // Write Descriptor header in EP memory PRG
-	 dma_set_header( bar_table,               // Pointer to the BAR sizing and
-			 setup_bar,               // BAR to be used for setting up
-			 num_descriptors,         // number of descriptor
-			 WR_DIRECTION,            // Direction = Write
-			 use_global_msi,          // global MSI control
-			 use_global_eplast,       // global eplast control
-			 WR_BDT_MSB,              // RC upper 32 bits of bdt
-			 wr_bdt_lsb,              // RC lower 32 bits of bdt
-			 msi_number_int,
-			 msi_traffic_class_int,
-			 multi_message_enable_int,
-			 0,
-			 num_port);
-
-	 //Program RP RCLast
-	 RCLast = num_descriptors-1;
-
-	 // Start write DMA
-	 dma_set_rclast(bar_table, setup_bar, WR_DIRECTION, RCLast);
-
-	 fork // polling
-	    unused_result = ebfm_display_verb(EBFM_MSG_INFO, `STR_SEP);
-	    // Monitor MSI - Polling MSI
-	    if (use_msi==1)
-              if (use_global_msi==1)
-		msi_poll(1,MSI_ADDRESS, msi_expected_dmawr,0,1,0);
-              else
-		msi_poll(NUM_MSI_EXPECTED,MSI_ADDRESS, msi_expected_dmawr,0,1,0);
-
-	    if (use_eplast==1) begin
-	       rcmem_poll(wr_bdt_lsb+DT_EPLAST, RCLast,32'h0000ffff);
-	    end
-	 join // polling
-
-	 ebfm_barwr_imm(bar_table, setup_bar, 0, 32'h0000_FFFF, 4, tc_class);
-	 unused_result = ebfm_display_verb(EBFM_MSG_INFO, `STR_SEP);
-	 unused_result = ebfm_display_verb(EBFM_MSG_INFO, "Completed DMA Write");
-
-      end
-
-   endtask
-
-   
    /////////////////////////////////////////////////////////////////////////
    //
    // TASK:dma_wr_test
@@ -5601,7 +5435,7 @@ module sonictb_bfm_driver_chaining (input clk_in,
 	 unused_result = ebfm_display_verb(EBFM_MSG_INFO,"   DMA: Write");
 
 	 // write 'write descriptor table in the RC Memory
-	 dma_set_wr_desc_data(bar_table, setup_bar, 0, 0);
+	 dma_set_wr_desc_data(bar_table, setup_bar);
 
 	 use_msi    = use_global_msi    | (NUM_MSI_EXPECTED > 0);
 	 use_eplast = use_global_eplast | (NUM_EPLAST_EXPECTED > 0);
@@ -5757,7 +5591,7 @@ module sonictb_bfm_driver_chaining (input clk_in,
    function integer sonic_compute_irq_resp (input integer n_chan);
       integer irq_addr_lsw;
       
-      irq_addr_lsw = SCR_MEMSLAVE + 512 * n_chan;
+      irq_addr_lsw = SCR_MEM + 4096 + 512 * n_chan;
       
       return irq_addr_lsw;
    endfunction // sonic_compute_irq_resp
@@ -5896,9 +5730,9 @@ module sonictb_bfm_driver_chaining (input clk_in,
 	 sonic_cmd_poll(cmd_response_address);
 	 unused_result =shmem_display(cmd_response_address,16'h32,4,cmd_response_address,EBFM_MSG_INFO);
 
-	 // set rx block size, 0x1000 = 4096 wptr offsets, which is 32Kbytes.
+	 // set rx block size
 	 shmem_write(cmd_response_address, 32'hFFFF_FFFF, 4);
-	 sonic_cmd_issue (bar_table, setup_bar, `SONIC_CMD_SET_RX_BLOCK_SIZE, 32'h1000, 0, 0);
+	 sonic_cmd_issue (bar_table, setup_bar, `SONIC_CMD_SET_RX_BLOCK_SIZE, 32'h400, 0, 0);
 	 unused_result =shmem_display(cmd_response_address,16'h32,4,cmd_response_address,EBFM_MSG_INFO);
 	 sonic_cmd_poll(cmd_response_address);
 	 unused_result =shmem_display(cmd_response_address,16'h32,4,cmd_response_address,EBFM_MSG_INFO);
@@ -5909,8 +5743,8 @@ module sonictb_bfm_driver_chaining (input clk_in,
 	 sonic_cmd_poll(cmd_response_address);
 	 unused_result =shmem_display(cmd_response_address,16'h32,4,cmd_response_address,EBFM_MSG_INFO);
 
-	 // set irq data in rc memory, was SCR_MEM_SLAVE 0x40.
-	 // Now: SCR_MEM_SLAVE
+	 // set irq data in rc memory, was SCR_MEM + 4096 = based at 0x1800.
+	 // Now: SCR_MEM + 4096
 	 rc_addr_lsb = sonic_compute_irq_resp(setup_bar - 2);
 	 //rc_addr_msb = 1;
 	 rc_addr_msb = 0;	
@@ -5955,42 +5789,7 @@ module sonictb_bfm_driver_chaining (input clk_in,
     * Test driver should poll on MSI and fetch incoming data from it.
     * This task implements one port version.
     */
-
-   
-   task sonic_receive_test (input integer bar_table,
-			    input integer setup_bar
-			    );
-
-      // Setup BAR, .
-      
-      // Setup
-      
-
-   endtask // sonic_receive_test
-   
-   
-   /*
-    * SoNIC send test:
-    * Test driver read test data from a file. It then sends the data to SoNIC application, 
-    * which will forward the data to XCVR BFM.
-    * This task implements one port version.
-    */
-
-   
-   /*
-    * SoNIC two port receive test:
-    * - start two test threads, each handles one port.
-    * - two ports receive.
-    */
-
-   
-   /*
-    * SoNIC two port send test:
-    * - start two test threads, each handles data from one port.
-    * - two ports send.
-    */
-
-   
+ 
    task set_mem_bar;
       output sel_bar;
       integer sel_bar;
@@ -6255,44 +6054,24 @@ module sonictb_bfm_driver_chaining (input clk_in,
 
    endtask // downstream_read
 
-   task display_fake_bar ;
-      integer nbar;
-      integer dummy;
-      integer bar_lsb[0:6];
-      reg [63:0] bars [0:6];
-      reg [63:0] bars_xhdl;
-      
-      bar_lsb[0] = 28;
-      bar_lsb[1] = 0;
-      bar_lsb[2] = 18;
-      bar_lsb[3] = 18;
-      bar_lsb[4] = 28;
-      bar_lsb[5] = 0;
-      bar_lsb[6] = 64;
-      
-      // Now put all of the BARs back in memory
-      nbar = 0;
-      dummy = ebfm_display(EBFM_MSG_INFO, "");
-      dummy = ebfm_display(EBFM_MSG_INFO, "BAR Address Assignments:");
-      dummy = ebfm_display(EBFM_MSG_INFO, {"BAR   ", " ", "Size      ", " ", "Assigned Address ", " ", "Type"});
-      dummy = ebfm_display(EBFM_MSG_INFO, {"---   ", " ", "----      ", " ", "---------------- ", " "});
+   task config_ep;
+      reg     unused_result;
+      reg     addr_map_4GB_limit;
+      // Setup the Root Port and Endpoint Configuration Spaces
+      addr_map_4GB_limit = 1'b0;
+      unused_result = ebfm_display_verb(EBFM_MSG_WARNING,
+					"----> Starting ebfm_cfg_rp_ep task 0");
+      ebfm_cfg_rp_ep(
+                     BAR_TABLE_POINTER,         // BAR Size/Address info for Endpoint
+                     1,                 // Bus Number for Endpoint Under Test
+                     1,                 // Device Number for Endpoint Under Test
+                     512,               // Maximum Read Request Size for Root Port
+                     1,                 // Display EP Config Space after setup
+                     addr_map_4GB_limit // Limit the BAR assignments to 4GB address map
+                     );
+//      activity_toggle <= ~activity_toggle ;
 
-      nbar = 0;
-      while (nbar < 7)
-        begin
-	   bars[nbar] = shmem_read((BAR_TABLE_POINTER + (nbar * 4)), 8);
-           begin
-              // Show the user what we have done
-              describe_bar(nbar, bar_lsb[nbar], bars[nbar],1'b0) ;
-           end
-	   nbar++;
-	end
-      
-   endtask // display_fake_bar
-
-   reg activity_toggle;
-   reg timer_toggle ;
-   time time_stamp ;
+   endtask // config_ep
    
    /*
     * Simple Sequential Test
@@ -6330,14 +6109,14 @@ module sonictb_bfm_driver_chaining (input clk_in,
       
       if ((dma_bar < 6) && (USE_CDMA>0)) begin
          chained_dma_test(bar_table, dma_bar,0,0,0);  // Read  DMA
-         time_stamp = $time ;
+         //time_stamp = $time ;
          chained_dma_test(bar_table, dma_bar,1,0,0);  // Write DMA
 
 	 //set_mem_bar(dma_bar, 3);
 
-         time_stamp = $time ;
+         //time_stamp = $time ;
          chained_dma_test(bar_table, dma_bar,0,0,0);  // Read  DMA
-         time_stamp = $time ;
+         //time_stamp = $time ;
          chained_dma_test(bar_table, dma_bar,1,0,0);  // Write DMA
 
 	 sonic_cmd_test(bar_table, 3);
@@ -6354,7 +6133,43 @@ module sonictb_bfm_driver_chaining (input clk_in,
 
    endtask // simple_sequential_test
 
-class dma_thread;
+   task display_fake_bar ;
+      integer nbar;
+      integer dummy;
+      integer bar_lsb[0:6];
+      reg [63:0] bars [0:6];
+      reg [63:0] bars_xhdl;
+      
+      bar_lsb[0] = 28;
+      bar_lsb[1] = 0;
+      bar_lsb[2] = 18;
+      bar_lsb[3] = 18;
+      bar_lsb[4] = 28;
+      bar_lsb[5] = 0;
+      bar_lsb[6] = 64;
+      
+      // Now put all of the BARs back in memory
+      nbar = 0;
+      dummy = ebfm_display(EBFM_MSG_INFO, "");
+      dummy = ebfm_display(EBFM_MSG_INFO, "BAR Address Assignments:");
+      dummy = ebfm_display(EBFM_MSG_INFO, {"BAR   ", " ", "Size      ", " ", "Assigned Address ", " ", "Type"});
+      dummy = ebfm_display(EBFM_MSG_INFO, {"---   ", " ", "----      ", " ", "---------------- ", " "});
+
+      nbar = 0;
+      while (nbar < 7)
+        begin
+	   bars[nbar] = shmem_read((BAR_TABLE_POINTER + (nbar * 4)), 8);
+           begin
+              // Show the user what we have done
+              describe_bar(nbar, bar_lsb[nbar], bars[nbar],1'b0) ;
+           end
+	   nbar++;
+	end
+      
+   endtask // display_fake_bar
+
+   
+//class dma_thread;
    integer bar_table;
    integer n_chan; // either zero or one.
    integer n_bar;
@@ -6378,8 +6193,16 @@ class dma_thread;
 	 $display("%s dma test finished at bar %d ...", this.description, this.n_bar);
       end
    endtask; // run
-endclass // dma_thread
 
+   
+endclass // dma_thread
+   
+   reg activity_toggle;
+   reg timer_toggle ;
+   time time_stamp ;
+
+   dma_thread config_thread;
+   
    dma_thread rd_thread_p0;
    dma_thread wr_thread_p0;
    dma_thread rd_thread_p1;
@@ -6389,35 +6212,45 @@ endclass // dma_thread
     * Two threads, one for dma rd, the other for dma wr.
     */
    task concurrent_chan_zero_test;
-
       #3000; //wait 3ns for system to finish reset.
-      
       fork
 	 rd_thread_p0.run;
 	 wr_thread_p0.run;
       join
-      
    endtask // concurr_dma
 
    task concurrent_chan_one_test;
       #3000; //wait 3ns for system to finish reset.
-      
-      fork
+      fork 
 	 rd_thread_p1.run;
 	 wr_thread_p1.run;
       join
-
    endtask // concurrent_chan_one_test
 
    task mix_ports;
       #3000;
-      
       fork
 	 rd_thread_p1.run;
 	 wr_thread_p0.run;
       join
    endtask // mix_ports
 
+   task mix_read_ports;
+      #3000;
+      fork
+	 rd_thread_p1.run;
+	 rd_thread_p0.run;
+      join
+   endtask // mix_read_ports
+
+   task mix_write_ports;
+      #3000;
+         fork
+	 wr_thread_p0.run;
+	 wr_thread_p1.run;
+      join
+   endtask // mix_write_ports
+      
    task mix_one_and_half_ports;
       #3000;
       fork
@@ -6429,35 +6262,15 @@ endclass // dma_thread
       
    task concurrent_two_ports;
       #3000;
-      
       fork
 	 rd_thread_p1.run;
 	 rd_thread_p0.run;
 	 wr_thread_p1.run;
 	 wr_thread_p0.run;
       join
-      
    endtask // dma_two_port_test
    
-   task config_ep;
-      reg     unused_result;
-      reg     addr_map_4GB_limit;
-      // Setup the Root Port and Endpoint Configuration Spaces
-      addr_map_4GB_limit = 1'b0;
-      unused_result = ebfm_display_verb(EBFM_MSG_WARNING,
-					"----> Starting ebfm_cfg_rp_ep task 0");
-      ebfm_cfg_rp_ep(
-                     BAR_TABLE_POINTER,         // BAR Size/Address info for Endpoint
-                     1,                 // Bus Number for Endpoint Under Test
-                     1,                 // Device Number for Endpoint Under Test
-                     512,               // Maximum Read Request Size for Root Port
-                     1,                 // Display EP Config Space after setup
-                     addr_map_4GB_limit // Limit the BAR assignments to 4GB address map
-                     );
-      activity_toggle <= ~activity_toggle ;
 
-   endtask // config_ep
-   
    ///////////////////////////////////////////////////////////////////////////////
    //
    //
@@ -6470,11 +6283,6 @@ endclass // dma_thread
    integer    i;
    reg [7:0]  mem;
    reg 	      unused_result;
-   event      idle;
-   reg [4:0]  msi_num;
-   reg [2:0]  msi_class;
-   reg [2:0]  num_msi;
-   integer    msi_expected_value;
    
    initial
      begin
@@ -6494,46 +6302,34 @@ endclass // dma_thread
 	wr_thread_p0 = new (BAR_TABLE_POINTER, 0, 1);  // one for write
 	rd_thread_p1 = new (BAR_TABLE_POINTER, 1, 0);  // zero for read
 	wr_thread_p1 = new (BAR_TABLE_POINTER, 1, 1);  // one for write
-	
+
+	config_thread = new (BAR_TABLE_POINTER, 0, 0);
+		
      end
 
    // behavioral
    always
      begin : main
 
-	config_ep();
+	config_thread.config_ep();
 	
-	//simple_sequential_test();
+//	config_thread.simple_sequential_test();
 	
-	sonic_cmd_test(BAR_TABLE_POINTER, 2);
-	sonic_cmd_test(BAR_TABLE_POINTER, 3);
-
-	//enable PCIe IP msi support.
-        dma_set_msi( BAR_TABLE_POINTER,  // Pointer to the BAR sizing and
-		     2,          // BAR to be used for setting up
-		     1,          // bus_num
-		     1,          // dev_num
-		     0,          // fnc_num
-		     0,          // Direction
-		     SCR_MEM - 16,// MSI RC memeory address
-		     1,   // MSI Cfg data value
-		     msi_num, // msi_number
-		     msi_class, //msi traffic class
-		     num_msi,// number of msi
-		     msi_expected_value // expexted MSI data value
-		     );
+	config_thread.sonic_cmd_test(BAR_TABLE_POINTER, 2);
+	config_thread.sonic_cmd_test(BAR_TABLE_POINTER, 3);
 
 	//concurrent_chan_zero_test();
 	//concurrent_chan_one_test();
 	//mix_ports();
+	rd_thread_p0.run;
+	 
+	//We still have problems with mixed two read threads together.
+	//mix_write_ports();
+	//mix_read_ports();
+	
 	//mix_one_and_half_ports();
 	//concurrent_two_ports();
-	while(1) begin
-	   @(idle);
-	end
-	
-	#3000000;
-	
+
 	unused_result = ebfm_log_stop_sim(1);
      end
    

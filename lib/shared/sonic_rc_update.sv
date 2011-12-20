@@ -2,7 +2,7 @@
 `timescale 1ns / 1ps
 // synthesis translate_on
 
-`include "sonic_constants.sv"
+`include "../../lib/shared/sonic_constants.sv"
 // turn off superfluous verilog processor warnings 
 // altera message_level Level1 
 // altera message_off 10034 10035 10036 10037 10230 10240 10030
@@ -74,8 +74,6 @@ module sonic_rc_update #(
 	localparam DATA_DWORDS = 4;
 	localparam DATA_OWORDS = DATA_DWORDS/4;	
 
-   localparam TLP_TC_CLASS = (PORT_NUM == 0) ? `TLP_TC_CLASS_P0 : `TLP_TC_CLASS_P1;
-   
 	reg		intr_data_upd_cycle;
 
 	reg		tx_dfr_complete;
@@ -172,7 +170,7 @@ module sonic_rc_update #(
 																  `TLP_FMT_4DW_W;
 	assign tx_desc[124:120] = `TLP_TYPE_WRITE    ;
 	assign tx_desc[119]     = `RESERVED_1BIT     ;
-	assign tx_desc[118:116] = TLP_TC_CLASS    ;
+	assign tx_desc[118:116] = `TLP_TC_DEFAULT;
 	assign tx_desc[115:112] = `RESERVED_4BIT     ;
 	assign tx_desc[111]     = `TLP_TD_DEFAULT    ;
 	assign tx_desc[110]     = `TLP_EP_DEFAULT    ;
