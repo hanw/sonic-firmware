@@ -84,16 +84,6 @@ module top_core (
 	tx_st_sop0,
 	tx_st_sop0_p1,
 	tx_st_valid0,
-	rx_st_mask1,
-	rx_st_ready1,
-	tx_st_data1,
-	tx_st_data1_p1,
-	tx_st_eop1,
-	tx_st_eop1_p1,
-	tx_st_err1,
-	tx_st_sop1,
-	tx_st_sop1_p1,
-	tx_st_valid1,
 	phystatus0_ext,
 	rxdata0_ext,
 	rxdatak0_ext,
@@ -220,31 +210,6 @@ module top_core (
 	tx_st_ready0,
 	use_pcie_reconfig,
 	wake_oen,
-	derr_cor_ext_rcv1,
-	npd_alloc_1cred_vc1,
-	npd_cred_vio_vc1,
-	nph_alloc_1cred_vc1,
-	nph_cred_vio_vc1,
-	r2c_err1,
-	rx_fifo_empty1,
-	rx_fifo_full1,
-	rx_st_bardec1,
-	rx_st_be1,
-	rx_st_be1_p1,
-	rx_st_data1,
-	rx_st_data1_p1,
-	rx_st_eop1,
-	rx_st_eop1_p1,
-	rx_st_err1,
-	rx_st_sop1,
-	rx_st_sop1_p1,
-	rx_st_valid1,
-	tx_cred1,
-	tx_fifo_empty1,
-	tx_fifo_full1,
-	tx_fifo_rdptr1,
-	tx_fifo_wrptr1,
-	tx_st_ready1,
 	powerdown0_ext,
 	rxpolarity0_ext,
 	txcompl0_ext,
@@ -363,16 +328,6 @@ module top_core (
 	input		tx_st_sop0;
 	input		tx_st_sop0_p1;
 	input		tx_st_valid0;
-	input		rx_st_mask1;
-	input		rx_st_ready1;
-	input	[63:0]	tx_st_data1;
-	input	[63:0]	tx_st_data1_p1;
-	input		tx_st_eop1;
-	input		tx_st_eop1_p1;
-	input		tx_st_err1;
-	input		tx_st_sop1;
-	input		tx_st_sop1_p1;
-	input		tx_st_valid1;
 	input		phystatus0_ext;
 	input	[7:0]	rxdata0_ext;
 	input		rxdatak0_ext;
@@ -499,31 +454,6 @@ module top_core (
 	output		tx_st_ready0;
 	output		use_pcie_reconfig;
 	output		wake_oen;
-	output		derr_cor_ext_rcv1;
-	output		npd_alloc_1cred_vc1;
-	output		npd_cred_vio_vc1;
-	output		nph_alloc_1cred_vc1;
-	output		nph_cred_vio_vc1;
-	output		r2c_err1;
-	output		rx_fifo_empty1;
-	output		rx_fifo_full1;
-	output	[7:0]	rx_st_bardec1;
-	output	[7:0]	rx_st_be1;
-	output	[7:0]	rx_st_be1_p1;
-	output	[63:0]	rx_st_data1;
-	output	[63:0]	rx_st_data1_p1;
-	output		rx_st_eop1;
-	output		rx_st_eop1_p1;
-	output		rx_st_err1;
-	output		rx_st_sop1;
-	output		rx_st_sop1_p1;
-	output		rx_st_valid1;
-	output	[35:0]	tx_cred1;
-	output		tx_fifo_empty1;
-	output		tx_fifo_full1;
-	output	[3:0]	tx_fifo_rdptr1;
-	output	[3:0]	tx_fifo_wrptr1;
-	output		tx_st_ready1;
 	output	[1:0]	powerdown0_ext;
 	output		rxpolarity0_ext;
 	output		txcompl0_ext;
@@ -612,6 +542,16 @@ module top_core (
 	wire [7:0] signal_wire28 = 8'b0;
 	wire [23:0] signal_wire29 = 24'b0;
 	wire [2:0] signal_wire30 = 3'b0;
+	wire signal_wire31 = 1'b0;
+	wire signal_wire32 = 1'b0;
+	wire [63:0] signal_wire33 = 64'b0;
+	wire [63:0] signal_wire34 = 64'b0;
+	wire signal_wire35 = 1'b0;
+	wire signal_wire36 = 1'b0;
+	wire signal_wire37 = 1'b0;
+	wire signal_wire38 = 1'b0;
+	wire signal_wire39 = 1'b0;
+	wire signal_wire40 = 1'b0;
 
 	altpcie_hip_pipen1b	altpcie_hip_pipen1b_inst(
 		.AvlClk_i(AvlClk_i),
@@ -705,16 +645,16 @@ module top_core (
 		.tx_st_sop0(tx_st_sop0),
 		.tx_st_sop0_p1(tx_st_sop0_p1),
 		.tx_st_valid0(tx_st_valid0),
-		.rx_st_mask1(rx_st_mask1),
-		.rx_st_ready1(rx_st_ready1),
-		.tx_st_data1(tx_st_data1),
-		.tx_st_data1_p1(tx_st_data1_p1),
-		.tx_st_eop1(tx_st_eop1),
-		.tx_st_eop1_p1(tx_st_eop1_p1),
-		.tx_st_err1(tx_st_err1),
-		.tx_st_sop1(tx_st_sop1),
-		.tx_st_sop1_p1(tx_st_sop1_p1),
-		.tx_st_valid1(tx_st_valid1),
+		.rx_st_mask1(signal_wire31),
+		.rx_st_ready1(signal_wire32),
+		.tx_st_data1(signal_wire33),
+		.tx_st_data1_p1(signal_wire34),
+		.tx_st_eop1(signal_wire35),
+		.tx_st_eop1_p1(signal_wire36),
+		.tx_st_err1(signal_wire37),
+		.tx_st_sop1(signal_wire38),
+		.tx_st_sop1_p1(signal_wire39),
+		.tx_st_valid1(signal_wire40),
 		.phystatus0_ext(phystatus0_ext),
 		.rxdata0_ext(rxdata0_ext),
 		.rxdatak0_ext(rxdatak0_ext),
@@ -860,31 +800,31 @@ module top_core (
 		.tx_st_ready0(tx_st_ready0),
 		.use_pcie_reconfig(use_pcie_reconfig),
 		.wake_oen(wake_oen),
-		.derr_cor_ext_rcv1(derr_cor_ext_rcv1),
-		.npd_alloc_1cred_vc1(npd_alloc_1cred_vc1),
-		.npd_cred_vio_vc1(npd_cred_vio_vc1),
-		.nph_alloc_1cred_vc1(nph_alloc_1cred_vc1),
-		.nph_cred_vio_vc1(nph_cred_vio_vc1),
-		.r2c_err1(r2c_err1),
-		.rx_fifo_empty1(rx_fifo_empty1),
-		.rx_fifo_full1(rx_fifo_full1),
-		.rx_st_bardec1(rx_st_bardec1),
-		.rx_st_be1(rx_st_be1),
-		.rx_st_be1_p1(rx_st_be1_p1),
-		.rx_st_data1(rx_st_data1),
-		.rx_st_data1_p1(rx_st_data1_p1),
-		.rx_st_eop1(rx_st_eop1),
-		.rx_st_eop1_p1(rx_st_eop1_p1),
-		.rx_st_err1(rx_st_err1),
-		.rx_st_sop1(rx_st_sop1),
-		.rx_st_sop1_p1(rx_st_sop1_p1),
-		.rx_st_valid1(rx_st_valid1),
-		.tx_cred1(tx_cred1),
-		.tx_fifo_empty1(tx_fifo_empty1),
-		.tx_fifo_full1(tx_fifo_full1),
-		.tx_fifo_rdptr1(tx_fifo_rdptr1),
-		.tx_fifo_wrptr1(tx_fifo_wrptr1),
-		.tx_st_ready1(tx_st_ready1),
+		.derr_cor_ext_rcv1(),
+		.npd_alloc_1cred_vc1(),
+		.npd_cred_vio_vc1(),
+		.nph_alloc_1cred_vc1(),
+		.nph_cred_vio_vc1(),
+		.r2c_err1(),
+		.rx_fifo_empty1(),
+		.rx_fifo_full1(),
+		.rx_st_bardec1(),
+		.rx_st_be1(),
+		.rx_st_be1_p1(),
+		.rx_st_data1(),
+		.rx_st_data1_p1(),
+		.rx_st_eop1(),
+		.rx_st_eop1_p1(),
+		.rx_st_err1(),
+		.rx_st_sop1(),
+		.rx_st_sop1_p1(),
+		.rx_st_valid1(),
+		.tx_cred1(),
+		.tx_fifo_empty1(),
+		.tx_fifo_full1(),
+		.tx_fifo_rdptr1(),
+		.tx_fifo_wrptr1(),
+		.tx_st_ready1(),
 		.powerdown0_ext(powerdown0_ext),
 		.rxpolarity0_ext(rxpolarity0_ext),
 		.txcompl0_ext(txcompl0_ext),
@@ -996,8 +936,6 @@ module top_core (
 		altpcie_hip_pipen1b_inst.subsystem_vendor_id = 23518,
 		altpcie_hip_pipen1b_inst.subsystem_device_id = 10241,
 		altpcie_hip_pipen1b_inst.port_link_number = 1,
-		altpcie_hip_pipen1b_inst.vc_enable = 7'b0000001,
-		altpcie_hip_pipen1b_inst.vc1_clk_enable = "true",
 		altpcie_hip_pipen1b_inst.max_payload_size = 2,
 		altpcie_hip_pipen1b_inst.msi_function_count = 2,
 		altpcie_hip_pipen1b_inst.endpoint_l0_latency = 0,

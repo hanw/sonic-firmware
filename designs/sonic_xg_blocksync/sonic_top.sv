@@ -321,12 +321,11 @@ module sonic_top (
    wire             gnd_msi_stream_ready1;
    wire [  9: 0]    gnd_pm_data;
    wire             rx_mask1;
-   wire             rx_ready1;
    wire [127: 0]    tx_st_data1;
    wire             tx_st_eop1;
    wire             tx_st_err1;
    wire             tx_st_sop1;
-   wire             tx_st_empty1;
+   wire [1:0]            tx_st_empty1;
 
    wire             gnd_tx_stream_mask0;
    wire             gnd_tx_stream_mask1;
@@ -344,7 +343,9 @@ module sonic_top (
    wire [ 23: 0]    open_cfg_tcvcmap;
    wire             open_cplerr_lmi_busy;
    wire [  7: 0]    open_msi_stream_data0;
+   wire [  7: 0]    open_msi_stream_data1;
    wire             open_msi_stream_valid0;
+   wire             open_msi_stream_valid1;
    wire [  9: 0]    open_pm_data;
    
    wire [4:0] 	    open_pex_msi_num;
@@ -361,7 +362,6 @@ module sonic_top (
    wire             open_rx_st_err0;
    wire             open_rx_st_err1;
    wire             rx_st_sop1;
-   wire [ 35: 0]    tx_stream_cred1;
    wire             otb0;
    wire             otb1;
    wire             pcie_reconfig_busy;
@@ -417,7 +417,7 @@ module sonic_top (
    wire             tx_out6;
    wire             tx_out7;
    wire [127: 0]    tx_st_data0;
-   wire             tx_st_empty0;
+   wire [1:0] 	    tx_st_empty0;
    wire             tx_st_eop0;
    wire             tx_st_err0;
    wire             tx_st_sop0;
@@ -470,7 +470,24 @@ module sonic_top (
    wire [79:0] 	    xcvr_tx_datain;
    wire 	    pma_tx_ready;
    wire 	    pma_rx_ready;
-   
+
+   wire [127:0]     tx_vc_out_data;
+   wire 	    tx_vc_out_valid;
+   wire 	    tx_vc_out_ready;
+   wire 	    tx_vc_out_sop;
+   wire 	    tx_vc_out_eop;
+   wire 	    tx_vc_out_chan;
+   wire 	    tx_vc_out_err;
+   wire [1:0]	    tx_vc_out_empty;
+
+   wire [127:0]     rx_vc_in_data;
+   wire 	    rx_vc_in_valid;
+   wire 	    rx_vc_in_ready;
+   wire 	    rx_vc_in_sop;
+   wire 	    rx_vc_in_eop;
+   reg 		    rx_vc_in_chan;
+   wire 	    rx_vc_in_empty;
+      
    assign ref_clk_sel_code = 0;
    assign lane_width_code = 3;
    assign phy_sel_code = 6;
@@ -506,7 +523,7 @@ module sonic_top (
 
    assign app_msi_req = app_msi_req0 | app_msi_req1;
    assign cpl_pending_icm = cpl_pending_icm0 | cpl_pending_icm1;
-   
+
    top_plus ep_plus
      (
       .app_int_ack (app_int_ack_icm),
@@ -555,26 +572,16 @@ module sonic_top (
       .rx_in5 (rx_in5),
       .rx_in6 (rx_in6),
       .rx_in7 (rx_in7),
-      .rx_st_bardec0 (rx_st_bardec0),
-      .rx_st_bardec1 (rx_st_bardec1),
-      .rx_st_be0 (rx_st_be0),
-      .rx_st_be1 (rx_st_be1),
-      .rx_st_data0 (rx_st_data0),
-      .rx_st_data1 (rx_st_data1),
-      .rx_st_empty0 (rx_st_empty0),
-      .rx_st_empty1 (rx_st_empty1),
-      .rx_st_eop0 (rx_st_eop0),
-      .rx_st_eop1 (rx_st_eop1),
+      .rx_st_bardec0 (rx_st_bardec0), //FIX, sync with Avalon-ST
+      .rx_st_be0 (rx_st_be0), //FIX,
+      .rx_st_data0 (rx_vc_in_data),
+      .rx_st_empty0 (rx_vc_in_empty), //bit[1] of demultiplexer.empty
+      .rx_st_eop0 (rx_vc_in_eop),
       .rx_st_err0 (open_rx_st_err0),
-      .rx_st_err1 (open_rx_st_err1),
       .rx_st_mask0 (rx_mask0),
-      .rx_st_mask1 (rx_mask1),
-      .rx_st_ready0 (rx_stream_ready0),
-      .rx_st_ready1 (rx_stream_ready1),
-      .rx_st_sop0 (rx_st_sop0),
-      .rx_st_sop1 (rx_st_sop1),
-      .rx_st_valid0 (rx_stream_valid0),
-      .rx_st_valid1 (rx_stream_valid1),
+      .rx_st_ready0 (rx_vc_in_ready),
+      .rx_st_sop0 (rx_vc_in_sop),
+      .rx_st_valid0 (rx_vc_in_valid),
       .rxdata0_ext (rxdata0_ext),
       .rxdata1_ext (rxdata1_ext),
       .rxdata2_ext (rxdata2_ext),
@@ -632,9 +639,7 @@ module sonic_top (
       .tl_cfg_sts (tl_cfg_sts),
       .tl_cfg_sts_wr (tl_cfg_sts_wr),
       .tx_cred0 (tx_stream_cred0),
-      .tx_cred1 (tx_stream_cred1),
       .tx_fifo_empty0 (tx_fifo_empty0),
-      .tx_fifo_empty1 (tx_fifo_empty1),
       .tx_out0 (tx_out0),
       .tx_out1 (tx_out1),
       .tx_out2 (tx_out2),
@@ -643,20 +648,20 @@ module sonic_top (
       .tx_out5 (tx_out5),
       .tx_out6 (tx_out6),
       .tx_out7 (tx_out7),
-      .tx_st_data0 (tx_st_data0),
-      .tx_st_data1 (tx_st_data1),
-      .tx_st_empty0 (tx_st_empty0),
-      .tx_st_empty1 (tx_st_empty1),
-      .tx_st_eop0 (tx_st_eop0),
-      .tx_st_eop1 (tx_st_eop1),
-      .tx_st_err0 (tx_st_err0),
-      .tx_st_err1 (tx_st_err1),
-      .tx_st_ready0 (tx_stream_ready0),
-      .tx_st_ready1 (tx_stream_ready1),
-      .tx_st_sop0 (tx_st_sop0),
-      .tx_st_sop1 (tx_st_sop1),
-      .tx_st_valid0 (tx_stream_valid0),
-      .tx_st_valid1 (tx_stream_valid1),
+//      .tx_st_data0 (tx_st_data0),
+      .tx_st_data0 (tx_vc_out_data),
+//      .tx_st_empty0 (tx_st_empty0[0]),
+      .tx_st_empty0 (tx_vc_out_empty[0]),
+//      .tx_st_eop0 (tx_st_eop0),
+      .tx_st_eop0 (tx_vc_out_eop),
+//      .tx_st_err0 (tx_st_err0),
+      .tx_st_err0 (tx_vc_out_err),
+//      .tx_st_ready0 (tx_stream_ready0),
+      .tx_st_ready0 (tx_vc_out_ready),
+//      .tx_st_sop0 (tx_st_sop0),
+      .tx_st_sop0 (tx_vc_out_sop),
+//      .tx_st_valid0 (tx_stream_valid0),
+      .tx_st_valid0 (tx_vc_out_valid),
       .txcompl0_ext (txcompl0_ext),
       .txcompl1_ext (txcompl1_ext),
       .txcompl2_ext (txcompl2_ext),
@@ -741,7 +746,72 @@ module sonic_top (
       .lmi_wren (lmi_wren),
       .rstn (srstn)
       );
-
+   
+   /*
+    * sonic_vc: for arbitrating two avalon-st into one.
+    */
+   
+   always @ (rx_vc_in_sop) begin
+      if (rx_vc_in_sop == 1) begin
+	 case (rx_vc_in_data[22:20])  // TLP header byte 0 - 3
+	   0:
+	     rx_vc_in_chan = 0;
+	   1:
+	     rx_vc_in_chan = 0;
+	   5:
+	     rx_vc_in_chan = 1;
+	   default:
+	     rx_vc_in_chan = 0;
+	 endcase // case (rx_vc_in_data[23:21])
+      end // if (rx_vc_in_sop == 1)
+   end
+      
+   sonic_vc vc (
+		.clk_clk                  (pld_clk),          //        clk.clk
+		.reset_reset_n            (srstn),            //      reset.reset_n
+		.tx_vc_in0_valid          (tx_stream_valid0), //  tx_vc_in0.valid
+		.tx_vc_in0_ready          (tx_stream_ready0), //           .ready
+		.tx_vc_in0_data           (tx_st_data0),      //           .data
+		.tx_vc_in0_startofpacket  (tx_st_sop0),       //           .startofpacket
+		.tx_vc_in0_endofpacket    (tx_st_eop0),       //           .endofpacket
+		.tx_vc_in0_empty          (tx_st_empty0),     //           .empty
+		.tx_vc_in0_error          (tx_st_err0),       //           .error
+		.tx_vc_in1_valid          (tx_stream_valid1), //  tx_vc_in1.valid
+		.tx_vc_in1_ready          (tx_stream_ready1), //           .ready
+		.tx_vc_in1_data           (tx_st_data1),      //           .data
+		.tx_vc_in1_startofpacket  (tx_st_sop1),       //           .startofpacket
+		.tx_vc_in1_endofpacket    (tx_st_eop1),       //           .endofpacket
+		.tx_vc_in1_empty          (tx_st_empty1),     //           .empty
+		.tx_vc_in1_error          (tx_st_err1),       //           .error
+		.tx_vc_out_channel        (tx_vc_out_chan),   //  tx_vc_out.channel
+		.tx_vc_out_valid          (tx_vc_out_valid),  //           .valid
+		.tx_vc_out_ready          (tx_vc_out_ready),  //           .ready
+		.tx_vc_out_data           (tx_vc_out_data),   //           .data
+		.tx_vc_out_startofpacket  (tx_vc_out_sop),    //           .startofpacket
+		.tx_vc_out_endofpacket    (tx_vc_out_eop),    //           .endofpacket
+		.tx_vc_out_empty          (tx_vc_out_empty),  //           .empty
+		.tx_vc_out_error          (tx_vc_out_err),    //           .error
+		.rx_vc_in_channel         (rx_vc_in_chan),    //   rx_vc_in.channel
+		.rx_vc_in_valid           (rx_vc_in_valid),   //           .valid
+		.rx_vc_in_ready           (rx_vc_in_ready),   //           .ready
+		.rx_vc_in_data            (rx_vc_in_data),    //           .data
+		.rx_vc_in_startofpacket   (rx_vc_in_sop),     //           .startofpacket
+		.rx_vc_in_endofpacket     (rx_vc_in_eop),     //           .endofpacket
+		.rx_vc_in_empty           (rx_vc_in_empty), //      .empty
+		.rx_vc_out0_valid         (rx_stream_valid0), // rx_vc_out0.valid
+		.rx_vc_out0_ready         (rx_stream_ready0), //           .ready
+		.rx_vc_out0_data          (rx_st_data0),      //           .data
+		.rx_vc_out0_startofpacket (rx_st_sop0),       //           .startofpacket
+		.rx_vc_out0_endofpacket   (rx_st_eop0),       //           .endofpacket
+		.rx_vc_out0_empty         (rx_st_empty0),
+		.rx_vc_out1_valid         (rx_stream_valid1), // rx_vc_out1.valid
+		.rx_vc_out1_ready         (rx_stream_ready1), //           .ready
+		.rx_vc_out1_data          (rx_st_data1),      //           .data
+		.rx_vc_out1_startofpacket (rx_st_sop1),       //           .startofpacket
+		.rx_vc_out1_endofpacket   (rx_st_eop1),       //           .endofpacket
+		.rx_vc_out1_empty         (rx_st_empty1)
+		);
+   
    wire [31:0] 	    p1_prg_wrdata;           // P0 out, P1 in
    wire [7:0] 	    p1_prg_addr;             // P0 out, P1 in
    wire [31:0] 	    p1_dma_rd_prg_rddata;    // P0 in;  P1 out
@@ -864,9 +934,9 @@ module sonic_top (
       .cpl_pending (cpl_pending_icm1),
       .err_desc (open_err_desc),
       .ko_cpl_spc_vc0 (ko_cpl_spc_vc0),
-      .msi_stream_data0 (open_msi_stream_data0),
+      .msi_stream_data0 (open_msi_stream_data1),
       .msi_stream_ready0 (gnd_msi_stream_ready0),
-      .msi_stream_valid0 (open_msi_stream_valid0),
+      .msi_stream_valid0 (open_msi_stream_valid1),
       .pex_msi_num (open_pex_msi_num),
       .pm_data (open_pm_data),
       .rstn (srstn),
@@ -876,7 +946,7 @@ module sonic_top (
       .rx_stream_ready0 (rx_stream_ready1),
       .rx_stream_valid0 (rx_stream_valid1),
       .test_sim (test_in[0]),
-      .tx_stream_cred0 (tx_stream_cred1),
+      .tx_stream_cred0 (tx_stream_cred0),
       .tx_stream_data0_0 (tx_stream_data1),
       .tx_stream_data0_1 (tx_stream_data1_1),
       .tx_stream_fifo_empty0 (tx_fifo_empty1),

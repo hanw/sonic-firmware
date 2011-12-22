@@ -37,15 +37,15 @@
 // used in combination with any other product not provided by Altera.
 //-----------------------------------------------------------------------------
 module altpcierd_cdma_ast_msi (
-                           input clk_in,
-                           input rstn,
-                           input app_msi_req,
-                           output reg app_msi_ack,
-                           input[2:0]   app_msi_tc,
-                           input[4:0]   app_msi_num,
-                                 input        stream_ready,
+                           input 	    clk_in,
+                           input 	    rstn,
+                           input 	    app_msi_req,
+                           output reg 	    app_msi_ack,
+                           input [2:0] 	    app_msi_tc,
+                           input [4:0] 	    app_msi_num,
+                           input 	    stream_ready,
                            output reg [7:0] stream_data,
-                           output reg stream_valid);
+                           output reg 	    stream_valid);
 
    reg   stream_ready_del;
    reg   app_msi_req_r;

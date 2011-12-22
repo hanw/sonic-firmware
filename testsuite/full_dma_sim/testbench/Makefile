@@ -85,6 +85,24 @@ IP_OBJS := altpcie_pll_100_250.v \
 			altpcie_rs_serdes.v \
 			../top_core.vo
 
+VC_OBJS := 	sonic_vc.v \
+		submodules/sonic_vc_multiplexer_0.v \
+		submodules/sonic_vc_demultiplexer_0.v \
+		submodules/altera_reset_controller.v \
+		submodules/altera_reset_synchronizer.v \
+		submodules/sonic_vc_tx_fifo_p0.v \
+		submodules/sonic_vc_tx_fifo_p1.v \
+		submodules/sonic_vc_timing_adapter_fifo.v \
+		submodules/sonic_vc_timing_adapter.v \
+		submodules/sonic_vc_multiplexer_adapter.v \
+		submodules/sonic_vc_tx_fifo_p0_adapter_fifo.v \
+		submodules/sonic_vc_tx_fifo_p0_adapter.v \
+		submodules/sonic_vc_rx_fifo_in_adapter_fifo.v \
+		submodules/sonic_vc_rx_fifo_in_adapter.v \
+		submodules/sonic_vc_rx_fifo_p0_adapter.v \
+		submodules/sonic_vc_rx_fifo_p0.v \
+		submodules/sonic_vc_rx_fifo_p1_adapter.v 
+
 
 SHARED_PATH := ../../../lib/shared
 SONIC_PATH := ../../../lib/sonic
@@ -93,8 +111,9 @@ SIM_PATH := ../../../lib/sonic/common/testbench
 EXTRA_PATH := ../../../lib/sonic/pcie/examples/sonic_chaining_dma
 IP_PATH := ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library
 QSYS_SIMDIR := ../sonic_rp_ep_sim/testbench
+VC_PATH := ../../../lib/sonic/vc/sonic_vc/synthesis/
 
-INCLUDE_PATH := ../../../lib/shared/+../../../lib/sonic/common/testbench/
+INCLUDE_PATH := ../../../lib/shared/+../../../lib/sonic/common/testbench/+../../../lib/sonic/ram/
 
 TLM_SRC := pci_tlm
 TB_SRC := sonic_chaining_testbench.v sonictb_bfm_driver_chaining.sv 
@@ -110,7 +129,7 @@ MODELSIM_INC := /home/hwang/questasim/install/questa_sim/include/
 .PHONY: all clean VLIB TLM TESTBENCH
 
 				  #mon_com;
-all: VLIB $(SHARED_OBJS) $(SONIC_OBJS) $(DESIGN_OBJS) $(SIM_OBJS) $(EXTRA_OBJS) $(IP_OBJS)
+all: VLIB $(SHARED_OBJS) $(SONIC_OBJS) $(DESIGN_OBJS) $(SIM_OBJS) $(EXTRA_OBJS) $(IP_OBJS) $(VC_OBJS)
 	vsim -sv_lib pci_tlm -do " \
 				  $(VLOG) $(VLOG_OPTIONS) -sv $(TB_SRC); \
 				  source msim.tcl; \
@@ -137,6 +156,9 @@ $(EXTRA_OBJS):
 
 $(IP_OBJS):
 	$(VLOG) $(VLOG_OPTIONS) -sv $(IP_PATH)/$@
+
+$(VC_OBJS):
+	$(VLOG) $(VLOG_OPTIONS) -sv $(VC_PATH)/$@
 
 TLM: 
 	gcc -m32 -c -I$(MODELSIM_INC) $(TLM_SRC).c

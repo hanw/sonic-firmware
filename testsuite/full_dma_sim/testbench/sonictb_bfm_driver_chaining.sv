@@ -128,6 +128,11 @@
 // expressly does not recommend, suggest or require that this reference design file be
 // used in combination with any other product not provided by Altera.
 //-----------------------------------------------------------------------------
+
+// NOTE: This driver does not configure the MSI register correctly for PORT 1.
+//       Since we do not use MSI in SoNIC, this part of the simulation is skipped.
+
+
 `include "sonic_constants.sv"
 `define STR_SEP "---------"
 
@@ -166,6 +171,8 @@ module sonictb_bfm_driver_chaining (input clk_in,
    localparam MEM_DESCR_LENGTH_INC = 2;
    localparam DMA_CONTINOUS_LOOP = 0;
 
+   localparam PORT_OFFSET = 16'h9000;
+   
    // Write DMA DESCRIPTOR TABLE Content, Port 0
    /*
     * Write DMA Memory allocation.
@@ -181,8 +188,9 @@ module sonictb_bfm_driver_chaining (input clk_in,
 
    localparam integer 			   WR_DESC0_CTL_MSI      = 0;
    localparam integer 			   WR_DESC0_CTL_EPLAST   = 1;      // send EPLast update when done with this descriptor
-   localparam integer 			   WR_DESC0_LENGTH       = 8192;
+//   localparam integer 			   WR_DESC0_LENGTH       = 8192;
 //   localparam integer 			   WR_DESC0_LENGTH       = 4096;
+   localparam integer 			   WR_DESC0_LENGTH       = 1024;
    localparam integer 			   WR_DESC0_EPADDR       = 0;
    localparam integer 			   WR_DESC0_RCADDR_MSB   = 1;
    localparam integer 			   WR_DESC0_RCADDR_LSB   = WR_BDT_LSB+4096;
@@ -190,18 +198,20 @@ module sonictb_bfm_driver_chaining (input clk_in,
 
    localparam integer 			   WR_DESC1_CTL_MSI      = 0;
    localparam integer 			   WR_DESC1_CTL_EPLAST   = 0;
+//   localparam integer 			   WR_DESC1_LENGTH       = 8192;
 //   localparam integer 			   WR_DESC1_LENGTH       = 4096;
-   localparam integer 			   WR_DESC1_LENGTH       = 8192;
-   localparam integer 			   WR_DESC1_EPADDR       = 8192;
+   localparam integer 			   WR_DESC1_LENGTH       = 1024;
+   localparam integer 			   WR_DESC1_EPADDR       = 4096;
    localparam integer 			   WR_DESC1_RCADDR_MSB   = 1;
    localparam integer 			   WR_DESC1_RCADDR_LSB   = WR_BDT_LSB+12288;
    localparam integer 			   WR_DESC1_INIT_BFM_MEM = 64'h0000_0000_2525_0001;
 
-   localparam integer 			   WR_DESC2_CTL_MSI      = 1;     // send MSI when done with this descriptor
+   localparam integer 			   WR_DESC2_CTL_MSI      = 0;     // send MSI when done with this descriptor
    localparam integer 			   WR_DESC2_CTL_EPLAST   = 1;     // send EPLast update when done with this descriptor
+//   localparam integer 			   WR_DESC2_LENGTH       = 8192;
 //   localparam integer 			   WR_DESC2_LENGTH       = 4096;
-   localparam integer 			   WR_DESC2_LENGTH       = 8192;
-   localparam integer 			   WR_DESC2_EPADDR       = 0;
+   localparam integer 			   WR_DESC2_LENGTH       = 1024;
+   localparam integer 			   WR_DESC2_EPADDR       = 8192;
    localparam integer 			   WR_DESC2_RCADDR_MSB   = 1;
    localparam integer 			   WR_DESC2_RCADDR_LSB   = WR_BDT_LSB+20480;
    localparam integer 			   WR_DESC2_INIT_BFM_MEM = 64'h0000_0000_3535_0001;
@@ -221,8 +231,8 @@ module sonictb_bfm_driver_chaining (input clk_in,
 
    localparam integer 			   RD_DESC0_CTL_MSI      = WR_DESC0_CTL_MSI;
    localparam integer 			   RD_DESC0_CTL_EPLAST   = WR_DESC0_CTL_EPLAST;
-//   localparam integer 			   RD_DESC0_LENGTH       = 4096;
-   localparam integer 			   RD_DESC0_LENGTH       = 8192;
+   localparam integer 			   RD_DESC0_LENGTH       = 4096;
+//   localparam integer 			   RD_DESC0_LENGTH       = 8192;
    localparam integer 			   RD_DESC0_EPADDR       = 0;
    localparam integer 			   RD_DESC0_RCADDR_MSB   = 1;
    localparam integer 			   RD_DESC0_RCADDR_LSB   = RD_BDT_LSB+4096;
@@ -230,18 +240,18 @@ module sonictb_bfm_driver_chaining (input clk_in,
 
    localparam integer 			   RD_DESC1_CTL_MSI      = WR_DESC1_CTL_MSI;
    localparam integer 			   RD_DESC1_CTL_EPLAST   = WR_DESC1_CTL_EPLAST;
-//   localparam integer 			   RD_DESC1_LENGTH       = 4096;
-   localparam integer 			   RD_DESC1_LENGTH       = 8192;
-   localparam integer 			   RD_DESC1_EPADDR       = 8192;
+   localparam integer 			   RD_DESC1_LENGTH       = 4096;
+//   localparam integer 			   RD_DESC1_LENGTH       = 8192;
+   localparam integer 			   RD_DESC1_EPADDR       = 4096;
    localparam integer 			   RD_DESC1_RCADDR_MSB   = 1;
    localparam integer 			   RD_DESC1_RCADDR_LSB   = RD_BDT_LSB+12288;
    localparam integer 			   RD_DESC1_INIT_BFM_MEM = 64'h0000_0000_BBBB_0001;
 
    localparam integer 			   RD_DESC2_CTL_MSI      = WR_DESC2_CTL_MSI;
    localparam integer 			   RD_DESC2_CTL_EPLAST   = WR_DESC2_CTL_EPLAST;
-   localparam integer 			   RD_DESC2_LENGTH       = 8192;
-//   localparam integer 			   RD_DESC2_LENGTH       = 4096;
-   localparam integer 			   RD_DESC2_EPADDR       = 0;
+//   localparam integer 			   RD_DESC2_LENGTH       = 8192;
+   localparam integer 			   RD_DESC2_LENGTH       = 4096;
+   localparam integer 			   RD_DESC2_EPADDR       = 8192;
    localparam integer 			   RD_DESC2_RCADDR_MSB   = 1;
    localparam integer 			   RD_DESC2_RCADDR_LSB   = RD_BDT_LSB+20480;
    localparam integer 			   RD_DESC2_INIT_BFM_MEM = 64'h0000_0000_CCCC_0001;
@@ -4251,14 +4261,15 @@ class dma_thread;
 			  (io_min_v - 1));   // I/O ended Here
 
          ebfm_cfgwr_imm_wait(ep_bus_num, ep_dev_num, 0, 4, 4, 32'h00000007, compl_status);
-	 
-	 ebfm_cfg_vc(1/*bus*/, 1/*dev*/, 0/*func*/, 0/*n_vc*/, 1/*enable*/, 8'h0F/*tcvcmap*/);
-	 ebfm_cfg_vc(1/*bus*/, 1/*dev*/, 0/*func*/, 1/*n_vc*/, 1/*enable*/, 8'hF0/*tcvcmap*/);
-	 ebfm_cfg_vc(0/*bus*/, 0/*dev*/, 0/*func*/, 0/*n_vc*/, 1/*enable*/, 8'h0F/*tcvcmap*/);
-	 ebfm_cfg_vc(0/*bus*/, 0/*dev*/, 0/*func*/, 1/*n_vc*/, 1/*enable*/, 8'hF0/*tcvcmap*/);
+
+//tag:	 
+//	 ebfm_cfg_vc(1/*bus*/, 1/*dev*/, 0/*func*/, 0/*n_vc*/, 1/*enable*/, 8'hFF/*tcvcmap*/);
+//	 ebfm_cfg_vc(1/*bus*/, 1/*dev*/, 0/*func*/, 1/*n_vc*/, 1/*enable*/, 8'hF0/*tcvcmap*/);
+//	 ebfm_cfg_vc(0/*bus*/, 0/*dev*/, 0/*func*/, 0/*n_vc*/, 1/*enable*/, 8'hFF/*tcvcmap*/);
+//	 ebfm_cfg_vc(0/*bus*/, 0/*dev*/, 0/*func*/, 1/*n_vc*/, 1/*enable*/, 8'h00/*tcvcmap*/);
 	 	  
-	 ebfm_display_vc_regs(0/*rp*/, 1/*bnm*/, 1/*dev*/, 0/*func*/, CFG_SCRATCH_SPACE + 32);
-	 ebfm_display_vc_regs(1/*rp*/, 0/*bnm*/, 0/*dev*/, 0/*func*/, CFG_SCRATCH_SPACE + 32);
+//	 ebfm_display_vc_regs(0/*rp*/, 1/*bnm*/, 1/*dev*/, 0/*func*/, CFG_SCRATCH_SPACE + 32);
+//	 ebfm_display_vc_regs(1/*rp*/, 0/*bnm*/, 0/*dev*/, 0/*func*/, CFG_SCRATCH_SPACE + 32);
 	 
          // Protect the critical BFM data from being accidentally overwritten.
          bfm_shmem_common.protect_bfm_shmem = 1'b1; 
@@ -4818,14 +4829,14 @@ class dma_thread;
 	    wr_desc2_init_bfm_mem = WR_DESC2_INIT_BFM_MEM;
 	 end // if (setup_bar == 2)
 	 else if (setup_bar == 3) begin
-	    wr_first_descriptor = WR_FIRST_DESCRIPTOR + 16'h3000;
-	    wr_desc0_rcaddr_lsb = WR_DESC0_RCADDR_LSB + 16'h3000;
+	    wr_first_descriptor = WR_FIRST_DESCRIPTOR + PORT_OFFSET;
+	    wr_desc0_rcaddr_lsb = WR_DESC0_RCADDR_LSB + PORT_OFFSET;
 	    wr_desc0_init_bfm_mem = WR_DESC0_INIT_BFM_MEM;
 
-	    wr_desc1_rcaddr_lsb = WR_DESC1_RCADDR_LSB + 16'h3000;
+	    wr_desc1_rcaddr_lsb = WR_DESC1_RCADDR_LSB + PORT_OFFSET;
 	    wr_desc1_init_bfm_mem = WR_DESC1_INIT_BFM_MEM;
 
-	    wr_desc2_rcaddr_lsb = WR_DESC2_RCADDR_LSB + 16'h3000;
+	    wr_desc2_rcaddr_lsb = WR_DESC2_RCADDR_LSB + PORT_OFFSET;
 	    wr_desc2_init_bfm_mem = WR_DESC2_INIT_BFM_MEM;
 	 end
 
@@ -4967,14 +4978,14 @@ class dma_thread;
 	    rd_desc2_init_bfm_mem = RD_DESC2_INIT_BFM_MEM;
 	 end // if (setup_bar == 2)
 	 else if (setup_bar == 3) begin
-	    rd_first_descriptor = RD_FIRST_DESCRIPTOR + 16'h3000;
-	    rd_desc0_rcaddr_lsb = RD_DESC0_RCADDR_LSB + 16'h3000;
+	    rd_first_descriptor = RD_FIRST_DESCRIPTOR + PORT_OFFSET;
+	    rd_desc0_rcaddr_lsb = RD_DESC0_RCADDR_LSB + PORT_OFFSET;
 	    rd_desc0_init_bfm_mem = RD_DESC0_INIT_BFM_MEM;
 
-	    rd_desc1_rcaddr_lsb = RD_DESC1_RCADDR_LSB + 16'h3000;
+	    rd_desc1_rcaddr_lsb = RD_DESC1_RCADDR_LSB + PORT_OFFSET;
 	    rd_desc1_init_bfm_mem = RD_DESC1_INIT_BFM_MEM;
 
-	    rd_desc2_rcaddr_lsb = RD_DESC2_RCADDR_LSB + 16'h3000;
+	    rd_desc2_rcaddr_lsb = RD_DESC2_RCADDR_LSB + PORT_OFFSET;
 	    rd_desc2_init_bfm_mem = RD_DESC2_INIT_BFM_MEM;
 	 end // if (setup_bar == 3)
 	 
@@ -5222,7 +5233,7 @@ class dma_thread;
 		    input integer use_global_eplast,
 		    input integer num_port);
 
-      localparam integer 	  MSI_ADDRESS     = SCR_MEM-16;
+      localparam integer 	  MSI_ADDRESS     = SCR_MEM-16; //FIX: for different ports.
       localparam integer 	  MSI_DATA        = 16'hb0fe;
 
       reg 			  unused_result ;
@@ -5258,7 +5269,7 @@ class dma_thread;
 	    rd_bdt_lsb = RD_BDT_LSB;
 	 end
 	 else if (setup_bar == 3) begin
-	    rd_bdt_lsb = RD_BDT_LSB + 16'h3000;
+	    rd_bdt_lsb = RD_BDT_LSB + PORT_OFFSET;
 	 end
 
 	 tc_class = (num_port == 1) ? TC_CLASS_P1 : TC_CLASS_P0;
@@ -5316,47 +5327,49 @@ class dma_thread;
 	 // Start read DMA
 	 dma_set_rclast(bar_table, setup_bar, RD_DIRECTION, RCLast);
 
-	 fork  // polling
-	    unused_result = ebfm_display_verb(EBFM_MSG_INFO, `STR_SEP);
-	    // Monitor MSI - Polling MSI
-	    if (use_msi==1)
-              if (use_global_msi==1)
-		msi_poll(NUMBER_OF_DESCRIPTORS,MSI_ADDRESS,0, msi_expected_dmard,0,1);
-              else
-		msi_poll(NUM_MSI_EXPECTED,MSI_ADDRESS,0, msi_expected_dmard,0,1);
+	 fork
+	    begin: polling  // polling
+	       unused_result = ebfm_display_verb(EBFM_MSG_INFO, `STR_SEP);
+	       // Monitor MSI - Polling MSI
+	       if (use_msi==1)
+		 if (use_global_msi==1)
+		   msi_poll(NUMBER_OF_DESCRIPTORS,MSI_ADDRESS,0, msi_expected_dmard,0,1);
+		 else
+		   msi_poll(NUM_MSI_EXPECTED,MSI_ADDRESS,0, msi_expected_dmard,0,1);
 
-
-	    // Polling EP Last
-	    if (use_eplast==1) begin
-               if (DMA_CONTINOUS_LOOP==0)
-		 rcmem_poll(rd_bdt_lsb+DT_EPLAST, RCLast,32'h0000FFFF);
-               else begin
-		  for (i=0;i<DMA_CONTINOUS_LOOP;i=i+1) begin
-		     unused_result = ebfm_display(EBFM_MSG_INFO, { "   Running DMA loop ", dimage4(i), " : "});
-		     shmem_write(rd_bdt_lsb+DT_EPLAST, 32'hCAFE_FADE,4);
+	       // Polling EP Last
+	       if (use_eplast==1) begin
+		  if (DMA_CONTINOUS_LOOP==0) begin
 		     rcmem_poll(rd_bdt_lsb+DT_EPLAST, RCLast,32'h0000FFFF);
+		     disable polling;
 		  end
-		  shmem_write(rd_bdt_lsb+DT_EPLAST, 32'hCAFE_FADE,4);
-		  dma_set_header( bar_table,              // Pointer to the BAR sizing and
-				  setup_bar,               // BAR to be used for setting up
-				  NUMBER_OF_DESCRIPTORS,   // number of descriptor
-				  RD_DIRECTION,            // Direction read
-				  use_global_msi,          // global MSI control
-				  use_global_eplast,       // global eplast control
-				  RD_BDT_MSB,              // RC upper 32 bits of bdt
-				  rd_bdt_lsb,              // RC lower 32 bits of bdt
-				  msi_number_int,
-				  msi_traffic_class_int,
-				  multi_message_enable_int,
-				  1,
-				  num_port); // stop_loop
-		  track_rclast_loop[15:0] = (use_global_eplast==1'b1) ? RCLast : EPLAST_DONE_VALUE;
-		  track_rclast_loop[31:16] = 1 ;
-		  unused_result = ebfm_display(EBFM_MSG_INFO, "   Flushing DMA loop");
-		  rcmem_poll(rd_bdt_lsb+DT_EPLAST, track_rclast_loop,32'h0001ffff);
-               end
-	    end
-
+		  else begin
+		     for (i=0;i<DMA_CONTINOUS_LOOP;i=i+1) begin
+			unused_result = ebfm_display(EBFM_MSG_INFO, { "   Running DMA loop ", dimage4(i), " : "});
+			shmem_write(rd_bdt_lsb+DT_EPLAST, 32'hCAFE_FADE,4);
+			rcmem_poll(rd_bdt_lsb+DT_EPLAST, RCLast,32'h0000FFFF);
+		     end
+		     shmem_write(rd_bdt_lsb+DT_EPLAST, 32'hCAFE_FADE,4);
+		     dma_set_header( bar_table,              // Pointer to the BAR sizing and
+				     setup_bar,               // BAR to be used for setting up
+				     NUMBER_OF_DESCRIPTORS,   // number of descriptor
+				     RD_DIRECTION,            // Direction read
+				     use_global_msi,          // global MSI control
+				     use_global_eplast,       // global eplast control
+				     RD_BDT_MSB,              // RC upper 32 bits of bdt
+				     rd_bdt_lsb,              // RC lower 32 bits of bdt
+				     msi_number_int,
+				     msi_traffic_class_int,
+				     multi_message_enable_int,
+				     1,
+				     num_port); // stop_loop
+		     track_rclast_loop[15:0] = (use_global_eplast==1'b1) ? RCLast : EPLAST_DONE_VALUE;
+		     track_rclast_loop[31:16] = 1 ;
+		     unused_result = ebfm_display(EBFM_MSG_INFO, "   Flushing DMA loop");
+		     rcmem_poll(rd_bdt_lsb+DT_EPLAST, track_rclast_loop,32'h0001ffff);
+		  end
+	       end // if (use_eplast==1)
+	    end // block: polling
 	 join  // polling
 
 	 ebfm_barwr_imm(bar_table, setup_bar, 16, 32'h0000_FFFF, 4, tc_class);
@@ -5425,7 +5438,7 @@ class dma_thread;
 	    wr_bdt_lsb = WR_BDT_LSB;
 	 end
 	 else if (setup_bar == 3) begin
-	    wr_bdt_lsb = WR_BDT_LSB + 16'h3000;
+	    wr_bdt_lsb = WR_BDT_LSB + PORT_OFFSET;
 	 end
 
 	 tc_class = (num_port == 1) ? TC_CLASS_P1 : TC_CLASS_P0;
@@ -6322,10 +6335,10 @@ endclass // dma_thread
 	//concurrent_chan_one_test();
 	//mix_ports();
 	mix_write_ports();
+	//wr_thread_p1.run();
 	//wr_thread_p0.run();
 	
 	//We still have problems with mixed two read threads together.
-	//mix_write_ports();
 	//mix_read_ports();
 	
 	//mix_one_and_half_ports();
