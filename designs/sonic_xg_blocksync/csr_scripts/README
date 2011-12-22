@@ -1,0 +1,19 @@
+README:
+
+common.tcl: common routines used by other scripts
+config.tcl: setup MAC address in MAC component
+csr_pkg.tcl: collection of routines for setting registers in design over JTAG
+init_xcvr.tcl: scripts to perform the Netlogic initialization sequence
+show_stats.tcl: scripts to display the statistics information in pkt_gen and pkt_mon
+test.tcl: perform a loopback test, need to set up loopback mode before running the test.
+
+pma.tcl: all subroutines related to pma and netlogic, used for testing sonic_v1_11.
+
+Steps to verify the transceiver functionality:
+
+1. Loopback at the MAC level, this can be done by calling the write_local_loopback 1.
+2. Loopback at the Altera Transceiver level,
+   - By writing to the PCS registers.
+3. Loopback at Netlogic level.
+   - write PMA loopback bit in netlogic
+4. Loopback between two ports.

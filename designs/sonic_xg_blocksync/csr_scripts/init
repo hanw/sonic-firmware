@@ -1,0 +1,10 @@
+#---------------------------
+#  SoNIC initialization
+#---------------------------
+
+source common.tcl
+source pma.tcl
+
+#init external xcvr (NETLOGIC)
+#source init_xcvr.tcl
+
