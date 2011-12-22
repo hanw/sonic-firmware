@@ -231,7 +231,8 @@ module sonictb_bfm_driver_chaining (input clk_in,
 
    localparam integer 			   RD_DESC0_CTL_MSI      = WR_DESC0_CTL_MSI;
    localparam integer 			   RD_DESC0_CTL_EPLAST   = WR_DESC0_CTL_EPLAST;
-   localparam integer 			   RD_DESC0_LENGTH       = 4096;
+   localparam integer 			   RD_DESC0_LENGTH       = 1024;
+//   localparam integer 			   RD_DESC0_LENGTH       = 4096;
 //   localparam integer 			   RD_DESC0_LENGTH       = 8192;
    localparam integer 			   RD_DESC0_EPADDR       = 0;
    localparam integer 			   RD_DESC0_RCADDR_MSB   = 1;
@@ -240,7 +241,8 @@ module sonictb_bfm_driver_chaining (input clk_in,
 
    localparam integer 			   RD_DESC1_CTL_MSI      = WR_DESC1_CTL_MSI;
    localparam integer 			   RD_DESC1_CTL_EPLAST   = WR_DESC1_CTL_EPLAST;
-   localparam integer 			   RD_DESC1_LENGTH       = 4096;
+   localparam integer 			   RD_DESC1_LENGTH       = 1024;
+//   localparam integer 			   RD_DESC1_LENGTH       = 4096;
 //   localparam integer 			   RD_DESC1_LENGTH       = 8192;
    localparam integer 			   RD_DESC1_EPADDR       = 4096;
    localparam integer 			   RD_DESC1_RCADDR_MSB   = 1;
@@ -249,8 +251,9 @@ module sonictb_bfm_driver_chaining (input clk_in,
 
    localparam integer 			   RD_DESC2_CTL_MSI      = WR_DESC2_CTL_MSI;
    localparam integer 			   RD_DESC2_CTL_EPLAST   = WR_DESC2_CTL_EPLAST;
+   localparam integer 			   RD_DESC2_LENGTH       = 1024;
+//   localparam integer 			   RD_DESC2_LENGTH       = 4096;
 //   localparam integer 			   RD_DESC2_LENGTH       = 8192;
-   localparam integer 			   RD_DESC2_LENGTH       = 4096;
    localparam integer 			   RD_DESC2_EPADDR       = 8192;
    localparam integer 			   RD_DESC2_RCADDR_MSB   = 1;
    localparam integer 			   RD_DESC2_RCADDR_LSB   = RD_BDT_LSB+20480;
@@ -5162,48 +5165,46 @@ class dma_thread;
 	 timout_limit[31:0]=0;
 
 	 fork
-
-//	    begin:wait_for_rcmem
-	    begin:rc_addr
-               forever
+	    begin:gen_rcmem_poll
+	       forever
 		 begin
 		    repeat (50) @(posedge clk_in);
 		    rc_current = (shmem_read (rc_addr, 4) & (rc_data_mask));
 		    if (pol_ip==0) begin
-                       timout_limit[31:0]=0;
-                       rc_last    = rc_current;
-                       unused_result = ebfm_display_verb(EBFM_MSG_INFO,
+		       timout_limit[31:0]=0;
+		       rc_last    = rc_current;
+		       unused_result = ebfm_display_verb(EBFM_MSG_INFO,
 							 {"TASK:rcmem_poll  Polling RC Address"   ,himage8(rc_addr),
 							  "   current data (" ,himage8(rc_current),
 							  ")  expected data (",himage8(rc_data),")"});
 		    end
 		    if (rc_current != rc_last ) begin
-                       unused_result = ebfm_display(EBFM_MSG_INFO,
+		       unused_result = ebfm_display(EBFM_MSG_INFO,
 						    {"TASK:rcmem_poll  Polling RC Address"   ,himage8(rc_addr),
 						     "   current data (" ,himage8(rc_current),
 						     ")  expected data (",himage8(rc_data),")"});
-                       timout_limit[31:0]=0;
+		       timout_limit[31:0]=0;
 		    end
 		    else
-                      timout_limit[31:0]=timout_limit[31:0]+1;
+		      timout_limit[31:0]=timout_limit[31:0]+1;
 
 		    rc_last    = rc_current;
 		    pol_ip=1;
 
 		    if (timout_limit[31:0]>TIMEOUT_POLLING) begin
-                       unused_result = ebfm_display(EBFM_MSG_INFO,
+		       unused_result = ebfm_display(EBFM_MSG_INFO,
 						    "   ---> TASK:rcmem_poll timeout occured");
-                       unused_result = ebfm_display(EBFM_MSG_ERROR_FATAL,
+		       unused_result = ebfm_display(EBFM_MSG_ERROR_FATAL,
 						    {"   ---> Test Fails: RC Address:",
 						     himage8(rc_addr)," contains ", himage8(rc_current)});
-                       disable rc_addr;
+		       disable gen_rcmem_poll;
 		    end
 		    if (rc_current == rc_data)
-                      begin
+		      begin
 			 unused_result = ebfm_display(EBFM_MSG_INFO,
 						      {"TASK:rcmem_poll   ---> Received Expected Data (",himage8(rc_current),")"});
-			 disable rc_addr;
-                      end
+			 disable gen_rcmem_poll;
+		      end
 		 end
 	    end
 	 join
@@ -6188,6 +6189,7 @@ class dma_thread;
    integer n_bar;
    integer rw;
    string  description;
+   process p[2];
    
    function new (integer bar_table, integer n_chan, integer rw);
       this.description = (rw == 0) ? "read" : "write";
@@ -6206,7 +6208,6 @@ class dma_thread;
 	 $display("%s dma test finished at bar %d ...", this.description, this.n_bar);
       end
    endtask; // run
-
    
 endclass // dma_thread
    
@@ -6251,8 +6252,15 @@ endclass // dma_thread
    task mix_read_ports;
       #3000;
       fork
-	 rd_thread_p1.run;
-	 rd_thread_p0.run;
+	 begin
+	    rd_thread_p1.run;
+	    #4000000;
+	 end
+	 begin
+	    #1000000;
+	    rd_thread_p0.run;
+	    #1000000;
+	 end
       join
    endtask // mix_read_ports
 
@@ -6289,8 +6297,9 @@ endclass // dma_thread
 	 wr_thread_p0.run;
       join
    endtask // dma_two_port_test
-   
 
+
+   
    ///////////////////////////////////////////////////////////////////////////////
    //
    //
@@ -6341,12 +6350,12 @@ endclass // dma_thread
 	//concurrent_chan_zero_test();
 	//concurrent_chan_one_test();
 	//mix_ports();
-	mix_write_ports();
+	//mix_write_ports();
 	//wr_thread_p1.run();
 	//wr_thread_p0.run();
-
+		
        	//We still have problems with mixed two read threads together.
-	//mix_read_ports();
+	mix_read_ports();
 	//rd_thread_p1.run();
 	
 	//mix_one_and_half_ports();

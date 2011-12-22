@@ -949,7 +949,7 @@ module sonic_top (
       .tx_stream_cred0 (tx_stream_cred0),
       .tx_stream_data0_0 (tx_stream_data1),
       .tx_stream_data0_1 (tx_stream_data1_1),
-      .tx_stream_fifo_empty0 (tx_fifo_empty1),
+      .tx_stream_fifo_empty0 (tx_fifo_empty0),
       .tx_stream_mask0 (gnd_tx_stream_mask1),
       .tx_stream_ready0 (tx_stream_ready1),
       .tx_stream_valid0 (tx_stream_valid1),

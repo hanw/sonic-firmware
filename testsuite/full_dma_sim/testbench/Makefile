@@ -116,7 +116,7 @@ VC_PATH := ../../../lib/sonic/vc/sonic_vc/synthesis/
 INCLUDE_PATH := ../../../lib/shared/+../../../lib/sonic/common/testbench/+../../../lib/sonic/ram/
 
 TLM_SRC := pci_tlm
-TB_SRC := sonic_chaining_testbench.v sonictb_bfm_driver_chaining.sv 
+TB_SRC := sonictb_bfm_driver_chaining.sv sonic_chaining_testbench.v 
 
 VLOG_OPTIONS := +define+SYNTHESIS=1 +incdir+$(INCLUDE_PATH) -novopt -work work #-dpiheader dpiheader.h
 #VLOG := /home/hwang/altera/11.0/modelsim_ae/linuxaloem/vlog

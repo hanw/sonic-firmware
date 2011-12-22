@@ -2582,78 +2582,78 @@ add wave -noupdate -group HIP -radix hexadecimal /sonic_chaining_testbench/ep/ep
 add wave -noupdate -group HIP -radix hexadecimal /sonic_chaining_testbench/ep/ep_plus/epmap/wrapper/n010il/txreadyvc0
 add wave -noupdate -group HIP -radix hexadecimal /sonic_chaining_testbench/ep/ep_plus/epmap/wrapper/n010il/txreadyvc1
 add wave -noupdate -group HIP -radix hexadecimal /sonic_chaining_testbench/ep/ep_plus/epmap/wrapper/n010il/wakeoen
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/data
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/clock
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/wrreq
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/rdreq
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/aclr
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/sclr
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/q
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/usedw
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/full
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/empty
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/almost_full
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/almost_empty
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/mem_data
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/count_id
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/read_id
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_id
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/valid_rreq
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/valid_wreq
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_flag
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/full_flag
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/empty_flag
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/almost_full_flag
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/almost_empty_flag
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/tmp_q
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/stratix_family
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/set_q_to_x
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/set_q_to_x_by_empty
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_latency1
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_latency2
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_latency3
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/wrt_count
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/empty_latency1
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/empty_latency2
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/data_ready
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/data_shown
-add wave -noupdate -expand -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/i
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/data
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/clock
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/wrreq
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/rdreq
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/aclr
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/sclr
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/q
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/usedw
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/full
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/empty
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/almost_full
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/almost_empty
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/mem_data
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/count_id
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/read_id
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_id
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/valid_rreq
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/valid_wreq
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_flag
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/full_flag
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/empty_flag
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/almost_full_flag
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/almost_empty_flag
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/tmp_q
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/stratix_family
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/set_q_to_x
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/set_q_to_x_by_empty
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_latency1
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_latency2
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_latency3
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/wrt_count
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/empty_latency1
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/empty_latency2
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/data_ready
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/data_shown
-add wave -noupdate -expand -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/i
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/data
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/clock
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/wrreq
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/rdreq
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/aclr
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/sclr
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/q
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/usedw
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/full
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/empty
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/almost_full
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/almost_empty
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/mem_data
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/count_id
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/read_id
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_id
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/valid_rreq
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/valid_wreq
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_flag
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/full_flag
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/empty_flag
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/almost_full_flag
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/almost_empty_flag
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/tmp_q
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/stratix_family
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/set_q_to_x
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/set_q_to_x_by_empty
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_latency1
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_latency2
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_latency3
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/wrt_count
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/empty_latency1
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/empty_latency2
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/data_ready
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/data_shown
+add wave -noupdate -group {FIFO P0} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p0/the_scfifo_with_controls/the_scfifo/single_clock_fifo/i
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/data
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/clock
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/wrreq
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/rdreq
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/aclr
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/sclr
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/q
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/usedw
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/full
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/empty
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/almost_full
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/almost_empty
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/mem_data
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/count_id
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/read_id
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_id
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/valid_rreq
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/valid_wreq
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_flag
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/full_flag
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/empty_flag
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/almost_full_flag
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/almost_empty_flag
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/tmp_q
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/stratix_family
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/set_q_to_x
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/set_q_to_x_by_empty
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_latency1
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_latency2
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/write_latency3
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/wrt_count
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/empty_latency1
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/empty_latency2
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/data_ready
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/data_shown
+add wave -noupdate -group {FIFO P1} -radix hexadecimal /sonic_chaining_testbench/ep/vc/tx_fifo_p1/the_scfifo_with_controls/the_scfifo/single_clock_fifo/i
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {42721838 ps} 0}
 configure wave -namecolwidth 310
@@ -2670,4 +2670,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {40354235 ps} {47602875 ps}
+WaveRestoreZoom {46035792 ps} {53284432 ps}

@@ -24,3 +24,5 @@ project_files/sonic/sonic_xg_blocksync/greybox_tmp/
 project_files/sonic/sonic_xg_blocksync/testbench/work/
 project_files/sonic/sonic_xg_bitstream/db/*
 testsuite/full_blocksync_sim/testbench/sonic_blocksync_sim/
+testsuite/full_blocksync_sim/testbench/.qsys_edit/
+testsuite/full_dma_sim/testbench/.qsys_edit/
