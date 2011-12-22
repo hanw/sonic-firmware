@@ -4262,13 +4262,13 @@ class dma_thread;
 
          ebfm_cfgwr_imm_wait(ep_bus_num, ep_dev_num, 0, 4, 4, 32'h00000007, compl_status);
 
-//tag:	 
-//	 ebfm_cfg_vc(1/*bus*/, 1/*dev*/, 0/*func*/, 0/*n_vc*/, 1/*enable*/, 8'hFF/*tcvcmap*/);
+//root:	 
+	 ebfm_cfg_vc(1/*bus*/, 1/*dev*/, 0/*func*/, 0/*n_vc*/, 1/*enable*/, 8'hFF/*tcvcmap*/);
 //	 ebfm_cfg_vc(1/*bus*/, 1/*dev*/, 0/*func*/, 1/*n_vc*/, 1/*enable*/, 8'hF0/*tcvcmap*/);
-//	 ebfm_cfg_vc(0/*bus*/, 0/*dev*/, 0/*func*/, 0/*n_vc*/, 1/*enable*/, 8'hFF/*tcvcmap*/);
-//	 ebfm_cfg_vc(0/*bus*/, 0/*dev*/, 0/*func*/, 1/*n_vc*/, 1/*enable*/, 8'h00/*tcvcmap*/);
+//	 ebfm_cfg_vc(0/*bus*/, 0/*dev*/, 0/*func*/, 0/*n_vc*/, 1/*enable*/, 8'h0F/*tcvcmap*/);
+//	 ebfm_cfg_vc(0/*bus*/, 0/*dev*/, 0/*func*/, 1/*n_vc*/, 1/*enable*/, 8'hF0/*tcvcmap*/);
 	 	  
-//	 ebfm_display_vc_regs(0/*rp*/, 1/*bnm*/, 1/*dev*/, 0/*func*/, CFG_SCRATCH_SPACE + 32);
+	 ebfm_display_vc_regs(0/*rp*/, 1/*bnm*/, 1/*dev*/, 0/*func*/, CFG_SCRATCH_SPACE + 32);
 //	 ebfm_display_vc_regs(1/*rp*/, 0/*bnm*/, 0/*dev*/, 0/*func*/, CFG_SCRATCH_SPACE + 32);
 	 
          // Protect the critical BFM data from being accidentally overwritten.
@@ -5163,7 +5163,8 @@ class dma_thread;
 
 	 fork
 
-	    begin:wait_for_rcmem
+//	    begin:wait_for_rcmem
+	    begin:rc_addr
                forever
 		 begin
 		    repeat (50) @(posedge clk_in);
@@ -5195,13 +5196,13 @@ class dma_thread;
                        unused_result = ebfm_display(EBFM_MSG_ERROR_FATAL,
 						    {"   ---> Test Fails: RC Address:",
 						     himage8(rc_addr)," contains ", himage8(rc_current)});
-                       disable wait_for_rcmem;
+                       disable rc_addr;
 		    end
 		    if (rc_current == rc_data)
                       begin
 			 unused_result = ebfm_display(EBFM_MSG_INFO,
 						      {"TASK:rcmem_poll   ---> Received Expected Data (",himage8(rc_current),")"});
-			 disable wait_for_rcmem;
+			 disable rc_addr;
                       end
 		 end
 	    end
@@ -5531,7 +5532,6 @@ class dma_thread;
 		  rcmem_poll(wr_bdt_lsb+DT_EPLAST, track_rclast_loop,32'h0001ffff);
                end
 	    end
-
 	 join // polling
 
 	 ebfm_barwr_imm(bar_table, setup_bar, 0, 32'h0000_FFFF, 4, tc_class);
@@ -6258,9 +6258,16 @@ endclass // dma_thread
 
    task mix_write_ports;
       #3000;
-         fork
-	 wr_thread_p0.run;
-	 wr_thread_p1.run;
+      fork
+	 begin
+	    wr_thread_p0.run;
+	    #1000000;
+	 end
+	 
+	 begin
+	    #1000000;
+	    wr_thread_p1.run;
+	 end
       join
    endtask // mix_write_ports
       
@@ -6337,9 +6344,10 @@ endclass // dma_thread
 	mix_write_ports();
 	//wr_thread_p1.run();
 	//wr_thread_p0.run();
-	
-	//We still have problems with mixed two read threads together.
+
+       	//We still have problems with mixed two read threads together.
 	//mix_read_ports();
+	//rd_thread_p1.run();
 	
 	//mix_one_and_half_ports();
 	//concurrent_two_ports();

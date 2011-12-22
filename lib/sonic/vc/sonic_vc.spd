@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="sonic_vc/simulation/submodules/altera_reset_controller.v"
+   type="VERILOG"
+   library="rst_controller" />
+ <file
+   path="sonic_vc/simulation/submodules/altera_reset_synchronizer.v"
+   type="VERILOG"
+   library="rst_controller" />
+ <file
+   path="sonic_vc/simulation/submodules/sonic_vc_timing_adapter.v"
+   type="VERILOG"
+   library="timing_adapter" />
+ <file
+   path="sonic_vc/simulation/submodules/sonic_vc_timing_adapter_fifo.v"
+   type="VERILOG"
+   library="timing_adapter" />
+ <file
+   path="sonic_vc/simulation/submodules/sonic_vc_multiplexer_adapter.v"
+   type="VERILOG"
+   library="multiplexer_adapter" />
+ <file
+   path="sonic_vc/simulation/submodules/sonic_vc_tx_fifo_p1.v"
+   type="VERILOG"
+   library="tx_fifo_p1" />
+ <file
+   path="sonic_vc/simulation/submodules/sonic_vc_tx_fifo_p0.v"
+   type="VERILOG"
+   library="tx_fifo_p0" />
+ <file
+   path="sonic_vc/simulation/submodules/sonic_vc_demultiplexer_0.v"
+   type="VERILOG"
+   library="demultiplexer_0" />
+ <file
+   path="sonic_vc/simulation/submodules/sonic_vc_multiplexer_0.v"
+   type="VERILOG"
+   library="multiplexer_0" />
+ <file path="sonic_vc/simulation/sonic_vc.v" type="VERILOG" />
+ <topLevel name="sonic_vc" />
+ <deviceFamily name="stratixiv" />
+</simPackage>

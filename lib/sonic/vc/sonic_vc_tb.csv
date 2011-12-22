@@ -1,0 +1,53 @@
+# system info sonic_vc_tb on 2011.12.20.22:44:12
+system_info:
+name,value
+DEVICE,
+DEVICE_FAMILY,Stratix IV
+GENERATION_ID,1324439035
+#
+#
+# Files generated for sonic_vc_tb on 2011.12.20.22:44:12
+files:
+filepath,kind,attributes,module,is_top
+sonic_vc/testbench/sonic_vc_tb/simulation/sonic_vc_tb.v,VERILOG,,sonic_vc_tb,true
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/sonic_vc.v,VERILOG,,sonic_vc,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/verbosity_pkg.sv,SYSTEM_VERILOG,,altera_avalon_clock_source,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/altera_avalon_clock_source.sv,SYSTEM_VERILOG,,altera_avalon_clock_source,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/verbosity_pkg.sv,SYSTEM_VERILOG,,altera_avalon_reset_source,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/altera_avalon_reset_source.sv,SYSTEM_VERILOG,,altera_avalon_reset_source,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/avalon_utilities_pkg.sv,SYSTEM_VERILOG,,altera_avalon_st_source_bfm,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/verbosity_pkg.sv,SYSTEM_VERILOG,,altera_avalon_st_source_bfm,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/altera_avalon_st_source_bfm.sv,SYSTEM_VERILOG,,altera_avalon_st_source_bfm,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/avalon_utilities_pkg.sv,SYSTEM_VERILOG,,altera_avalon_st_sink_bfm,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/verbosity_pkg.sv,SYSTEM_VERILOG,,altera_avalon_st_sink_bfm,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/altera_avalon_st_sink_bfm.sv,SYSTEM_VERILOG,,altera_avalon_st_sink_bfm,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/sonic_vc_multiplexer_0.v,VERILOG,,sonic_vc_multiplexer_0,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/sonic_vc_demultiplexer_0.v,VERILOG,,sonic_vc_demultiplexer_0,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/sonic_vc_tx_fifo_p0.v,VERILOG,,sonic_vc_tx_fifo_p0,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/sonic_vc_tx_fifo_p1.v,VERILOG,,sonic_vc_tx_fifo_p1,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/sonic_vc_multiplexer_adapter.v,VERILOG,,sonic_vc_multiplexer_adapter,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/sonic_vc_timing_adapter.v,VERILOG,,sonic_vc_timing_adapter,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/sonic_vc_timing_adapter_fifo.v,VERILOG,,sonic_vc_timing_adapter,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/altera_reset_controller.v,VERILOG,,altera_reset_controller,false
+sonic_vc/testbench/sonic_vc_tb/simulation/submodules/altera_reset_synchronizer.v,VERILOG,,altera_reset_controller,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+sonic_vc_tb.sonic_vc_inst,sonic_vc
+sonic_vc_tb.sonic_vc_inst.multiplexer_0,sonic_vc_multiplexer_0
+sonic_vc_tb.sonic_vc_inst.demultiplexer_0,sonic_vc_demultiplexer_0
+sonic_vc_tb.sonic_vc_inst.tx_fifo_p0,sonic_vc_tx_fifo_p0
+sonic_vc_tb.sonic_vc_inst.tx_fifo_p1,sonic_vc_tx_fifo_p1
+sonic_vc_tb.sonic_vc_inst.multiplexer_adapter,sonic_vc_multiplexer_adapter
+sonic_vc_tb.sonic_vc_inst.timing_adapter,sonic_vc_timing_adapter
+sonic_vc_tb.sonic_vc_inst.timing_adapter_1,sonic_vc_timing_adapter
+sonic_vc_tb.sonic_vc_inst.rst_controller,altera_reset_controller
+sonic_vc_tb.sonic_vc_inst_clk_bfm,altera_avalon_clock_source
+sonic_vc_tb.sonic_vc_inst_reset_bfm,altera_avalon_reset_source
+sonic_vc_tb.sonic_vc_inst_rx_vc_in_bfm,altera_avalon_st_source_bfm
+sonic_vc_tb.sonic_vc_inst_tx_vc_in0_bfm,altera_avalon_st_source_bfm
+sonic_vc_tb.sonic_vc_inst_tx_vc_in1_bfm,altera_avalon_st_source_bfm
+sonic_vc_tb.sonic_vc_inst_rx_vc_out0_bfm,altera_avalon_st_sink_bfm
+sonic_vc_tb.sonic_vc_inst_rx_vc_out1_bfm,altera_avalon_st_sink_bfm
+sonic_vc_tb.sonic_vc_inst_tx_vc_out_bfm,altera_avalon_st_sink_bfm

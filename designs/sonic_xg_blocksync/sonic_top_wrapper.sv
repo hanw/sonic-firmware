@@ -330,7 +330,7 @@ module sonic_top_wrapper (
       .pcie_rstn (pcie_rstn),
       .phy_sel_code (open_phy_sel_code),
       .phystatus_ext (phystatus_ext),
-      .pipe_mode (1'b0),
+      .pipe_mode (1'b0), // 1'b1 for simulation, 1'b0 for synthesis.
       .pld_clk (clk_out_buf),
       .powerdown_ext (powerdown_ext),
       .ref_clk_sel_code (open_ref_clk_sel_code),

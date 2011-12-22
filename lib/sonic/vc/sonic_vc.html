@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <title>Report</title>
+  <style type="text/css">
+body { font-family:arial ;}
+a { text-decoration:underline ; color:#003000 ;}
+a:hover { text-decoration:underline ; color:0030f0 ;}
+td { padding : 5px ;}
+table.topTitle { width:100% ;}
+table.topTitle td.l { text-align:left ; font-weight: bold ; font-size:30px ;}
+table.topTitle td.r { text-align:right ; font-weight: bold ; font-size:16px ;}
+table.blueBar { width : 100% ; border-spacing : 0px ;}
+table.blueBar td { background:#0036ff ; font-size:12px ; color : white ; text-align : left ; font-weight : bold ;}
+table.blueBar td.l { text-align : left ;}
+table.blueBar td.r { text-align : right ;}
+table.items { width:100% ; border-collapse:collapse ;}
+table.items td.label { font-weight:bold ; font-size:16px ; vertical-align:top ;}
+table.items td.mono { font-family:courier ; font-size:12px ; white-space:pre ;}
+div.label { font-weight:bold ; font-size:16px ; vertical-align:top ; text-align:center ;}
+table.grid { border-collapse:collapse ;}
+table.grid td { border:1px solid #bbb ; font-size:12px ;}
+body { font-family:arial ;}
+table.x { font-family:courier ; border-collapse:collapse ; padding:2px ;}
+table.x td { border:1px solid #bbb ;}
+td.tableTitle { font-weight:bold ; text-align:center ;}
+table.grid { border-collapse:collapse ;}
+table.grid td { border:1px solid #bbb ;}
+table.grid td.tableTitle { font-weight:bold ; text-align:center ;}
+table.mmap { border-collapse:collapse ; text-size:11px ; border:1px solid #d8d8d8 ;}
+table.mmap td { border-color:#d8d8d8 ; border-width:1px ; border-style:solid ;}
+table.mmap td.empty { border-style:none ; background-color:#f0f0f0 ;}
+table.mmap td.slavemodule { text-align:left ; font-size:11px ; border-style:solid solid none solid ;}
+table.mmap td.slavem { text-align:right ; font-size:9px ; font-style:italic ; border-style:none solid none solid ;}
+table.mmap td.slaveb { text-align:right ; font-size:9px ; font-style:italic ; border-style:none solid solid solid ;}
+table.mmap td.mastermodule { text-align:center ; font-size:11px ; border-style:solid solid none solid ;}
+table.mmap td.masterlr { text-align:center ; font-size:9px ; font-style:italic ; border-style:none solid solid solid ;}
+table.mmap td.masterl { text-align:center ; font-size:9px ; font-style:italic ; border-style:none none solid solid ;}
+table.mmap td.masterm { text-align:center ; font-size:9px ; font-style:italic ; border-style:none none solid none ;}
+table.mmap td.masterr { text-align:center ; font-size:9px ; font-style:italic ; border-style:none solid solid none ;}
+table.mmap td.addr { font-family:courier ; font-size:9px ; text-align:right ;}
+table.connectionboxes { border-collapse:separate ; border-spacing:0px ; font-family:arial ;}
+table.connectionboxes td.from { border-bottom:1px solid black ; font-size:9px ; font-style:italic ; vertical-align:bottom ; text-align:left ;}
+table.connectionboxes td.to { font-size:9px ; font-style:italic ; vertical-align:top ; text-align:right ;}
+table.connectionboxes td.lefthandwire { border-bottom:1px solid black ; font-size:9px ; font-style:italic ; vertical-align:bottom ; text-align:right ;}
+table.connectionboxes td.righthandwire { border-bottom:1px solid black ; font-size:9px ; font-style:italic ; vertical-align:bottom ; text-align:left ;}
+table.connectionboxes td.righthandlabel { font-size:11px ; vertical-align:bottom ; text-align:left ;}
+table.connectionboxes td.neighbor { padding:3px ; border:1px solid black ; font-size: 11px ; background:#e8e8e8 ; vertical-align:center ; text-align:center ;}
+table.connectionboxes td.main { padding:8px ; border:1px solid black ; font-size: 14px ; font-weight:bold ; background:#ffffff ; vertical-align:center ; text-align:center ;}
+.parametersbox { border:1px solid #d0d0d0 ; display:inline-block ; max-height:160px ; overflow:auto ; width:360px ; font-size:10px ;}
+.flowbox { display:inline-block ;}
+.parametersbox table { font-size:10px ;}
+td.parametername { font-style:italic ;}
+td.parametervalue { font-weight:bold ;}
+div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; border-top:1px solid #707070 ; border-bottom:1px solid #707070 ; padding:20px ; margin:20px ; width:auto ;}</style>
+ </head>
+ <body>
+  <table class="topTitle">
+   <tr>
+    <td class="l">sonic_vc</td>
+    <td class="r">sonic_vc
+     <br/>1.0
+     <br/>
+    </td>
+   </tr>
+  </table>
+  <table class="blueBar">
+   <tr>
+    <td class="l">2011.12.22.03:14:22</td>
+    <td class="r">Generation Report</td>
+   </tr>
+  </table>
+  <table class="items">
+   <tr>
+    <td class="label">Output Directory</td>
+    <td class="mono">/home/hwang/sonic/pcie-refactor-multiplexer/lib/sonic/vc/</td>
+   </tr>
+   <tr>
+    <td class="label">Files</td>
+    <td class="mono">/home/hwang/sonic/pcie-refactor-multiplexer/lib/sonic/vc/sonic_vc/synthesis/sonic_vc.v (19348 bytes VERILOG)
+     <br/>
+     <br/>/home/hwang/sonic/pcie-refactor-multiplexer/lib/sonic/vc/sonic_vc/synthesis/submodules/sonic_vc_multiplexer_0.v (7016 bytes VERILOG)
+     <br/>/home/hwang/sonic/pcie-refactor-multiplexer/lib/sonic/vc/sonic_vc/synthesis/submodules/sonic_vc_demultiplexer_0.v (6135 bytes VERILOG)
+     <br/>/home/hwang/sonic/pcie-refactor-multiplexer/lib/sonic/vc/sonic_vc/synthesis/submodules/sonic_vc_tx_fifo_p0.v (8721 bytes VERILOG)
+     <br/>/home/hwang/sonic/pcie-refactor-multiplexer/lib/sonic/vc/sonic_vc/synthesis/submodules/sonic_vc_tx_fifo_p1.v (8721 bytes VERILOG)
+     <br/>/home/hwang/sonic/pcie-refactor-multiplexer/lib/sonic/vc/sonic_vc/synthesis/submodules/sonic_vc_multiplexer_adapter.v (2215 bytes VERILOG)
+     <br/>/home/hwang/sonic/pcie-refactor-multiplexer/lib/sonic/vc/sonic_vc/synthesis/submodules/sonic_vc_tx_fifo_p0_adapter.v (2542 bytes VERILOG)
+     <br/>/home/hwang/sonic/pcie-refactor-multiplexer/lib/sonic/vc/sonic_vc/synthesis/submodules/sonic_vc_tx_fifo_p0_adapter_fifo.v (9681 bytes VERILOG)
+     <br/>/home/hwang/sonic/pcie-refactor-multiplexer/lib/sonic/vc/sonic_vc/synthesis/submodules/altera_reset_controller.v (3482 bytes VERILOG)
+     <br/>/home/hwang/sonic/pcie-refactor-multiplexer/lib/sonic/vc/sonic_vc/synthesis/submodules/altera_reset_synchronizer.v (3474 bytes VERILOG)
+     <br/>/home/hwang/sonic/pcie-refactor-multiplexer/lib/sonic/vc/sonic_vc/synthesis/submodules/altera_reset_controller.sdc (1161 bytes SDC)
+     <br/>
+    </td>
+   </tr>
+   <tr>
+    <td class="label">Instantiations</td>
+    <td class="mono">
+     <table class="grid">
+      <tr>
+       <td><b>sonic_vc</b>
+        <br/>sonic_vc v1.0</td>
+       <td><b>sonic_vc_multiplexer_0</b> as multiplexer_0
+        <br/><b>sonic_vc_demultiplexer_0</b> as demultiplexer_0
+        <br/><b>sonic_vc_tx_fifo_p0</b> as tx_fifo_p0
+        <br/><b>sonic_vc_tx_fifo_p1</b> as tx_fifo_p1
+        <br/><b>sonic_vc_multiplexer_adapter</b> as multiplexer_adapter
+        <br/><b>sonic_vc_tx_fifo_p0_adapter</b> as tx_fifo_p0_adapter, tx_fifo_p1_adapter
+        <br/><b>altera_reset_controller</b> as rst_controller
+        <br/>
+       </td>
+      </tr>
+      <tr>
+       <td><b>sonic_vc_multiplexer_0</b>
+        <br/>multiplexer v11.1</td>
+       <td></td>
+      </tr>
+      <tr>
+       <td><b>sonic_vc_demultiplexer_0</b>
+        <br/>demultiplexer v11.1</td>
+       <td></td>
+      </tr>
+      <tr>
+       <td><b>sonic_vc_tx_fifo_p0</b>
+        <br/>altera_avalon_fifo v11.1</td>
+       <td></td>
+      </tr>
+      <tr>
+       <td><b>sonic_vc_tx_fifo_p1</b>
+        <br/>altera_avalon_fifo v11.1</td>
+       <td></td>
+      </tr>
+      <tr>
+       <td><b>sonic_vc_multiplexer_adapter</b>
+        <br/>timing_adapter v11.1</td>
+       <td></td>
+      </tr>
+      <tr>
+       <td><b>sonic_vc_tx_fifo_p0_adapter</b>
+        <br/>timing_adapter v11.1</td>
+       <td></td>
+      </tr>
+      <tr>
+       <td><b>altera_reset_controller</b>
+        <br/>altera_reset_controller v11.1</td>
+       <td></td>
+      </tr>
+     </table>
+    </td>
+   </tr>
+  </table>
+  <div style="width:100% ;  height:10px"> </div>
+  <div class="label">Generation Messages</div>
+  <div style="white-space:pre ; font-family:courier">2011.12.22.03:14:08 [Info] sonic_vc: Generating <b>sonic_vc</b> "<b>sonic_vc</b>" for QUARTUS_SYNTH
+2011.12.22.03:14:08 [Debug] sonic_vc: queue size: 0 starting:sonic_vc "sonic_vc"
+2011.12.22.03:14:08 [Debug] Transform: PipelineBridgeSwap
+2011.12.22.03:14:08 [Info] pipeline_bridge_swap_transform: After transform: <b>8</b> modules, <b>19</b> connections
+2011.12.22.03:14:08 [Debug] Transform: ClockCrossingBridgeSwap
+2011.12.22.03:14:08 [Debug] Transform: QsysBetaIPSwap
+2011.12.22.03:14:08 [Debug] Transform: CustomInstructionTransform
+2011.12.22.03:14:08 [Info] No custom instruction connections, skipping transform 
+2011.12.22.03:14:08 [Debug] Transform: TristateConduitUpgradeTransform
+2011.12.22.03:14:08 [Debug] Transform: TranslatorTransform
+2011.12.22.03:14:08 [Info] No Avalon connections, skipping transform 
+2011.12.22.03:14:08 [Debug] Transform: DomainTransform
+2011.12.22.03:14:08 [Debug] Transform: RouterTransform
+2011.12.22.03:14:08 [Debug] Transform: TrafficLimiterTransform
+2011.12.22.03:14:08 [Debug] Transform: BurstTransform
+2011.12.22.03:14:08 [Debug] Transform: ResetAdaptation
+2011.12.22.03:14:08 [Progress] min: 0
+2011.12.22.03:14:08 [Progress] max: 1
+2011.12.22.03:14:08 [Progress] current: 1
+2011.12.22.03:14:08 [Info] reset_adaptation_transform: After transform: <b>9</b> modules, <b>21</b> connections
+2011.12.22.03:14:08 [Debug] Transform: NetworkToSwitchTransform
+2011.12.22.03:14:08 [Debug] Transform: WidthTransform
+2011.12.22.03:14:08 [Debug] Transform: RouterTableTransform
+2011.12.22.03:14:08 [Debug] Transform: ClockCrossingTransform
+2011.12.22.03:14:08 [Debug] Transform: PipelineTransform
+2011.12.22.03:14:08 [Debug] Transform: TrafficLimiterUpdateTransform
+2011.12.22.03:14:08 [Debug] Transform: InterruptMapperTransform
+2011.12.22.03:14:08 [Debug] Transform: InterruptSyncTransform
+2011.12.22.03:14:08 [Debug] Transform: InterruptFanoutTransform
+2011.12.22.03:14:08 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>multiplexer</b> "<b>submodules/sonic_vc_multiplexer_0</b>"
+2011.12.22.03:14:08 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>demultiplexer</b> "<b>submodules/sonic_vc_demultiplexer_0</b>"
+2011.12.22.03:14:08 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>altera_avalon_fifo</b> "<b>submodules/sonic_vc_tx_fifo_p0</b>"
+2011.12.22.03:14:08 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>altera_avalon_fifo</b> "<b>submodules/sonic_vc_tx_fifo_p1</b>"
+2011.12.22.03:14:08 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>timing_adapter</b> "<b>submodules/sonic_vc_multiplexer_adapter</b>"
+2011.12.22.03:14:08 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>timing_adapter</b> "<b>submodules/sonic_vc_tx_fifo_p0_adapter</b>"
+2011.12.22.03:14:08 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>timing_adapter</b> "<b>submodules/sonic_vc_tx_fifo_p0_adapter</b>"
+2011.12.22.03:14:08 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>altera_reset_controller</b> "<b>submodules/altera_reset_controller</b>"
+2011.12.22.03:14:08 [Debug] sonic_vc: queue size: 7 starting:multiplexer "submodules/sonic_vc_multiplexer_0"
+2011.12.22.03:14:08 [Info] multiplexer_0: Starting generation. 
+2011.12.22.03:14:09 [Info] multiplexer_0: "<b>sonic_vc</b>" instantiated <b>multiplexer</b> "<b>multiplexer_0</b>"
+2011.12.22.03:14:09 [Debug] sonic_vc: queue size: 6 starting:demultiplexer "submodules/sonic_vc_demultiplexer_0"
+2011.12.22.03:14:09 [Info] demultiplexer_0: Starting generation. 
+2011.12.22.03:14:09 [Info] demultiplexer_0: "<b>sonic_vc</b>" instantiated <b>demultiplexer</b> "<b>demultiplexer_0</b>"
+2011.12.22.03:14:09 [Debug] sonic_vc: queue size: 5 starting:altera_avalon_fifo "submodules/sonic_vc_tx_fifo_p0"
+2011.12.22.03:14:09 [Info] Starting classic module elaboration.
+2011.12.22.03:14:09 [Progress] "/home/hwang/altera/11.1/quartus/linux/jre/bin/java" -Xmx512M -classpath "/home/hwang/altera/11.1/quartus/sopc_builder/bin/sopc_builder.jar:/home/hwang/altera/11.1/quartus/sopc_builder/bin/PinAssigner.jar:/home/hwang/altera/11.1/quartus/sopc_builder/bin/sopc_wizard.jar:/home/hwang/altera/11.1/quartus/sopc_builder/bin/jptf.jar" sopc_builder.sopc_builder  -d"/home/hwang/altera/11.1/quartus/sopc_builder" -notalkback=1 -projectnameyysystem.qpf -projectpath/tmp/alt5330_8535968769313304912.dir/0001_sopclgen  --no_splash --refresh /tmp/alt5330_8535968769313304912.dir/0001_sopclgen/yysystem.v --quartus_dir="/home/hwang/altera/11.1/quartus" --sopc_perl="/home/hwang/altera/11.1/quartus/linux/perl" --sopc_lib_path="++/home/hwang/altera/11.1/quartus/../ip/altera/sopc_builder_ip+/home/hwang/altera/11.1/quartus/../ip/altera/nios2_ip"
+2011.12.22.03:14:09 [Progress] /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so: wrong ELF class: ELFCLASS64
+2011.12.22.03:14:09 [Progress] (java:16582): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so
+2011.12.22.03:14:09 [Progress] /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so: wrong ELF class: ELFCLASS64
+2011.12.22.03:14:09 [Progress] (java:16582): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so
+2011.12.22.03:14:11 [Progress] /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so: wrong ELF class: ELFCLASS64
+2011.12.22.03:14:11 [Progress] (java:16582): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so
+2011.12.22.03:14:11 [Progress] /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so: wrong ELF class: ELFCLASS64
+2011.12.22.03:14:11 [Progress] (java:16582): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so
+2011.12.22.03:14:11 [Info] Finished elaborating classic module.
+2011.12.22.03:14:11 [Progress] Executing: /home/hwang/altera/11.1/quartus//sopc_builder/bin/sopc_builder --classic --generate /tmp/alt5330_8535968769313304912.dir/0001_sopclgen/yysystem.ptf
+2011.12.22.03:14:11 [Info] Running sopc_builder...
+2011.12.22.03:14:11 [Progress] "/home/hwang/altera/11.1/quartus//linux/jre/bin/java" -Xmx512M -classpath "/home/hwang/altera/11.1/quartus//sopc_builder/bin/sopc_builder.jar:/home/hwang/altera/11.1/quartus//sopc_builder/bin/PinAssigner.jar:/home/hwang/altera/11.1/quartus//sopc_builder/bin/sopc_wizard.jar:/home/hwang/altera/11.1/quartus//sopc_builder/bin/jptf.jar" sopc_builder.sopc_builder  -d"/home/hwang/altera/11.1/quartus//sopc_builder" -notalkback=1 -projectnameyysystem.qpf -projectpath/tmp/alt5330_8535968769313304912.dir/0001_sopclgen  --generate /tmp/alt5330_8535968769313304912.dir/0001_sopclgen/yysystem.v --quartus_dir="/home/hwang/altera/11.1/quartus/" --sopc_perl="/home/hwang/altera/11.1/quartus//linux/perl" --sopc_lib_path="++/home/hwang/altera/11.1/quartus//../ip/altera/sopc_builder_ip+/home/hwang/altera/11.1/quartus//../ip/altera/nios2_ip"
+2011.12.22.03:14:12 [Progress] /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so: wrong ELF class: ELFCLASS64
+2011.12.22.03:14:12 [Progress] (java:16610): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so
+2011.12.22.03:14:12 [Progress] /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so: wrong ELF class: ELFCLASS64
+2011.12.22.03:14:12 [Progress] (java:16610): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so
+2011.12.22.03:14:13 [Progress] /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so: wrong ELF class: ELFCLASS64
+2011.12.22.03:14:13 [Progress] (java:16610): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so
+2011.12.22.03:14:13 [Progress] /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so: wrong ELF class: ELFCLASS64
+2011.12.22.03:14:13 [Progress] (java:16610): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so
+2011.12.22.03:14:14 [Progress] .
+2011.12.22.03:14:15 [Progress] # 2011.12.22 03:14:14 (*) Success: sopc_builder finished.
+2011.12.22.03:14:15 [Info] tx_fifo_p0: "<b>sonic_vc</b>" instantiated <b>altera_avalon_fifo</b> "<b>tx_fifo_p0</b>"
+2011.12.22.03:14:15 [Debug] sonic_vc: queue size: 4 starting:altera_avalon_fifo "submodules/sonic_vc_tx_fifo_p1"
+2011.12.22.03:14:15 [Info] Starting classic module elaboration.
+2011.12.22.03:14:15 [Progress] "/home/hwang/altera/11.1/quartus/linux/jre/bin/java" -Xmx512M -classpath "/home/hwang/altera/11.1/quartus/sopc_builder/bin/sopc_builder.jar:/home/hwang/altera/11.1/quartus/sopc_builder/bin/PinAssigner.jar:/home/hwang/altera/11.1/quartus/sopc_builder/bin/sopc_wizard.jar:/home/hwang/altera/11.1/quartus/sopc_builder/bin/jptf.jar" sopc_builder.sopc_builder  -d"/home/hwang/altera/11.1/quartus/sopc_builder" -notalkback=1 -projectnameyysystem.qpf -projectpath/tmp/alt5330_8535968769313304912.dir/0002_sopclgen  --no_splash --refresh /tmp/alt5330_8535968769313304912.dir/0002_sopclgen/yysystem.v --quartus_dir="/home/hwang/altera/11.1/quartus" --sopc_perl="/home/hwang/altera/11.1/quartus/linux/perl" --sopc_lib_path="++/home/hwang/altera/11.1/quartus/../ip/altera/sopc_builder_ip+/home/hwang/altera/11.1/quartus/../ip/altera/nios2_ip"
+2011.12.22.03:14:16 [Progress] /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so: wrong ELF class: ELFCLASS64
+2011.12.22.03:14:16 [Progress] (java:16645): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so
+2011.12.22.03:14:16 [Progress] /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so: wrong ELF class: ELFCLASS64
+2011.12.22.03:14:16 [Progress] (java:16645): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so
+2011.12.22.03:14:17 [Progress] /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so: wrong ELF class: ELFCLASS64
+2011.12.22.03:14:17 [Progress] (java:16645): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so
+2011.12.22.03:14:17 [Progress] /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so: wrong ELF class: ELFCLASS64
+2011.12.22.03:14:17 [Progress] (java:16645): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so
+2011.12.22.03:14:17 [Info] Finished elaborating classic module.
+2011.12.22.03:14:17 [Progress] Executing: /home/hwang/altera/11.1/quartus//sopc_builder/bin/sopc_builder --classic --generate /tmp/alt5330_8535968769313304912.dir/0002_sopclgen/yysystem.ptf
+2011.12.22.03:14:17 [Info] Running sopc_builder...
+2011.12.22.03:14:18 [Progress] "/home/hwang/altera/11.1/quartus//linux/jre/bin/java" -Xmx512M -classpath "/home/hwang/altera/11.1/quartus//sopc_builder/bin/sopc_builder.jar:/home/hwang/altera/11.1/quartus//sopc_builder/bin/PinAssigner.jar:/home/hwang/altera/11.1/quartus//sopc_builder/bin/sopc_wizard.jar:/home/hwang/altera/11.1/quartus//sopc_builder/bin/jptf.jar" sopc_builder.sopc_builder  -d"/home/hwang/altera/11.1/quartus//sopc_builder" -notalkback=1 -projectnameyysystem.qpf -projectpath/tmp/alt5330_8535968769313304912.dir/0002_sopclgen  --generate /tmp/alt5330_8535968769313304912.dir/0002_sopclgen/yysystem.v --quartus_dir="/home/hwang/altera/11.1/quartus/" --sopc_perl="/home/hwang/altera/11.1/quartus//linux/perl" --sopc_lib_path="++/home/hwang/altera/11.1/quartus//../ip/altera/sopc_builder_ip+/home/hwang/altera/11.1/quartus//../ip/altera/nios2_ip"
+2011.12.22.03:14:18 [Progress] /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so: wrong ELF class: ELFCLASS64
+2011.12.22.03:14:18 [Progress] (java:16713): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so
+2011.12.22.03:14:18 [Progress] /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so: wrong ELF class: ELFCLASS64
+2011.12.22.03:14:18 [Progress] (java:16713): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so
+2011.12.22.03:14:19 [Progress] /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so: wrong ELF class: ELFCLASS64
+2011.12.22.03:14:19 [Progress] (java:16713): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so
+2011.12.22.03:14:19 [Progress] /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so: wrong ELF class: ELFCLASS64
+2011.12.22.03:14:19 [Progress] (java:16713): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/menuproxies/libappmenu.so
+2011.12.22.03:14:20 [Progress] .
+2011.12.22.03:14:21 [Progress] # 2011.12.22 03:14:21 (*) Success: sopc_builder finished.
+2011.12.22.03:14:21 [Info] tx_fifo_p1: "<b>sonic_vc</b>" instantiated <b>altera_avalon_fifo</b> "<b>tx_fifo_p1</b>"
+2011.12.22.03:14:21 [Debug] sonic_vc: queue size: 3 starting:timing_adapter "submodules/sonic_vc_multiplexer_adapter"
+2011.12.22.03:14:21 [Info] multiplexer_adapter: Starting generation. 
+2011.12.22.03:14:21 [Info] multiplexer_adapter: "<b>sonic_vc</b>" instantiated <b>timing_adapter</b> "<b>multiplexer_adapter</b>"
+2011.12.22.03:14:21 [Debug] sonic_vc: queue size: 2 starting:timing_adapter "submodules/sonic_vc_tx_fifo_p0_adapter"
+2011.12.22.03:14:21 [Info] tx_fifo_p0_adapter: Starting generation. 
+2011.12.22.03:14:21 [Info] tx_fifo_p0_adapter_fifo: Starting generation. 
+2011.12.22.03:14:21 [Info] tx_fifo_p0_adapter: "<b>sonic_vc</b>" instantiated <b>timing_adapter</b> "<b>tx_fifo_p0_adapter</b>"
+2011.12.22.03:14:21 [Debug] sonic_vc: queue size: 0 starting:altera_reset_controller "submodules/altera_reset_controller"
+2011.12.22.03:14:21 [Info] rst_controller: "<b>sonic_vc</b>" instantiated <b>altera_reset_controller</b> "<b>rst_controller</b>"
+2011.12.22.03:14:21 [Info] sonic_vc: Done <b>sonic_vc</b>" with 8 modules, 13 files, 84719 bytes
+</div>
+  <div style="width:100% ; background:#eee ; height:10px"> </div>
+ </body>
+</html>

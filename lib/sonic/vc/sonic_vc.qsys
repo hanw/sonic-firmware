@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags=""
+   categories="System" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element $${FILENAME}
+   {
+   }
+   element clk_0
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+   element demultiplexer_0
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
+   element multiplexer_0
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+   element multiplexer_adapter
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+   }
+   element tx_fifo_p0
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
+      }
+   }
+   element tx_fifo_p0_adapter
+   {
+      datum _sortIndex
+      {
+         value = "6";
+         type = "int";
+      }
+   }
+   element tx_fifo_p1
+   {
+      datum _sortIndex
+      {
+         value = "5";
+         type = "int";
+      }
+   }
+   element tx_fifo_p1_adapter
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="device" value="" />
+ <parameter name="deviceFamily" value="STRATIXIV" />
+ <parameter name="deviceSpeedGrade" value="" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="maxAdditionalLatency" value="1" />
+ <parameter name="projectName" value="" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="1" />
+ <parameter name="timeStamp" value="1324541629459" />
+ <parameter name="useTestBenchNamingPattern" value="false" />
+ <instanceScript></instanceScript>
+ <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
+ <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
+ <interface
+   name="tx_vc_in0"
+   internal="tx_fifo_p0.in"
+   type="avalon_streaming"
+   dir="end" />
+ <interface
+   name="tx_vc_in1"
+   internal="tx_fifo_p1.in"
+   type="avalon_streaming"
+   dir="end" />
+ <interface
+   name="tx_vc_out"
+   internal="multiplexer_adapter.out"
+   type="avalon_streaming"
+   dir="start" />
+ <interface
+   name="rx_vc_in"
+   internal="demultiplexer_0.in"
+   type="avalon_streaming"
+   dir="end" />
+ <interface
+   name="rx_vc_out0"
+   internal="demultiplexer_0.out0"
+   type="avalon_streaming"
+   dir="start" />
+ <interface
+   name="rx_vc_out1"
+   internal="demultiplexer_0.out1"
+   type="avalon_streaming"
+   dir="start" />
+ <module kind="clock_source" version="11.1" enabled="1" name="clk_0">
+  <parameter name="clockFrequency" value="250000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+  <parameter name="inputClockFrequency" value="0" />
+  <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module kind="multiplexer" version="11.1" enabled="1" name="multiplexer_0">
+  <parameter name="bitsPerSymbol" value="32" />
+  <parameter name="errorWidth" value="1" />
+  <parameter name="generationLanguage" value="VERILOG" />
+  <parameter name="moduleName" value="" />
+  <parameter name="numInputInterfaces" value="2" />
+  <parameter name="outChannelWidth" value="1" />
+  <parameter name="packetScheduling" value="true" />
+  <parameter name="schedulingSize" value="2" />
+  <parameter name="symbolsPerBeat" value="4" />
+  <parameter name="useHighBitsOfChannel" value="true" />
+  <parameter name="usePackets" value="true" />
+ </module>
+ <module
+   kind="demultiplexer"
+   version="11.1"
+   enabled="1"
+   name="demultiplexer_0">
+  <parameter name="bitsPerSymbol" value="32" />
+  <parameter name="errorWidth" value="0" />
+  <parameter name="generationLanguage" value="VERILOG" />
+  <parameter name="inChannelWidth" value="1" />
+  <parameter name="moduleName" value="" />
+  <parameter name="numOutputInterfaces" value="2" />
+  <parameter name="symbolsPerBeat" value="4" />
+  <parameter name="useHighBitsOfChannel" value="true" />
+  <parameter name="usePackets" value="true" />
+ </module>
+ <module
+   kind="altera_avalon_fifo"
+   version="11.1"
+   enabled="1"
+   name="tx_fifo_p0">
+  <parameter name="avalonMMAvalonMMDataWidth" value="32" />
+  <parameter name="avalonMMAvalonSTDataWidth" value="32" />
+  <parameter name="bitsPerSymbol" value="32" />
+  <parameter name="channelWidth" value="0" />
+  <parameter name="deviceFamilyString" value="Stratix IV" />
+  <parameter name="errorWidth" value="1" />
+  <parameter name="fifoDepth" value="8192" />
+  <parameter name="fifoInputInterfaceOptions" value="AVALONST_SINK" />
+  <parameter name="fifoOutputInterfaceOptions" value="AVALONST_SOURCE" />
+  <parameter name="showHiddenFeatures" value="false" />
+  <parameter name="singleClockMode" value="true" />
+  <parameter name="singleResetMode" value="false" />
+  <parameter name="symbolsPerBeat" value="4" />
+  <parameter name="useBackpressure" value="true" />
+  <parameter name="useIRQ" value="false" />
+  <parameter name="usePacket" value="true" />
+  <parameter name="useReadControl" value="false" />
+  <parameter name="useRegister" value="false" />
+  <parameter name="useWriteControl" value="false" />
+ </module>
+ <module
+   kind="altera_avalon_fifo"
+   version="11.1"
+   enabled="1"
+   name="tx_fifo_p1">
+  <parameter name="avalonMMAvalonMMDataWidth" value="32" />
+  <parameter name="avalonMMAvalonSTDataWidth" value="32" />
+  <parameter name="bitsPerSymbol" value="32" />
+  <parameter name="channelWidth" value="0" />
+  <parameter name="deviceFamilyString" value="Stratix IV" />
+  <parameter name="errorWidth" value="1" />
+  <parameter name="fifoDepth" value="8192" />
+  <parameter name="fifoInputInterfaceOptions" value="AVALONST_SINK" />
+  <parameter name="fifoOutputInterfaceOptions" value="AVALONST_SOURCE" />
+  <parameter name="showHiddenFeatures" value="false" />
+  <parameter name="singleClockMode" value="true" />
+  <parameter name="singleResetMode" value="false" />
+  <parameter name="symbolsPerBeat" value="4" />
+  <parameter name="useBackpressure" value="true" />
+  <parameter name="useIRQ" value="true" />
+  <parameter name="usePacket" value="true" />
+  <parameter name="useReadControl" value="false" />
+  <parameter name="useRegister" value="false" />
+  <parameter name="useWriteControl" value="false" />
+ </module>
+ <module
+   kind="timing_adapter"
+   version="11.1"
+   enabled="1"
+   name="multiplexer_adapter">
+  <parameter name="generationLanguage" value="VERILOG" />
+  <parameter name="inBitsPerSymbol" value="32" />
+  <parameter name="inChannelWidth" value="1" />
+  <parameter name="inErrorDescriptor" value="" />
+  <parameter name="inErrorWidth" value="1" />
+  <parameter name="inMaxChannel" value="1" />
+  <parameter name="inReadyLatency" value="0" />
+  <parameter name="inSymbolsPerBeat" value="4" />
+  <parameter name="inUseEmpty" value="false" />
+  <parameter name="inUseEmptyPort" value="YES" />
+  <parameter name="inUsePackets" value="true" />
+  <parameter name="inUseReady" value="true" />
+  <parameter name="inUseValid" value="true" />
+  <parameter name="moduleName" value="" />
+  <parameter name="outReadyLatency" value="2" />
+  <parameter name="outUseReady" value="true" />
+  <parameter name="outUseValid" value="true" />
+ </module>
+ <module
+   kind="timing_adapter"
+   version="11.1"
+   enabled="1"
+   name="tx_fifo_p0_adapter">
+  <parameter name="generationLanguage" value="VERILOG" />
+  <parameter name="inBitsPerSymbol" value="32" />
+  <parameter name="inChannelWidth" value="0" />
+  <parameter name="inErrorDescriptor" value="" />
+  <parameter name="inErrorWidth" value="1" />
+  <parameter name="inMaxChannel" value="0" />
+  <parameter name="inReadyLatency" value="1" />
+  <parameter name="inSymbolsPerBeat" value="4" />
+  <parameter name="inUseEmpty" value="false" />
+  <parameter name="inUseEmptyPort" value="YES" />
+  <parameter name="inUsePackets" value="true" />
+  <parameter name="inUseReady" value="true" />
+  <parameter name="inUseValid" value="true" />
+  <parameter name="moduleName" value="" />
+  <parameter name="outReadyLatency" value="0" />
+  <parameter name="outUseReady" value="true" />
+  <parameter name="outUseValid" value="true" />
+ </module>
+ <module
+   kind="timing_adapter"
+   version="11.1"
+   enabled="1"
+   name="tx_fifo_p1_adapter">
+  <parameter name="generationLanguage" value="VERILOG" />
+  <parameter name="inBitsPerSymbol" value="32" />
+  <parameter name="inChannelWidth" value="0" />
+  <parameter name="inErrorDescriptor" value="" />
+  <parameter name="inErrorWidth" value="1" />
+  <parameter name="inMaxChannel" value="0" />
+  <parameter name="inReadyLatency" value="1" />
+  <parameter name="inSymbolsPerBeat" value="4" />
+  <parameter name="inUseEmpty" value="false" />
+  <parameter name="inUseEmptyPort" value="YES" />
+  <parameter name="inUsePackets" value="true" />
+  <parameter name="inUseReady" value="true" />
+  <parameter name="inUseValid" value="true" />
+  <parameter name="moduleName" value="" />
+  <parameter name="outReadyLatency" value="0" />
+  <parameter name="outUseReady" value="true" />
+  <parameter name="outUseValid" value="true" />
+ </module>
+ <connection kind="clock" version="11.1" start="clk_0.clk" end="multiplexer_0.clk" />
+ <connection
+   kind="reset"
+   version="11.1"
+   start="clk_0.clk_reset"
+   end="multiplexer_0.reset" />
+ <connection
+   kind="clock"
+   version="11.1"
+   start="clk_0.clk"
+   end="demultiplexer_0.clk" />
+ <connection
+   kind="reset"
+   version="11.1"
+   start="clk_0.clk_reset"
+   end="demultiplexer_0.reset" />
+ <connection kind="clock" version="11.1" start="clk_0.clk" end="tx_fifo_p0.clk_in" />
+ <connection
+   kind="reset"
+   version="11.1"
+   start="clk_0.clk_reset"
+   end="tx_fifo_p0.reset_in" />
+ <connection kind="clock" version="11.1" start="clk_0.clk" end="tx_fifo_p1.clk_in" />
+ <connection
+   kind="reset"
+   version="11.1"
+   start="clk_0.clk_reset"
+   end="tx_fifo_p1.reset_in" />
+ <connection
+   kind="avalon_streaming"
+   version="11.1"
+   start="multiplexer_0.out"
+   end="multiplexer_adapter.in" />
+ <connection
+   kind="clock"
+   version="11.1"
+   start="clk_0.clk"
+   end="multiplexer_adapter.clk" />
+ <connection
+   kind="reset"
+   version="11.1"
+   start="clk_0.clk_reset"
+   end="multiplexer_adapter.reset" />
+ <connection
+   kind="avalon_streaming"
+   version="11.1"
+   start="tx_fifo_p0.out"
+   end="tx_fifo_p0_adapter.in" />
+ <connection
+   kind="avalon_streaming"
+   version="11.1"
+   start="tx_fifo_p0_adapter.out"
+   end="multiplexer_0.in0" />
+ <connection
+   kind="clock"
+   version="11.1"
+   start="clk_0.clk"
+   end="tx_fifo_p0_adapter.clk" />
+ <connection
+   kind="reset"
+   version="11.1"
+   start="clk_0.clk_reset"
+   end="tx_fifo_p0_adapter.reset" />
+ <connection
+   kind="avalon_streaming"
+   version="11.1"
+   start="tx_fifo_p1.out"
+   end="tx_fifo_p1_adapter.in" />
+ <connection
+   kind="avalon_streaming"
+   version="11.1"
+   start="tx_fifo_p1_adapter.out"
+   end="multiplexer_0.in1" />
+ <connection
+   kind="clock"
+   version="11.1"
+   start="clk_0.clk"
+   end="tx_fifo_p1_adapter.clk" />
+ <connection
+   kind="reset"
+   version="11.1"
+   start="clk_0.clk_reset"
+   end="tx_fifo_p1_adapter.reset" />
+</system>

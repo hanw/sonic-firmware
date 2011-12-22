@@ -3,6 +3,7 @@ lib/sonic/xcvr_xg/pma/sonic_pma_v1_01_sim/
 lib/sonic/xcvr_xg/sonic_v1_15/simulation/
 lib/sonic/xcvr_xg/sonic_v1_15.html
 lib/sonic/pcie/db/
+lib/sonic/vc/.qsys-edit/
 lib/sonic/pcie/top_examples/
 lib/sonic/ram/greybox_tmp/
 lib/sonic/ram/sim/

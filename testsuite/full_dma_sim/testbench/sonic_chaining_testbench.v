@@ -30,8 +30,6 @@ module sonic_chaining_testbench
   parameter NUM_CONNECTED_LANES = 8;
   parameter FAST_COUNTERS = 1'b1;
 
-
-
   wire             bfm_log_common_dummy_out;
   wire             bfm_req_intf_common_dummy_out;
   wire             bfm_shmem_common_dummy_out;
@@ -342,7 +340,9 @@ module sonic_chaining_testbench
   assign rp_rx_in7 = tx_out7;
   assign local_rstn = 1;
   assign test_in[2 : 1] = 0;
-  assign test_in[8 : 4] = 0;
+  assign test_in[4] = 0;
+   assign test_in[5] = 1;
+   assign test_in[8 : 6] = 0;
   assign test_in[9] = 1;
   assign test_in[39 : 10] = 0;
   //Bit 3: Work around simulation Reciever Detect issue for Stratix IV GX
@@ -568,9 +568,9 @@ module sonic_chaining_testbench
       .rate_ext (rate_ext),
       .ref_clk_sel_code (ref_clk_sel_code),
       .refclk (refclk),
-	  .gen2_speed(),
-	  .pcie_reconfig_busy(),
-	  .rc_pll_locked(),
+     .gen2_speed(),
+     .pcie_reconfig_busy(),
+     .rc_pll_locked(),
       .rx_in0 (rx_in0),
       .rx_in1 (rx_in1),
       .rx_in2 (rx_in2),

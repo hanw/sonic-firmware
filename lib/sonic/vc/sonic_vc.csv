@@ -1,0 +1,33 @@
+# system info sonic_vc on 2011.12.20.22:43:29
+system_info:
+name,value
+DEVICE,
+DEVICE_FAMILY,Stratix IV
+GENERATION_ID,1324438995
+#
+#
+# Files generated for sonic_vc on 2011.12.20.22:43:29
+files:
+filepath,kind,attributes,module,is_top
+sonic_vc/simulation/sonic_vc.v,VERILOG,,sonic_vc,true
+sonic_vc/simulation/submodules/sonic_vc_multiplexer_0.v,VERILOG,,sonic_vc_multiplexer_0,false
+sonic_vc/simulation/submodules/sonic_vc_demultiplexer_0.v,VERILOG,,sonic_vc_demultiplexer_0,false
+sonic_vc/simulation/submodules/sonic_vc_tx_fifo_p0.v,VERILOG,,sonic_vc_tx_fifo_p0,false
+sonic_vc/simulation/submodules/sonic_vc_tx_fifo_p1.v,VERILOG,,sonic_vc_tx_fifo_p1,false
+sonic_vc/simulation/submodules/sonic_vc_multiplexer_adapter.v,VERILOG,,sonic_vc_multiplexer_adapter,false
+sonic_vc/simulation/submodules/sonic_vc_timing_adapter.v,VERILOG,,sonic_vc_timing_adapter,false
+sonic_vc/simulation/submodules/sonic_vc_timing_adapter_fifo.v,VERILOG,,sonic_vc_timing_adapter,false
+sonic_vc/simulation/submodules/altera_reset_controller.v,VERILOG,,altera_reset_controller,false
+sonic_vc/simulation/submodules/altera_reset_synchronizer.v,VERILOG,,altera_reset_controller,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+sonic_vc.multiplexer_0,sonic_vc_multiplexer_0
+sonic_vc.demultiplexer_0,sonic_vc_demultiplexer_0
+sonic_vc.tx_fifo_p0,sonic_vc_tx_fifo_p0
+sonic_vc.tx_fifo_p1,sonic_vc_tx_fifo_p1
+sonic_vc.multiplexer_adapter,sonic_vc_multiplexer_adapter
+sonic_vc.timing_adapter,sonic_vc_timing_adapter
+sonic_vc.timing_adapter_1,sonic_vc_timing_adapter
+sonic_vc.rst_controller,altera_reset_controller
