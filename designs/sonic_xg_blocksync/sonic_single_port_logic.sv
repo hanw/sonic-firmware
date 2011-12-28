@@ -716,9 +716,9 @@ module sonic_single_port_logic
    /*
     * Synchronized reset
     */
-   reg 				   tx_ctl_reset;
+   reg 				   rx_ctl_reset;
    always @ (posedge clk_in) begin
-      tx_ctl_reset <= ~hw_rstn | ~sw_rstn;
+      rx_ctl_reset <= ~hw_rstn | ~sw_rstn;
    end
       
    sonic_rx_chan_66 sonic_rx_buf (
@@ -751,8 +751,10 @@ module sonic_single_port_logic
 
    wire 			   tag_cpl;
 
-   wire 			   tx_ctl_reset;
-   assign tx_ctl_reset = ~hw_rstn | ~sw_rstn;
+   reg 				   tx_ctl_reset;
+   always @ (posedge clk_in) begin
+      tx_ctl_reset <= ~hw_rstn | ~sw_rstn;
+   end
    
    sonic_tx_chan_66 sonic_tx_buf(
 				 .data_in(writedata_dmard),
