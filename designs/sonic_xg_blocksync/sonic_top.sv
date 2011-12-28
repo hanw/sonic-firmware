@@ -755,7 +755,6 @@ module sonic_top (
     */
    
    always @ (rx_vc_in_sop) begin
-      rx_vc_in_chan = 1'b0;
       if (rx_vc_in_sop == 1) begin
 	 casez (rx_vc_in_data[22:20]) // TLP header byte 0-3
 	   3'b0??: rx_vc_in_chan = 1'b0;
