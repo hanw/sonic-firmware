@@ -11,9 +11,9 @@
 // agreement for further details.
 
 
-// $Id: //acds/rel/11.1/ip/merlin/altera_reset_controller/altera_reset_controller.v#1 $
+// $Id: //acds/rel/11.0/ip/merlin/altera_reset_controller/altera_reset_controller.v#1 $
 // $Revision: #1 $
-// $Date: 2011/08/15 $
+// $Date: 2011/02/14 $
 // $Author: max $
 
 // --------------------------------------

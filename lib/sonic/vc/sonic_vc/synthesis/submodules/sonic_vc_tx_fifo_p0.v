@@ -62,7 +62,7 @@ module sonic_vc_tx_fifo_p0_single_clock_fifo (
     );
 
   defparam single_clock_fifo.add_ram_output_register = "OFF",
-           single_clock_fifo.intended_device_family = "STRATIXIV",
+           single_clock_fifo.intended_device_family = "STRATIXII",
            single_clock_fifo.lpm_numwords = 8192,
            single_clock_fifo.lpm_showahead = "OFF",
            single_clock_fifo.lpm_type = "scfifo",

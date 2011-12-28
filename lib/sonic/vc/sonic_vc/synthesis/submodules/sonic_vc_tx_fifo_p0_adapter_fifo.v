@@ -46,12 +46,12 @@ module sonic_vc_tx_fifo_p0_adapter_fifo (
 //      out_valid = !empty;
       out_ready_vector[0] = out_ready;
       in_ready  = !full;
-      next_wr_addr = wr_addr + 1'b1;
-      next_rd_addr = rd_addr + 1'b1;
+      next_wr_addr = wr_addr + 1;
+      next_rd_addr = rd_addr + 1;
 	    fill_level[ADDR_WIDTH-1:0] = wr_addr - rd_addr;
 	    fill_level[ADDR_WIDTH] = 0;
 	    if (full)
-	       fill_level = DEPTH[ADDR_WIDTH:0];
+	       fill_level = DEPTH;
    end
    
    // ---------------------------------------------------------------------

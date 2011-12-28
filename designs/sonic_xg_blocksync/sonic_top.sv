@@ -355,8 +355,6 @@ module sonic_top (
    wire [6:0] 	    open_cpl_err;
    wire [127:0]     open_err_desc;
    
-   wire [  7: 0]    rx_st_bardec1;
-   wire [ 15: 0]    rx_st_be1;
    wire [127: 0]    rx_st_data1;
    wire             rx_st_eop1;
    wire             open_rx_st_err0;
@@ -487,7 +485,12 @@ module sonic_top (
    wire 	    rx_vc_in_eop;
    reg 		    rx_vc_in_chan;
    wire 	    rx_vc_in_empty;
-      
+
+   reg [7:0] 	    rx_st_bardec_r;
+   reg [7:0] 	    rx_st_bardec_rr;
+   reg [15:0] 	    rx_st_be_r;
+   reg [15:0] 	    rx_st_be_rr;
+   
    assign ref_clk_sel_code = 0;
    assign lane_width_code = 3;
    assign phy_sel_code = 6;
@@ -499,8 +502,8 @@ module sonic_top (
 
    assign tx_st_sop0 = tx_stream_data0[73];
    assign tx_st_err0 = tx_stream_data0[74];
-   assign rx_stream_data0 = {rx_st_be0[7 : 0], rx_st_sop0, rx_st_empty0, rx_st_bardec0, rx_st_data0[63 : 0]};
-   assign rx_stream_data0_1 = {rx_st_be0[15 : 8], rx_st_sop0, rx_st_eop0, rx_st_bardec0, rx_st_data0[127 : 64]};
+   assign rx_stream_data0 = {rx_st_be_rr[7 : 0], rx_st_sop0, rx_st_empty0, rx_st_bardec_rr, rx_st_data0[63 : 0]};
+   assign rx_stream_data0_1 = {rx_st_be_rr[15 : 8], rx_st_sop0, rx_st_eop0, rx_st_bardec_rr, rx_st_data0[127 : 64]};
    assign tx_st_data0 = {tx_stream_data0_1[63 : 0],tx_stream_data0[63 : 0]};
    assign tx_st_eop0 = tx_stream_data0_1[72];
    assign tx_st_empty0 = tx_stream_data0[72];
@@ -513,8 +516,8 @@ module sonic_top (
    assign tx_st_err1 = tx_stream_data1[74];
    assign tx_st_data1 = {tx_stream_data1_1[63:0], tx_stream_data1[63:0]};
    assign tx_st_empty1 = tx_stream_data1[72];
-   assign rx_stream_data1 = {rx_st_be1[7:0], rx_st_sop1, rx_st_empty1, rx_st_bardec1, rx_st_data1[63:0]};
-   assign rx_stream_data1_1 = {rx_st_be1[15:0], rx_st_sop1, rx_st_eop1, rx_st_bardec1, rx_st_data1[127:64]};
+   assign rx_stream_data1 = {rx_st_be_rr[7:0], rx_st_sop1, rx_st_empty1, rx_st_bardec_rr, rx_st_data1[63:0]};
+   assign rx_stream_data1_1 = {rx_st_be_rr[15:0], rx_st_sop1, rx_st_eop1, rx_st_bardec_rr, rx_st_data1[127:64]};
    assign gnd_tx_stream_mask0 = 1'b0;
    assign gnd_tx_stream_mask1 = 1'b0;
    
@@ -572,8 +575,8 @@ module sonic_top (
       .rx_in5 (rx_in5),
       .rx_in6 (rx_in6),
       .rx_in7 (rx_in7),
-      .rx_st_bardec0 (rx_st_bardec0), //FIX, sync with Avalon-ST
-      .rx_st_be0 (rx_st_be0), //FIX,
+      .rx_st_bardec0 (rx_st_bardec0),
+      .rx_st_be0 (rx_st_be0), 
       .rx_st_data0 (rx_vc_in_data),
       .rx_st_empty0 (rx_vc_in_empty), //bit[1] of demultiplexer.empty
       .rx_st_eop0 (rx_vc_in_eop),
@@ -752,20 +755,25 @@ module sonic_top (
     */
    
    always @ (rx_vc_in_sop) begin
+      rx_vc_in_chan = 1'b0;
       if (rx_vc_in_sop == 1) begin
-	 case (rx_vc_in_data[22:20])  // TLP header byte 0 - 3
-	   0:
-	     rx_vc_in_chan = 0;
-	   1:
-	     rx_vc_in_chan = 0;
-	   5:
-	     rx_vc_in_chan = 1;
-	   default:
-	     rx_vc_in_chan = 0;
-	 endcase // case (rx_vc_in_data[23:21])
+	 casez (rx_vc_in_data[22:20]) // TLP header byte 0-3
+	   3'b0??: rx_vc_in_chan = 1'b0;
+	   3'b1??: rx_vc_in_chan = 1'b1;
+	 endcase // casez (rx_vc_in_data[22:20])
       end // if (rx_vc_in_sop == 1)
    end
-      
+
+   /*
+    * Match delay of sonic vc Rx demultiplexer
+    */
+   always @(posedge pld_clk) begin
+      rx_st_bardec_rr <= rx_st_bardec_r;
+      rx_st_bardec_r <= rx_st_bardec0;
+      rx_st_be_rr <= rx_st_be_r;
+      rx_st_be_r <= rx_st_be0;
+   end
+   
    sonic_vc vc (
 		.clk_clk                  (pld_clk),          //        clk.clk
 		.reset_reset_n            (srstn),            //      reset.reset_n

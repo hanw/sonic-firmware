@@ -11,15 +11,15 @@
 // agreement for further details.
 
 
-// $Id: //acds/rel/11.1/ip/merlin/altera_reset_controller/altera_reset_synchronizer.v#1 $
-// $Revision: #1 $
-// $Date: 2011/08/15 $
-// $Author: max $
+// $Id: //acds/rel/11.0/ip/merlin/altera_reset_controller/altera_reset_synchronizer.v#2 $
+// $Revision: #2 $
+// $Date: 2011/04/04 $
+// $Author: aferrucc $
 
 // -----------------------------------------------
 // Reset Synchronizer
 // -----------------------------------------------
-`timescale 1 ns / 1 ns
+`timescale 1ns / 1ns
 
 module altera_reset_synchronizer
 #(

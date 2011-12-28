@@ -39,7 +39,8 @@ module sonic_rx_ctl_66 (/*AUTOARG*/
    
    // rx_cbuf_wrreq: '1' when data from gearbox is valid, and block sync is locked.
    // rx_cbuf_wrena: enabled when xcvr is enabled, and signal is good, and buffer not full.
-   assign rx_cbuf_wrena = wrena && ~rx_full;
+//   assign rx_cbuf_wrena = wrena && ~rx_full;
+   assign rx_cbuf_wrena = wrena;
    
    // rx_cbuf_rdreq: dma controlled.
    // rx_cbuf_rdena: enabled when xcvr is enabled, and signal is good, and buffer not empty.

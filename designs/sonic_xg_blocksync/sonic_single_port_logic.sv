@@ -713,9 +713,14 @@ module sonic_single_port_logic
     *
     */
 
-   wire 			   rx_ctl_reset;
-   assign rx_ctl_reset = ~hw_rstn | ~sw_rstn;
-   
+   /*
+    * Synchronized reset
+    */
+   reg 				   tx_ctl_reset;
+   always @ (posedge clk_in) begin
+      tx_ctl_reset <= ~hw_rstn | ~sw_rstn;
+   end
+      
    sonic_rx_chan_66 sonic_rx_buf (
 				  .data_in(xcvr_rx_dataout),
 				  .data_out(readdata_dmawr),

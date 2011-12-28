@@ -1,40 +1,13 @@
-set_global_assignment -entity "sonic_vc" -library "lib_sonic_vc" -name IP_TOOL_NAME "qsys"
-set_global_assignment -entity "sonic_vc" -library "lib_sonic_vc" -name IP_TOOL_VERSION "11.1"
-set_global_assignment -entity "sonic_vc" -library "lib_sonic_vc" -name IP_TOOL_ENV "qsys"
-set_global_assignment -library "lib_sonic_vc" -name MISC_FILE [file join $::quartus(qip_path) ../../sonic_vc.sopcinfo]
-set_instance_assignment -entity "sonic_vc" -library "lib_sonic_vc" -name SLD_INFO "QSYS_NAME sonic_vc HAS_SOPCINFO 1 GENERATION_ID 1324541648"
-set_global_assignment -library "lib_sonic_vc" -name MISC_FILE [file join $::quartus(qip_path) ../../sonic_vc.qsys]
-
-set_global_assignment -library "lib_sonic_vc" -name VERILOG_FILE [file join $::quartus(qip_path) sonic_vc.v]
-set_global_assignment -library "lib_sonic_vc" -name VERILOG_FILE [file join $::quartus(qip_path) submodules/altera_reset_controller.v]
-set_global_assignment -library "lib_sonic_vc" -name VERILOG_FILE [file join $::quartus(qip_path) submodules/altera_reset_synchronizer.v]
-set_global_assignment -library "lib_sonic_vc" -name SDC_FILE [file join $::quartus(qip_path) submodules/altera_reset_controller.sdc]
-set_global_assignment -library "lib_sonic_vc" -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_tx_fifo_p0_adapter.v]
-set_global_assignment -library "lib_sonic_vc" -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_tx_fifo_p0_adapter_fifo.v]
-set_global_assignment -library "lib_sonic_vc" -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_multiplexer_adapter.v]
-set_global_assignment -library "lib_sonic_vc" -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_tx_fifo_p1.v]
-set_global_assignment -library "lib_sonic_vc" -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_tx_fifo_p0.v]
-set_global_assignment -library "lib_sonic_vc" -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_demultiplexer_0.v]
-set_global_assignment -library "lib_sonic_vc" -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_multiplexer_0.v]
-
-set_global_assignment -entity "altera_reset_controller" -library "lib_sonic_vc" -name IP_TOOL_NAME "altera_reset_controller"
-set_global_assignment -entity "altera_reset_controller" -library "lib_sonic_vc" -name IP_TOOL_VERSION "11.1"
-set_global_assignment -entity "altera_reset_controller" -library "lib_sonic_vc" -name IP_TOOL_ENV "qsys"
-set_global_assignment -entity "sonic_vc_tx_fifo_p0_adapter" -library "lib_sonic_vc" -name IP_TOOL_NAME "timing_adapter"
-set_global_assignment -entity "sonic_vc_tx_fifo_p0_adapter" -library "lib_sonic_vc" -name IP_TOOL_VERSION "11.1"
-set_global_assignment -entity "sonic_vc_tx_fifo_p0_adapter" -library "lib_sonic_vc" -name IP_TOOL_ENV "qsys"
-set_global_assignment -entity "sonic_vc_multiplexer_adapter" -library "lib_sonic_vc" -name IP_TOOL_NAME "timing_adapter"
-set_global_assignment -entity "sonic_vc_multiplexer_adapter" -library "lib_sonic_vc" -name IP_TOOL_VERSION "11.1"
-set_global_assignment -entity "sonic_vc_multiplexer_adapter" -library "lib_sonic_vc" -name IP_TOOL_ENV "qsys"
-set_global_assignment -entity "sonic_vc_tx_fifo_p1" -library "lib_sonic_vc" -name IP_TOOL_NAME "altera_avalon_fifo"
-set_global_assignment -entity "sonic_vc_tx_fifo_p1" -library "lib_sonic_vc" -name IP_TOOL_VERSION "11.1"
-set_global_assignment -entity "sonic_vc_tx_fifo_p1" -library "lib_sonic_vc" -name IP_TOOL_ENV "qsys"
-set_global_assignment -entity "sonic_vc_tx_fifo_p0" -library "lib_sonic_vc" -name IP_TOOL_NAME "altera_avalon_fifo"
-set_global_assignment -entity "sonic_vc_tx_fifo_p0" -library "lib_sonic_vc" -name IP_TOOL_VERSION "11.1"
-set_global_assignment -entity "sonic_vc_tx_fifo_p0" -library "lib_sonic_vc" -name IP_TOOL_ENV "qsys"
-set_global_assignment -entity "sonic_vc_demultiplexer_0" -library "lib_sonic_vc" -name IP_TOOL_NAME "demultiplexer"
-set_global_assignment -entity "sonic_vc_demultiplexer_0" -library "lib_sonic_vc" -name IP_TOOL_VERSION "11.1"
-set_global_assignment -entity "sonic_vc_demultiplexer_0" -library "lib_sonic_vc" -name IP_TOOL_ENV "qsys"
-set_global_assignment -entity "sonic_vc_multiplexer_0" -library "lib_sonic_vc" -name IP_TOOL_NAME "multiplexer"
-set_global_assignment -entity "sonic_vc_multiplexer_0" -library "lib_sonic_vc" -name IP_TOOL_VERSION "11.1"
-set_global_assignment -entity "sonic_vc_multiplexer_0" -library "lib_sonic_vc" -name IP_TOOL_ENV "qsys"
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sonic_vc.v] -library lib_sonic_vc
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_multiplexer_0.v] -library lib_sonic_vc
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_demultiplexer_0.v] -library lib_sonic_vc
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_tx_fifo_p0.v] -library lib_sonic_vc
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_tx_fifo_p1.v] -library lib_sonic_vc
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_multiplexer_adapter.v] -library lib_sonic_vc
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_tx_fifo_p0_adapter.v] -library lib_sonic_vc
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_tx_fifo_p0_adapter_fifo.v] -library lib_sonic_vc
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) submodules/altera_reset_controller.v] -library lib_sonic_vc
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) submodules/altera_reset_synchronizer.v] -library lib_sonic_vc
+set_global_assignment -name SDC_FILE [file join $::quartus(qip_path) submodules/altera_reset_controller.sdc] -library lib_sonic_vc
+set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID ipds 
+ 
