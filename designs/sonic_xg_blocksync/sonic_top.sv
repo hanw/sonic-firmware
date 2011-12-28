@@ -754,8 +754,16 @@ module sonic_top (
     * sonic_vc: for arbitrating two avalon-st into one.
     */
    
-   always @ (rx_vc_in_sop) begin
-      if (rx_vc_in_sop == 1) begin
+   always_latch begin
+      if ((rx_vc_in_sop == 1) &&
+	  ((rx_vc_in_data[31:24] == 8'h40) || 
+	   (rx_vc_in_data[31:24] == 8'h60) ||
+	   (rx_vc_in_data[31:24] == 8'h45) ||
+	   (rx_vc_in_data[31:24] == 8'h42) ||
+	   (rx_vc_in_data[31:24] == 8'h4A) ||
+	   (rx_vc_in_data[31:24] == 8'h4B) ||
+	   (rx_vc_in_data[31:24] == 8'h06) ||
+	   (rx_vc_in_data[31:24] == 8'h0B))) begin
 	 casez (rx_vc_in_data[22:20]) // TLP header byte 0-3
 	   3'b0??: rx_vc_in_chan = 1'b0;
 	   3'b1??: rx_vc_in_chan = 1'b1;
@@ -763,7 +771,7 @@ module sonic_top (
       end // if (rx_vc_in_sop == 1)
    end
 
-   /*
+   /* 
     * Match delay of sonic vc Rx demultiplexer
     */
    always @(posedge pld_clk) begin
