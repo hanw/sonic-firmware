@@ -755,7 +755,10 @@ module sonic_top (
     */
    
    always_latch begin
-      if ((rx_vc_in_sop == 1) &&
+      if (srstn == 1'b0) begin
+	 rx_vc_in_chan = 1'b0;
+      end
+      else if ((rx_vc_in_sop == 1) &&
 	  ((rx_vc_in_data[31:24] == 8'h40) || 
 	   (rx_vc_in_data[31:24] == 8'h60) ||
 	   (rx_vc_in_data[31:24] == 8'h45) ||
