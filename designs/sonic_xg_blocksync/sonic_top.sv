@@ -486,10 +486,18 @@ module sonic_top (
    reg 		    rx_vc_in_chan;
    wire 	    rx_vc_in_empty;
 
+   reg [127:0] 	    rx_vc_in_data_r;
+   reg 		    rx_vc_in_valid_r;
+   reg 		    rx_vc_in_sop_r;
+   reg 		    rx_vc_in_eop_r;
+   reg 		    rx_vc_in_empty_r;
+   
    reg [7:0] 	    rx_st_bardec_r;
    reg [7:0] 	    rx_st_bardec_rr;
+   reg [7:0] 	    rx_st_bardec_rrr;
    reg [15:0] 	    rx_st_be_r;
    reg [15:0] 	    rx_st_be_rr;
+   reg [15:0] 	    rx_st_be_rrr;
    
    assign ref_clk_sel_code = 0;
    assign lane_width_code = 3;
@@ -502,8 +510,8 @@ module sonic_top (
 
    assign tx_st_sop0 = tx_stream_data0[73];
    assign tx_st_err0 = tx_stream_data0[74];
-   assign rx_stream_data0 = {rx_st_be_rr[7 : 0], rx_st_sop0, rx_st_empty0, rx_st_bardec_rr, rx_st_data0[63 : 0]};
-   assign rx_stream_data0_1 = {rx_st_be_rr[15 : 8], rx_st_sop0, rx_st_eop0, rx_st_bardec_rr, rx_st_data0[127 : 64]};
+   assign rx_stream_data0 = {rx_st_be_rrr[7 : 0], rx_st_sop0, rx_st_empty0, rx_st_bardec_rrr, rx_st_data0[63 : 0]};
+   assign rx_stream_data0_1 = {rx_st_be_rrr[15 : 8], rx_st_sop0, rx_st_eop0, rx_st_bardec_rrr, rx_st_data0[127 : 64]};
    assign tx_st_data0 = {tx_stream_data0_1[63 : 0],tx_stream_data0[63 : 0]};
    assign tx_st_eop0 = tx_stream_data0_1[72];
    assign tx_st_empty0 = tx_stream_data0[72];
@@ -516,8 +524,8 @@ module sonic_top (
    assign tx_st_err1 = tx_stream_data1[74];
    assign tx_st_data1 = {tx_stream_data1_1[63:0], tx_stream_data1[63:0]};
    assign tx_st_empty1 = tx_stream_data1[72];
-   assign rx_stream_data1 = {rx_st_be_rr[7:0], rx_st_sop1, rx_st_empty1, rx_st_bardec_rr, rx_st_data1[63:0]};
-   assign rx_stream_data1_1 = {rx_st_be_rr[15:0], rx_st_sop1, rx_st_eop1, rx_st_bardec_rr, rx_st_data1[127:64]};
+   assign rx_stream_data1 = {rx_st_be_rrr[7:0], rx_st_sop1, rx_st_empty1, rx_st_bardec_rrr, rx_st_data1[63:0]};
+   assign rx_stream_data1_1 = {rx_st_be_rrr[15:0], rx_st_sop1, rx_st_eop1, rx_st_bardec_rrr, rx_st_data1[127:64]};
    assign gnd_tx_stream_mask0 = 1'b0;
    assign gnd_tx_stream_mask1 = 1'b0;
    
@@ -754,9 +762,9 @@ module sonic_top (
     * sonic_vc: for arbitrating two avalon-st into one.
     */
    
-   always_latch begin
+   always @ (posedge pld_clk) begin
       if (srstn == 1'b0) begin
-	 rx_vc_in_chan = 1'b0;
+	 rx_vc_in_chan <= 1'b0;
       end
       else if ((rx_vc_in_sop == 1) &&
 	  ((rx_vc_in_data[31:24] == 8'h40) || 
@@ -768,18 +776,28 @@ module sonic_top (
 	   (rx_vc_in_data[31:24] == 8'h06) ||
 	   (rx_vc_in_data[31:24] == 8'h0B))) begin
 	 casez (rx_vc_in_data[22:20]) // TLP header byte 0-3
-	   3'b0??: rx_vc_in_chan = 1'b0;
-	   3'b1??: rx_vc_in_chan = 1'b1;
+	   3'b0??: rx_vc_in_chan <= 1'b0;
+	   3'b1??: rx_vc_in_chan <= 1'b1;
 	 endcase // casez (rx_vc_in_data[22:20])
       end // if (rx_vc_in_sop == 1)
    end
 
+   always @ (posedge pld_clk) begin
+      rx_vc_in_data_r  <= rx_vc_in_data;
+      rx_vc_in_valid_r <= rx_vc_in_valid;
+      rx_vc_in_sop_r   <= rx_vc_in_sop;
+      rx_vc_in_eop_r   <= rx_vc_in_eop;
+      rx_vc_in_empty_r <= rx_vc_in_empty;
+   end
+   
    /* 
     * Match delay of sonic vc Rx demultiplexer
     */
    always @(posedge pld_clk) begin
+      rx_st_bardec_rrr <= rx_st_bardec_rr;
       rx_st_bardec_rr <= rx_st_bardec_r;
       rx_st_bardec_r <= rx_st_bardec0;
+      rx_st_be_rrr <= rx_st_be_rr;
       rx_st_be_rr <= rx_st_be_r;
       rx_st_be_r <= rx_st_be0;
    end
@@ -810,12 +828,12 @@ module sonic_top (
 		.tx_vc_out_empty          (tx_vc_out_empty),  //           .empty
 		.tx_vc_out_error          (tx_vc_out_err),    //           .error
 		.rx_vc_in_channel         (rx_vc_in_chan),    //   rx_vc_in.channel
-		.rx_vc_in_valid           (rx_vc_in_valid),   //           .valid
+		.rx_vc_in_valid           (rx_vc_in_valid_r),   //           .valid
 		.rx_vc_in_ready           (rx_vc_in_ready),   //           .ready
-		.rx_vc_in_data            (rx_vc_in_data),    //           .data
-		.rx_vc_in_startofpacket   (rx_vc_in_sop),     //           .startofpacket
-		.rx_vc_in_endofpacket     (rx_vc_in_eop),     //           .endofpacket
-		.rx_vc_in_empty           (rx_vc_in_empty), //      .empty
+		.rx_vc_in_data            (rx_vc_in_data_r),    //           .data
+		.rx_vc_in_startofpacket   (rx_vc_in_sop_r),     //           .startofpacket
+		.rx_vc_in_endofpacket     (rx_vc_in_eop_r),     //           .endofpacket
+		.rx_vc_in_empty           (rx_vc_in_empty_r), //      .empty
 		.rx_vc_out0_valid         (rx_stream_valid0), // rx_vc_out0.valid
 		.rx_vc_out0_ready         (rx_stream_ready0), //           .ready
 		.rx_vc_out0_data          (rx_st_data0),      //           .data
