@@ -116,10 +116,11 @@ set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/xcvr_xg/sonic_v1_15
 set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/xcvr_xg/sonic_v1_15/synthesis/submodules/altera_xcvr_10gbaser_assignment.qip
 set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/xcvr_xg/sonic_v1_15/synthesis/sonic_v1_15.qip
 set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/software/sonic_app/mem_init/meminit.qip
+set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/vc/sonic_vc/synthesis/sonic_vc.qip
 
 # SDC Files
 set_global_assignment -name SDC_FILE $PROJECT_ROOT/lib/sonic/pcie/top.sdc
-set_global_assignment -name SDC_FILE $PROJECT_ROOT/project_files/sonic_quartus/top_example_chaining_top.sdc
+set_global_assignment -name SDC_FILE $PROJECT_ROOT/project_files/sonic/sonic_xg_blocksync/top_example_chaining_top.sdc
 set_global_assignment -name SDC_FILE $PROJECT_ROOT/lib/sonic/xcvr_xg/sonic_v1_15/synthesis/submodules/altera_avalon_dc_fifo.sdc
 set_global_assignment -name SDC_FILE $PROJECT_ROOT/lib/sonic/xcvr_xg/sonic_v1_15/synthesis/submodules/alt_10gbaser_phy.sdc
 set_global_assignment -name SDC_FILE $PROJECT_ROOT/lib/sonic/xcvr_xg/sonic_v1_15/synthesis/submodules/altera_reset_controller.sdc
