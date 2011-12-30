@@ -30,6 +30,8 @@
 `define TLP_TYPE_IO          5'b00010 // TLP Type field -> IO
 
 `define TLP_TC_DEFAULT       3'b000   // Default TC of the TLP
+`define TLP_TC_CLASS_CH_ZERO 3'b001
+`define TLP_TC_CLASS_CH_ONE  3'b101
 `define TLP_TD_DEFAULT       1'b0     // Default TD of the TLP
 `define TLP_EP_DEFAULT       1'b0     // Default EP of the TLP
 `define TLP_ATTR_DEFAULT     2'b0     // Default EP of the TLP

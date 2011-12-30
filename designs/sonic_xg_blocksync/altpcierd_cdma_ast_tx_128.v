@@ -377,14 +377,13 @@ module altpcierd_cdma_ast_tx_128  #(
                                          (ctrltx_3dw==1'b1)&&(ctrltx_qword_aligned==1'b0)&&
                                          (ctrltx_tx_length==10'h1)) ? 1'b1 : 1'b0;
 
-   /*
    assign txfifo_wrreq_with_payload = ((tx_sop_0==1'b1)||(tx_eop_1==1'b1)||
                                        ((tx_dv0==1'b1)&&(tx_ws0_pipe==1'b0))) ? 1'b1 : 1'b0;
-    */
 
-   // MOD: To add one more item to fifo for q to reset after empty.
+/*   // MOD: To add one more item to fifo for q to reset after empty.
    assign txfifo_wrreq_with_payload = ((tx_sop_0==1'b1)||(tx_eop_1==1'b1)||(tx_eop_2==1'b1)||
                                        ((tx_dv0==1'b1)&&(tx_ws0_pipe==1'b0))) ? 1'b1 : 1'b0;
+*/
    
    assign tx_sop_0 = tx_ack0;
    // ensures that back-to-back pkts are okay even if prev pkt requires extra cycle for eop
