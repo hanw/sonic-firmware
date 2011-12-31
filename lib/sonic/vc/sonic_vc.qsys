@@ -44,6 +44,14 @@
          type = "int";
       }
    }
+   element rx_fifo
+   {
+      datum _sortIndex
+      {
+         value = "8";
+         type = "int";
+      }
+   }
    element tx_fifo_p0
    {
       datum _sortIndex
@@ -79,9 +87,7 @@
 }
 ]]></parameter>
  <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
- <parameter name="device" value="" />
  <parameter name="deviceFamily" value="STRATIXIV" />
- <parameter name="deviceSpeedGrade" value="" />
  <parameter name="fabricMode" value="QSYS" />
  <parameter name="generateLegacySim" value="false" />
  <parameter name="generationId" value="0" />
@@ -91,9 +97,7 @@
  <parameter name="projectName" value="" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1324541629459" />
- <parameter name="useTestBenchNamingPattern" value="false" />
- <instanceScript></instanceScript>
+ <parameter name="timeStamp" value="1325291883970" />
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <interface
@@ -112,11 +116,6 @@
    type="avalon_streaming"
    dir="start" />
  <interface
-   name="rx_vc_in"
-   internal="demultiplexer_0.in"
-   type="avalon_streaming"
-   dir="end" />
- <interface
    name="rx_vc_out0"
    internal="demultiplexer_0.out0"
    type="avalon_streaming"
@@ -126,13 +125,18 @@
    internal="demultiplexer_0.out1"
    type="avalon_streaming"
    dir="start" />
- <module kind="clock_source" version="11.1" enabled="1" name="clk_0">
+ <interface
+   name="rx_vc_in"
+   internal="rx_fifo.in"
+   type="avalon_streaming"
+   dir="end" />
+ <module kind="clock_source" version="11.0" enabled="1" name="clk_0">
   <parameter name="clockFrequency" value="250000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
- <module kind="multiplexer" version="11.1" enabled="1" name="multiplexer_0">
+ <module kind="multiplexer" version="11.0" enabled="1" name="multiplexer_0">
   <parameter name="bitsPerSymbol" value="32" />
   <parameter name="errorWidth" value="1" />
   <parameter name="generationLanguage" value="VERILOG" />
@@ -147,22 +151,22 @@
  </module>
  <module
    kind="demultiplexer"
-   version="11.1"
+   version="11.0"
    enabled="1"
    name="demultiplexer_0">
-  <parameter name="bitsPerSymbol" value="32" />
+  <parameter name="bitsPerSymbol" value="64" />
   <parameter name="errorWidth" value="0" />
   <parameter name="generationLanguage" value="VERILOG" />
   <parameter name="inChannelWidth" value="1" />
   <parameter name="moduleName" value="" />
   <parameter name="numOutputInterfaces" value="2" />
-  <parameter name="symbolsPerBeat" value="4" />
+  <parameter name="symbolsPerBeat" value="2" />
   <parameter name="useHighBitsOfChannel" value="true" />
   <parameter name="usePackets" value="true" />
  </module>
  <module
    kind="altera_avalon_fifo"
-   version="11.1"
+   version="11.0"
    enabled="1"
    name="tx_fifo_p0">
   <parameter name="avalonMMAvalonMMDataWidth" value="32" />
@@ -187,7 +191,7 @@
  </module>
  <module
    kind="altera_avalon_fifo"
-   version="11.1"
+   version="11.0"
    enabled="1"
    name="tx_fifo_p1">
   <parameter name="avalonMMAvalonMMDataWidth" value="32" />
@@ -212,7 +216,7 @@
  </module>
  <module
    kind="timing_adapter"
-   version="11.1"
+   version="11.0"
    enabled="1"
    name="multiplexer_adapter">
   <parameter name="generationLanguage" value="VERILOG" />
@@ -235,7 +239,7 @@
  </module>
  <module
    kind="timing_adapter"
-   version="11.1"
+   version="11.0"
    enabled="1"
    name="tx_fifo_p0_adapter">
   <parameter name="generationLanguage" value="VERILOG" />
@@ -258,7 +262,7 @@
  </module>
  <module
    kind="timing_adapter"
-   version="11.1"
+   version="11.0"
    enabled="1"
    name="tx_fifo_p1_adapter">
   <parameter name="generationLanguage" value="VERILOG" />
@@ -279,87 +283,117 @@
   <parameter name="outUseReady" value="true" />
   <parameter name="outUseValid" value="true" />
  </module>
- <connection kind="clock" version="11.1" start="clk_0.clk" end="multiplexer_0.clk" />
+ <module
+   kind="altera_avalon_sc_fifo"
+   version="11.0"
+   enabled="1"
+   name="rx_fifo">
+  <parameter name="SYMBOLS_PER_BEAT" value="2" />
+  <parameter name="BITS_PER_SYMBOL" value="64" />
+  <parameter name="FIFO_DEPTH" value="256" />
+  <parameter name="CHANNEL_WIDTH" value="1" />
+  <parameter name="ERROR_WIDTH" value="0" />
+  <parameter name="USE_PACKETS" value="1" />
+  <parameter name="USE_FILL_LEVEL" value="0" />
+  <parameter name="EMPTY_LATENCY" value="3" />
+  <parameter name="USE_MEMORY_BLOCKS" value="1" />
+  <parameter name="USE_STORE_FORWARD" value="0" />
+  <parameter name="USE_ALMOST_FULL_IF" value="0" />
+  <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Stratix IV" />
+ </module>
+ <connection kind="clock" version="11.0" start="clk_0.clk" end="multiplexer_0.clk" />
  <connection
    kind="reset"
-   version="11.1"
+   version="11.0"
    start="clk_0.clk_reset"
    end="multiplexer_0.reset" />
  <connection
    kind="clock"
-   version="11.1"
+   version="11.0"
    start="clk_0.clk"
    end="demultiplexer_0.clk" />
  <connection
    kind="reset"
-   version="11.1"
+   version="11.0"
    start="clk_0.clk_reset"
    end="demultiplexer_0.reset" />
- <connection kind="clock" version="11.1" start="clk_0.clk" end="tx_fifo_p0.clk_in" />
+ <connection kind="clock" version="11.0" start="clk_0.clk" end="tx_fifo_p0.clk_in" />
  <connection
    kind="reset"
-   version="11.1"
+   version="11.0"
    start="clk_0.clk_reset"
    end="tx_fifo_p0.reset_in" />
- <connection kind="clock" version="11.1" start="clk_0.clk" end="tx_fifo_p1.clk_in" />
+ <connection kind="clock" version="11.0" start="clk_0.clk" end="tx_fifo_p1.clk_in" />
  <connection
    kind="reset"
-   version="11.1"
+   version="11.0"
    start="clk_0.clk_reset"
    end="tx_fifo_p1.reset_in" />
  <connection
    kind="avalon_streaming"
-   version="11.1"
+   version="11.0"
    start="multiplexer_0.out"
    end="multiplexer_adapter.in" />
  <connection
    kind="clock"
-   version="11.1"
+   version="11.0"
    start="clk_0.clk"
    end="multiplexer_adapter.clk" />
  <connection
    kind="reset"
-   version="11.1"
+   version="11.0"
    start="clk_0.clk_reset"
    end="multiplexer_adapter.reset" />
  <connection
    kind="avalon_streaming"
-   version="11.1"
+   version="11.0"
    start="tx_fifo_p0.out"
    end="tx_fifo_p0_adapter.in" />
  <connection
    kind="avalon_streaming"
-   version="11.1"
+   version="11.0"
    start="tx_fifo_p0_adapter.out"
    end="multiplexer_0.in0" />
  <connection
    kind="clock"
-   version="11.1"
+   version="11.0"
    start="clk_0.clk"
    end="tx_fifo_p0_adapter.clk" />
  <connection
    kind="reset"
-   version="11.1"
+   version="11.0"
    start="clk_0.clk_reset"
    end="tx_fifo_p0_adapter.reset" />
  <connection
    kind="avalon_streaming"
-   version="11.1"
+   version="11.0"
    start="tx_fifo_p1.out"
    end="tx_fifo_p1_adapter.in" />
  <connection
    kind="avalon_streaming"
-   version="11.1"
+   version="11.0"
    start="tx_fifo_p1_adapter.out"
    end="multiplexer_0.in1" />
  <connection
    kind="clock"
-   version="11.1"
+   version="11.0"
    start="clk_0.clk"
    end="tx_fifo_p1_adapter.clk" />
  <connection
    kind="reset"
-   version="11.1"
+   version="11.0"
    start="clk_0.clk_reset"
    end="tx_fifo_p1_adapter.reset" />
+ <connection kind="clock" version="11.0" start="clk_0.clk" end="rx_fifo.clk" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="clk_0.clk_reset"
+   end="rx_fifo.clk_reset" />
+ <connection
+   kind="avalon_streaming"
+   version="11.0"
+   start="rx_fifo.out"
+   end="demultiplexer_0.in" />
 </system>

@@ -6,6 +6,7 @@ set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) submodu
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_multiplexer_adapter.v] -library lib_sonic_vc
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_tx_fifo_p0_adapter.v] -library lib_sonic_vc
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) submodules/sonic_vc_tx_fifo_p0_adapter_fifo.v] -library lib_sonic_vc
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) submodules/altera_avalon_sc_fifo.v] -library lib_sonic_vc
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) submodules/altera_reset_controller.v] -library lib_sonic_vc
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) submodules/altera_reset_synchronizer.v] -library lib_sonic_vc
 set_global_assignment -name SDC_FILE [file join $::quartus(qip_path) submodules/altera_reset_controller.sdc] -library lib_sonic_vc

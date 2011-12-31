@@ -40,6 +40,10 @@ module sonic_tx_ctl_66 (/*AUTOARG*/
    logic 	 rx_almost_empty;
    logic 	 rx_almost_full;
 
+   logic 	 rx_cbuf_rdena;
+   logic 	 rx_cbuf_rdreq;
+   logic 	 rx_cbuf_wrena;
+      
    /*
     * Only enable tx gearbox when data are ready to send.
     * ELSE, gearbox is disabled and sends zero

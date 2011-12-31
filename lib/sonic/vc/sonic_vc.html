@@ -67,7 +67,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <table class="blueBar">
    <tr>
-    <td class="l">2011.12.27.21:55:21</td>
+    <td class="l">2011.12.30.19:39:20</td>
     <td class="r">Generation Report</td>
    </tr>
   </table>
@@ -78,7 +78,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    </tr>
    <tr>
     <td class="label">Files</td>
-    <td class="mono">/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/cmdctrl/lib/sonic/vc/sonic_vc/synthesis/sonic_vc.v (19284 bytes VERILOG)
+    <td class="mono">/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/cmdctrl/lib/sonic/vc/sonic_vc/synthesis/sonic_vc.v (22426 bytes VERILOG)
      <br/>
      <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/cmdctrl/lib/sonic/vc/sonic_vc/synthesis/submodules/sonic_vc_multiplexer_0.v (7016 bytes VERILOG)
      <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/cmdctrl/lib/sonic/vc/sonic_vc/synthesis/submodules/sonic_vc_demultiplexer_0.v (6135 bytes VERILOG)
@@ -87,6 +87,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/cmdctrl/lib/sonic/vc/sonic_vc/synthesis/submodules/sonic_vc_multiplexer_adapter.v (2215 bytes VERILOG)
      <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/cmdctrl/lib/sonic/vc/sonic_vc/synthesis/submodules/sonic_vc_tx_fifo_p0_adapter.v (2542 bytes VERILOG)
      <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/cmdctrl/lib/sonic/vc/sonic_vc/synthesis/submodules/sonic_vc_tx_fifo_p0_adapter_fifo.v (9661 bytes VERILOG)
+     <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/cmdctrl/lib/sonic/vc/sonic_vc/synthesis/submodules/altera_avalon_sc_fifo.v (31321 bytes VERILOG)
      <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/cmdctrl/lib/sonic/vc/sonic_vc/synthesis/submodules/altera_reset_controller.v (3482 bytes VERILOG)
      <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/cmdctrl/lib/sonic/vc/sonic_vc/synthesis/submodules/altera_reset_synchronizer.v (3477 bytes VERILOG)
      <br/>/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/cmdctrl/lib/sonic/vc/sonic_vc/synthesis/submodules/altera_reset_controller.sdc (1161 bytes SDC)
@@ -106,6 +107,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
         <br/><b>sonic_vc_tx_fifo_p1</b> as tx_fifo_p1
         <br/><b>sonic_vc_multiplexer_adapter</b> as multiplexer_adapter
         <br/><b>sonic_vc_tx_fifo_p0_adapter</b> as tx_fifo_p0_adapter, tx_fifo_p1_adapter
+        <br/><b>altera_avalon_sc_fifo</b> as rx_fifo
         <br/><b>altera_reset_controller</b> as rst_controller
         <br/>
        </td>
@@ -141,6 +143,11 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        <td></td>
       </tr>
       <tr>
+       <td><b>altera_avalon_sc_fifo</b>
+        <br/>altera_avalon_sc_fifo v11.0</td>
+       <td></td>
+      </tr>
+      <tr>
        <td><b>altera_reset_controller</b>
         <br/>altera_reset_controller v11.0</td>
        <td></td>
@@ -151,143 +158,148 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <div style="width:100% ;  height:10px"> </div>
   <div class="label">Generation Messages</div>
-  <div style="white-space:pre ; font-family:courier">2011.12.27.21:55:11 [Info] sonic_vc: Generating <b>sonic_vc</b> "<b>sonic_vc</b>" for QUARTUS_SYNTH
-2011.12.27.21:55:11 [Debug] sonic_vc: queue size: 0 starting:sonic_vc "sonic_vc"
-2011.12.27.21:55:11 [Debug] Transform: PipelineBridgeSwap
-2011.12.27.21:55:11 [Info] pipeline_bridge_swap_transform: After transform: <b>8</b> modules, <b>19</b> connections
-2011.12.27.21:55:11 [Debug] Transform: ClockCrossingBridgeSwap
-2011.12.27.21:55:11 [Debug] Transform: QsysBetaIPSwap
-2011.12.27.21:55:11 [Debug] Transform: CustomInstructionTransform
-2011.12.27.21:55:11 [Info] No custom instruction connections, skipping transform 
-2011.12.27.21:55:11 [Debug] Transform: TristateConduitUpgradeTransform
-2011.12.27.21:55:11 [Debug] Transform: TranslatorTransform
-2011.12.27.21:55:11 [Info] No Avalon connections, skipping transform 
-2011.12.27.21:55:11 [Debug] Transform: DomainTransform
-2011.12.27.21:55:11 [Debug] Transform: RouterTransform
-2011.12.27.21:55:11 [Debug] Transform: TrafficLimiterTransform
-2011.12.27.21:55:11 [Debug] Transform: BurstTransform
-2011.12.27.21:55:11 [Debug] Transform: ResetAdaptation
-2011.12.27.21:55:11 [Progress] min: 0
-2011.12.27.21:55:11 [Progress] max: 1
-2011.12.27.21:55:11 [Progress] current: 1
-2011.12.27.21:55:11 [Info] reset_adaptation_transform: After transform: <b>9</b> modules, <b>21</b> connections
-2011.12.27.21:55:11 [Debug] Transform: NetworkToSwitchTransform
-2011.12.27.21:55:11 [Debug] Transform: WidthTransform
-2011.12.27.21:55:11 [Debug] Transform: RouterTableTransform
-2011.12.27.21:55:11 [Debug] Transform: ClockCrossingTransform
-2011.12.27.21:55:11 [Debug] Transform: PipelineTransform
-2011.12.27.21:55:11 [Debug] Transform: TrafficLimiterUpdateTransform
-2011.12.27.21:55:11 [Debug] Transform: InterruptMapperTransform
-2011.12.27.21:55:12 [Debug] Transform: InterruptSyncTransform
-2011.12.27.21:55:12 [Debug] Transform: InterruptFanoutTransform
-2011.12.27.21:55:12 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>multiplexer</b> "<b>submodules/sonic_vc_multiplexer_0</b>"
-2011.12.27.21:55:12 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>demultiplexer</b> "<b>submodules/sonic_vc_demultiplexer_0</b>"
-2011.12.27.21:55:12 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>altera_avalon_fifo</b> "<b>submodules/sonic_vc_tx_fifo_p0</b>"
-2011.12.27.21:55:12 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>altera_avalon_fifo</b> "<b>submodules/sonic_vc_tx_fifo_p1</b>"
-2011.12.27.21:55:12 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>timing_adapter</b> "<b>submodules/sonic_vc_multiplexer_adapter</b>"
-2011.12.27.21:55:12 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>timing_adapter</b> "<b>submodules/sonic_vc_tx_fifo_p0_adapter</b>"
-2011.12.27.21:55:12 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>timing_adapter</b> "<b>submodules/sonic_vc_tx_fifo_p0_adapter</b>"
-2011.12.27.21:55:12 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>altera_reset_controller</b> "<b>submodules/altera_reset_controller</b>"
-2011.12.27.21:55:12 [Debug] sonic_vc: queue size: 7 starting:multiplexer "submodules/sonic_vc_multiplexer_0"
-2011.12.27.21:55:12 [Info] multiplexer_0: Starting generation. 
-2011.12.27.21:55:12 [Info] multiplexer_0: "<b>sonic_vc</b>" instantiated <b>multiplexer</b> "<b>multiplexer_0</b>"
-2011.12.27.21:55:12 [Debug] sonic_vc: queue size: 6 starting:demultiplexer "submodules/sonic_vc_demultiplexer_0"
-2011.12.27.21:55:12 [Info] demultiplexer_0: Starting generation. 
-2011.12.27.21:55:12 [Info] demultiplexer_0: "<b>sonic_vc</b>" instantiated <b>demultiplexer</b> "<b>demultiplexer_0</b>"
-2011.12.27.21:55:12 [Debug] sonic_vc: queue size: 5 starting:altera_avalon_fifo "submodules/sonic_vc_tx_fifo_p0"
-2011.12.27.21:55:12 [Info] Starting classic module elaboration.
-2011.12.27.21:55:12 [Progress] "/home/hwang/altera/11.0/quartus/linux/jre/bin/java" -Xmx512M -classpath "/home/hwang/altera/11.0/quartus/sopc_builder/bin/sopc_builder.jar:/home/hwang/altera/11.0/quartus/sopc_builder/bin/PinAssigner.jar:/home/hwang/altera/11.0/quartus/sopc_builder/bin/sopc_wizard.jar:/home/hwang/altera/11.0/quartus/sopc_builder/bin/jptf.jar" sopc_builder.sopc_builder  -d"/home/hwang/altera/11.0/quartus/sopc_builder" -notalkback=1 -projectnameyysystem.qpf -projectpath/tmp/alt5336_9184947772940722605.dir/0001_sopclgen  --no_splash --refresh /tmp/alt5336_9184947772940722605.dir/0001_sopclgen/yysystem.v --quartus_dir="/home/hwang/altera/11.0/quartus" --sopc_perl="/home/hwang/altera/11.0/quartus/linux/perl" --sopc_lib_path="++/home/hwang/altera/11.0/quartus/../ip/altera/sopc_builder_ip+/home/hwang/altera/11.0/quartus/../ip/altera/nios2_ip"
-2011.12.27.21:55:13 [Progress] (&lt;unknown&gt;:6912): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:13 [Progress] (&lt;unknown&gt;:6912): Gtk-WARNING **: Loading IM context type 'ibus' failed
-2011.12.27.21:55:13 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:13 [Progress] (&lt;unknown&gt;:6912): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
-2011.12.27.21:55:13 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:13 [Progress] (&lt;unknown&gt;:6912): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
-2011.12.27.21:55:13 [Progress] (&lt;unknown&gt;:6912): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:13 [Progress] (&lt;unknown&gt;:6912): Gtk-WARNING **: Loading IM context type 'ibus' failed
-2011.12.27.21:55:13 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:13 [Progress] (&lt;unknown&gt;:6912): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
-2011.12.27.21:55:13 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:13 [Progress] (&lt;unknown&gt;:6912): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
-2011.12.27.21:55:13 [Progress] (&lt;unknown&gt;:6912): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:13 [Progress] (&lt;unknown&gt;:6912): Gtk-WARNING **: Loading IM context type 'ibus' failed
-2011.12.27.21:55:13 [Progress] (&lt;unknown&gt;:6912): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:13 [Progress] (&lt;unknown&gt;:6912): Gtk-WARNING **: Loading IM context type 'ibus' failed
-2011.12.27.21:55:14 [Info] Finished elaborating classic module.
-2011.12.27.21:55:14 [Progress] Executing: /home/hwang/altera/11.0/quartus//sopc_builder/bin/sopc_builder --classic --generate /tmp/alt5336_9184947772940722605.dir/0001_sopclgen/yysystem.ptf
-2011.12.27.21:55:14 [Info] Running sopc_builder...
-2011.12.27.21:55:14 [Progress] "/home/hwang/altera/11.0/quartus//linux/jre/bin/java" -Xmx512M -classpath "/home/hwang/altera/11.0/quartus//sopc_builder/bin/sopc_builder.jar:/home/hwang/altera/11.0/quartus//sopc_builder/bin/PinAssigner.jar:/home/hwang/altera/11.0/quartus//sopc_builder/bin/sopc_wizard.jar:/home/hwang/altera/11.0/quartus//sopc_builder/bin/jptf.jar" sopc_builder.sopc_builder  -d"/home/hwang/altera/11.0/quartus//sopc_builder" -notalkback=1 -projectnameyysystem.qpf -projectpath/tmp/alt5336_9184947772940722605.dir/0001_sopclgen  --generate /tmp/alt5336_9184947772940722605.dir/0001_sopclgen/yysystem.v --quartus_dir="/home/hwang/altera/11.0/quartus/" --sopc_perl="/home/hwang/altera/11.0/quartus//linux/perl" --sopc_lib_path="++/home/hwang/altera/11.0/quartus//../ip/altera/sopc_builder_ip+/home/hwang/altera/11.0/quartus//../ip/altera/nios2_ip"
-2011.12.27.21:55:14 [Progress] (&lt;unknown&gt;:6955): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:14 [Progress] (&lt;unknown&gt;:6955): Gtk-WARNING **: Loading IM context type 'ibus' failed
-2011.12.27.21:55:14 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:14 [Progress] (&lt;unknown&gt;:6955): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
-2011.12.27.21:55:14 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:14 [Progress] (&lt;unknown&gt;:6955): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
-2011.12.27.21:55:15 [Progress] (&lt;unknown&gt;:6955): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:15 [Progress] (&lt;unknown&gt;:6955): Gtk-WARNING **: Loading IM context type 'ibus' failed
-2011.12.27.21:55:15 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:15 [Progress] (&lt;unknown&gt;:6955): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
-2011.12.27.21:55:15 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:15 [Progress] (&lt;unknown&gt;:6955): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
-2011.12.27.21:55:15 [Progress] (&lt;unknown&gt;:6955): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:15 [Progress] (&lt;unknown&gt;:6955): Gtk-WARNING **: Loading IM context type 'ibus' failed
-2011.12.27.21:55:15 [Progress] (&lt;unknown&gt;:6955): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:15 [Progress] (&lt;unknown&gt;:6955): Gtk-WARNING **: Loading IM context type 'ibus' failed
-2011.12.27.21:55:15 [Progress] .
-2011.12.27.21:55:16 [Progress] # 2011.12.27 21:55:16 (*) Success: sopc_builder finished.
-2011.12.27.21:55:16 [Info] tx_fifo_p0: "<b>sonic_vc</b>" instantiated <b>altera_avalon_fifo</b> "<b>tx_fifo_p0</b>"
-2011.12.27.21:55:16 [Debug] sonic_vc: queue size: 4 starting:altera_avalon_fifo "submodules/sonic_vc_tx_fifo_p1"
-2011.12.27.21:55:17 [Info] Starting classic module elaboration.
-2011.12.27.21:55:17 [Progress] "/home/hwang/altera/11.0/quartus/linux/jre/bin/java" -Xmx512M -classpath "/home/hwang/altera/11.0/quartus/sopc_builder/bin/sopc_builder.jar:/home/hwang/altera/11.0/quartus/sopc_builder/bin/PinAssigner.jar:/home/hwang/altera/11.0/quartus/sopc_builder/bin/sopc_wizard.jar:/home/hwang/altera/11.0/quartus/sopc_builder/bin/jptf.jar" sopc_builder.sopc_builder  -d"/home/hwang/altera/11.0/quartus/sopc_builder" -notalkback=1 -projectnameyysystem.qpf -projectpath/tmp/alt5336_9184947772940722605.dir/0002_sopclgen  --no_splash --refresh /tmp/alt5336_9184947772940722605.dir/0002_sopclgen/yysystem.v --quartus_dir="/home/hwang/altera/11.0/quartus" --sopc_perl="/home/hwang/altera/11.0/quartus/linux/perl" --sopc_lib_path="++/home/hwang/altera/11.0/quartus/../ip/altera/sopc_builder_ip+/home/hwang/altera/11.0/quartus/../ip/altera/nios2_ip"
-2011.12.27.21:55:17 [Progress] (&lt;unknown&gt;:7005): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:17 [Progress] (&lt;unknown&gt;:7005): Gtk-WARNING **: Loading IM context type 'ibus' failed
-2011.12.27.21:55:17 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:17 [Progress] (&lt;unknown&gt;:7005): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
-2011.12.27.21:55:17 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:17 [Progress] (&lt;unknown&gt;:7005): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
-2011.12.27.21:55:18 [Progress] (&lt;unknown&gt;:7005): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:18 [Progress] (&lt;unknown&gt;:7005): Gtk-WARNING **: Loading IM context type 'ibus' failed
-2011.12.27.21:55:18 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:18 [Progress] (&lt;unknown&gt;:7005): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
-2011.12.27.21:55:18 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:18 [Progress] (&lt;unknown&gt;:7005): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
-2011.12.27.21:55:18 [Progress] (&lt;unknown&gt;:7005): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:18 [Progress] (&lt;unknown&gt;:7005): Gtk-WARNING **: Loading IM context type 'ibus' failed
-2011.12.27.21:55:18 [Progress] (&lt;unknown&gt;:7005): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:18 [Progress] (&lt;unknown&gt;:7005): Gtk-WARNING **: Loading IM context type 'ibus' failed
-2011.12.27.21:55:18 [Info] Finished elaborating classic module.
-2011.12.27.21:55:18 [Progress] Executing: /home/hwang/altera/11.0/quartus//sopc_builder/bin/sopc_builder --classic --generate /tmp/alt5336_9184947772940722605.dir/0002_sopclgen/yysystem.ptf
-2011.12.27.21:55:18 [Info] Running sopc_builder...
-2011.12.27.21:55:18 [Progress] "/home/hwang/altera/11.0/quartus//linux/jre/bin/java" -Xmx512M -classpath "/home/hwang/altera/11.0/quartus//sopc_builder/bin/sopc_builder.jar:/home/hwang/altera/11.0/quartus//sopc_builder/bin/PinAssigner.jar:/home/hwang/altera/11.0/quartus//sopc_builder/bin/sopc_wizard.jar:/home/hwang/altera/11.0/quartus//sopc_builder/bin/jptf.jar" sopc_builder.sopc_builder  -d"/home/hwang/altera/11.0/quartus//sopc_builder" -notalkback=1 -projectnameyysystem.qpf -projectpath/tmp/alt5336_9184947772940722605.dir/0002_sopclgen  --generate /tmp/alt5336_9184947772940722605.dir/0002_sopclgen/yysystem.v --quartus_dir="/home/hwang/altera/11.0/quartus/" --sopc_perl="/home/hwang/altera/11.0/quartus//linux/perl" --sopc_lib_path="++/home/hwang/altera/11.0/quartus//../ip/altera/sopc_builder_ip+/home/hwang/altera/11.0/quartus//../ip/altera/nios2_ip"
-2011.12.27.21:55:19 [Progress] (&lt;unknown&gt;:7049): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:19 [Progress] (&lt;unknown&gt;:7049): Gtk-WARNING **: Loading IM context type 'ibus' failed
-2011.12.27.21:55:19 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:19 [Progress] (&lt;unknown&gt;:7049): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
-2011.12.27.21:55:19 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:19 [Progress] (&lt;unknown&gt;:7049): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
-2011.12.27.21:55:19 [Progress] (&lt;unknown&gt;:7049): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:19 [Progress] (&lt;unknown&gt;:7049): Gtk-WARNING **: Loading IM context type 'ibus' failed
-2011.12.27.21:55:19 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:19 [Progress] (&lt;unknown&gt;:7049): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
-2011.12.27.21:55:19 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:19 [Progress] (&lt;unknown&gt;:7049): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
-2011.12.27.21:55:19 [Progress] (&lt;unknown&gt;:7049): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:19 [Progress] (&lt;unknown&gt;:7049): Gtk-WARNING **: Loading IM context type 'ibus' failed
-2011.12.27.21:55:19 [Progress] (&lt;unknown&gt;:7049): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
-2011.12.27.21:55:19 [Progress] (&lt;unknown&gt;:7049): Gtk-WARNING **: Loading IM context type 'ibus' failed
-2011.12.27.21:55:20 [Progress] .
-2011.12.27.21:55:21 [Progress] # 2011.12.27 21:55:21 (*) Success: sopc_builder finished.
-2011.12.27.21:55:21 [Info] tx_fifo_p1: "<b>sonic_vc</b>" instantiated <b>altera_avalon_fifo</b> "<b>tx_fifo_p1</b>"
-2011.12.27.21:55:21 [Debug] sonic_vc: queue size: 3 starting:timing_adapter "submodules/sonic_vc_multiplexer_adapter"
-2011.12.27.21:55:21 [Info] multiplexer_adapter: Starting generation. 
-2011.12.27.21:55:21 [Info] multiplexer_adapter: "<b>sonic_vc</b>" instantiated <b>timing_adapter</b> "<b>multiplexer_adapter</b>"
-2011.12.27.21:55:21 [Debug] sonic_vc: queue size: 2 starting:timing_adapter "submodules/sonic_vc_tx_fifo_p0_adapter"
-2011.12.27.21:55:21 [Info] tx_fifo_p0_adapter: Starting generation. 
-2011.12.27.21:55:21 [Info] tx_fifo_p0_adapter_fifo: Starting generation. 
-2011.12.27.21:55:21 [Info] tx_fifo_p0_adapter: "<b>sonic_vc</b>" instantiated <b>timing_adapter</b> "<b>tx_fifo_p0_adapter</b>"
-2011.12.27.21:55:21 [Debug] sonic_vc: queue size: 0 starting:altera_reset_controller "submodules/altera_reset_controller"
-2011.12.27.21:55:21 [Info] rst_controller: "<b>sonic_vc</b>" instantiated <b>altera_reset_controller</b> "<b>rst_controller</b>"
-2011.12.27.21:55:21 [Info] sonic_vc: Done <b>sonic_vc</b>" with 8 modules, 13 files, 84618 bytes
+  <div style="white-space:pre ; font-family:courier">2011.12.30.19:39:04 [Debug] sonic_vc.rx_fifo: <b>add_interface_port</b>: Added reset port <b>reset</b> to <b>clk_reset</b> instead of <b>clk</b>
+2011.12.30.19:39:04 [Debug] sonic_vc.rx_fifo: Timing: VAL:1/0.001s ELA:1/0.007s
+2011.12.30.19:39:04 [Info] sonic_vc: Generating <b>sonic_vc</b> "<b>sonic_vc</b>" for QUARTUS_SYNTH
+2011.12.30.19:39:04 [Debug] sonic_vc: queue size: 0 starting:sonic_vc "sonic_vc"
+2011.12.30.19:39:04 [Debug] Transform: PipelineBridgeSwap
+2011.12.30.19:39:04 [Info] pipeline_bridge_swap_transform: After transform: <b>9</b> modules, <b>22</b> connections
+2011.12.30.19:39:04 [Debug] Transform: ClockCrossingBridgeSwap
+2011.12.30.19:39:04 [Debug] Transform: QsysBetaIPSwap
+2011.12.30.19:39:04 [Debug] Transform: CustomInstructionTransform
+2011.12.30.19:39:04 [Info] No custom instruction connections, skipping transform 
+2011.12.30.19:39:04 [Debug] Transform: TristateConduitUpgradeTransform
+2011.12.30.19:39:04 [Debug] Transform: TranslatorTransform
+2011.12.30.19:39:05 [Info] No Avalon connections, skipping transform 
+2011.12.30.19:39:05 [Debug] Transform: DomainTransform
+2011.12.30.19:39:05 [Debug] Transform: RouterTransform
+2011.12.30.19:39:05 [Debug] Transform: TrafficLimiterTransform
+2011.12.30.19:39:05 [Debug] Transform: BurstTransform
+2011.12.30.19:39:05 [Debug] Transform: ResetAdaptation
+2011.12.30.19:39:05 [Progress] min: 0
+2011.12.30.19:39:05 [Progress] max: 1
+2011.12.30.19:39:05 [Progress] current: 1
+2011.12.30.19:39:05 [Info] reset_adaptation_transform: After transform: <b>10</b> modules, <b>24</b> connections
+2011.12.30.19:39:05 [Debug] Transform: NetworkToSwitchTransform
+2011.12.30.19:39:05 [Debug] Transform: WidthTransform
+2011.12.30.19:39:05 [Debug] Transform: RouterTableTransform
+2011.12.30.19:39:05 [Debug] Transform: ClockCrossingTransform
+2011.12.30.19:39:05 [Debug] Transform: PipelineTransform
+2011.12.30.19:39:05 [Debug] Transform: TrafficLimiterUpdateTransform
+2011.12.30.19:39:05 [Debug] Transform: InterruptMapperTransform
+2011.12.30.19:39:05 [Debug] Transform: InterruptSyncTransform
+2011.12.30.19:39:05 [Debug] Transform: InterruptFanoutTransform
+2011.12.30.19:39:05 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>multiplexer</b> "<b>submodules/sonic_vc_multiplexer_0</b>"
+2011.12.30.19:39:05 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>demultiplexer</b> "<b>submodules/sonic_vc_demultiplexer_0</b>"
+2011.12.30.19:39:05 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>altera_avalon_fifo</b> "<b>submodules/sonic_vc_tx_fifo_p0</b>"
+2011.12.30.19:39:05 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>altera_avalon_fifo</b> "<b>submodules/sonic_vc_tx_fifo_p1</b>"
+2011.12.30.19:39:05 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>timing_adapter</b> "<b>submodules/sonic_vc_multiplexer_adapter</b>"
+2011.12.30.19:39:05 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>timing_adapter</b> "<b>submodules/sonic_vc_tx_fifo_p0_adapter</b>"
+2011.12.30.19:39:05 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>timing_adapter</b> "<b>submodules/sonic_vc_tx_fifo_p0_adapter</b>"
+2011.12.30.19:39:05 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>altera_avalon_sc_fifo</b> "<b>submodules/altera_avalon_sc_fifo</b>"
+2011.12.30.19:39:05 [Debug] sonic_vc: "<b>sonic_vc</b>" reuses <b>altera_reset_controller</b> "<b>submodules/altera_reset_controller</b>"
+2011.12.30.19:39:05 [Debug] sonic_vc: queue size: 8 starting:multiplexer "submodules/sonic_vc_multiplexer_0"
+2011.12.30.19:39:05 [Info] multiplexer_0: Starting generation. 
+2011.12.30.19:39:05 [Info] multiplexer_0: "<b>sonic_vc</b>" instantiated <b>multiplexer</b> "<b>multiplexer_0</b>"
+2011.12.30.19:39:05 [Debug] sonic_vc: queue size: 7 starting:demultiplexer "submodules/sonic_vc_demultiplexer_0"
+2011.12.30.19:39:05 [Info] demultiplexer_0: Starting generation. 
+2011.12.30.19:39:05 [Info] demultiplexer_0: "<b>sonic_vc</b>" instantiated <b>demultiplexer</b> "<b>demultiplexer_0</b>"
+2011.12.30.19:39:05 [Debug] sonic_vc: queue size: 6 starting:altera_avalon_fifo "submodules/sonic_vc_tx_fifo_p0"
+2011.12.30.19:39:06 [Info] Starting classic module elaboration.
+2011.12.30.19:39:06 [Progress] "/home/hwang/altera/11.0/quartus/linux/jre/bin/java" -Xmx512M -classpath "/home/hwang/altera/11.0/quartus/sopc_builder/bin/sopc_builder.jar:/home/hwang/altera/11.0/quartus/sopc_builder/bin/PinAssigner.jar:/home/hwang/altera/11.0/quartus/sopc_builder/bin/sopc_wizard.jar:/home/hwang/altera/11.0/quartus/sopc_builder/bin/jptf.jar" sopc_builder.sopc_builder  -d"/home/hwang/altera/11.0/quartus/sopc_builder" -notalkback=1 -projectnameyysystem.qpf -projectpath/tmp/alt5339_2665575473341726347.dir/0001_sopclgen  --no_splash --refresh /tmp/alt5339_2665575473341726347.dir/0001_sopclgen/yysystem.v --quartus_dir="/home/hwang/altera/11.0/quartus" --sopc_perl="/home/hwang/altera/11.0/quartus/linux/perl" --sopc_lib_path="++/home/hwang/altera/11.0/quartus/../ip/altera/sopc_builder_ip+/home/hwang/altera/11.0/quartus/../ip/altera/nios2_ip"
+2011.12.30.19:39:07 [Progress] (&lt;unknown&gt;:25818): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:07 [Progress] (&lt;unknown&gt;:25818): Gtk-WARNING **: Loading IM context type 'ibus' failed
+2011.12.30.19:39:07 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:07 [Progress] (&lt;unknown&gt;:25818): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
+2011.12.30.19:39:07 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:07 [Progress] (&lt;unknown&gt;:25818): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
+2011.12.30.19:39:08 [Progress] (&lt;unknown&gt;:25818): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:08 [Progress] (&lt;unknown&gt;:25818): Gtk-WARNING **: Loading IM context type 'ibus' failed
+2011.12.30.19:39:08 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:08 [Progress] (&lt;unknown&gt;:25818): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
+2011.12.30.19:39:08 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:08 [Progress] (&lt;unknown&gt;:25818): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
+2011.12.30.19:39:08 [Progress] (&lt;unknown&gt;:25818): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:08 [Progress] (&lt;unknown&gt;:25818): Gtk-WARNING **: Loading IM context type 'ibus' failed
+2011.12.30.19:39:08 [Progress] (&lt;unknown&gt;:25818): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:08 [Progress] (&lt;unknown&gt;:25818): Gtk-WARNING **: Loading IM context type 'ibus' failed
+2011.12.30.19:39:09 [Info] Finished elaborating classic module.
+2011.12.30.19:39:09 [Progress] Executing: /home/hwang/altera/11.0/quartus//sopc_builder/bin/sopc_builder --classic --generate /tmp/alt5339_2665575473341726347.dir/0001_sopclgen/yysystem.ptf
+2011.12.30.19:39:09 [Info] Running sopc_builder...
+2011.12.30.19:39:09 [Progress] "/home/hwang/altera/11.0/quartus//linux/jre/bin/java" -Xmx512M -classpath "/home/hwang/altera/11.0/quartus//sopc_builder/bin/sopc_builder.jar:/home/hwang/altera/11.0/quartus//sopc_builder/bin/PinAssigner.jar:/home/hwang/altera/11.0/quartus//sopc_builder/bin/sopc_wizard.jar:/home/hwang/altera/11.0/quartus//sopc_builder/bin/jptf.jar" sopc_builder.sopc_builder  -d"/home/hwang/altera/11.0/quartus//sopc_builder" -notalkback=1 -projectnameyysystem.qpf -projectpath/tmp/alt5339_2665575473341726347.dir/0001_sopclgen  --generate /tmp/alt5339_2665575473341726347.dir/0001_sopclgen/yysystem.v --quartus_dir="/home/hwang/altera/11.0/quartus/" --sopc_perl="/home/hwang/altera/11.0/quartus//linux/perl" --sopc_lib_path="++/home/hwang/altera/11.0/quartus//../ip/altera/sopc_builder_ip+/home/hwang/altera/11.0/quartus//../ip/altera/nios2_ip"
+2011.12.30.19:39:10 [Progress] (&lt;unknown&gt;:25864): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:10 [Progress] (&lt;unknown&gt;:25864): Gtk-WARNING **: Loading IM context type 'ibus' failed
+2011.12.30.19:39:10 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:10 [Progress] (&lt;unknown&gt;:25864): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
+2011.12.30.19:39:10 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:10 [Progress] (&lt;unknown&gt;:25864): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
+2011.12.30.19:39:11 [Progress] (&lt;unknown&gt;:25864): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:11 [Progress] (&lt;unknown&gt;:25864): Gtk-WARNING **: Loading IM context type 'ibus' failed
+2011.12.30.19:39:11 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:11 [Progress] (&lt;unknown&gt;:25864): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
+2011.12.30.19:39:11 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:11 [Progress] (&lt;unknown&gt;:25864): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
+2011.12.30.19:39:11 [Progress] (&lt;unknown&gt;:25864): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:11 [Progress] (&lt;unknown&gt;:25864): Gtk-WARNING **: Loading IM context type 'ibus' failed
+2011.12.30.19:39:11 [Progress] (&lt;unknown&gt;:25864): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:11 [Progress] (&lt;unknown&gt;:25864): Gtk-WARNING **: Loading IM context type 'ibus' failed
+2011.12.30.19:39:12 [Progress] .
+2011.12.30.19:39:12 [Progress] # 2011.12.30 19:39:12 (*) Success: sopc_builder finished.
+2011.12.30.19:39:13 [Info] tx_fifo_p0: "<b>sonic_vc</b>" instantiated <b>altera_avalon_fifo</b> "<b>tx_fifo_p0</b>"
+2011.12.30.19:39:13 [Debug] sonic_vc: queue size: 5 starting:altera_avalon_fifo "submodules/sonic_vc_tx_fifo_p1"
+2011.12.30.19:39:13 [Info] Starting classic module elaboration.
+2011.12.30.19:39:13 [Progress] "/home/hwang/altera/11.0/quartus/linux/jre/bin/java" -Xmx512M -classpath "/home/hwang/altera/11.0/quartus/sopc_builder/bin/sopc_builder.jar:/home/hwang/altera/11.0/quartus/sopc_builder/bin/PinAssigner.jar:/home/hwang/altera/11.0/quartus/sopc_builder/bin/sopc_wizard.jar:/home/hwang/altera/11.0/quartus/sopc_builder/bin/jptf.jar" sopc_builder.sopc_builder  -d"/home/hwang/altera/11.0/quartus/sopc_builder" -notalkback=1 -projectnameyysystem.qpf -projectpath/tmp/alt5339_2665575473341726347.dir/0002_sopclgen  --no_splash --refresh /tmp/alt5339_2665575473341726347.dir/0002_sopclgen/yysystem.v --quartus_dir="/home/hwang/altera/11.0/quartus" --sopc_perl="/home/hwang/altera/11.0/quartus/linux/perl" --sopc_lib_path="++/home/hwang/altera/11.0/quartus/../ip/altera/sopc_builder_ip+/home/hwang/altera/11.0/quartus/../ip/altera/nios2_ip"
+2011.12.30.19:39:14 [Progress] (&lt;unknown&gt;:25914): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:14 [Progress] (&lt;unknown&gt;:25914): Gtk-WARNING **: Loading IM context type 'ibus' failed
+2011.12.30.19:39:14 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:14 [Progress] (&lt;unknown&gt;:25914): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
+2011.12.30.19:39:14 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:14 [Progress] (&lt;unknown&gt;:25914): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
+2011.12.30.19:39:15 [Progress] (&lt;unknown&gt;:25914): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:15 [Progress] (&lt;unknown&gt;:25914): Gtk-WARNING **: Loading IM context type 'ibus' failed
+2011.12.30.19:39:15 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:15 [Progress] (&lt;unknown&gt;:25914): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
+2011.12.30.19:39:15 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:15 [Progress] (&lt;unknown&gt;:25914): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
+2011.12.30.19:39:15 [Progress] (&lt;unknown&gt;:25914): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:15 [Progress] (&lt;unknown&gt;:25914): Gtk-WARNING **: Loading IM context type 'ibus' failed
+2011.12.30.19:39:15 [Progress] (&lt;unknown&gt;:25914): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:15 [Progress] (&lt;unknown&gt;:25914): Gtk-WARNING **: Loading IM context type 'ibus' failed
+2011.12.30.19:39:15 [Info] Finished elaborating classic module.
+2011.12.30.19:39:15 [Progress] Executing: /home/hwang/altera/11.0/quartus//sopc_builder/bin/sopc_builder --classic --generate /tmp/alt5339_2665575473341726347.dir/0002_sopclgen/yysystem.ptf
+2011.12.30.19:39:15 [Info] Running sopc_builder...
+2011.12.30.19:39:15 [Progress] "/home/hwang/altera/11.0/quartus//linux/jre/bin/java" -Xmx512M -classpath "/home/hwang/altera/11.0/quartus//sopc_builder/bin/sopc_builder.jar:/home/hwang/altera/11.0/quartus//sopc_builder/bin/PinAssigner.jar:/home/hwang/altera/11.0/quartus//sopc_builder/bin/sopc_wizard.jar:/home/hwang/altera/11.0/quartus//sopc_builder/bin/jptf.jar" sopc_builder.sopc_builder  -d"/home/hwang/altera/11.0/quartus//sopc_builder" -notalkback=1 -projectnameyysystem.qpf -projectpath/tmp/alt5339_2665575473341726347.dir/0002_sopclgen  --generate /tmp/alt5339_2665575473341726347.dir/0002_sopclgen/yysystem.v --quartus_dir="/home/hwang/altera/11.0/quartus/" --sopc_perl="/home/hwang/altera/11.0/quartus//linux/perl" --sopc_lib_path="++/home/hwang/altera/11.0/quartus//../ip/altera/sopc_builder_ip+/home/hwang/altera/11.0/quartus//../ip/altera/nios2_ip"
+2011.12.30.19:39:17 [Progress] (&lt;unknown&gt;:25960): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:17 [Progress] (&lt;unknown&gt;:25960): Gtk-WARNING **: Loading IM context type 'ibus' failed
+2011.12.30.19:39:17 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:17 [Progress] (&lt;unknown&gt;:25960): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
+2011.12.30.19:39:17 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:17 [Progress] (&lt;unknown&gt;:25960): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
+2011.12.30.19:39:17 [Progress] (&lt;unknown&gt;:25960): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:17 [Progress] (&lt;unknown&gt;:25960): Gtk-WARNING **: Loading IM context type 'ibus' failed
+2011.12.30.19:39:18 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:18 [Progress] (&lt;unknown&gt;:25960): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
+2011.12.30.19:39:18 [Progress] libdbusmenu-gtk.so.3: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:18 [Progress] (&lt;unknown&gt;:25960): Gtk-WARNING **: Failed to load type module: /usr/lib/gtk-2.0/2.10.0/i686-pc-linux-gnu/menuproxies/libappmenu.so
+2011.12.30.19:39:18 [Progress] (&lt;unknown&gt;:25960): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:18 [Progress] (&lt;unknown&gt;:25960): Gtk-WARNING **: Loading IM context type 'ibus' failed
+2011.12.30.19:39:18 [Progress] (&lt;unknown&gt;:25960): Gtk-WARNING **: /usr/lib/gtk-2.0/2.10.0/immodules/im-ibus.so: wrong ELF class: ELFCLASS64
+2011.12.30.19:39:18 [Progress] (&lt;unknown&gt;:25960): Gtk-WARNING **: Loading IM context type 'ibus' failed
+2011.12.30.19:39:18 [Progress] .
+2011.12.30.19:39:19 [Progress] # 2011.12.30 19:39:19 (*) Success: sopc_builder finished.
+2011.12.30.19:39:19 [Info] tx_fifo_p1: "<b>sonic_vc</b>" instantiated <b>altera_avalon_fifo</b> "<b>tx_fifo_p1</b>"
+2011.12.30.19:39:19 [Debug] sonic_vc: queue size: 4 starting:timing_adapter "submodules/sonic_vc_multiplexer_adapter"
+2011.12.30.19:39:19 [Info] multiplexer_adapter: Starting generation. 
+2011.12.30.19:39:20 [Info] multiplexer_adapter: "<b>sonic_vc</b>" instantiated <b>timing_adapter</b> "<b>multiplexer_adapter</b>"
+2011.12.30.19:39:20 [Debug] sonic_vc: queue size: 3 starting:timing_adapter "submodules/sonic_vc_tx_fifo_p0_adapter"
+2011.12.30.19:39:20 [Info] tx_fifo_p0_adapter: Starting generation. 
+2011.12.30.19:39:20 [Info] tx_fifo_p0_adapter_fifo: Starting generation. 
+2011.12.30.19:39:20 [Info] tx_fifo_p0_adapter: "<b>sonic_vc</b>" instantiated <b>timing_adapter</b> "<b>tx_fifo_p0_adapter</b>"
+2011.12.30.19:39:20 [Debug] sonic_vc: queue size: 1 starting:altera_avalon_sc_fifo "submodules/altera_avalon_sc_fifo"
+2011.12.30.19:39:20 [Info] rx_fifo: "<b>sonic_vc</b>" instantiated <b>altera_avalon_sc_fifo</b> "<b>rx_fifo</b>"
+2011.12.30.19:39:20 [Debug] sonic_vc: queue size: 0 starting:altera_reset_controller "submodules/altera_reset_controller"
+2011.12.30.19:39:20 [Info] rst_controller: "<b>sonic_vc</b>" instantiated <b>altera_reset_controller</b> "<b>rst_controller</b>"
+2011.12.30.19:39:20 [Info] sonic_vc: Done <b>sonic_vc</b>" with 9 modules, 14 files, 119081 bytes
 </div>
   <div style="width:100% ; background:#eee ; height:10px"> </div>
  </body>

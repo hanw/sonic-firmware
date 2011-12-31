@@ -23,21 +23,21 @@ module sonic_vc_demultiplexer_0 (
       input      [127: 0] in_data,
       input              in_startofpacket,
       input              in_endofpacket,
-      input      [ 1: 0] in_empty,
+      input              in_empty,
       // Interface: out0
       output reg         out0_valid,
       input              out0_ready,
       output reg [127: 0] out0_data,
       output reg         out0_startofpacket,
       output reg         out0_endofpacket,
-      output reg [ 1: 0] out0_empty,
+      output reg         out0_empty,
       // Interface: out1
       output reg         out1_valid,
       input              out1_ready,
       output reg [127: 0] out1_data,
       output reg         out1_startofpacket,
       output reg         out1_endofpacket,
-      output reg [ 1: 0] out1_empty
+      output reg         out1_empty
 );
 
    // ---------------------------------------------------------------------
@@ -45,22 +45,22 @@ module sonic_vc_demultiplexer_0 (
    // ---------------------------------------------------------------------
    wire         in_ready_wire;
    reg          in_select;
-   reg  [131: 0] in_payload;
+   reg  [130: 0] in_payload;
    
    reg          lhs_ready;
    wire         lhs_valid;   
    
    wire         mid_select;
-   wire [131: 0] mid_payload;
+   wire [130: 0] mid_payload;
    
    reg          rhs0_valid;
    wire         rhs0_ready;   
    reg          rhs1_valid;
    wire         rhs1_ready;   
    wire         out0_valid_wire;
-   wire [131: 0] out0_payload;
+   wire [130: 0] out0_payload;
    wire         out1_valid_wire;
-   wire [131: 0] out1_payload;
+   wire [130: 0] out1_payload;
   
    // ---------------------------------------------------------------------
    //| Input Mapping
@@ -74,7 +74,7 @@ module sonic_vc_demultiplexer_0 (
    // ---------------------------------------------------------------------
    //| Input Pipeline Stage
    // ---------------------------------------------------------------------
-   sonic_vc_demultiplexer_0_1stage_pipeline #( .PAYLOAD_WIDTH( 132 + 1) ) inpipe
+   sonic_vc_demultiplexer_0_1stage_pipeline #( .PAYLOAD_WIDTH( 131 + 1) ) inpipe
       ( .clk      (clk ),
         .reset_n  (reset_n  ),
         .in_ready (in_ready_wire ),
@@ -109,7 +109,7 @@ module sonic_vc_demultiplexer_0 (
    // ---------------------------------------------------------------------
    //| Output Pipeline Stage
    // ---------------------------------------------------------------------
-   sonic_vc_demultiplexer_0_1stage_pipeline   #( .PAYLOAD_WIDTH( 132)) outpipe0
+   sonic_vc_demultiplexer_0_1stage_pipeline   #( .PAYLOAD_WIDTH( 131)) outpipe0
       ( .clk      (clk ),
         .reset_n   (reset_n  ),
         .in_ready (rhs0_ready ),
@@ -119,7 +119,7 @@ module sonic_vc_demultiplexer_0 (
         .out_valid(out0_valid_wire),
         .out_payload(out0_payload)  );
         
-   sonic_vc_demultiplexer_0_1stage_pipeline   #( .PAYLOAD_WIDTH( 132)) outpipe1
+   sonic_vc_demultiplexer_0_1stage_pipeline   #( .PAYLOAD_WIDTH( 131)) outpipe1
       ( .clk      (clk ),
         .reset_n   (reset_n  ),
         .in_ready (rhs1_ready ),
