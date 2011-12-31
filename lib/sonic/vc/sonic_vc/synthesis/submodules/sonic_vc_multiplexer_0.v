@@ -16,7 +16,7 @@ module sonic_vc_multiplexer_0 (
       input      [ 0: 0] in0_error,
       input              in0_startofpacket,
       input              in0_endofpacket,
-      input      [ 1: 0] in0_empty,
+      input              in0_empty,
       // Interface: in1
       input              in1_valid,
       output reg         in1_ready,
@@ -24,7 +24,7 @@ module sonic_vc_multiplexer_0 (
       input      [ 0: 0] in1_error,
       input              in1_startofpacket,
       input              in1_endofpacket,
-      input      [ 1: 0] in1_empty,
+      input              in1_empty,
       // Interface: out
       output reg         out_channel,
       output reg         out_valid,
@@ -33,14 +33,14 @@ module sonic_vc_multiplexer_0 (
       output reg [ 0: 0] out_error,
       output reg         out_startofpacket,
       output reg         out_endofpacket,
-      output reg [ 1: 0] out_empty
+      output reg         out_empty
 );
 
    // ---------------------------------------------------------------------
    //| Signal Declarations
    // ---------------------------------------------------------------------
-   reg  [132: 0] in0_payload;
-   reg  [132: 0] in1_payload;
+   reg  [131: 0] in0_payload;
+   reg  [131: 0] in1_payload;
 
    reg          decision = 0;      
    reg          select = 0;
@@ -48,11 +48,11 @@ module sonic_vc_multiplexer_0 (
    reg          selected_valid;
    wire         out_valid_wire;
    wire         selected_ready;
-   reg  [132: 0] selected_payload;
+   reg  [131: 0] selected_payload;
    reg          packet_in_progress;
    
    wire         out_select;
-   wire [132: 0] out_payload;
+   wire [131: 0] out_payload;
 
    // ---------------------------------------------------------------------
    //| Input Mapping
@@ -144,7 +144,7 @@ module sonic_vc_multiplexer_0 (
    // ---------------------------------------------------------------------
    //| output Pipeline
    // ---------------------------------------------------------------------
-   sonic_vc_multiplexer_0_1stage_pipeline #( .PAYLOAD_WIDTH( 133 + 1 ) ) outpipe
+   sonic_vc_multiplexer_0_1stage_pipeline #( .PAYLOAD_WIDTH( 132 + 1 ) ) outpipe
       ( .clk      (clk ),
         .reset_n  (reset_n  ),
         .in_ready ( selected_ready ),

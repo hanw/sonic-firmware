@@ -17,7 +17,7 @@ module sonic_vc_multiplexer_adapter (
       input              in_error,
       input              in_startofpacket,
       input              in_endofpacket,
-      input      [ 1: 0] in_empty,
+      input              in_empty,
       // Interface: out
       input              out_ready,
       output reg         out_valid,
@@ -26,7 +26,7 @@ module sonic_vc_multiplexer_adapter (
       output reg         out_error,
       output reg         out_startofpacket,
       output reg         out_endofpacket,
-      output reg [ 1: 0] out_empty
+      output reg         out_empty
 );
 
 
@@ -36,8 +36,8 @@ module sonic_vc_multiplexer_adapter (
    //| Signal Declarations
    // ---------------------------------------------------------------------
 
-   reg  [133: 0] in_payload;
-   reg  [133: 0] out_payload;
+   reg  [132: 0] in_payload;
+   reg  [132: 0] out_payload;
    reg  [ 2: 0] ready;
 
 
