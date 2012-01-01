@@ -325,7 +325,7 @@ module sonic_top (
    wire             tx_st_eop1;
    wire             tx_st_err1;
    wire             tx_st_sop1;
-   wire [1:0]            tx_st_empty1;
+   wire             tx_st_empty1;
 
    wire             gnd_tx_stream_mask0;
    wire             gnd_tx_stream_mask1;
@@ -415,7 +415,7 @@ module sonic_top (
    wire             tx_out6;
    wire             tx_out7;
    wire [127: 0]    tx_st_data0;
-   wire [1:0] 	    tx_st_empty0;
+   wire  	    tx_st_empty0;
    wire             tx_st_eop0;
    wire             tx_st_err0;
    wire             tx_st_sop0;
@@ -476,7 +476,7 @@ module sonic_top (
    wire 	    tx_vc_out_eop;
    wire 	    tx_vc_out_chan;
    wire 	    tx_vc_out_err;
-   wire [1:0]	    tx_vc_out_empty;
+   wire 	    tx_vc_out_empty;
 
    wire [127:0]     rx_vc_in_data;
    wire 	    rx_vc_in_valid;
@@ -662,7 +662,7 @@ module sonic_top (
 //      .tx_st_data0 (tx_st_data0),
       .tx_st_data0 (tx_vc_out_data),
 //      .tx_st_empty0 (tx_st_empty0[0]),
-      .tx_st_empty0 (tx_vc_out_empty[0]),
+      .tx_st_empty0 (tx_vc_out_empty),
 //      .tx_st_eop0 (tx_st_eop0),
       .tx_st_eop0 (tx_vc_out_eop),
 //      .tx_st_err0 (tx_st_err0),
