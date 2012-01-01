@@ -493,7 +493,7 @@ module sonic_single_port_logic
       .tx_busy_requester       (tx_busy_requester_dmawr ),
       .tx_ready_requester      (tx_ready_requester_dmawr),
 
-      .tx_ready_other_dma      (tx_ready_dmard),
+      .tx_ready_other_dma      (tx_ready_dmard || tx_ready_interrupt || tx_ready_command),
 
       .tx_req        (tx_req_dmawr  ),
       .tx_ack        (tx_ack0  ),
@@ -873,7 +873,10 @@ module sonic_single_port_logic
       .tx_busy_requester       (tx_busy_requester_dmard ),
       .tx_ready_requester      (tx_ready_requester_dmard),
 
-      .tx_ready_other_dma      (tx_ready_dmawr),
+      //DMA read only checks IRQ and COMMAND
+      //DMA write checks DMA read, IRQ and COMMAND.
+      //If all ready at the same time, the default order is IRQ, DMA read, DMA write.
+      .tx_ready_other_dma      (tx_ready_interrupt || tx_ready_command),
 
       .rx_buffer_cpl_max_dw(rx_buffer_cpl_max_dw),
       .tx_cred       (tx_cred0_reg      ),

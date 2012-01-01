@@ -567,6 +567,7 @@ generate
             .dt_size       (dt_size      ),
 
             // PCIe backend Transmit section
+	    .tx_ready_others (tx_ready_other_dma),
             .tx_ready      (tx_ready_requester),
             .tx_sel        (tx_sel_requester  ),
             .tx_busy       (tx_busy_requester ),

@@ -84,6 +84,7 @@ module sonic_read_dma_requester_128  # (
    input [15:0]  dt_size      ,
 
    //PCIe transmit
+   input tx_ready_others,
    output             tx_ready,
    output             tx_busy ,
    input              tx_sel  ,
@@ -683,11 +684,14 @@ module sonic_read_dma_requester_128  # (
    //
    // Transmit signal section tx_desc, tx_dv, tx_req...
    //
+   // BUGFIX: DMA read checks IRQ and CMD.
    assign tx_ready = (((cstate_tx==START_TX)                  &&
                        (tx_cred_non_posted_header_valid==1'b1)&&
-                       (rx_buffer_cpl_ready==1'b1)) ||
-                      ((cstate_tx==START_TX_UPD_DT)&&
-                       (tx_cred_posted_data_valid==1'b1)           ))?1'b1:1'b0;
+                       (rx_buffer_cpl_ready==1'b1)            &&
+		       (tx_ready_others == 1'b0)) ||
+                      ((cstate_tx==START_TX_UPD_DT)           &&
+                       (tx_cred_posted_data_valid==1'b1)      &&
+		       (tx_ready_others == 1'b0)))?1'b1:1'b0;
 
    assign tx_busy  = ((cstate_tx==MRD_REQ)||(tx_dv==1'b1)||
                        (tx_dfr==1'b1)||(cstate_tx==MWR_REQ_UPD_DT)) ?1'b1:1'b0;
