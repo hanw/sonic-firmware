@@ -636,7 +636,7 @@ set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID IPDS -qip ../../../lib/son
 set_global_assignment -name QIP_FILE ../../../lib/sonic/software/sonic_app/mem_init/meminit.qip -qip ../../../designs/sonic_xg_blocksync/source_files.qsf
 set_global_assignment -name SEARCH_PATH ../../../lib/sonic/software/sonic_app/mem_init/ -qip ../../../lib/sonic/software/sonic_app/mem_init/meminit.qip
 set_global_assignment -name SDC_FILE ../../../lib/sonic/pcie/top.sdc -qip ../../../designs/sonic_xg_blocksync/source_files.qsf
-set_global_assignment -name SDC_FILE ../../../project_files/sonic_quartus/top_example_chaining_top.sdc -qip ../../../designs/sonic_xg_blocksync/source_files.qsf
+set_global_assignment -name SDC_FILE ../../../project_files/sonic/sonic_xg_blocksync/top_example_chaining_top.sdc -qip ../../../designs/sonic_xg_blocksync/source_files.qsf
 set_global_assignment -name SDC_FILE ../../../lib/sonic/xcvr_xg/sonic_v1_15/synthesis/submodules/altera_avalon_dc_fifo.sdc -qip ../../../designs/sonic_xg_blocksync/source_files.qsf
 set_global_assignment -name SDC_FILE ../../../lib/sonic/xcvr_xg/sonic_v1_15/synthesis/submodules/alt_10gbaser_phy.sdc -qip ../../../designs/sonic_xg_blocksync/source_files.qsf
 set_global_assignment -name SDC_FILE ../../../lib/sonic/xcvr_xg/sonic_v1_15/synthesis/submodules/altera_reset_controller.sdc -qip ../../../designs/sonic_xg_blocksync/source_files.qsf

@@ -29,7 +29,6 @@ module sonic_top_wrapper (
 			  local_rstn_ext,
 			  pcie_rstn,
 			  refclk,
-			  req_compliance_push_button_n,
 			  rx_in0,
 			  rx_in1,
 			  rx_in2,
@@ -38,7 +37,6 @@ module sonic_top_wrapper (
 			  rx_in5,
 			  rx_in6,
 			  rx_in7,
-			  usr_sw,
 			  tx_serial_data_0,
 			  rx_serial_data_0,
 			  tx_serial_data_1,
@@ -112,7 +110,6 @@ module sonic_top_wrapper (
    input 	   local_rstn_ext;
    input 	   pcie_rstn;
    input 	   refclk;
-   input 	   req_compliance_push_button_n;
    input 	   rx_in0;
    input 	   rx_in1;
    input 	   rx_in2;
@@ -121,7 +118,6 @@ module sonic_top_wrapper (
    input 	   rx_in5;
    input 	   rx_in6;
    input 	   rx_in7;
-   input [  7: 0]  usr_sw;
 
    reg 		   L0_led;
    reg [ 25: 0]    alive_cnt;
@@ -243,11 +239,11 @@ module sonic_top_wrapper (
    assign local_rstn = safe_mode | local_rstn_ext;
    assign any_rstn = pcie_rstn & local_rstn;
    assign test_in[39 : 33] = 0;
-   assign set_compliance_mode = 1'b0;//usr_sw[0];
+   assign set_compliance_mode = 1'b0;
    assign req_compliance_soft_ctrl = 0;
    assign test_in[32] = test_in_32_hip;
    assign test_in[31 : 9] = 0;
-   assign test_in[8 : 6] = safe_mode ? 4'b010 : usr_sw[3 : 1];
+   assign test_in[8 : 6] = safe_mode ? 4'b010 : 4'b000;
    assign test_in[5] = test_in_5_hip;
    assign test_in[4 : 0] = 5'b01000;
    //reset Synchronizer

@@ -377,9 +377,15 @@ module sonic_rxtx_downstream_intf
                  tx_req <= 1'b0;
                  if ((tx_ws == 1'b0) & (mem_num_to_read==1)) begin
                     cstate_tx <= TX_IDLE;
+		    if (tx_dfr == 1'b0) begin
+		       tx_dv <= 1'b0;
+		    end
                  end
                  else begin
                     cstate_tx <= TX_DV_PAYLD;
+		    if (tx_dfr == 1'b0) begin
+		       tx_dv <= 1'b0;
+		    end;
                  end
               end
               else begin
