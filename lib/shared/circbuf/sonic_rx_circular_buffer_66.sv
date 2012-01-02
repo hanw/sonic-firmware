@@ -106,7 +106,7 @@
 
 module sonic_rx_circular_buffer_66 (/*AUTOARG*/
    // Outputs
-   data_out,
+   data_out, clock_crossed_wr_address,
    // Inputs
    data_in, rd_address, rd_clk, reset, wr_clk, wrena, wrreq
    ) ;
@@ -119,6 +119,7 @@ module sonic_rx_circular_buffer_66 (/*AUTOARG*/
    input 	  wrena;  
    input          wrreq; 
    output [127:0] data_out;
+   output [13:0]  clock_crossed_wr_address;
    
    logic [127:0]  sync_ring_data_out, data_ring_data_out, data_out;
    logic [7:0] 	  sync_ring_rd_address;
@@ -203,7 +204,20 @@ module sonic_rx_circular_buffer_66 (/*AUTOARG*/
 	data_out_sel <= rd_address[7] | rd_address[6] | rd_address[5] |
 			rd_address[4] | rd_address[3];
    end
-      
+
+
+   // propagate the wrcounter across to the read clock domain and monitor 
+   // how much it advances each cycle
+   sonic_common_gray_clock_crosser wrcounter_to_rdclock(
+							.inclock(wr_clk),
+							.outclock(rd_clk),
+							.inena(wrena),
+							.outena(1'b1),
+							.reset(reset),
+							.data(wr_address),
+							.q(clock_crossed_wr_address)
+							);
+   defparam wrcounter_to_rdclock.WIDTH = 14;
       
 endmodule // sonic_rx_circular_buffer_66
 

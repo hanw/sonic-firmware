@@ -98,7 +98,7 @@
 
 module sonic_tx_circular_buffer_66 (/*AUTOARG*/
    // Outputs
-   data_out,
+   data_out, clock_crossed_rd_address,
    // Inputs
    data_in, wr_address, wr_clk, rd_clk, reset, wrreq, rdena, rdreq
    ) ;
@@ -114,7 +114,8 @@ module sonic_tx_circular_buffer_66 (/*AUTOARG*/
 //   input 	 tag_cpl;
 //   output 	 gearbox_ena;
    output [65:0] data_out;
-   
+   output [13:0] clock_crossed_rd_address;
+      
    logic [1:0] 	 dout_sync;
    logic [63:0]  dout_data;
 
@@ -190,98 +191,17 @@ module sonic_tx_circular_buffer_66 (/*AUTOARG*/
 				   .data_out(dout_sync)
 				   );
 
-   /*
-   wire [`USED_QWORDS_WIDTH-1:0] wrusedqwords;
-   wire [`USED_QWORDS_WIDTH-1:0] rdusedqwords;
-
-   // instantiate a standard usedw calculator to do the usedw, empty, etc.
-   // fifo enabled before dma starts.
-	
-   sonic_common_fifo_usedw_calculator usedw_calculator (
-							.rdclock(rd_clk),
-							.wrclock(wr_clk),
+   // clock crossed tx ring rptr to application clock domain.
+   sonic_common_gray_clock_crosser rdcounter_to_wrclock(
+							.inclock(rd_clk),
+							.outclock(wr_clk),
+							.inena(rdena),
+							.outena(1'b1),
 							.reset(reset),
-							.wrreq(wrreq),
-							.wrena(wren_data), //NOTE: only count when wren_data is true.
-							.rdreq(rd_ready && rdreq), //NOTE:
-							.rdena(rdena),
-							.wrusedqwords(wrusedqwords),
-							.full(full),
-							.almost_full(almost_full),
-							.rdusedqwords(rdusedqwords),
-							.clock_crossed_wptr(),
-							.clock_crossed_rptr(tx_ring_rptr),
-							.empty(empty),
-							.almost_empty(almost_empty)
+							.data(rd_address),
+							.q(clock_crossed_rd_address)
 							);
-   defparam usedw_calculator.WIDTH = `USED_QWORDS_WIDTH,
-     usedw_calculator.QWORD_DEPTH = 14'h3E00, //NOTE: smaller than mem size.
-     usedw_calculator.UPSTREAM = 0,
-     usedw_calculator.READ_TO_WRITE_DELAY = 0,
-     usedw_calculator.WRITE_TO_READ_DELAY = 0;	//covered by crossing domain delay
-	
-   // -------------------------------------------------------
-   // Stuff in the RD clock domain
-   // -------------------------------------------------------
-   // Cross clock domain fifo, as synchronizer, 
-   // Reuse the gray code crosser, with WIDTH=1.
-   wire 			 rd_tag_cpl;
-   
-   sonic_common_signal_clock_crosser cpl_crosser(
-						 .inclock(wr_clk),
-						 .outclock(rd_clk),
-						 .inena(1'b1),
-						 .outena(1'b1),
-						 .reset(reset),
-						 .data(tag_cpl),
-						 .q(rd_tag_cpl)
-						 );
-   defparam cpl_crosser.WIDTH=1,
-     cpl_crosser.SHIFT_REGISTER_LENGTH=8;
-   
-   reg [`USED_QWORDS_WIDTH-1:0]  rd_cpld_qword_count;
-
-   always @ (posedge rd_clk or posedge reset) begin
-      if (reset == 1'b1) begin
-	 rd_cpld_qword_count <= 0;
-      end
-      else begin
-	 if(rd_tag_cpl == 1'b1) begin
-	    if(rdreq == 1'b1) begin 
-	       //prevent rd_cpld_qword_count from underflow
-	       if (rdusedqwords - 1 > rdusedqwords)
-		 rd_cpld_qword_count <= rdusedqwords;
-	       else
-		 rd_cpld_qword_count <= rdusedqwords - 1;
-	    end
-	    else begin
-	       rd_cpld_qword_count <= rdusedqwords;
-	    end
-	 end
-	 else begin
-	    if (rdreq == 1'b1) begin 
-	       //prevent rd_cpld_qword_count from underflow
-	       if (rd_cpld_qword_count - 1 > rd_cpld_qword_count)
-		 rd_cpld_qword_count <= rd_cpld_qword_count;
-	       else
-		 rd_cpld_qword_count <= rd_cpld_qword_count - 1;
-	    end
-	 end
-      end
-   end
-
-   always @ (posedge rd_clk or posedge reset) begin
-      if (reset == 1'b1) begin
-	 rd_ready <= 1'b0;
-      end 
-      else begin
-	 if (rd_cpld_qword_count > 0 && ~empty)
-	   rd_ready <= 1'b1;
-	 else
-	   rd_ready <= 1'b0;
-      end
-   end
-*/
+   defparam rdcounter_to_wrclock.WIDTH = 14;
    
 endmodule // sonic_tx_circular_buffer_66
 

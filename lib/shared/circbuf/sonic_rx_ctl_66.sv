@@ -57,9 +57,10 @@ module sonic_rx_ctl_66 (/*AUTOARG*/
 					.wr_clk(wr_clock),
 					.wrena(rx_cbuf_wrena),
 					.wrreq(wrreq),
-					.data_out(data_out) 
+					.data_out(data_out),
+					.clock_crossed_wr_address(rx_ring_wptr)
 					);
-   
+
    /*
     * Keep track of full, empty signals
     * standard usedw calculator.
@@ -75,7 +76,7 @@ module sonic_rx_ctl_66 (/*AUTOARG*/
 						  .full(rx_full),
 						  .almost_full(rx_almost_full),
 						  .rdusedqwords(),
-						  .clock_crossed_wptr(rx_ring_wptr),
+						  .clock_crossed_wptr(),
 						  .clock_crossed_rptr(),
 						  .empty(rx_empty),
 						  .almost_empty(rx_almost_empty)
