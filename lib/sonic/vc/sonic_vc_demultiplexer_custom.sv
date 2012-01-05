@@ -146,7 +146,7 @@ module sonic_vc_demultiplexer_0
       out0_valid   = out0_valid_wire;
       {out0_data,out0_empty,out0_endofpacket,out0_startofpacket, out0_bardec, out0_be} = out0_payload;
       out1_valid   = out1_valid_wire;
-      {out1_data,out1_empty,out1_endofpacket,out1_startofpacket, out0_bardec, out0_be} = out1_payload;
+      {out1_data,out1_empty,out1_endofpacket,out1_startofpacket, out1_bardec, out1_be} = out1_payload;
    end
 
 endmodule
