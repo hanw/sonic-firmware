@@ -3,49 +3,55 @@
 
 `timescale 1 ps / 1 ps
 module sonic_vc (
-		input  wire [127:0] rx_vc_in_data,            //   rx_vc_in.data
-		input  wire         rx_vc_in_valid,           //           .valid
-		output wire         rx_vc_in_ready,           //           .ready
-		input  wire         rx_vc_in_startofpacket,   //           .startofpacket
-		input  wire         rx_vc_in_endofpacket,     //           .endofpacket
-		input  wire         rx_vc_in_empty,           //           .empty
-		input  wire         rx_vc_in_channel,         //           .channel
-		output wire         rx_vc_out0_valid,         // rx_vc_out0.valid
-		input  wire         rx_vc_out0_ready,         //           .ready
-		output wire [127:0] rx_vc_out0_data,          //           .data
-		output wire         rx_vc_out0_startofpacket, //           .startofpacket
-		output wire         rx_vc_out0_endofpacket,   //           .endofpacket
-		output wire         rx_vc_out0_empty,         //           .empty
-		input  wire [127:0] tx_vc_in0_data,           //  tx_vc_in0.data
-		input  wire         tx_vc_in0_valid,          //           .valid
-		output wire         tx_vc_in0_ready,          //           .ready
-		input  wire         tx_vc_in0_startofpacket,  //           .startofpacket
-		input  wire         tx_vc_in0_endofpacket,    //           .endofpacket
-		input  wire         tx_vc_in0_empty,          //           .empty
-		input  wire         tx_vc_in0_error,          //           .error
-		output wire         rx_vc_out1_valid,         // rx_vc_out1.valid
-		input  wire         rx_vc_out1_ready,         //           .ready
-		output wire [127:0] rx_vc_out1_data,          //           .data
-		output wire         rx_vc_out1_startofpacket, //           .startofpacket
-		output wire         rx_vc_out1_endofpacket,   //           .endofpacket
-		output wire         rx_vc_out1_empty,         //           .empty
-		input  wire [127:0] tx_vc_in1_data,           //  tx_vc_in1.data
-		input  wire         tx_vc_in1_valid,          //           .valid
-		output wire         tx_vc_in1_ready,          //           .ready
-		input  wire         tx_vc_in1_startofpacket,  //           .startofpacket
-		input  wire         tx_vc_in1_endofpacket,    //           .endofpacket
-		input  wire         tx_vc_in1_empty,          //           .empty
-		input  wire         tx_vc_in1_error,          //           .error
-		input  wire         tx_vc_out_ready,          //  tx_vc_out.ready
-		output wire         tx_vc_out_valid,          //           .valid
-		output wire [127:0] tx_vc_out_data,           //           .data
-		output wire         tx_vc_out_channel,        //           .channel
-		output wire         tx_vc_out_error,          //           .error
-		output wire         tx_vc_out_startofpacket,  //           .startofpacket
-		output wire         tx_vc_out_endofpacket,    //           .endofpacket
-		output wire         tx_vc_out_empty,          //           .empty
-		input  wire         reset_reset_n,            //      reset.reset_n
-		input  wire         clk_clk                   //        clk.clk
+		output wire         rx_vc_out0_valid,         //        rx_vc_out0.valid
+		input  wire         rx_vc_out0_ready,         //                  .ready
+		output wire [127:0] rx_vc_out0_data,          //                  .data
+		output wire         rx_vc_out0_startofpacket, //                  .startofpacket
+		output wire         rx_vc_out0_endofpacket,   //                  .endofpacket
+		output wire         rx_vc_out0_empty,         //                  .empty
+		output wire         rx_vc_out1_valid,         //        rx_vc_out1.valid
+		input  wire         rx_vc_out1_ready,         //                  .ready
+		output wire [127:0] rx_vc_out1_data,          //                  .data
+		output wire         rx_vc_out1_startofpacket, //                  .startofpacket
+		output wire         rx_vc_out1_endofpacket,   //                  .endofpacket
+		output wire         rx_vc_out1_empty,         //                  .empty
+		output wire [7:0]   rx_vc_out0_bardec_export, // rx_vc_out0_bardec.export
+		input  wire [7:0]   rx_vc_in_bardec_export,   //   rx_vc_in_bardec.export
+		input  wire         clk_clk,                  //               clk.clk
+		input  wire         rx_vc_in_valid,           //          rx_vc_in.valid
+		output wire         rx_vc_in_ready,           //                  .ready
+		input  wire [127:0] rx_vc_in_data,            //                  .data
+		input  wire         rx_vc_in_startofpacket,   //                  .startofpacket
+		input  wire         rx_vc_in_endofpacket,     //                  .endofpacket
+		input  wire         rx_vc_in_empty,           //                  .empty
+		input  wire         rx_vc_in_channel,         //                  .channel
+		input  wire [127:0] tx_vc_in0_data,           //         tx_vc_in0.data
+		input  wire         tx_vc_in0_valid,          //                  .valid
+		output wire         tx_vc_in0_ready,          //                  .ready
+		input  wire         tx_vc_in0_startofpacket,  //                  .startofpacket
+		input  wire         tx_vc_in0_endofpacket,    //                  .endofpacket
+		input  wire         tx_vc_in0_empty,          //                  .empty
+		input  wire         tx_vc_in0_error,          //                  .error
+		input  wire [127:0] tx_vc_in1_data,           //         tx_vc_in1.data
+		input  wire         tx_vc_in1_valid,          //                  .valid
+		output wire         tx_vc_in1_ready,          //                  .ready
+		input  wire         tx_vc_in1_startofpacket,  //                  .startofpacket
+		input  wire         tx_vc_in1_endofpacket,    //                  .endofpacket
+		input  wire         tx_vc_in1_empty,          //                  .empty
+		input  wire         tx_vc_in1_error,          //                  .error
+		input  wire         tx_vc_out_ready,          //         tx_vc_out.ready
+		output wire         tx_vc_out_valid,          //                  .valid
+		output wire [127:0] tx_vc_out_data,           //                  .data
+		output wire         tx_vc_out_channel,        //                  .channel
+		output wire         tx_vc_out_error,          //                  .error
+		output wire         tx_vc_out_startofpacket,  //                  .startofpacket
+		output wire         tx_vc_out_endofpacket,    //                  .endofpacket
+		output wire         tx_vc_out_empty,          //                  .empty
+		input  wire         reset_reset_n,            //             reset.reset_n
+		output wire [15:0]  rx_vc_out0_be_export,     //     rx_vc_out0_be.export
+		output wire [7:0]   rx_vc_out1_bardec_export, // rx_vc_out1_bardec.export
+		input  wire [15:0]  rx_vc_in_be_export,       //       rx_vc_in_be.export
+		output wire [15:0]  rx_vc_out1_be_export      //     rx_vc_out1_be.export
 	);
 
 	wire          multiplexer_0_out_endofpacket;   // multiplexer_0:out_endofpacket -> multiplexer_adapter:in_endofpacket
@@ -56,13 +62,6 @@ module sonic_vc (
 	wire  [127:0] multiplexer_0_out_data;          // multiplexer_0:out_data -> multiplexer_adapter:in_data
 	wire          multiplexer_0_out_ready;         // multiplexer_adapter:in_ready -> multiplexer_0:out_ready
 	wire          multiplexer_0_out_channel;       // multiplexer_0:out_channel -> multiplexer_adapter:in_channel
-	wire          rx_fifo_out_endofpacket;         // rx_fifo:out_endofpacket -> demultiplexer_0:in_endofpacket
-	wire          rx_fifo_out_valid;               // rx_fifo:out_valid -> demultiplexer_0:in_valid
-	wire          rx_fifo_out_startofpacket;       // rx_fifo:out_startofpacket -> demultiplexer_0:in_startofpacket
-	wire          rx_fifo_out_empty;               // rx_fifo:out_empty -> demultiplexer_0:in_empty
-	wire  [127:0] rx_fifo_out_data;                // rx_fifo:out_data -> demultiplexer_0:in_data
-	wire          rx_fifo_out_channel;             // rx_fifo:out_channel -> demultiplexer_0:in_channel
-	wire          rx_fifo_out_ready;               // demultiplexer_0:in_ready -> rx_fifo:out_ready
 	wire          tx_fifo_p0_out_endofpacket;      // tx_fifo_p0:out_endofpacket -> multiplexer_0:in0_endofpacket
 	wire          tx_fifo_p0_out_valid;            // tx_fifo_p0:out_valid -> multiplexer_0:in0_valid
 	wire          tx_fifo_p0_out_startofpacket;    // tx_fifo_p0:out_startofpacket -> multiplexer_0:in0_startofpacket
@@ -77,7 +76,7 @@ module sonic_vc (
 	wire          tx_fifo_p1_out_empty;            // tx_fifo_p1:out_empty -> multiplexer_0:in1_empty
 	wire  [127:0] tx_fifo_p1_out_data;             // tx_fifo_p1:out_data -> multiplexer_0:in1_data
 	wire          tx_fifo_p1_out_ready;            // multiplexer_0:in1_ready -> tx_fifo_p1:out_ready
-	wire          rst_controller_reset_out_reset;  // rst_controller:reset_out -> [demultiplexer_0:reset_n, multiplexer_0:reset_n, multiplexer_adapter:reset_n, rx_fifo:reset, tx_fifo_p0:reset, tx_fifo_p1:reset]
+	wire          rst_controller_reset_out_reset;  // rst_controller:reset_out -> [multiplexer_0:reset_n, multiplexer_adapter:reset_n, sonic_vc_demultiplexer_custom_0:reset_n, tx_fifo_p0:reset, tx_fifo_p1:reset]
 
 	sonic_vc_multiplexer_0 multiplexer_0 (
 		.clk               (clk_clk),                         //   clk.clk
@@ -106,30 +105,6 @@ module sonic_vc (
 		.out_empty         (multiplexer_0_out_empty)          //      .empty
 	);
 
-	sonic_vc_demultiplexer_0 demultiplexer_0 (
-		.clk                (clk_clk),                         //   clk.clk
-		.reset_n            (~rst_controller_reset_out_reset), // reset.reset_n
-		.in_channel         (rx_fifo_out_channel),             //    in.channel
-		.in_valid           (rx_fifo_out_valid),               //      .valid
-		.in_ready           (rx_fifo_out_ready),               //      .ready
-		.in_data            (rx_fifo_out_data),                //      .data
-		.in_startofpacket   (rx_fifo_out_startofpacket),       //      .startofpacket
-		.in_endofpacket     (rx_fifo_out_endofpacket),         //      .endofpacket
-		.in_empty           (rx_fifo_out_empty),               //      .empty
-		.out0_valid         (rx_vc_out0_valid),                //  out0.valid
-		.out0_ready         (rx_vc_out0_ready),                //      .ready
-		.out0_data          (rx_vc_out0_data),                 //      .data
-		.out0_startofpacket (rx_vc_out0_startofpacket),        //      .startofpacket
-		.out0_endofpacket   (rx_vc_out0_endofpacket),          //      .endofpacket
-		.out0_empty         (rx_vc_out0_empty),                //      .empty
-		.out1_valid         (rx_vc_out1_valid),                //  out1.valid
-		.out1_ready         (rx_vc_out1_ready),                //      .ready
-		.out1_data          (rx_vc_out1_data),                 //      .data
-		.out1_startofpacket (rx_vc_out1_startofpacket),        //      .startofpacket
-		.out1_endofpacket   (rx_vc_out1_endofpacket),          //      .endofpacket
-		.out1_empty         (rx_vc_out1_empty)                 //      .empty
-	);
-
 	sonic_vc_multiplexer_adapter multiplexer_adapter (
 		.clk               (clk_clk),                         //   clk.clk
 		.reset_n           (~rst_controller_reset_out_reset), // reset.reset_n
@@ -149,47 +124,6 @@ module sonic_vc (
 		.out_startofpacket (tx_vc_out_startofpacket),         //      .startofpacket
 		.out_endofpacket   (tx_vc_out_endofpacket),           //      .endofpacket
 		.out_empty         (tx_vc_out_empty)                  //      .empty
-	);
-
-	altera_avalon_sc_fifo #(
-		.SYMBOLS_PER_BEAT    (2),
-		.BITS_PER_SYMBOL     (64),
-		.FIFO_DEPTH          (256),
-		.CHANNEL_WIDTH       (1),
-		.ERROR_WIDTH         (0),
-		.USE_PACKETS         (1),
-		.USE_FILL_LEVEL      (0),
-		.EMPTY_LATENCY       (3),
-		.USE_MEMORY_BLOCKS   (1),
-		.USE_STORE_FORWARD   (0),
-		.USE_ALMOST_FULL_IF  (0),
-		.USE_ALMOST_EMPTY_IF (0)
-	) rx_fifo (
-		.clk               (clk_clk),                              //       clk.clk
-		.reset             (rst_controller_reset_out_reset),       // clk_reset.reset
-		.in_data           (rx_vc_in_data),                        //        in.data
-		.in_valid          (rx_vc_in_valid),                       //          .valid
-		.in_ready          (rx_vc_in_ready),                       //          .ready
-		.in_startofpacket  (rx_vc_in_startofpacket),               //          .startofpacket
-		.in_endofpacket    (rx_vc_in_endofpacket),                 //          .endofpacket
-		.in_empty          (rx_vc_in_empty),                       //          .empty
-		.in_channel        (rx_vc_in_channel),                     //          .channel
-		.out_data          (rx_fifo_out_data),                     //       out.data
-		.out_valid         (rx_fifo_out_valid),                    //          .valid
-		.out_ready         (rx_fifo_out_ready),                    //          .ready
-		.out_startofpacket (rx_fifo_out_startofpacket),            //          .startofpacket
-		.out_endofpacket   (rx_fifo_out_endofpacket),              //          .endofpacket
-		.out_empty         (rx_fifo_out_empty),                    //          .empty
-		.out_channel       (rx_fifo_out_channel),                  //          .channel
-		.csr_address       (2'b00),                                // (terminated)
-		.csr_read          (1'b0),                                 // (terminated)
-		.csr_write         (1'b0),                                 // (terminated)
-		.csr_readdata      (),                                     // (terminated)
-		.csr_writedata     (32'b00000000000000000000000000000000), // (terminated)
-		.almost_full_data  (),                                     // (terminated)
-		.almost_empty_data (),                                     // (terminated)
-		.in_error          (1'b0),                                 // (terminated)
-		.out_error         ()                                      // (terminated)
 	);
 
 	altera_avalon_sc_fifo #(
@@ -272,6 +206,36 @@ module sonic_vc (
 		.almost_empty_data (),                                     // (terminated)
 		.in_channel        (1'b0),                                 // (terminated)
 		.out_channel       ()                                      // (terminated)
+	);
+
+	sonic_vc_demultiplexer_0 sonic_vc_demultiplexer_custom_0 (
+		.clk                (clk_clk),                         //       clock.clk
+		.in_valid           (rx_vc_in_valid),                  //          in.valid
+		.in_ready           (rx_vc_in_ready),                  //            .ready
+		.in_data            (rx_vc_in_data),                   //            .data
+		.in_startofpacket   (rx_vc_in_startofpacket),          //            .startofpacket
+		.in_endofpacket     (rx_vc_in_endofpacket),            //            .endofpacket
+		.in_empty           (rx_vc_in_empty),                  //            .empty
+		.in_channel         (rx_vc_in_channel),                //            .channel
+		.out0_valid         (rx_vc_out0_valid),                //        out0.valid
+		.out0_ready         (rx_vc_out0_ready),                //            .ready
+		.out0_data          (rx_vc_out0_data),                 //            .data
+		.out0_startofpacket (rx_vc_out0_startofpacket),        //            .startofpacket
+		.out0_endofpacket   (rx_vc_out0_endofpacket),          //            .endofpacket
+		.out0_empty         (rx_vc_out0_empty),                //            .empty
+		.out1_valid         (rx_vc_out1_valid),                //        out1.valid
+		.out1_ready         (rx_vc_out1_ready),                //            .ready
+		.out1_data          (rx_vc_out1_data),                 //            .data
+		.out1_startofpacket (rx_vc_out1_startofpacket),        //            .startofpacket
+		.out1_endofpacket   (rx_vc_out1_endofpacket),          //            .endofpacket
+		.out1_empty         (rx_vc_out1_empty),                //            .empty
+		.in_bardec          (rx_vc_in_bardec_export),          //   in_bardec.export
+		.in_be              (rx_vc_in_be_export),              //       in_be.export
+		.out0_bardec        (rx_vc_out0_bardec_export),        // out0_bardec.export
+		.out0_be            (rx_vc_out0_be_export),            //     out0_be.export
+		.out1_bardec        (rx_vc_out1_bardec_export),        // out1_bardec.export
+		.out1_be            (rx_vc_out1_be_export),            //     out1_be.export
+		.reset_n            (~rst_controller_reset_out_reset)  //     reset_n.reset_n
 	);
 
 	altera_reset_controller #(

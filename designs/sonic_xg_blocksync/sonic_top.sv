@@ -375,6 +375,8 @@ module sonic_top (
    wire             rx_mask0;
    wire [  7: 0]    rx_st_bardec0;
    wire [ 15: 0]    rx_st_be0;
+   wire [  7: 0]    rx_st_bardec1;
+   wire [ 15: 0]    rx_st_be1;
    wire [127: 0]    rx_st_data0;
    wire             rx_st_empty0;
    wire             rx_st_empty1;
@@ -485,20 +487,17 @@ module sonic_top (
    wire 	    rx_vc_in_eop;
    reg 		    rx_vc_in_chan;
    wire 	    rx_vc_in_empty;
-
+   wire [7:0] 	    rx_vc_in_bardec;
+   wire [15:0] 	    rx_vc_in_be;
+   
    reg [127:0] 	    rx_vc_in_data_r;
    reg 		    rx_vc_in_valid_r;
    reg 		    rx_vc_in_sop_r;
    reg 		    rx_vc_in_eop_r;
    reg 		    rx_vc_in_empty_r;
-   
-   reg [7:0] 	    rx_st_bardec_r;
-   reg [7:0] 	    rx_st_bardec_rr;
-   reg [7:0] 	    rx_st_bardec_rrr;
-   reg [15:0] 	    rx_st_be_r;
-   reg [15:0] 	    rx_st_be_rr;
-   reg [15:0] 	    rx_st_be_rrr;
-   
+   reg [7:0] 	    rx_vc_in_bardec_r;
+   reg [15:0] 	    rx_vc_in_be_r;
+      
    assign ref_clk_sel_code = 0;
    assign lane_width_code = 3;
    assign phy_sel_code = 6;
@@ -510,8 +509,8 @@ module sonic_top (
 
    assign tx_st_sop0 = tx_stream_data0[73];
    assign tx_st_err0 = tx_stream_data0[74];
-   assign rx_stream_data0 = {rx_st_be_rrr[7 : 0], rx_st_sop0, rx_st_empty0, rx_st_bardec_rrr, rx_st_data0[63 : 0]};
-   assign rx_stream_data0_1 = {rx_st_be_rrr[15 : 8], rx_st_sop0, rx_st_eop0, rx_st_bardec_rrr, rx_st_data0[127 : 64]};
+   assign rx_stream_data0 = {rx_st_be0[7 : 0], rx_st_sop0, rx_st_empty0, rx_st_bardec0, rx_st_data0[63 : 0]};
+   assign rx_stream_data0_1 = {rx_st_be0[15 : 8], rx_st_sop0, rx_st_eop0, rx_st_bardec0, rx_st_data0[127 : 64]};
    assign tx_st_data0 = {tx_stream_data0_1[63 : 0],tx_stream_data0[63 : 0]};
    assign tx_st_eop0 = tx_stream_data0_1[72];
    assign tx_st_empty0 = tx_stream_data0[72];
@@ -524,8 +523,8 @@ module sonic_top (
    assign tx_st_err1 = tx_stream_data1[74];
    assign tx_st_data1 = {tx_stream_data1_1[63:0], tx_stream_data1[63:0]};
    assign tx_st_empty1 = tx_stream_data1[72];
-   assign rx_stream_data1 = {rx_st_be_rrr[7:0], rx_st_sop1, rx_st_empty1, rx_st_bardec_rrr, rx_st_data1[63:0]};
-   assign rx_stream_data1_1 = {rx_st_be_rrr[15:0], rx_st_sop1, rx_st_eop1, rx_st_bardec_rrr, rx_st_data1[127:64]};
+   assign rx_stream_data1 = {rx_st_be1[7:0], rx_st_sop1, rx_st_empty1, rx_st_bardec1, rx_st_data1[63:0]};
+   assign rx_stream_data1_1 = {rx_st_be1[15:8], rx_st_sop1, rx_st_eop1, rx_st_bardec1, rx_st_data1[127:64]};
    assign gnd_tx_stream_mask0 = 1'b0;
    assign gnd_tx_stream_mask1 = 1'b0;
    
@@ -583,10 +582,10 @@ module sonic_top (
       .rx_in5 (rx_in5),
       .rx_in6 (rx_in6),
       .rx_in7 (rx_in7),
-      .rx_st_bardec0 (rx_st_bardec0),
-      .rx_st_be0 (rx_st_be0), 
+      .rx_st_bardec0 (rx_vc_in_bardec),
+      .rx_st_be0 (rx_vc_in_be), 
       .rx_st_data0 (rx_vc_in_data),
-      .rx_st_empty0 (rx_vc_in_empty), //bit[1] of demultiplexer.empty
+      .rx_st_empty0 (rx_vc_in_empty), 
       .rx_st_eop0 (rx_vc_in_eop),
       .rx_st_err0 (open_rx_st_err0),
       .rx_st_mask0 (rx_mask0),
@@ -773,7 +772,7 @@ module sonic_top (
 	   (rx_vc_in_data[31:24] == 8'h42) ||
 	   (rx_vc_in_data[31:24] == 8'h4A) ||
 	   (rx_vc_in_data[31:24] == 8'h4B) ||
-	   (rx_vc_in_data[31:24] == 8'h06) ||
+	   (rx_vc_in_data[31:24] == 8'h0A) ||
 	   (rx_vc_in_data[31:24] == 8'h0B))) begin
 	 casez (rx_vc_in_data[22:20]) // TLP header byte 0-3
 	   3'b0??: rx_vc_in_chan <= 1'b0;
@@ -788,20 +787,10 @@ module sonic_top (
       rx_vc_in_sop_r   <= rx_vc_in_sop;
       rx_vc_in_eop_r   <= rx_vc_in_eop;
       rx_vc_in_empty_r <= rx_vc_in_empty;
+      rx_vc_in_bardec_r <= rx_vc_in_bardec;
+      rx_vc_in_be_r <= rx_vc_in_be;
    end
-   
-   /* 
-    * Match delay of sonic vc Rx demultiplexer
-    */
-   always @(posedge pld_clk) begin
-      rx_st_bardec_rrr <= rx_st_bardec_rr;
-      rx_st_bardec_rr <= rx_st_bardec_r;
-      rx_st_bardec_r <= rx_st_bardec0;
-      rx_st_be_rrr <= rx_st_be_rr;
-      rx_st_be_rr <= rx_st_be_r;
-      rx_st_be_r <= rx_st_be0;
-   end
-   
+      
    sonic_vc vc (
 		.clk_clk                  (pld_clk),          //        clk.clk
 		.reset_reset_n            (srstn),            //      reset.reset_n
@@ -834,18 +823,24 @@ module sonic_top (
 		.rx_vc_in_startofpacket   (rx_vc_in_sop_r),     //           .startofpacket
 		.rx_vc_in_endofpacket     (rx_vc_in_eop_r),     //           .endofpacket
 		.rx_vc_in_empty           (rx_vc_in_empty_r), //      .empty
+		.rx_vc_in_bardec_export   (rx_vc_in_bardec_r),
+		.rx_vc_in_be_export       (rx_vc_in_be_r),
 		.rx_vc_out0_valid         (rx_stream_valid0), // rx_vc_out0.valid
 		.rx_vc_out0_ready         (rx_stream_ready0), //           .ready
 		.rx_vc_out0_data          (rx_st_data0),      //           .data
 		.rx_vc_out0_startofpacket (rx_st_sop0),       //           .startofpacket
 		.rx_vc_out0_endofpacket   (rx_st_eop0),       //           .endofpacket
 		.rx_vc_out0_empty         (rx_st_empty0),
+		.rx_vc_out0_bardec_export (rx_st_bardec0),
+		.rx_vc_out0_be_export     (rx_st_be0),
 		.rx_vc_out1_valid         (rx_stream_valid1), // rx_vc_out1.valid
 		.rx_vc_out1_ready         (rx_stream_ready1), //           .ready
 		.rx_vc_out1_data          (rx_st_data1),      //           .data
 		.rx_vc_out1_startofpacket (rx_st_sop1),       //           .startofpacket
 		.rx_vc_out1_endofpacket   (rx_st_eop1),       //           .endofpacket
-		.rx_vc_out1_empty         (rx_st_empty1)
+		.rx_vc_out1_empty         (rx_st_empty1),
+		.rx_vc_out1_bardec_export (rx_st_bardec1),
+		.rx_vc_out1_be_export     (rx_st_be1)
 		);
    
    wire [31:0] 	    p1_prg_wrdata;           // P0 out, P1 in

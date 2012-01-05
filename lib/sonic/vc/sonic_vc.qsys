@@ -20,14 +20,6 @@
          type = "int";
       }
    }
-   element demultiplexer_0
-   {
-      datum _sortIndex
-      {
-         value = "3";
-         type = "int";
-      }
-   }
    element multiplexer_0
    {
       datum _sortIndex
@@ -44,11 +36,11 @@
          type = "int";
       }
    }
-   element rx_fifo
+   element sonic_vc_demultiplexer_custom_0
    {
       datum _sortIndex
       {
-         value = "6";
+         value = "5";
          type = "int";
       }
    }
@@ -56,7 +48,7 @@
    {
       datum _sortIndex
       {
-         value = "4";
+         value = "3";
          type = "int";
       }
    }
@@ -64,7 +56,7 @@
    {
       datum _sortIndex
       {
-         value = "5";
+         value = "4";
          type = "int";
       }
    }
@@ -81,7 +73,7 @@
  <parameter name="projectName" value="" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1325361631630" />
+ <parameter name="timeStamp" value="1325744962417" />
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <interface
@@ -89,21 +81,6 @@
    internal="multiplexer_adapter.out"
    type="avalon_streaming"
    dir="start" />
- <interface
-   name="rx_vc_out0"
-   internal="demultiplexer_0.out0"
-   type="avalon_streaming"
-   dir="start" />
- <interface
-   name="rx_vc_out1"
-   internal="demultiplexer_0.out1"
-   type="avalon_streaming"
-   dir="start" />
- <interface
-   name="rx_vc_in"
-   internal="rx_fifo.in"
-   type="avalon_streaming"
-   dir="end" />
  <interface
    name="tx_vc_in0"
    internal="tx_fifo_p0.in"
@@ -113,6 +90,51 @@
    name="tx_vc_in1"
    internal="tx_fifo_p1.in"
    type="avalon_streaming"
+   dir="end" />
+ <interface
+   name="rx_vc_in"
+   internal="sonic_vc_demultiplexer_custom_0.in"
+   type="avalon_streaming"
+   dir="end" />
+ <interface
+   name="rx_vc_out1"
+   internal="sonic_vc_demultiplexer_custom_0.out1"
+   type="avalon_streaming"
+   dir="start" />
+ <interface
+   name="rx_vc_out0"
+   internal="sonic_vc_demultiplexer_custom_0.out0"
+   type="avalon_streaming"
+   dir="start" />
+ <interface
+   name="rx_vc_in_bardec"
+   internal="sonic_vc_demultiplexer_custom_0.in_bardec"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="rx_vc_in_be"
+   internal="sonic_vc_demultiplexer_custom_0.in_be"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="rx_vc_out0_bardec"
+   internal="sonic_vc_demultiplexer_custom_0.out0_bardec"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="rx_vc_out0_be"
+   internal="sonic_vc_demultiplexer_custom_0.out0_be"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="rx_vc_out1_bardec"
+   internal="sonic_vc_demultiplexer_custom_0.out1_bardec"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="rx_vc_out1_be"
+   internal="sonic_vc_demultiplexer_custom_0.out1_be"
+   type="conduit"
    dir="end" />
  <module kind="clock_source" version="11.0" enabled="1" name="clk_0">
   <parameter name="clockFrequency" value="250000000" />
@@ -129,21 +151,6 @@
   <parameter name="outChannelWidth" value="1" />
   <parameter name="packetScheduling" value="true" />
   <parameter name="schedulingSize" value="2" />
-  <parameter name="symbolsPerBeat" value="2" />
-  <parameter name="useHighBitsOfChannel" value="true" />
-  <parameter name="usePackets" value="true" />
- </module>
- <module
-   kind="demultiplexer"
-   version="11.0"
-   enabled="1"
-   name="demultiplexer_0">
-  <parameter name="bitsPerSymbol" value="64" />
-  <parameter name="errorWidth" value="0" />
-  <parameter name="generationLanguage" value="VERILOG" />
-  <parameter name="inChannelWidth" value="1" />
-  <parameter name="moduleName" value="" />
-  <parameter name="numOutputInterfaces" value="2" />
   <parameter name="symbolsPerBeat" value="2" />
   <parameter name="useHighBitsOfChannel" value="true" />
   <parameter name="usePackets" value="true" />
@@ -170,25 +177,6 @@
   <parameter name="outReadyLatency" value="2" />
   <parameter name="outUseReady" value="true" />
   <parameter name="outUseValid" value="true" />
- </module>
- <module
-   kind="altera_avalon_sc_fifo"
-   version="11.0"
-   enabled="1"
-   name="rx_fifo">
-  <parameter name="SYMBOLS_PER_BEAT" value="2" />
-  <parameter name="BITS_PER_SYMBOL" value="64" />
-  <parameter name="FIFO_DEPTH" value="256" />
-  <parameter name="CHANNEL_WIDTH" value="1" />
-  <parameter name="ERROR_WIDTH" value="0" />
-  <parameter name="USE_PACKETS" value="1" />
-  <parameter name="USE_FILL_LEVEL" value="0" />
-  <parameter name="EMPTY_LATENCY" value="3" />
-  <parameter name="USE_MEMORY_BLOCKS" value="1" />
-  <parameter name="USE_STORE_FORWARD" value="0" />
-  <parameter name="USE_ALMOST_FULL_IF" value="0" />
-  <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
-  <parameter name="AUTO_DEVICE_FAMILY" value="Stratix IV" />
  </module>
  <module
    kind="altera_avalon_sc_fifo"
@@ -228,22 +216,19 @@
   <parameter name="USE_ALMOST_EMPTY_IF" value="0" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Stratix IV" />
  </module>
+ <module
+   kind="sonic_vc_demultiplexer_custom"
+   version="1.0"
+   enabled="1"
+   name="sonic_vc_demultiplexer_custom_0">
+  <parameter name="AUTO_CLOCK_CLOCK_RATE" value="250000000" />
+ </module>
  <connection kind="clock" version="11.0" start="clk_0.clk" end="multiplexer_0.clk" />
  <connection
    kind="reset"
    version="11.0"
    start="clk_0.clk_reset"
    end="multiplexer_0.reset" />
- <connection
-   kind="clock"
-   version="11.0"
-   start="clk_0.clk"
-   end="demultiplexer_0.clk" />
- <connection
-   kind="reset"
-   version="11.0"
-   start="clk_0.clk_reset"
-   end="demultiplexer_0.reset" />
  <connection
    kind="avalon_streaming"
    version="11.0"
@@ -259,17 +244,6 @@
    version="11.0"
    start="clk_0.clk_reset"
    end="multiplexer_adapter.reset" />
- <connection kind="clock" version="11.0" start="clk_0.clk" end="rx_fifo.clk" />
- <connection
-   kind="reset"
-   version="11.0"
-   start="clk_0.clk_reset"
-   end="rx_fifo.clk_reset" />
- <connection
-   kind="avalon_streaming"
-   version="11.0"
-   start="rx_fifo.out"
-   end="demultiplexer_0.in" />
  <connection kind="clock" version="11.0" start="clk_0.clk" end="tx_fifo_p0.clk" />
  <connection
    kind="reset"
@@ -292,4 +266,14 @@
    version="11.0"
    start="tx_fifo_p1.out"
    end="multiplexer_0.in1" />
+ <connection
+   kind="clock"
+   version="11.0"
+   start="clk_0.clk"
+   end="sonic_vc_demultiplexer_custom_0.clock" />
+ <connection
+   kind="reset"
+   version="11.0"
+   start="clk_0.clk_reset"
+   end="sonic_vc_demultiplexer_custom_0.reset_n" />
 </system>
