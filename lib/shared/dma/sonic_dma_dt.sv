@@ -214,6 +214,11 @@ module sonic_dma_dt #(
    input              rx_dfr   ,
    input [15:0]       rx_buffer_cpl_max_dw,
 
+     //DEBUG: to be removed.
+   input sw_rstn,
+   output reg [7:0] dma_prg_addr_rrrrr,
+   output reg [15:0] dma_counter,
+     
    // PCIe backend Transmit section
    output             tx_req   ,
    input              tx_ack   ,
@@ -320,7 +325,33 @@ wire rx_ack_descriptor;
 wire rx_ack_requester ;
 wire rx_ws_requester  ;
 
+/*
+ * For debug only: 
+ * To capture the start of dma_wr
+ * 
+ */
+   reg [7:0] dma_prg_addr_r;
+   reg [7:0] dma_prg_addr_rr;
+   reg [7:0] dma_prg_addr_rrr;
+   reg [7:0] dma_prg_addr_rrrr; 
+   
+always @ (posedge clk_in) begin
+   dma_prg_addr_r <= dma_prg_addr;
+   dma_prg_addr_rr <= dma_prg_addr_r;
+   dma_prg_addr_rrr <= dma_prg_addr_rr;
+   dma_prg_addr_rrrr <= dma_prg_addr_rrr;
+   dma_prg_addr_rrrrr <= dma_prg_addr_rrrr;
+end
 
+// DEBUG: DMA counters.
+always @ (posedge init or negedge sw_rstn) begin
+   if (sw_rstn == 1'b0) begin
+      dma_counter <= 0;
+   end
+   else if (init == 1'b1) begin
+      dma_counter <= dma_counter + 1;
+   end
+end
 
 assign rx_ack        = rx_ack_descriptor | rx_ack_requester;
 

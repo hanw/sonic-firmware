@@ -470,7 +470,7 @@ module sonic_single_port_logic
      (
       .clk_in         (clk_in       ),
       .rstn           (g_rstn         ),
-
+      .sw_rstn        (sw_rstn), //DEBUG, to be removed.
       .ctl_wr_req    (ctl_wr_req),
       .ctl_wr_data   (ctl_wr_data),
       .ctl_addr      (ctl_addr),
@@ -849,7 +849,8 @@ module sonic_single_port_logic
      (
       .clk_in        (clk_in        ),
       .rstn          (g_rstn          ),
-
+      .sw_rstn       (sw_rstn), //DEBUG: to be removed.
+      
       .ctl_wr_req    (ctl_wr_req),
       .ctl_wr_data   (ctl_wr_data),
       .ctl_addr      (ctl_addr),
