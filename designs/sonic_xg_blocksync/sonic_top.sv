@@ -773,7 +773,13 @@ module sonic_top (
 	   (rx_vc_in_data[31:24] == 8'h4A) ||
 	   (rx_vc_in_data[31:24] == 8'h4B) ||
 	   (rx_vc_in_data[31:24] == 8'h0A) ||
-	   (rx_vc_in_data[31:24] == 8'h0B))) begin
+	   (rx_vc_in_data[31:24] == 8'h0B) ||
+	   (rx_vc_in_data[31:24] == 8'h00) ||
+	   (rx_vc_in_data[31:24] == 8'h01) ||
+	   (rx_vc_in_data[31:24] == 8'h20) ||
+	   (rx_vc_in_data[31:24] == 8'h21) ||
+	   (rx_vc_in_data[31:24] == 8'h05) ||
+	   (rx_vc_in_data[31:24] == 8'h02))) begin
 	 casez (rx_vc_in_data[22:20]) // TLP header byte 0-3
 	   3'b0??: rx_vc_in_chan <= 1'b0;
 	   3'b1??: rx_vc_in_chan <= 1'b1;
