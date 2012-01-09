@@ -135,7 +135,8 @@ module sonic_tx_ctl_66 (/*AUTOARG*/
 					.wrreq(wrreq),
 					.rdena(rx_cbuf_rdena),
 					.rdreq(rx_cbuf_rdreq),
-					.data_out(data_out)
+					.data_out(data_out),
+					.clock_crossed_rd_address(tx_ring_rptr)
 					);
 
 
@@ -155,7 +156,7 @@ module sonic_tx_ctl_66 (/*AUTOARG*/
 							.almost_full(rx_almost_full),
 							.rdusedqwords(rdusedqwords),
 							.clock_crossed_wptr(),
-							.clock_crossed_rptr(tx_ring_rptr),
+							.clock_crossed_rptr(),
 							.empty(rx_empty),
 							.almost_empty(rx_almost_empty)
 							);
