@@ -427,7 +427,8 @@ assign tx_desc=(tx_sel_descriptor==1'b1)?tx_desc_descriptor:tx_desc_requester;
    .AVALON_ST_128(AVALON_ST_128),
    .FIFO_WIDTH  (FIFO_WIDTH ),
    .INTENDED_DEVICE_FAMILY (INTENDED_DEVICE_FAMILY),
-   .CDMA_AST_RXWS_LATENCY(CDMA_AST_RXWS_LATENCY)
+   .CDMA_AST_RXWS_LATENCY(CDMA_AST_RXWS_LATENCY),
+   .PORT_NUM (PORT_NUM)
    )
    descriptor
    (

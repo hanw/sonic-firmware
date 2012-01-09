@@ -212,6 +212,7 @@ module sonic_read_dma_requester_128  # (
    localparam TAG_FIFO_DEPTH   = MAX_NUMTAG-2;
 
 // localparam MAX_TAG_WIDTH    =  ceil_log2(MAX_NUMTAG);
+/* -----\/----- EXCLUDED -----\/-----
    localparam MAX_TAG_WIDTH    = (MAX_NUMTAG<3  )?1:
                                  (MAX_NUMTAG<5  )?2:
                                  (MAX_NUMTAG<9  )?3:
@@ -219,9 +220,19 @@ module sonic_read_dma_requester_128  # (
                                  (MAX_NUMTAG<33 )?5:
                                  (MAX_NUMTAG<65 )?6:
                                  (MAX_NUMTAG<129)?7:8;
-
+ -----/\----- EXCLUDED -----/\----- */
+   
+  // Additional port number for PORT_NUM.
+   localparam MAX_TAG_WIDTH    = (MAX_NUMTAG<3  )?2:
+                                 (MAX_NUMTAG<5  )?3:
+                                 (MAX_NUMTAG<9  )?4:
+                                 (MAX_NUMTAG<17 )?5:
+                                 (MAX_NUMTAG<33 )?6:
+                                 (MAX_NUMTAG<65 )?7:
+                                 (MAX_NUMTAG<129)?8:8;
 
 // localparam MAX_TAG_WIDTHU  =  ceil_log2(TAG_FIFO_DEPTH);
+/* -----\/----- EXCLUDED -----\/-----
    localparam MAX_TAG_WIDTHU  =  (TAG_FIFO_DEPTH<3  )?1:
                                  (TAG_FIFO_DEPTH<5  )?2:
                                  (TAG_FIFO_DEPTH<9  )?3:
@@ -229,6 +240,15 @@ module sonic_read_dma_requester_128  # (
                                  (TAG_FIFO_DEPTH<33 )?5:
                                  (TAG_FIFO_DEPTH<65 )?6:
                                  (TAG_FIFO_DEPTH<129)?7:8;
+ -----/\----- EXCLUDED -----/\----- */
+   localparam MAX_TAG_WIDTHU  =  (TAG_FIFO_DEPTH<3  )?2:
+                                 (TAG_FIFO_DEPTH<5  )?3:
+                                 (TAG_FIFO_DEPTH<9  )?4:
+                                 (TAG_FIFO_DEPTH<17 )?5:
+                                 (TAG_FIFO_DEPTH<33 )?6:
+                                 (TAG_FIFO_DEPTH<65 )?7:
+                                 (TAG_FIFO_DEPTH<129)?8:8;
+   
    localparam LENGTH_DW_WIDTH  = 10;
    localparam LENGTH_QW_WIDTH  = 9;
    localparam TAG_EP_ADDR_WIDTH = (AVALON_WADDR+4);  // AVALON_WADDR is a 128-bit Address, Tag Ram stores Byte Address
@@ -247,8 +267,10 @@ module sonic_read_dma_requester_128  # (
 
    integer i;
    assign waitrequest   = 0;
- 
 
+   wire    port_num;
+   assign port_num = (PORT_NUM == 0) ? 1'b0 : 1'b1;
+   
    // State machine registers for transmit MRd MWr (tx)
    reg [3:0]   cstate_tx;
    reg [3:0]   nstate_tx;
@@ -310,7 +332,7 @@ module sonic_read_dma_requester_128  # (
    wire  [MAX_TAG_WIDTH-1:0]  tx_tag_wire_mux_first_descriptor;
    wire  [MAX_TAG_WIDTH-1:0]  tx_tag_wire_mux_second_descriptor;
    wire tx_get_tag_from_fifo;
-   reg  [7:0]   tx_tag_tx_desc;
+   reg  [7:0]   tx_tag_tx_desc; //Tx Tag, modified to include port number.
    reg  [63:0]  tx_desc_addr ;
    wire  [63:0] tx_desc_addr_pipe ;
    reg  [31:0]  tx_desc_addr_3dw_pipe;
@@ -337,9 +359,9 @@ module sonic_read_dma_requester_128  # (
    //
    // TAG management overview:
    //
-   //     TAG 8'h00            : Descriptor read
-   //     TAG 8'h01            : Descriptor write
-   //     TAG 8'h02 -> MAX TAG : Requester read
+   //     TAG {2'b0, PN, 5'h0}            : Descriptor read
+   //     TAG {2'b0, PN, 5'h1}            : Descriptor write
+   //     TAG {2'b0, PN, 5'h02 -> MAX TAG } : Requester read
    //
    //     TX issues MRd, with TAG "xyz" and length "tx_length" dword data
    //     RX ack CPLD with TAG "xyz", and length "rx_length" dword daata
@@ -1210,7 +1232,10 @@ module sonic_read_dma_requester_128  # (
 
    assign rx_fmt        = rx_desc[126:125];
    assign rx_type       = rx_desc[124:120];
-   assign rx_dmard_tag  = (rx_desc[47:40]>=FIRST_DMARD_TAG) ?1'b1:1'b0;
+
+   //NOTE: Assume 32 tags and port number.
+//   assign rx_dmard_tag  = (rx_desc[47:40]>=FIRST_DMARD_TAG) ?1'b1:1'b0;
+   assign rx_dmard_tag  = (rx_desc[MAX_TAG_WIDTH+38:40]>=FIRST_DMARD_TAG) ?1'b1:1'b0;
 
    always @ (posedge clk_in) begin
       if (rx_req_p0==1'b0)
@@ -1248,14 +1273,14 @@ module sonic_read_dma_requester_128  # (
          rx_tag[MAX_TAG_WIDTH-1:0] <=
                              cst_std_logic_vector_type_zero[MAX_TAG_WIDTH-1:0];
       else if (valid_rx_dmard_cpld==1'b1)
-         rx_tag <= rx_desc[MAX_TAG_WIDTH+39:40];
+         rx_tag <= {1'b0, rx_desc[MAX_TAG_WIDTH+38:40]}; // remove port number.
    end
 
    always @ (posedge clk_in) begin
       if (init==1'b1)
          rx_tag_is_sec_desc<= 0;
       else if (valid_rx_dmard_cpld==1'b1)
-         rx_tag_is_sec_desc <= rx_desc[MAX_TAG_WIDTH+39:40] > MAX_NUMTAG_VAL_FIRST_DESCRIPTOR;
+         rx_tag_is_sec_desc <= {1'b0, rx_desc[MAX_TAG_WIDTH+38:40]} > MAX_NUMTAG_VAL_FIRST_DESCRIPTOR;
    end
 
   always @ (posedge clk_in) begin
@@ -1270,12 +1295,13 @@ module sonic_read_dma_requester_128  # (
    //
    assign rx_data_fifo_data[AVALON_WDATA-1:0]       = rx_data[AVALON_WDATA-1:0];
    assign rx_data_fifo_data[AVALON_WDATA+15: AVALON_WDATA] = rx_be;
-   assign rx_data_fifo_data[RX_DATA_FIFO_WIDTH-3:AVALON_WDATA + 16]=
-                           (rx_dv_start_pulse==1'b0)?rx_tag:
-                                                  rx_desc[MAX_TAG_WIDTH+39:40];
+   assign rx_data_fifo_data[RX_DATA_FIFO_WIDTH-3:AVALON_WDATA + 16]= (rx_dv_start_pulse==1'b0)?rx_tag:
+								     {1'b0, rx_desc[MAX_TAG_WIDTH+38:40]};
    assign rx_data_fifo_data[RX_DATA_FIFO_WIDTH-2]   = rx_dv_start_pulse;
    assign rx_data_fifo_data[RX_DATA_FIFO_WIDTH-1]   = rx_dv_end_pulse;
-   assign rx_data_fifo_data[RX_DATA_FIFO_WIDTH]=  (rx_dv_start_pulse==1'b0)? rx_tag_is_sec_desc: rx_desc[MAX_TAG_WIDTH+39:40] > MAX_NUMTAG_VAL_FIRST_DESCRIPTOR;
+   assign rx_data_fifo_data[RX_DATA_FIFO_WIDTH]=  (rx_dv_start_pulse==1'b0)? 
+						  rx_tag_is_sec_desc: 
+						  {1'b0, rx_desc[MAX_TAG_WIDTH+38:40]} > MAX_NUMTAG_VAL_FIRST_DESCRIPTOR;
    assign rx_data_fifo_data[RX_DATA_FIFO_WIDTH + 10 : RX_DATA_FIFO_WIDTH + 1] =  (rx_dv_start_pulse==1'b0)? rx_length_hold: rx_desc[105:96];
 
    always @ (posedge clk_in) begin
@@ -1629,7 +1655,7 @@ module sonic_read_dma_requester_128  # (
    assign tagram_wren_a    = ((cstate_tx==MRD_REQ)&&(tx_req==1'b1)&&
                                                    (tx_req_delay==1'b0))?  1'b1:1'b0;
    assign tagram_data_a    = {tx_length_dw[9:0],tx_tag_addr_offset[TAG_EP_ADDR_WIDTH-1:0]};  // tx_tag_addr_offset is in Bytes
-   assign tagram_address_a[MAX_TAG_WIDTH-1:0] = tx_tag_tx_desc[MAX_TAG_WIDTH-1:0];
+   assign tagram_address_a[MAX_TAG_WIDTH-1:0] = {1'b0, tx_tag_tx_desc[MAX_TAG_WIDTH-2:0]}; // remove port number.
 
    // TX TAG Signaling FIFO TAG
    // There are 2 FIFO TAGs :
@@ -1657,7 +1683,7 @@ module sonic_read_dma_requester_128  # (
                    <= cst_std_logic_vector_type_zero[TAG_TRACK_WIDTH-1:0];
       else if (cstate_tx==MRD_ACK) begin
           for(i=2+RC_SLAVE_USETAG;i <MAX_NUMTAG;i=i+1)
-             if (tx_tag_tx_desc == i)
+             if (tx_tag_tx_desc[MAX_TAG_WIDTH-2:0] == i) //remove port number.
                 tag_track_one_hot[i-2] <= 1'b1;
       end
      else if (got_all_cpl_for_tag == 1'b1) begin
@@ -1766,10 +1792,10 @@ module sonic_read_dma_requester_128  # (
          tx_tag_tx_desc <=0;
       else if ((cstate_tx==TX_LENGTH) && (tx_first_descriptor_cycle==1'b1))
          tx_tag_tx_desc[MAX_TAG_WIDTH-1:0] <=
-                   tx_tag_wire_mux_first_descriptor[MAX_TAG_WIDTH-1:0];
+                   {port_num, tx_tag_wire_mux_first_descriptor[MAX_TAG_WIDTH-2:0]};
       else if ((cstate_tx==TX_LENGTH) && (tx_first_descriptor_cycle==1'b0))
          tx_tag_tx_desc[MAX_TAG_WIDTH-1:0] <=
-                   tx_tag_wire_mux_second_descriptor[MAX_TAG_WIDTH-1:0];
+                   {port_num, tx_tag_wire_mux_second_descriptor[MAX_TAG_WIDTH-2:0]};
    end
 
    assign rx_second_descriptor_tag  = rx_data_fifo_q[RX_DATA_FIFO_WIDTH];

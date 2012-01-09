@@ -54,7 +54,8 @@ module sonic_dma_descriptor  # (
       parameter AVALON_ST_128     = 0,
       parameter USE_CREDIT_CTRL   = 1,
       parameter INTENDED_DEVICE_FAMILY = "Cyclone IV GX",
-      parameter  CDMA_AST_RXWS_LATENCY = 2                 // response time of rx_data to rx_ws
+      parameter  CDMA_AST_RXWS_LATENCY = 2,                 // response time of rx_data to rx_ws
+      parameter PORT_NUM = 0
    )
    (
       input      [15:0] dt_rc_last     ,
@@ -117,6 +118,10 @@ module sonic_dma_descriptor  # (
    localparam DESCRIPTOR_PER_FIFO_WIDTH = (AVALON_ST_128==1)?0:1;
    localparam FIFO_NUMDW       = FIFO_WIDTH_DWORD*FIFO_DEPTH;
 
+   // Leading bit for MemRd TAG. We assume 32 Tags per port.
+   wire 	     port_num;
+   assign port_num = (PORT_NUM == 0) ? 1'b0 : 1'b1;
+      
    reg [3:0] cstate;
    reg [3:0] nstate;
    wire      descr_tag;
@@ -206,7 +211,7 @@ module sonic_dma_descriptor  # (
    assign tlp_rx_type      = rx_desc[124:120];
    assign dma_sm           = cstate;
 
-   assign tx_tag_descriptor_wire = (DIRECTION==`DIRECTION_WRITE)?8'h1:8'h0;
+   assign tx_tag_descriptor_wire = (DIRECTION==`DIRECTION_WRITE)? {2'h0, port_num, 5'h1} : {2'h0, port_num, 5'h0};
    assign descr_tag = (rx_desc[47:40]==tx_tag_descriptor_wire)?1'b1:1'b0;
 
    always @ (posedge clk_in) begin
