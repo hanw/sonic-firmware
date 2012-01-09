@@ -232,7 +232,6 @@ module sonic_read_dma_requester_128  # (
                                  (MAX_NUMTAG<129)?8:8;
 
 // localparam MAX_TAG_WIDTHU  =  ceil_log2(TAG_FIFO_DEPTH);
-/* -----\/----- EXCLUDED -----\/-----
    localparam MAX_TAG_WIDTHU  =  (TAG_FIFO_DEPTH<3  )?1:
                                  (TAG_FIFO_DEPTH<5  )?2:
                                  (TAG_FIFO_DEPTH<9  )?3:
@@ -240,14 +239,6 @@ module sonic_read_dma_requester_128  # (
                                  (TAG_FIFO_DEPTH<33 )?5:
                                  (TAG_FIFO_DEPTH<65 )?6:
                                  (TAG_FIFO_DEPTH<129)?7:8;
- -----/\----- EXCLUDED -----/\----- */
-   localparam MAX_TAG_WIDTHU  =  (TAG_FIFO_DEPTH<3  )?2:
-                                 (TAG_FIFO_DEPTH<5  )?3:
-                                 (TAG_FIFO_DEPTH<9  )?4:
-                                 (TAG_FIFO_DEPTH<17 )?5:
-                                 (TAG_FIFO_DEPTH<33 )?6:
-                                 (TAG_FIFO_DEPTH<65 )?7:
-                                 (TAG_FIFO_DEPTH<129)?8:8;
    
    localparam LENGTH_DW_WIDTH  = 10;
    localparam LENGTH_QW_WIDTH  = 9;
