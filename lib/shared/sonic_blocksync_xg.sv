@@ -129,7 +129,7 @@ module sonic_blocksync_xg (clk, reset, valid, data_in, block_lock, data_out);
 	      if (sh_cnt == 64 & sh_invalid_cnt < 16 & block_lock) begin
 		 state <= RESET_CNT;
 	      end
-	      else if (sh_invalid_cnt == 16 & !block_lock) begin
+	      else if (sh_invalid_cnt == 16 | !block_lock) begin
 		 state <= SLIP;
 	      end
 	      else if (test_sh & sh_cnt < 64 & sh_invalid_cnt < 16 & block_lock) begin

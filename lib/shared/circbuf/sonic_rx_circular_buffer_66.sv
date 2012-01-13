@@ -125,15 +125,8 @@ module sonic_rx_circular_buffer_66 (/*AUTOARG*/
    logic [7:0] 	  sync_ring_rd_address;
    logic	  data_out_sel;   
    logic [13:0]   wr_address;
-   logic [65:0]   data_in_r;
-   logic [65:0]   data_in_rr;
-   logic [65:0]   data_in_rrr;
-
-   logic 	  wrreq_r;
-   logic 	  wrreq_rr;
-   
-   logic 	  data_out_sel_r;
-   logic 	  data_out_sel_rr;
+   logic [65:0]   data_in_r1, data_in_r2, data_in_r3, data_in_r4;
+   logic 	  wrreq_r1, wrreq_r2, wrreq_r3, wrreq_r4;
    
    /*
     * ring_mmap
@@ -149,18 +142,19 @@ module sonic_rx_circular_buffer_66 (/*AUTOARG*/
    assign data_out = (data_out_sel) ? data_ring_data_out : sync_ring_data_out;
 
    always @ ( posedge wr_clk ) begin
-      data_in_r <= data_in;
-      data_in_rr <= data_in_r;
-      data_in_rrr <= data_in_rr;
-      wrreq_r <= wrreq;
-      wrreq_rr <= wrreq_r;
-      data_out_sel_r <= data_out_sel;
-      data_out_sel_rr <= data_out_sel_r;
+      data_in_r1 <= data_in;
+      data_in_r2 <= data_in_r1;
+      data_in_r3 <= data_in_r2;
+      data_in_r4 <= data_in_r3;
+      wrreq_r1 <= wrreq;
+      wrreq_r2 <= wrreq_r1;
+      wrreq_r3 <= wrreq_r2;
+      wrreq_r4 <= wrreq_r3;
    end
    
    /*
     * sonic_calc_address
-    * NOTE: generate wr_address, with 2-cycle delay.
+    * NOTE: generate wr_address, with 4-cycle delay.
     *       input data should match the slack of this module.
     */
    sonic_calc_address gen_wr_addr (.clk_in(wr_clk),
@@ -176,18 +170,18 @@ module sonic_rx_circular_buffer_66 (/*AUTOARG*/
    sonic_sync_ring_2_128 sync_ring (.data_out(sync_ring_data_out),
 				    .wr_address(wr_address),
 				    .rd_address(sync_ring_rd_address),
-				    .data_in(data_in_r[1:0]),
-				    .wren(wrena && wrreq_rr), 
-				    .wr_clock(wr_clk),
+				    .data_in(data_in_r3[1:0]),
+				    .wren(wrena && wrreq_r4), 
+				    .wr_clock(wr_clk), 
 				    .rd_clock(rd_clk)
 				    );
    /*
     * data_ring
     */
-   sonic_dpram_async_64_128 data_ring (.data(data_in_r[65:2]),
+   sonic_dpram_async_64_128 data_ring (.data(data_in_r3[65:2]),
 				       .wraddress(wr_address),
 				       .wrclock(wr_clk),
-				       .wren(wrena && wrreq_rr), 
+				       .wren(wrena && wrreq_r4), 
 				       .rdaddress(rd_address),
 				       .rdclock(rd_clk),
 				       .rden(1'b1), //rem: HanW
@@ -204,7 +198,6 @@ module sonic_rx_circular_buffer_66 (/*AUTOARG*/
 	data_out_sel <= rd_address[7] | rd_address[6] | rd_address[5] |
 			rd_address[4] | rd_address[3];
    end
-
 
    // propagate the wrcounter across to the read clock domain and monitor 
    // how much it advances each cycle

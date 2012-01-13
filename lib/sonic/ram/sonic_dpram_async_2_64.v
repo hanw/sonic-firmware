@@ -113,11 +113,11 @@ module sonic_dpram_async_2_64 (
 `else // !`ifdef SYNTHESIS
    altsyncram altsyncram_component (
 				    .address_a (wraddress),
-				    .clock0 (inclock),
+				    .clock0 (wrclock),
 				    .data_a (data),
 				    .wren_a (wren),
 				    .address_b (rdaddress),
-				    .clock1 (outclock),
+				    .clock1 (rdclock),
 				    .q_b (sub_wire0),
 				    .cs_a (1'b1),
 				    .oe_a (1'b1),

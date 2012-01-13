@@ -1040,8 +1040,10 @@ module sonic_write_dma_requester_128  # (
 	assign dma_fifo_wrreq = wr_fifo_wrreq;
 
 //	assign wr_fifo_wrreq = wrreq_d[2];
-	assign wr_fifo_wrreq = wrreq_d[1];	//Han: reduced one clock cycle of latency.
-	// wrreq_d is a delay on th write fifo buffer which reflects the
+//	assign wr_fifo_wrreq = wrreq_d[1];
+    assign wr_fifo_wrreq = wrreq_d[0]; //Han: to match to read latency of circbuf.
+
+// wrreq_d is a delay on th write fifo buffer which reflects the
 	// memeory latency
 	always @ (posedge clk_in) begin
 	  if ((init==1'b1)||(cstate==DT_FIFO))
