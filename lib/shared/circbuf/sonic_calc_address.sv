@@ -25,11 +25,12 @@ module sonic_calc_address (/*AUTOARG*/
    always @ ( posedge clk_in or posedge reset) begin
       if (reset)
 	next_address <= 0;
-      else if (next_address == 14'h3DFF)
-	next_address <= 0;
       else begin
 	 if (incr && ena) begin
-	    next_address <= next_address + 14'h1;
+	    if (next_address == 14'h3DFF)
+	      next_address <= 0;
+	    else
+	      next_address <= next_address + 14'h1;
 	 end
       end
    end

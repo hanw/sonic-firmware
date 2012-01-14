@@ -30,8 +30,6 @@
 `define TLP_TYPE_IO          5'b00010 // TLP Type field -> IO
 
 `define TLP_TC_DEFAULT       3'b000   // Default TC of the TLP
-`define TLP_TC_CLASS_CH_ZERO 3'b001
-`define TLP_TC_CLASS_CH_ONE  3'b101
 `define TLP_TD_DEFAULT       1'b0     // Default TD of the TLP
 `define TLP_EP_DEFAULT       1'b0     // Default EP of the TLP
 `define TLP_ATTR_DEFAULT     2'b0     // Default EP of the TLP
@@ -443,7 +441,9 @@ module sonic_single_port_logic
    wire [`RX_WRITE_ADDR_WIDTH-1:0] rx_ring_wptr;
    wire [`TX_READ_ADDR_WIDTH-1:0]  tx_ring_rptr;
    wire 			   dma_fifo_wrreq;
-
+   wire 			   tx_ready_command;
+   wire 			   tx_ready_interrupt;
+   
    sonic_dma_dt  #(
 		   .DIRECTION      (`DIRECTION_WRITE),
 		   .FIFO_WIDTHU    (FIFO_WIDTHU     ),
@@ -569,7 +569,7 @@ module sonic_single_port_logic
 
    reg 				   tx_sel_command;
    wire 			   tx_busy_command;
-   wire 			   tx_ready_command;
+
    reg 				   tx_ready_command_r;
    wire 			   tx_ready_command_others;
    
@@ -582,7 +582,7 @@ module sonic_single_port_logic
 
    reg 				   tx_sel_interrupt;
    wire 			   tx_busy_interrupt;
-   wire 			   tx_ready_interrupt;
+
    reg 				   tx_ready_interrupt_r;
    wire 			   tx_ready_interrupt_others;
 
