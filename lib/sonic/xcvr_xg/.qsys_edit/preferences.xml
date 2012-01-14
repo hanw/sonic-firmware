@@ -5,6 +5,7 @@
   <columns>
    <connections preferredWidth="271" />
    <irq preferredWidth="34" />
+   <inputclock preferredWidth="205" />
   </columns>
  </systemtable>
  <clocktable>
@@ -14,7 +15,7 @@
    <frequency preferredWidth="446" />
   </columns>
  </clocktable>
- <library expandedCategories="Project,Library" />
- <window width="1682" height="992" x="0" y="25" />
+ <library expandedCategories="Project,Project/Templates,Library" />
+ <window width="1682" height="992" x="1679" y="25" />
  <generation block_symbol_file="0" />
 </preferences>
