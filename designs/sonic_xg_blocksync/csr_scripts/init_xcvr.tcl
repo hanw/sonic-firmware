@@ -153,4 +153,45 @@ write_mdio 0xCC04 $reg_value
 puts "SFI receive register 0xCC04 is [format "%#x" [access_mdio 0xCC04]]"
 
 after 100
+# write 1.CC8E.1 = 0x1
+#set reg_value [access_mdio 0xCC8E]
+#set reg_value [set_bit $reg_value 1]
+#write_mdio 0xCC8E $reg_value
+#puts "Enable O2E transmit preemphasis [format "%#x" [access_mdio 0xCC8E]]"
+
+
+# Following Netlogic Programming Appnote
+after 100
+set reg_value [access_mdio 0xCCD0]
+#3:0 = 0
+set reg_value [clear_bit $reg_value 0]
+set reg_value [clear_bit $reg_value 1]
+set reg_value [clear_bit $reg_value 2]
+set reg_value [clear_bit $reg_value 3]
+#7:4 = E
+set reg_value [clear_bit $reg_value 4]
+set reg_value [set_bit $reg_value 5]
+set reg_value [set_bit $reg_value 6]
+set reg_value [set_bit $reg_value 7]
+#11:8 = F
+set reg_value [set_bit $reg_value 8]
+set reg_value [set_bit $reg_value 9]
+set reg_value [set_bit $reg_value 10]
+set reg_value [set_bit $reg_value 11]
+#15:12 = 5
+set reg_value [set_bit $reg_value 12]
+set reg_value [clear_bit $reg_value 13]
+set reg_value [set_bit $reg_value 14]
+set reg_value [clear_bit $reg_value 15]
+write_mdio 0xCCD0 $reg_value
+puts "Set Transmit Preemphasis [format "%#x" [access_mdio 0xCCD0]]"
+
+after 100
+# write 1.CCCE.1 = 0x1
+set reg_value [access_mdio 0xCCCE]
+set reg_value [set_bit $reg_value 1]
+write_mdio 0xCCCE $reg_value
+puts "Enable E2O transmit preemphasis [format "%#x" [access_mdio 0xCCCE]]"
+
+after 100
 close_jtag

@@ -97,6 +97,22 @@ proc read_xaui_pma_ch_controller {} {
 }
 
 #==============================================================================
+#                       APIs for FPGA Loopback
+#==============================================================================
+
+proc set_fpga_pma_loopback {value} {
+	global PMA_BASE_ADDR
+	global ALT_PMA_CH_CONTROLLER_BASE_ADDR
+
+	puts "set 10Gbase_r loopback"
+	wr32 $PMA_BASE_ADDR $ALT_PMA_CH_CONTROLLER_BASE_ADDR 0x04 $value
+
+	read_xaui_reset_controller
+	read_xaui_pma_controller
+	read_xaui_pma_ch_controller
+}
+
+#==============================================================================
 #                       APIs for MDIO              
 #==============================================================================
 

@@ -58,7 +58,7 @@
  We current assume the read latency of memory is zero cycle.
  We used state_r and rd_req for zero cycle memory read.
  Use state_rr and rd_req_r for one cycle memory read delay.
- Use state_rrr and rd_req_rr for two cycle memory read delay.
+ Use state_rrr and rd_req_r2 for two cycle memory read delay.
  */
 
 module sonic_gearbox_66_40 (/*AUTOARG*/
@@ -85,9 +85,11 @@ module sonic_gearbox_66_40 (/*AUTOARG*/
    reg [6:0] 	 state_r3;
    reg [6:0] 	 state_r4;
    reg [6:0] 	 state_r5;
+   reg [6:0] 	 state_r6;
+   
    reg 		 rd_req_r;
-   reg 		 rd_req_rr;
-   reg 		 rd_req_rrr;
+   reg 		 rd_req_r2;
+   reg 		 rd_req_r3;
    reg 		 rd_req_r4;
    reg 		 rd_req_r5;
    
@@ -96,6 +98,7 @@ module sonic_gearbox_66_40 (/*AUTOARG*/
    /*
     * state_r assumes zero cycle memory read delay.
     * state_rr assume one cycle delay.
+    * state_r6 for 5 cycles delay.
     * 
     * NOTE: this must match the rd_req signal for barrel-shifter.
     */
@@ -104,7 +107,7 @@ module sonic_gearbox_66_40 (/*AUTOARG*/
 	 data_out <= 40'h0;
       end
       else begin
-	 case (state_r4) //NOTE: assume mem_rd one cycle.
+	 case (state_r6) //NOTE: memory read is 5 cycle.
 	   0: data_out <= sr0[39:0];
 	   1: data_out <= {sr0[13:0] , sr1[65:40]};
 	   2: data_out <= sr1[53:14];
@@ -145,8 +148,8 @@ module sonic_gearbox_66_40 (/*AUTOARG*/
    always @ ( posedge clk_in or posedge reset) begin
       if(reset == 1'b1) begin
 	 rd_req_r   <= 1'b0;
-	 rd_req_rr  <= 1'b0;
-	 rd_req_rrr <= 1'b0;
+	 rd_req_r2  <= 1'b0;
+	 rd_req_r3 <= 1'b0;
 	 rd_req_r4  <= 1'b0;
 	 rd_req_r5  <= 1'b0;
 	 state_r    <= 7'h0;
@@ -154,18 +157,20 @@ module sonic_gearbox_66_40 (/*AUTOARG*/
 	 state_r3   <= 7'h0;
 	 state_r4   <= 7'h0;
 	 state_r5   <= 7'h0;
+	 state_r6   <= 7'h0;
       end
       else begin
 	 rd_req_r   <= rd_req;
-	 rd_req_rr  <= rd_req_r;
-	 rd_req_rrr <= rd_req_rr;
-	 rd_req_r4  <= rd_req_rrr;
+	 rd_req_r2  <= rd_req_r;
+	 rd_req_r3  <= rd_req_r2;
+	 rd_req_r4  <= rd_req_r3;
 	 rd_req_r5  <= rd_req_r4;
 	 state_r    <= state;
 	 state_rr   <= state_r;
 	 state_r3   <= state_rr;
 	 state_r4   <= state_r3;
 	 state_r5   <= state_r4;
+	 state_r6   <= state_r5;
       end // else: !if(reset == 1'b1)
    end
    
@@ -218,9 +223,9 @@ module sonic_gearbox_66_40 (/*AUTOARG*/
 	 sr1 <= 66'h0;
       end
       else begin
-	// Assume that mem_rd latency is one cycles
-	// NOTE: this must match state_rr.
-	 if (rd_req_rrr == 1'b1) begin 
+	// Read latency is 5 cycles, because of address computation.
+	// NOTE: this must match state machine STATE.
+	 if (rd_req_r5 == 1'b1) begin 
 	    sr0 <= data_in;
 	    sr1 <= sr0;
 	 end

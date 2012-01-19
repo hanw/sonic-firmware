@@ -206,7 +206,8 @@ module sonic_irq_generator #(
 		//VHDL translation_on
 		.sfp1_on(enable_sfp),
 		.sfp2_on(1'b0),			//TODO: fixme
-		.byte_ready(msi_offset),
+//		.byte_ready(msi_offset),        // Used with old irq generation logic
+		.byte_ready(24'h0),
 		.byte_sent(32'h0),		//TODO: fixme
 		.byte_dropped_tx(32'h0),
 		.byte_dropped_rx(32'h0),
@@ -227,7 +228,32 @@ module sonic_irq_generator #(
 	// disabled and enabled again.
 	// -------------------------------------------------------
 	// MSI generation logic
-	always @ (posedge clk_in or posedge reset or posedge init) begin
+   reg [31:0] irq_timer;
+   reg [31:0] interval_reg;
+   
+   always @ (posedge clk_in or posedge reset or posedge init) begin
+      if ((reset == 1'b1) || (init == 1'b1)) begin
+	 rx_rc_update_req <= 0;
+	 interval_reg <= {32{1'b1}};
+	 irq_timer <= 32'h0;
+      end
+      else if ((irq_msi_enable == 1'b1) & (enable_sfp == 1'b1)) begin
+	 interval_reg <= rx_block_size[31:0];
+
+	 if (irq_timer < interval_reg) begin
+	    irq_timer <= irq_timer + 1;
+	    rx_rc_update_req <= 0;
+	 end
+	 else begin
+	    irq_timer <= 0;
+	    rx_rc_update_req <= 1;
+	 end
+      end // if ((irq_msi_enable == 1'b1) & (enable_sfp == 1'b1))
+   end
+   
+
+/* IRQ generation that relies on Rx Ring pointer.
+ 	always @ (posedge clk_in or posedge reset or posedge init) begin
 		if ((reset == 1'b1) || (init == 1'b1)) begin
 			rx_rc_update_req <= 0;
 			irq_generated_count <= 0;
@@ -274,4 +300,6 @@ module sonic_irq_generator #(
 			end
 		end
 	end
+ */
+ 
 endmodule
