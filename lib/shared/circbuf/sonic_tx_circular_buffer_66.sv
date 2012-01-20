@@ -147,8 +147,8 @@ module sonic_tx_circular_buffer_66 (/*AUTOARG*/
     * wren_data: '1' when the address is next 3968 bytes in the page.
     * NOTE: write_address is oword-base.
     */
-   assign wren_data = wr_address[7] | wr_address[6] | wr_address[5] | wr_address[4] | wr_address[3];
-   assign wren_sync = ~wren_data;
+   assign wren_data = (wr_address[7] | wr_address[6] | wr_address[5] | wr_address[4] | wr_address[3]) & wrreq;
+   assign wren_sync = (~wren_data) & wrreq;
 
    /*
     * sonic_calc_address
