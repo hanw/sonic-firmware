@@ -87,6 +87,8 @@ set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/circbuf/
 set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/circbuf/sonic_rx_ctl_66.sv
 set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/circbuf/sonic_sync_ring_128_2.sv
 set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/circbuf/sonic_sync_ring_2_128.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/circbuf/sonic_data_ring_64_128.sv
+set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/circbuf/sonic_data_ring_128_64.sv
 set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/circbuf/sonic_translate_address.sv
 set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/circbuf/sonic_tx_circular_buffer_66.sv
 set_global_assignment -name SYSTEMVERILOG_FILE $PROJECT_ROOT/lib/shared/circbuf/sonic_tx_ctl_66.sv
@@ -105,6 +107,7 @@ set_global_assignment -name VHDL_FILE $PROJECT_ROOT/lib/shared/sonic_common_pack
 set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/plls/pll_644.qip
 set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/plls/pll_156.qip
 set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/ram/sonic_dpram_async_64_128.qip
+set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/ram/sonic_dpram_async_32_32.qip
 set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/ram/sonic_dpram_async_128_64.qip
 set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/ram/sonic_dpram_async_2_64.qip
 set_global_assignment -name QIP_FILE $PROJECT_ROOT/lib/sonic/ram/sonic_dpram_async_64_2.qip

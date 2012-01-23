@@ -112,19 +112,19 @@ module sonic_rx_circular_buffer_66 (/*AUTOARG*/
    ) ;
 
    input [65:0]   data_in;
-   input [12:0]   rd_address;
+   input [`RX_READ_ADDR_WIDTH-1:0]   rd_address;
    input 	  rd_clk;
    input 	  reset;
    input 	  wr_clk;
    input 	  wrena;  
    input          wrreq; 
    output [127:0] data_out;
-   output [13:0]  clock_crossed_wr_address;
+   output [`RX_WRITE_ADDR_WIDTH-1:0]  clock_crossed_wr_address;
    
    logic [127:0]  sync_ring_data_out, data_ring_data_out, data_out;
-   logic [7:0] 	  sync_ring_rd_address;
+   logic [8:0] 	  sync_ring_rd_address;
    logic	  data_out_sel;   
-   logic [13:0]   wr_address;
+   logic [`RX_WRITE_ADDR_WIDTH-1:0]   wr_address;
    logic [65:0]   data_in_r1, data_in_r2, data_in_r3, data_in_r4;
    logic 	  wrreq_r1, wrreq_r2, wrreq_r3, wrreq_r4;
    
@@ -138,7 +138,7 @@ module sonic_rx_circular_buffer_66 (/*AUTOARG*/
     * 0x200 - 0x207   maps to     0x10 - 0x17
     * ...
     */
-   assign sync_ring_rd_address = {rd_address[12:8] , rd_address[2:0]};
+   assign sync_ring_rd_address = {rd_address[`RX_READ_ADDR_WIDTH-1:8] , rd_address[2:0]};
    assign data_out = (data_out_sel) ? data_ring_data_out : sync_ring_data_out;
 
    always @ ( posedge wr_clk ) begin
@@ -177,8 +177,9 @@ module sonic_rx_circular_buffer_66 (/*AUTOARG*/
 				    );
    /*
     * data_ring
+    * data_ring, break into 64->32,32,32,32
     */
-   sonic_dpram_async_64_128 data_ring (.data(data_in_r3[65:2]),
+   sonic_data_ring_64_128 data_ring (.data(data_in_r3[65:2]),
 				       .wraddress(wr_address),
 				       .wrclock(wr_clk),
 				       .wren(wrena && wrreq_r4), 
@@ -210,7 +211,7 @@ module sonic_rx_circular_buffer_66 (/*AUTOARG*/
 							.data(wr_address),
 							.q(clock_crossed_wr_address)
 							);
-   defparam wrcounter_to_rdclock.WIDTH = 14;
+   defparam wrcounter_to_rdclock.WIDTH = `RX_WRITE_ADDR_WIDTH;
       
 endmodule // sonic_rx_circular_buffer_66
 

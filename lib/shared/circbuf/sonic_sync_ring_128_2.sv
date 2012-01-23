@@ -17,7 +17,12 @@
  * 0x0000_0000 - 0x0001_1111 maps to 0x0000_0000 and 0x0001_1111, sel = 0,
  * 0x0010_0000 - 0x0011_1111 maps to 0x0000_0000 and 0x0001_1111, sel = 1.
  * 
- * 128-bit block address has 9bits addresses, 2-bit block address should have 15
+ * 128K buffer design:
+ * 128-bit block address has 9 bits addresses, 2-bit block address should have 15
+ * bits address.
+ * 
+ * 256K buffer design:
+ * 128-bit block address has 10 bits addresses, 2-bit block address should have 16
  * bits address.
  * 
  */
@@ -33,16 +38,16 @@ module sonic_sync_ring_128_2 (/*AUTOARG*/
    input 	 wren;
    input 	 rd_clock;
    input 	 wr_clock;
-   input [7:0] 	 wr_address;
-   input [13:0]  rd_address;
+   input [8:0] 	 wr_address;
+   input [`TX_READ_ADDR_WIDTH-1:0]  rd_address;
    output [1:0]  data_out;
 
    logic [1:0] 	 data_out_ms, data_out_ls;
    logic 	 data_sel;
    logic 	 data_sel_r;
-   logic [12:0]  mapped_read_address;
+   logic [`TX_WRITE_ADDR_WIDTH-1:0]  mapped_read_address;
 
-   assign mapped_read_address = {rd_address[13:6], rd_address[4:0]};
+   assign mapped_read_address = {rd_address[`TX_READ_ADDR_WIDTH-1:6], rd_address[4:0]};
 
    /* 
     * To match read latency of memory,

@@ -129,7 +129,7 @@ module sonic_vc (
 	altera_avalon_sc_fifo #(
 		.SYMBOLS_PER_BEAT    (2),
 		.BITS_PER_SYMBOL     (64),
-		.FIFO_DEPTH          (8192),
+		.FIFO_DEPTH          (4096),
 		.CHANNEL_WIDTH       (0),
 		.ERROR_WIDTH         (1),
 		.USE_PACKETS         (1),
@@ -170,7 +170,7 @@ module sonic_vc (
 	altera_avalon_sc_fifo #(
 		.SYMBOLS_PER_BEAT    (2),
 		.BITS_PER_SYMBOL     (64),
-		.FIFO_DEPTH          (8192),
+		.FIFO_DEPTH          (4096),
 		.CHANNEL_WIDTH       (0),
 		.ERROR_WIDTH         (1),
 		.USE_PACKETS         (1),

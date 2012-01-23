@@ -19,6 +19,8 @@
 // used in combination with any other product not provided by Altera.
 //-----------------------------------------------------------------------------
 
+`ifndef SONIC_HEADER
+`define SONIC_HEADER
 // PCIe Constants
 // Global constant
  `define PCIE_SIM         TRUE
@@ -72,7 +74,7 @@
  `define DIRECTION_READ       0
 
  `define SONIC_REG_DMA_WR_DW0	8'h0
- `define SONIC_REG_DMA_WR_DW1	8'h4
+ `define SONIC_REG_DMA_WR_DW1	8'h4 
  `define SONIC_REG_DMA_WR_DW2	8'h8
  `define SONIC_REG_DMA_WR_DW3	8'hC
  `define SONIC_REG_DMA_RD_DW0	8'h10
@@ -129,30 +131,37 @@
  `define RC_UPD_CMD_MODE				32'h0
  `define RC_UPD_IRQ_MODE				32'h1
 
+// 128K buffer design
+
+// 256K buffer design
 // Tx/Rx Ring size
 // The Tx and Rx has the same size
 // The interface to PCIe is 128 bit wide (OWORDS).
- `define RING_DEPTH_QWORDS			32'h4000	//14 bits
- `define RING_DEPTH_OWORDS			32'h2000	//13 bits
+ `define RING_DEPTH_QWORDS			32'h8000	//15 bits
+ `define RING_DEPTH_OWORDS			32'h4000	//14 bits
+ 
 // Rx buffer
-// Assume we have 8192 OWORDS entries in the ring
-// We need 13 bits to address 8192 OWORD entries
-// We need 14 bits to address 16384 QWORD entries
- `define QWORDS_LENGTH				14
- `define OWORDS_LENGTH				13
+// Assume we have 16384 OWORDS entries in the ring
+// We need 14 bits to address 16384 OWORD entries
+// We need 15 bits to address 32768 QWORD entries
+ `define QWORDS_LENGTH				15
+ `define OWORDS_LENGTH				14
 
-// Rx write addr is QWORDS, thus needs 14 bits
-// Rx read addr is OWORDS, thus 13 bits
- `define USED_QWORDS_WIDTH			14
- `define RX_WRITE_ADDR_WIDTH			14
- `define RX_READ_ADDR_WIDTH			13
+// Rx write addr is QWORDS, thus needs 15 bits
+// Rx read addr is OWORDS, thus 14 bits
+ `define USED_QWORDS_WIDTH			15
+ `define RX_WRITE_ADDR_WIDTH			15
+ `define RX_READ_ADDR_WIDTH			14
+ `define RX_SYNC_ADDR_WIDTH                      9
 
 //Tx buffer
-// Assume we have 8192 OWORDS in the ring.
-// We need 13 bits to address 8192 OWORD entries
-// We need 14 bits to address 16384 QWORD entries
-// Tx write address is OWORDS, thus 13 bits
-// Tx read address is QWORDS, thus 14 bits.
- `define TX_WRITE_ADDR_WIDTH			13
- `define TX_READ_ADDR_WIDTH			14
+// Assume we have 16384 OWORDS in the ring.
+// We need 14 bits to address 16384 OWORD entries
+// We need 15 bits to address 32768 QWORD entries
+// Tx write address is OWORDS, thus 14 bits
+// Tx read address is QWORDS, thus 15 bits.
+ `define TX_WRITE_ADDR_WIDTH			14
+ `define TX_READ_ADDR_WIDTH			15
+ `define TX_SYNC_ADDR_WIDTH                      9
 
+ `endif

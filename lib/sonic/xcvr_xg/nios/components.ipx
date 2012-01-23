@@ -9,7 +9,7 @@
  <!--   -->
  <component
    name="eth_10g_gen"
-   file="/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/dma_rxtx_p1/lib/sonic/xcvr_xg/misc/eth_10g_gen_hw.tcl"
+   file="../misc/eth_10g_gen_hw.tcl"
    displayName="10GE Packet Generator"
    version="1.0"
    description="10GE Packet Generator"
@@ -20,7 +20,7 @@
  </component>
  <component
    name="eth_10g_mon"
-   file="/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/dma_rxtx_p1/lib/sonic/xcvr_xg/misc/eth_10g_mon_hw.tcl"
+   file="../misc/eth_10g_mon_hw.tcl"
    displayName="10GE Packet Monitor"
    version="1.0"
    description="10GE Packet Monitor"
@@ -31,7 +31,7 @@
  </component>
  <component
    name="avalon_master"
-   file="/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/dma_rxtx_p1/lib/sonic/xcvr_xg/misc/avalon_mm_master/custom_masters_hw.tcl"
+   file="../misc/avalon_mm_master/custom_masters_hw.tcl"
    displayName="avalon_master"
    version="1.0"
    description="Custom Avalon-MM Masters"
@@ -42,7 +42,7 @@
  </component>
  <component
    name="avalon_read_master"
-   file="/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/dma_rxtx_p1/lib/sonic/xcvr_xg/misc/avalon_mm_master/latency_aware_read_master_hw.tcl"
+   file="../misc/avalon_mm_master/latency_aware_read_master_hw.tcl"
    displayName="avalon_read_master"
    version="1.0"
    description=""
@@ -53,7 +53,7 @@
  </component>
  <component
    name="avalon_write_master"
-   file="/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/dma_rxtx_p1/lib/sonic/xcvr_xg/misc/avalon_mm_master/write_master_hw.tcl"
+   file="../misc/avalon_mm_master/write_master_hw.tcl"
    displayName="avalon_write_master"
    version="1.0"
    description=""
@@ -61,93 +61,5 @@
    categories="Templates"
    factory="TclModuleFactory">
   <tag2 key="COMPONENT_EDITABLE" value="true" />
- </component>
- <component
-   name="eth_10g_gen"
-   file="/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/dma_rxtx_p1/lib/sonic/xcvr_xg/misc/eth_10g_gen_hw.tcl"
-   displayName="10GE Packet Generator"
-   version="1.0"
-   description="10GE Packet Generator"
-   tags="CONNECTION_TYPES=avalon,avalon_streaming,clock,reset /// INTERNAL_COMPONENT=false"
-   categories="Interface Protocols/Ethernet"
-   factory="TclModuleFactory">
-  <tag2 key="COMPONENT_EDITABLE" value="false" />
- </component>
- <component
-   name="eth_10g_mon"
-   file="/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/dma_rxtx_p1/lib/sonic/xcvr_xg/misc/eth_10g_mon_hw.tcl"
-   displayName="10GE Packet Monitor"
-   version="1.0"
-   description="10GE Packet Monitor"
-   tags="CONNECTION_TYPES=avalon,avalon_streaming,clock,reset /// INTERNAL_COMPONENT=false"
-   categories="Interface Protocols/Ethernet"
-   factory="TclModuleFactory">
-  <tag2 key="COMPONENT_EDITABLE" value="false" />
- </component>
- <component
-   name="avalon_master"
-   file="/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/dma_rxtx_p1/lib/sonic/xcvr_xg/misc/avalon_mm_master/custom_masters_hw.tcl"
-   displayName="avalon_master"
-   version="1.0"
-   description="Custom Avalon-MM Masters"
-   tags="CONNECTION_TYPES=avalon,clock,conduit,reset /// INTERNAL_COMPONENT=false"
-   categories="Templates"
-   factory="TclModuleFactory">
-  <tag2 key="COMPONENT_EDITABLE" value="false" />
- </component>
- <component
-   name="avalon_read_master"
-   file="/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/dma_rxtx_p1/lib/sonic/xcvr_xg/misc/avalon_mm_master/latency_aware_read_master_hw.tcl"
-   displayName="avalon_read_master"
-   version="1.0"
-   description=""
-   tags="CONNECTION_TYPES=avalon,clock,reset /// INTERNAL_COMPONENT=false"
-   categories="Templates"
-   factory="TclModuleFactory">
-  <tag2 key="COMPONENT_EDITABLE" value="true" />
- </component>
- <component
-   name="avalon_slave"
-   file="/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/dma_rxtx_p1/lib/sonic/xcvr_xg/misc/avalon_mm_slave/avalon_mm_slave_hw.tcl"
-   displayName="avalon_slave"
-   version="2.0"
-   description="Parameterizable input/output component with an Avalon-MM slave port"
-   tags="CONNECTION_TYPES=avalon,clock,conduit,interrupt,reset /// INTERNAL_COMPONENT=false"
-   categories="Templates"
-   factory="TclModuleFactory">
-  <tag2 key="COMPONENT_EDITABLE" value="true" />
- </component>
- <component
-   name="avalon_write_master"
-   file="/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/dma_rxtx_p1/lib/sonic/xcvr_xg/misc/avalon_mm_master/write_master_hw.tcl"
-   displayName="avalon_write_master"
-   version="1.0"
-   description=""
-   tags="CONNECTION_TYPES=avalon,clock,reset /// INTERNAL_COMPONENT=false"
-   categories="Templates"
-   factory="TclModuleFactory">
-  <tag2 key="COMPONENT_EDITABLE" value="true" />
- </component>
- <component
-   name="eth_10g_gen"
-   file="/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/dma_rxtx_p1/lib/sonic/xcvr_xg/misc/eth_10g_gen_hw.tcl"
-   displayName="10GE Packet Generator"
-   version="1.0"
-   description="10GE Packet Generator"
-   tags="CONNECTION_TYPES=avalon,avalon_streaming,clock,reset /// INTERNAL_COMPONENT=false"
-   categories="Interface Protocols/Ethernet"
-   factory="TclModuleFactory">
-  <tag2 key="COMPONENT_EDITABLE" value="false" />
- </component>
- <component
-   name="eth_10g_mon"
-   file="/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/dma_rxtx_p1/lib/sonic/xcvr_xg/misc/eth_10g_mon_hw.tcl"
-   displayName="10GE Packet Monitor"
-   version="1.0"
-   description="10GE Packet Monitor"
-   tags="CONNECTION_TYPES=avalon,avalon_streaming,clock,reset /// INTERNAL_COMPONENT=false"
-   categories="Interface Protocols/Ethernet"
-   factory="TclModuleFactory">
-  <tag2 key="COMPONENT_EDITABLE" value="false" />
  </component>
 </library>

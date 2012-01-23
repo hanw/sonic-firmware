@@ -19,7 +19,7 @@ module sonic_tx_ctl_66 (/*AUTOARG*/
    ) ;
 
    input [127:0] data_in;
-   input [12:0]  wr_address;
+   input [`TX_WRITE_ADDR_WIDTH-1:0]  wr_address;
    input 	 wr_clock;
    input 	 rd_clock;
    input 	 reset;
@@ -32,7 +32,7 @@ module sonic_tx_ctl_66 (/*AUTOARG*/
 
    output [65:0] data_out;
    output 	 gearbox_ena;
-   output [13:0] tx_ring_rptr;
+   output [`TX_READ_ADDR_WIDTH-1:0] tx_ring_rptr;
    
    logic 	 rd_ready;
    logic 	 rx_empty;
@@ -161,7 +161,7 @@ module sonic_tx_ctl_66 (/*AUTOARG*/
 							.almost_empty(rx_almost_empty)
 							);
    defparam usedw_calculator.WIDTH = `USED_QWORDS_WIDTH,
-     usedw_calculator.QWORD_DEPTH = 14'h3E00, //NOTE: smaller than mem size.
+     usedw_calculator.QWORD_DEPTH = 15'h7C00, //NOTE: smaller than mem size.
      usedw_calculator.UPSTREAM = 0,
      usedw_calculator.READ_TO_WRITE_DELAY = 0,
      usedw_calculator.WRITE_TO_READ_DELAY = 0;	//covered by crossing domain delay

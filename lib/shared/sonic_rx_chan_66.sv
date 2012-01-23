@@ -22,14 +22,14 @@ module sonic_rx_chan_66 (/*AUTOARG*/
    input 	rd_clock;
    input 	wr_clock;
    input 	reset;
-   input [12:0] rd_address;
+   input [`RX_READ_ADDR_WIDTH-1:0] rd_address;
 
    input 	enable_sfp;
    input 	xcvr_rx_ready;
    input 	dma_rdreq;
       
    output [127:0] data_out;
-   output [13:0]  rx_ring_wptr;
+   output [`RX_WRITE_ADDR_WIDTH-1:0]  rx_ring_wptr;
    
    logic [65:0]   gearbox_data_out;
    logic [65:0]   blocksync_data_out;

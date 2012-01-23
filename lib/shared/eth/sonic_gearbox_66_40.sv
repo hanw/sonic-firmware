@@ -102,7 +102,7 @@ module sonic_gearbox_66_40 (/*AUTOARG*/
     * 
     * NOTE: this must match the rd_req signal for barrel-shifter.
     */
-   always @ ( posedge clk_in ) begin
+   always @ ( posedge clk_in or negedge ena) begin
       if (~ena) begin
 	 data_out <= 40'h0;
       end

@@ -22,12 +22,12 @@ module sonic_tx_chan_66 (/*AUTOARG*/
    input 	 wr_clock;
    input 	 reset;
 
-   input [12:0]  wr_address;
+   input [`TX_WRITE_ADDR_WIDTH-1:0]  wr_address;
    input 	 wrreq;
    input 	 enable_sfp;
    input 	 xcvr_tx_ready;
    input 	 tag_cpl;
-   output [13:0] tx_ring_rptr;
+   output [`TX_READ_ADDR_WIDTH-1:0] tx_ring_rptr;
    
    logic 	 gearbox_rdreq;
    logic [65:0]  tx_cbuf_data_out;

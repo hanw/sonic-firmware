@@ -18,19 +18,19 @@ module sonic_calc_address (/*AUTOARG*/
    input incr;
    input ena;
    
-   output [13:0] addr_out; // assume max 0x3E00 entries.
+   output [14:0] addr_out; // assume max 0x7C00 entries.
 
-   logic [13:0]  next_address;
+   logic [14:0]  next_address;
    
    always @ ( posedge clk_in or posedge reset) begin
       if (reset)
 	next_address <= 0;
       else begin
 	 if (incr && ena) begin
-	    if (next_address == 14'h3DFF)
+	    if (next_address == 15'h7BFF)
 	      next_address <= 0;
 	    else
-	      next_address <= next_address + 14'h1;
+	      next_address <= next_address + 15'h1;
 	 end
       end
    end

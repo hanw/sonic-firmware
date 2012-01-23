@@ -47,10 +47,10 @@ module sonic_dpram_async_128_64 (
 	q);
 
 	input	[127:0]  data;
-	input	[13:0]  rdaddress;
+	input	[14:0]  rdaddress;
 	input	  rdclock;
 	input	  rden;
-	input	[12:0]  wraddress;
+	input	[13:0]  wraddress;
 	input	  wrclock;
 	input	  wren;
 	output	[63:0]  q;
@@ -101,15 +101,15 @@ module sonic_dpram_async_128_64 (
 		altsyncram_component.init_file_layout = "PORT_A",
 		altsyncram_component.intended_device_family = "Stratix IV",
 		altsyncram_component.lpm_type = "altsyncram",
-		altsyncram_component.numwords_a = 8192,
-		altsyncram_component.numwords_b = 16384,
+		altsyncram_component.numwords_a = 16384,
+		altsyncram_component.numwords_b = 32768,
 		altsyncram_component.operation_mode = "DUAL_PORT",
 		altsyncram_component.outdata_aclr_b = "NONE",
 		altsyncram_component.outdata_reg_b = "UNREGISTERED",
 		altsyncram_component.power_up_uninitialized = "FALSE",
 		altsyncram_component.rdcontrol_reg_b = "CLOCK1",
-		altsyncram_component.widthad_a = 13,
-		altsyncram_component.widthad_b = 14,
+		altsyncram_component.widthad_a = 14,
+		altsyncram_component.widthad_b = 15,
 		altsyncram_component.width_a = 128,
 		altsyncram_component.width_b = 64,
 		altsyncram_component.width_byteena_a = 1;
@@ -152,7 +152,7 @@ endmodule
 // Retrieval info: PRIVATE: JTAG_ENABLED NUMERIC "0"
 // Retrieval info: PRIVATE: JTAG_ID STRING "NONE"
 // Retrieval info: PRIVATE: MAXIMUM_DEPTH NUMERIC "0"
-// Retrieval info: PRIVATE: MEMSIZE NUMERIC "1048576"
+// Retrieval info: PRIVATE: MEMSIZE NUMERIC "2097152"
 // Retrieval info: PRIVATE: MEM_IN_BITS NUMERIC "0"
 // Retrieval info: PRIVATE: MIFfilename STRING "ram_init.mif"
 // Retrieval info: PRIVATE: OPERATION_MODE NUMERIC "2"
@@ -191,28 +191,28 @@ endmodule
 // Retrieval info: CONSTANT: INIT_FILE_LAYOUT STRING "PORT_A"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Stratix IV"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "altsyncram"
-// Retrieval info: CONSTANT: NUMWORDS_A NUMERIC "8192"
-// Retrieval info: CONSTANT: NUMWORDS_B NUMERIC "16384"
+// Retrieval info: CONSTANT: NUMWORDS_A NUMERIC "16384"
+// Retrieval info: CONSTANT: NUMWORDS_B NUMERIC "32768"
 // Retrieval info: CONSTANT: OPERATION_MODE STRING "DUAL_PORT"
 // Retrieval info: CONSTANT: OUTDATA_ACLR_B STRING "NONE"
 // Retrieval info: CONSTANT: OUTDATA_REG_B STRING "UNREGISTERED"
 // Retrieval info: CONSTANT: POWER_UP_UNINITIALIZED STRING "FALSE"
 // Retrieval info: CONSTANT: RDCONTROL_REG_B STRING "CLOCK1"
-// Retrieval info: CONSTANT: WIDTHAD_A NUMERIC "13"
-// Retrieval info: CONSTANT: WIDTHAD_B NUMERIC "14"
+// Retrieval info: CONSTANT: WIDTHAD_A NUMERIC "14"
+// Retrieval info: CONSTANT: WIDTHAD_B NUMERIC "15"
 // Retrieval info: CONSTANT: WIDTH_A NUMERIC "128"
 // Retrieval info: CONSTANT: WIDTH_B NUMERIC "64"
 // Retrieval info: CONSTANT: WIDTH_BYTEENA_A NUMERIC "1"
 // Retrieval info: USED_PORT: data 0 0 128 0 INPUT NODEFVAL "data[127..0]"
 // Retrieval info: USED_PORT: q 0 0 64 0 OUTPUT NODEFVAL "q[63..0]"
-// Retrieval info: USED_PORT: rdaddress 0 0 14 0 INPUT NODEFVAL "rdaddress[13..0]"
+// Retrieval info: USED_PORT: rdaddress 0 0 15 0 INPUT NODEFVAL "rdaddress[14..0]"
 // Retrieval info: USED_PORT: rdclock 0 0 0 0 INPUT NODEFVAL "rdclock"
 // Retrieval info: USED_PORT: rden 0 0 0 0 INPUT VCC "rden"
-// Retrieval info: USED_PORT: wraddress 0 0 13 0 INPUT NODEFVAL "wraddress[12..0]"
+// Retrieval info: USED_PORT: wraddress 0 0 14 0 INPUT NODEFVAL "wraddress[13..0]"
 // Retrieval info: USED_PORT: wrclock 0 0 0 0 INPUT VCC "wrclock"
 // Retrieval info: USED_PORT: wren 0 0 0 0 INPUT GND "wren"
-// Retrieval info: CONNECT: @address_a 0 0 13 0 wraddress 0 0 13 0
-// Retrieval info: CONNECT: @address_b 0 0 14 0 rdaddress 0 0 14 0
+// Retrieval info: CONNECT: @address_a 0 0 14 0 wraddress 0 0 14 0
+// Retrieval info: CONNECT: @address_b 0 0 15 0 rdaddress 0 0 15 0
 // Retrieval info: CONNECT: @clock0 0 0 0 0 wrclock 0 0 0 0
 // Retrieval info: CONNECT: @clock1 0 0 0 0 rdclock 0 0 0 0
 // Retrieval info: CONNECT: @data_a 0 0 128 0 data 0 0 128 0

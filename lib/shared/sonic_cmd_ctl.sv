@@ -20,7 +20,7 @@
 
 module sonic_cmd_ctl 
   #(
-    parameter RING_SIZE = 8192,
+    parameter RING_SIZE = 16384,
     parameter USEDW_WIDTH = 13,
     parameter PORT_NUM = 0
     )(

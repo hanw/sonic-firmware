@@ -85,6 +85,26 @@ IP_OBJS := altpcie_pll_100_250.v \
 			altpcie_rs_serdes.v \
 			../top_core.vo
 
+VC_OBJS := 	sonic_vc.v \
+		submodules/sonic_vc_multiplexer_0.v \
+		submodules/sonic_vc_demultiplexer_custom.sv \
+		submodules/altera_reset_controller.v \
+		submodules/altera_reset_synchronizer.v \
+		submodules/altera_avalon_sc_fifo.v \
+		submodules/sonic_vc_tx_fifo_p0.v \
+		submodules/sonic_vc_tx_fifo_p1.v \
+		submodules/sonic_vc_timing_adapter_fifo.v \
+		submodules/sonic_vc_timing_adapter.v \
+		submodules/sonic_vc_multiplexer_adapter.v \
+		submodules/sonic_vc_tx_fifo_p0_adapter_fifo.v \
+		submodules/sonic_vc_tx_fifo_p0_adapter.v \
+		submodules/sonic_vc_rx_fifo_in_adapter_fifo.v \
+		submodules/sonic_vc_rx_fifo_in_adapter.v \
+		submodules/sonic_vc_rx_fifo_p0_adapter.v \
+		submodules/sonic_vc_rx_fifo_p0.v \
+		submodules/sonic_vc_rx_fifo_p1_adapter.v 
+
+
 
 SHARED_PATH := ../../../lib/shared
 SONIC_PATH := ../../../lib/sonic
@@ -93,13 +113,14 @@ SIM_PATH := ../../../lib/sonic/common/testbench
 EXTRA_PATH := ../../../lib/sonic/pcie/examples/sonic_chaining_dma
 IP_PATH := ../../../lib/sonic/pcie/ip_compiler_for_pci_express-library
 QSYS_SIMDIR := ./sonic_blocksync_sim/testbench
+VC_PATH := ../../../lib/sonic/vc/sonic_vc/synthesis/
 
 INCLUDE_PATH := ../../../lib/shared/+../../../lib/sonic/common/testbench/
 
 TLM_SRC := pci_tlm
 TB_SRC := sonic_chaining_testbench.v sonictb_bfm_driver_chaining.sv test_program.sv sim_top.sv
 
-VLOG_OPTIONS := +define+SYNTHESIS=1 +incdir+$(INCLUDE_PATH) -novopt -work work #-dpiheader dpiheader.h
+VLOG_OPTIONS := +define+SYNTHESIS=1 +incdir+$(INCLUDE_PATH) -novopt -work libraries/work #-dpiheader dpiheader.h
 #VLOG := /home/hwang/altera/11.0/modelsim_ae/linuxaloem/vlog
 #VSIM := /home/hwang/altera/11.0/modelsim_ae/linuxaloem/vsim
 VLOG := /home/hwang/questasim/install/questa_sim/linux/vlog
@@ -110,18 +131,19 @@ MODELSIM_INC := /home/hwang/questasim/install/questa_sim/include/
 .PHONY: all clean VLIB TLM TESTBENCH
 
 				  #mon_com;
-all: VLIB $(SHARED_OBJS) $(SONIC_OBJS) $(DESIGN_OBJS) $(SIM_OBJS) $(EXTRA_OBJS) $(IP_OBJS)
-	vsim -sv_lib pci_tlm -do " source $(QSYS_SIMDIR)/msim_setup.tcl; \
+all: VLIB $(SHARED_OBJS) $(SONIC_OBJS) $(DESIGN_OBJS) $(SIM_OBJS) $(EXTRA_OBJS) $(IP_OBJS) $(VC_OBJS) 
+	vsim -sv_lib pci_tlm -do " source $(QSYS_SIMDIR)/mentor/msim_setup.tcl; \
 				  set QSYS_SIMDIR $(QSYS_SIMDIR); \
 				  dev_com; \
 				  com; \
+				  $(VLOG) $(VLOG_OPTIONS) -sv sonic_blocksync_sim/testbench/sonic_blocksync_sim_tb/simulation/submodules/verbosity_pkg.sv; \
 				  $(VLOG) $(VLOG_OPTIONS) -sv $(TB_SRC); \
 				  source msim.tcl; \
 				  elab_top; \
 				  do wave.do; \
 				  "
 clean:
-	rm -r work altera_ver altera_lnsim_ver lpm_ver sgate_ver altera_mf_ver stratixiv_hssi_ver stratixiv_pcie_hip_ver stratixiv_ver *.o *.so
+	rm -r libraries
 
 $(SHARED_OBJS): 
 	$(VLOG) $(VLOG_OPTIONS) -sv $(SHARED_PATH)/$@
@@ -141,33 +163,37 @@ $(EXTRA_OBJS):
 $(IP_OBJS):
 	$(VLOG) $(VLOG_OPTIONS) -sv $(IP_PATH)/$@
 
+$(VC_OBJS):
+	$(VLOG) $(VLOG_OPTIONS) -sv $(VC_PATH)/$@
+
 TLM: 
 	gcc -m32 -c -I$(MODELSIM_INC) $(TLM_SRC).c
 	ld -melf_i386 -shared -E -Bsymbolic --allow-shlib-undefined -o $(TLM_SRC).so $(TLM_SRC).o
 
 VLIB:
-	vlib work
-	vlib altera_ver
-	vmap altera_ver altera_ver
-	vlib lpm_ver
-	vmap lpm_ver lpm_ver
-	vlib sgate_ver
-	vmap sgate_ver sgate_ver
-	vlib altera_mf_ver
-	vmap altera_mf_ver altera_mf_ver
-	vlib altera_lnsim_ver
-	vmap altera_lnsim_ver altera_lnsim_ver
-	vlib stratixiv_hssi_ver
-	vmap stratixiv_hssi_ver stratixiv_hssi_ver
-	vlib stratixiv_pcie_hip_ver
-	vmap stratixiv_pcie_hip_ver stratixiv_pcie_hip_ver
-	vlib stratixiv_ver
-	vmap stratixiv_ver stratixiv_ver
-	vlog "/home/hwang/altera/11.0/quartus/eda/sim_lib/altera_primitives.v" -work altera_ver
-	vlog "/home/hwang/altera/11.0/quartus/eda/sim_lib/220model.v" -work lpm_ver
-	vlog "/home/hwang/altera/11.0/quartus/eda/sim_lib/sgate.v" -work sgate_ver
-	vlog "/home/hwang/altera/11.0/quartus/eda/sim_lib/altera_mf.v" -work altera_mf_ver
-	vlog -sv "/home/hwang/altera/11.0/quartus/eda/sim_lib/altera_lnsim.sv" -work altera_lnsim_ver
-	vlog "/home/hwang/altera/11.0/quartus/eda/sim_lib/stratixiv_hssi_atoms.v" -work stratixiv_hssi_ver
-	vlog "/home/hwang/altera/11.0/quartus/eda/sim_lib/stratixiv_pcie_hip_atoms.v" -work stratixiv_pcie_hip_ver
-	vlog "/home/hwang/altera/11.0/quartus/eda/sim_lib/stratixiv_atoms.v" -work stratixiv_ver
+	mkdir -p libraries
+	vlib libraries/work
+#	vlib altera_ver
+#	vmap altera_ver altera_ver
+#	vlib lpm_ver
+#	vmap lpm_ver lpm_ver
+#	vlib sgate_ver
+#	vmap sgate_ver sgate_ver
+#	vlib altera_mf_ver
+#	vmap altera_mf_ver altera_mf_ver
+#	vlib altera_lnsim_ver
+#	vmap altera_lnsim_ver altera_lnsim_ver
+#	vlib stratixiv_hssi_ver
+#	vmap stratixiv_hssi_ver stratixiv_hssi_ver
+#	vlib stratixiv_pcie_hip_ver
+#	vmap stratixiv_pcie_hip_ver stratixiv_pcie_hip_ver
+#	vlib stratixiv_ver
+#	vmap stratixiv_ver stratixiv_ver
+#	vlog "/home/hwang/altera/11.0/quartus/eda/sim_lib/altera_primitives.v" -work altera_ver
+#	vlog "/home/hwang/altera/11.0/quartus/eda/sim_lib/220model.v" -work lpm_ver
+#	vlog "/home/hwang/altera/11.0/quartus/eda/sim_lib/sgate.v" -work sgate_ver
+#	vlog "/home/hwang/altera/11.0/quartus/eda/sim_lib/altera_mf.v" -work altera_mf_ver
+#	vlog -sv "/home/hwang/altera/11.0/quartus/eda/sim_lib/altera_lnsim.sv" -work altera_lnsim_ver
+#	vlog "/home/hwang/altera/11.0/quartus/eda/sim_lib/stratixiv_hssi_atoms.v" -work stratixiv_hssi_ver
+#	vlog "/home/hwang/altera/11.0/quartus/eda/sim_lib/stratixiv_pcie_hip_atoms.v" -work stratixiv_pcie_hip_ver
+#	vlog "/home/hwang/altera/11.0/quartus/eda/sim_lib/stratixiv_atoms.v" -work stratixiv_ver

@@ -19,7 +19,7 @@ module sonic_rx_ctl_66 (/*AUTOARG*/
    ) ;
 
    input [65:0] data_in;
-   input [12:0] rd_address; // with rdreq to be DMA interface.
+   input [`RX_READ_ADDR_WIDTH-1:0] rd_address; // with rdreq to be DMA interface.
    input 	rd_clock;
    input 	wr_clock;
    input 	reset;
@@ -28,7 +28,7 @@ module sonic_rx_ctl_66 (/*AUTOARG*/
    input 	wrena; // enable_sfp, xcvr_ready
    input 	wrreq; // gearbox valid, block lock
    output [127:0] data_out;
-   output [13:0]  rx_ring_wptr; // export write pointer of rx buffer to irq
+   output [`RX_WRITE_ADDR_WIDTH-1:0]  rx_ring_wptr; // export write pointer of rx buffer to irq
    		
    logic 	  rx_full;
    logic 	  rx_empty;
@@ -82,7 +82,7 @@ module sonic_rx_ctl_66 (/*AUTOARG*/
 						  .almost_empty(rx_almost_empty)
 						  );
    defparam usedw_calc.WIDTH = `USED_QWORDS_WIDTH,
-     usedw_calc.QWORD_DEPTH = 14'h3E00,
+     usedw_calc.QWORD_DEPTH = 15'h7C00,
      usedw_calc.UPSTREAM = 1,
      usedw_calc.READ_TO_WRITE_DELAY = 0,
      usedw_calc.WRITE_TO_READ_DELAY = 0;

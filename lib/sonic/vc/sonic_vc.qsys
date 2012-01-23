@@ -73,7 +73,7 @@
  <parameter name="projectName" value="" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="1" />
- <parameter name="timeStamp" value="1325744962417" />
+ <parameter name="timeStamp" value="1327076814762" />
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <interface
@@ -185,7 +185,7 @@
    name="tx_fifo_p0">
   <parameter name="SYMBOLS_PER_BEAT" value="2" />
   <parameter name="BITS_PER_SYMBOL" value="64" />
-  <parameter name="FIFO_DEPTH" value="8192" />
+  <parameter name="FIFO_DEPTH" value="4096" />
   <parameter name="CHANNEL_WIDTH" value="0" />
   <parameter name="ERROR_WIDTH" value="1" />
   <parameter name="USE_PACKETS" value="1" />
@@ -204,7 +204,7 @@
    name="tx_fifo_p1">
   <parameter name="SYMBOLS_PER_BEAT" value="2" />
   <parameter name="BITS_PER_SYMBOL" value="64" />
-  <parameter name="FIFO_DEPTH" value="8192" />
+  <parameter name="FIFO_DEPTH" value="4096" />
   <parameter name="CHANNEL_WIDTH" value="0" />
   <parameter name="ERROR_WIDTH" value="1" />
   <parameter name="USE_PACKETS" value="1" />

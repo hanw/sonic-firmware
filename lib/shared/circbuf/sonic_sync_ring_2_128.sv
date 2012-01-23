@@ -8,6 +8,7 @@
 // Update Count    : 1
 // Status          : simulated passed
 /*
+ * 128K buffer design:
  * dpram_async_2_64 has 2^14 = 16384 2-bit entries.
  * dparm_async_64_128 should have 16384 64-bit entries to match the sync_ring.
  * 
@@ -15,6 +16,15 @@
  * sonic_sync_ring, which has two dpram_async_2_64 thus has 2^9 output entries.
  * 
  * dpram_async_64_128 has 2^13 = 8192 128-bit output entries.
+ *
+ * 256K buffer design:
+ * dpram_async_2_64 has 2^16 = 32768 2-bit entries.
+ * dparm_async_64_128 should have 16384 64-bit entries to match the sync_ring.
+ * 
+ * dpram_async_2_64 has 2^10 = 1024 64-bit output entries, two outputs forms one 128-bit outputs.
+ * sonic_sync_ring, which has two dpram_async_2_64 thus has 2^10 output entries.
+ * 
+ * dpram_async_64_128 has 2^14 = 16384 128-bit output entries.
  * 
  */
 module sonic_sync_ring_2_128 (/*AUTOARG*/
@@ -24,8 +34,8 @@ module sonic_sync_ring_2_128 (/*AUTOARG*/
    wr_address, rd_address, data_in, wr_clock, rd_clock, wren
    ) ;
 
-   input [13:0] wr_address;
-   input [7:0] 	rd_address;
+   input [`RX_WRITE_ADDR_WIDTH-1:0] wr_address;
+   input [8:0] 	rd_address;
    input [1:0] 	data_in;
    input 	wr_clock;
    input 	rd_clock;
@@ -44,7 +54,7 @@ module sonic_sync_ring_2_128 (/*AUTOARG*/
 				    .wrclock(wr_clock),
 				    .rdclock(rd_clock),
 				    .rdaddress(rd_address),
-				    .wraddress({wr_address[13:6],wr_address[4:0]}),
+				    .wraddress({wr_address[`RX_WRITE_ADDR_WIDTH-1:6],wr_address[4:0]}),
 				    .wren(wr_address[5] & wren),
 				    .q(data_out_top)
 				    );
@@ -53,7 +63,7 @@ module sonic_sync_ring_2_128 (/*AUTOARG*/
 				    .wrclock(wr_clock),
 				    .rdclock(rd_clock),
 				    .rdaddress(rd_address),
-				    .wraddress({wr_address[13:6],wr_address[4:0]}),
+				    .wraddress({wr_address[`RX_WRITE_ADDR_WIDTH-1:6],wr_address[4:0]}),
 				    .wren(~wr_address[5] & wren),
 				    .q(data_out_bot)
 				    );

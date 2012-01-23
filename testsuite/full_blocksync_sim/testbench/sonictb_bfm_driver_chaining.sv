@@ -4252,8 +4252,8 @@ class dma_thread;
 
          ebfm_cfgwr_imm_wait(ep_bus_num, ep_dev_num, 0, 4, 4, 32'h00000007, compl_status);
 	 
-	 ebfm_cfg_vc(1/*bus*/, 1/*dev*/, 0/*func*/, 0/*n_vc*/, 1/*enable*/, 8'h0F/*tcvcmap*/);
-	 ebfm_cfg_vc(1/*bus*/, 1/*dev*/, 0/*func*/, 1/*n_vc*/, 1/*enable*/, 8'hF0/*tcvcmap*/);
+	 ebfm_cfg_vc(1/*bus*/, 1/*dev*/, 0/*func*/, 0/*n_vc*/, 1/*enable*/, 8'hFF/*tcvcmap*/);
+	 ebfm_cfg_vc(1/*bus*/, 1/*dev*/, 0/*func*/, 1/*n_vc*/, 1/*enable*/, 8'h00/*tcvcmap*/);
 	 ebfm_cfg_vc(0/*bus*/, 0/*dev*/, 0/*func*/, 0/*n_vc*/, 1/*enable*/, 8'hFF/*tcvcmap*/);
 	 ebfm_cfg_vc(0/*bus*/, 0/*dev*/, 0/*func*/, 1/*n_vc*/, 1/*enable*/, 8'h00/*tcvcmap*/);
 	 	  

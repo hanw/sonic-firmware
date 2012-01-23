@@ -45,31 +45,31 @@ module sonic_mult_add (
 	result);
 
 	input	  clock0;
-	input	[13:0]  dataa_0;
-	input	[13:0]  dataa_1;
-	input	[13:0]  datab_0;
-	input	[13:0]  datab_1;
-	output	[13:0]  result;
+	input	[14:0]  dataa_0;
+	input	[14:0]  dataa_1;
+	input	[14:0]  datab_0;
+	input	[14:0]  datab_1;
+	output	[14:0]  result;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_off
 `endif
 	tri1	  clock0;
-	tri0	[13:0]  dataa_0;
-	tri0	[13:0]  dataa_1;
-	tri0	[13:0]  datab_0;
-	tri0	[13:0]  datab_1;
+	tri0	[14:0]  dataa_0;
+	tri0	[14:0]  dataa_1;
+	tri0	[14:0]  datab_0;
+	tri0	[14:0]  datab_1;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_on
 `endif
 
-	wire [13:0] sub_wire0;
-	wire [13:0] sub_wire6 = datab_1[13:0];
-	wire [13:0] sub_wire3 = dataa_1[13:0];
-	wire [13:0] result = sub_wire0[13:0];
-	wire [13:0] sub_wire1 = dataa_0[13:0];
-	wire [27:0] sub_wire2 = {sub_wire3, sub_wire1};
-	wire [13:0] sub_wire4 = datab_0[13:0];
-	wire [27:0] sub_wire5 = {sub_wire6, sub_wire4};
+	wire [14:0] sub_wire0;
+	wire [14:0] sub_wire6 = datab_1[14:0];
+	wire [14:0] sub_wire3 = dataa_1[14:0];
+	wire [14:0] result = sub_wire0[14:0];
+	wire [14:0] sub_wire1 = dataa_0[14:0];
+	wire [29:0] sub_wire2 = {sub_wire3, sub_wire1};
+	wire [14:0] sub_wire4 = datab_0[14:0];
+	wire [29:0] sub_wire5 = {sub_wire6, sub_wire4};
 
 	altmult_add	ALTMULT_ADD_component (
 				.clock0 (clock0),
@@ -113,8 +113,8 @@ module sonic_mult_add (
 				.output_saturate (1'b0),
 				.overflow (),
 				.rotate (1'b0),
-				.scanina ({14{1'b0}}),
-				.scaninb ({14{1'b0}}),
+				.scanina ({15{1'b0}}),
+				.scaninb ({15{1'b0}}),
 				.scanouta (),
 				.scanoutb (),
 				.shift_right (1'b0),
@@ -168,12 +168,11 @@ module sonic_mult_add (
 		ALTMULT_ADD_component.signed_pipeline_register_b = "CLOCK0",
 		ALTMULT_ADD_component.signed_register_a = "CLOCK0",
 		ALTMULT_ADD_component.signed_register_b = "CLOCK0",
-		ALTMULT_ADD_component.width_a = 14,
-		ALTMULT_ADD_component.width_b = 14,
+		ALTMULT_ADD_component.width_a = 15,
+		ALTMULT_ADD_component.width_b = 15,
 		ALTMULT_ADD_component.width_chainin = 1,
-		ALTMULT_ADD_component.width_result = 14,
-		ALTMULT_ADD_component.zero_chainout_output_aclr = "UNUSED",
-		ALTMULT_ADD_component.zero_chainout_output_register = "CLOCK0",
+		ALTMULT_ADD_component.width_result = 15,
+		ALTMULT_ADD_component.zero_chainout_output_register = "UNREGISTERED",
 		ALTMULT_ADD_component.zero_loopback_aclr = "UNUSED",
 		ALTMULT_ADD_component.zero_loopback_output_aclr = "UNUSED",
 		ALTMULT_ADD_component.zero_loopback_output_register = "CLOCK0",
@@ -241,7 +240,7 @@ endmodule
 // Retrieval info: PRIVATE: Q_ACLR_SRC_MULT0 NUMERIC "3"
 // Retrieval info: PRIVATE: Q_CLK_SRC_MULT0 NUMERIC "0"
 // Retrieval info: PRIVATE: REG_OUT NUMERIC "1"
-// Retrieval info: PRIVATE: RNFORMAT STRING "14"
+// Retrieval info: PRIVATE: RNFORMAT STRING "15"
 // Retrieval info: PRIVATE: ROTATE_ACLR_SRC NUMERIC "3"
 // Retrieval info: PRIVATE: ROTATE_CLK_SRC NUMERIC "0"
 // Retrieval info: PRIVATE: ROTATE_OUT_ACLR_SRC NUMERIC "3"
@@ -261,7 +260,7 @@ endmodule
 // Retrieval info: PRIVATE: ROUND3_CHAINOUT_PIPE_CLK_SRC NUMERIC "0"
 // Retrieval info: PRIVATE: ROUND3_CHAINOUT_PIPE_REG STRING "1"
 // Retrieval info: PRIVATE: ROUND3_CHAINOUT_REG STRING "1"
-// Retrieval info: PRIVATE: ROUND3_FRAC_WIDTH NUMERIC "3"
+// Retrieval info: PRIVATE: ROUND3_FRAC_WIDTH NUMERIC "15"
 // Retrieval info: PRIVATE: ROUND3_OUTPUT_ACLR_SRC NUMERIC "3"
 // Retrieval info: PRIVATE: ROUND3_OUTPUT_CHAINOUT_TYPE STRING "Nearest Integer"
 // Retrieval info: PRIVATE: ROUND3_OUTPUT_CLK_SRC NUMERIC "0"
@@ -271,7 +270,7 @@ endmodule
 // Retrieval info: PRIVATE: ROUND3_OUTPUT_PIPE_REG STRING "1"
 // Retrieval info: PRIVATE: ROUND3_OUTPUT_REG STRING "1"
 // Retrieval info: PRIVATE: RQFORMAT STRING "Q1.15"
-// Retrieval info: PRIVATE: RTS_WIDTH STRING "14"
+// Retrieval info: PRIVATE: RTS_WIDTH STRING "15"
 // Retrieval info: PRIVATE: SAME_CONFIG NUMERIC "1"
 // Retrieval info: PRIVATE: SAME_CONTROL_SRC_A0 NUMERIC "1"
 // Retrieval info: PRIVATE: SAME_CONTROL_SRC_B0 NUMERIC "1"
@@ -286,7 +285,7 @@ endmodule
 // Retrieval info: PRIVATE: SAT3_CHAINOUT_REG STRING "1"
 // Retrieval info: PRIVATE: SAT3_FRAC_WIDTH NUMERIC "0"
 // Retrieval info: PRIVATE: SAT3_OUTPUT_ACLR_SRC NUMERIC "3"
-// Retrieval info: PRIVATE: SAT3_OUTPUT_CHAINOUT_TYPE STRING "Symmetric"
+// Retrieval info: PRIVATE: SAT3_OUTPUT_CHAINOUT_TYPE STRING "Asymmetric"
 // Retrieval info: PRIVATE: SAT3_OUTPUT_CLK_SRC NUMERIC "0"
 // Retrieval info: PRIVATE: SAT3_OUTPUT_MODE STRING "Enabled"
 // Retrieval info: PRIVATE: SAT3_OUTPUT_OVERFLOW NUMERIC "0"
@@ -326,8 +325,8 @@ endmodule
 // Retrieval info: PRIVATE: SRCA0 STRING "Multiplier input"
 // Retrieval info: PRIVATE: SRCB0 STRING "Multiplier input"
 // Retrieval info: PRIVATE: SYNTH_WRAPPER_GEN_POSTFIX STRING "0"
-// Retrieval info: PRIVATE: WIDTHA STRING "14"
-// Retrieval info: PRIVATE: WIDTHB STRING "14"
+// Retrieval info: PRIVATE: WIDTHA STRING "15"
+// Retrieval info: PRIVATE: WIDTHB STRING "15"
 // Retrieval info: PRIVATE: ZERO_CHAINOUT_ACLR_SRC NUMERIC "3"
 // Retrieval info: PRIVATE: ZERO_CHAINOUT_CLK_SRC NUMERIC "0"
 // Retrieval info: PRIVATE: ZERO_CHAINOUT_REG STRING "0"
@@ -384,12 +383,11 @@ endmodule
 // Retrieval info: CONSTANT: SIGNED_PIPELINE_REGISTER_B STRING "CLOCK0"
 // Retrieval info: CONSTANT: SIGNED_REGISTER_A STRING "CLOCK0"
 // Retrieval info: CONSTANT: SIGNED_REGISTER_B STRING "CLOCK0"
-// Retrieval info: CONSTANT: WIDTH_A NUMERIC "14"
-// Retrieval info: CONSTANT: WIDTH_B NUMERIC "14"
+// Retrieval info: CONSTANT: WIDTH_A NUMERIC "15"
+// Retrieval info: CONSTANT: WIDTH_B NUMERIC "15"
 // Retrieval info: CONSTANT: WIDTH_CHAININ NUMERIC "1"
-// Retrieval info: CONSTANT: WIDTH_RESULT NUMERIC "14"
-// Retrieval info: CONSTANT: ZERO_CHAINOUT_OUTPUT_ACLR STRING "UNUSED"
-// Retrieval info: CONSTANT: ZERO_CHAINOUT_OUTPUT_REGISTER STRING "CLOCK0"
+// Retrieval info: CONSTANT: WIDTH_RESULT NUMERIC "15"
+// Retrieval info: CONSTANT: ZERO_CHAINOUT_OUTPUT_REGISTER STRING "UNREGISTERED"
 // Retrieval info: CONSTANT: ZERO_LOOPBACK_ACLR STRING "UNUSED"
 // Retrieval info: CONSTANT: ZERO_LOOPBACK_OUTPUT_ACLR STRING "UNUSED"
 // Retrieval info: CONSTANT: ZERO_LOOPBACK_OUTPUT_REGISTER STRING "CLOCK0"
@@ -397,17 +395,17 @@ endmodule
 // Retrieval info: CONSTANT: ZERO_LOOPBACK_PIPELINE_REGISTER STRING "CLOCK0"
 // Retrieval info: CONSTANT: ZERO_LOOPBACK_REGISTER STRING "CLOCK0"
 // Retrieval info: USED_PORT: clock0 0 0 0 0 INPUT VCC "clock0"
-// Retrieval info: USED_PORT: dataa_0 0 0 14 0 INPUT GND "dataa_0[13..0]"
-// Retrieval info: USED_PORT: dataa_1 0 0 14 0 INPUT GND "dataa_1[13..0]"
-// Retrieval info: USED_PORT: datab_0 0 0 14 0 INPUT GND "datab_0[13..0]"
-// Retrieval info: USED_PORT: datab_1 0 0 14 0 INPUT GND "datab_1[13..0]"
-// Retrieval info: USED_PORT: result 0 0 14 0 OUTPUT GND "result[13..0]"
+// Retrieval info: USED_PORT: dataa_0 0 0 15 0 INPUT GND "dataa_0[14..0]"
+// Retrieval info: USED_PORT: dataa_1 0 0 15 0 INPUT GND "dataa_1[14..0]"
+// Retrieval info: USED_PORT: datab_0 0 0 15 0 INPUT GND "datab_0[14..0]"
+// Retrieval info: USED_PORT: datab_1 0 0 15 0 INPUT GND "datab_1[14..0]"
+// Retrieval info: USED_PORT: result 0 0 15 0 OUTPUT GND "result[14..0]"
 // Retrieval info: CONNECT: @clock0 0 0 0 0 clock0 0 0 0 0
-// Retrieval info: CONNECT: @dataa 0 0 14 0 dataa_0 0 0 14 0
-// Retrieval info: CONNECT: @dataa 0 0 14 14 dataa_1 0 0 14 0
-// Retrieval info: CONNECT: @datab 0 0 14 0 datab_0 0 0 14 0
-// Retrieval info: CONNECT: @datab 0 0 14 14 datab_1 0 0 14 0
-// Retrieval info: CONNECT: result 0 0 14 0 @result 0 0 14 0
+// Retrieval info: CONNECT: @dataa 0 0 15 0 dataa_0 0 0 15 0
+// Retrieval info: CONNECT: @dataa 0 0 15 15 dataa_1 0 0 15 0
+// Retrieval info: CONNECT: @datab 0 0 15 0 datab_0 0 0 15 0
+// Retrieval info: CONNECT: @datab 0 0 15 15 datab_1 0 0 15 0
+// Retrieval info: CONNECT: result 0 0 15 0 @result 0 0 15 0
 // Retrieval info: GEN_FILE: TYPE_NORMAL sonic_mult_add.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL sonic_mult_add.inc FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL sonic_mult_add.cmp FALSE

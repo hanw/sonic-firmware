@@ -104,7 +104,7 @@ module sonic_tx_circular_buffer_66 (/*AUTOARG*/
    ) ;
 
    input [127:0] data_in;
-   input [12:0]  wr_address;
+   input [`TX_WRITE_ADDR_WIDTH-1:0]  wr_address;
    input 	 wr_clk;
    input 	 rd_clk;
    input 	 reset;
@@ -114,14 +114,14 @@ module sonic_tx_circular_buffer_66 (/*AUTOARG*/
 //   input 	 tag_cpl;
 //   output 	 gearbox_ena;
    output [65:0] data_out;
-   output [13:0] clock_crossed_rd_address;
+   output [`TX_READ_ADDR_WIDTH-1:0] clock_crossed_rd_address;
       
    logic [1:0] 	 dout_sync;
    logic [63:0]  dout_data;
 
-   logic [13:0]  rd_address;
-   logic [7:0]   wr_address_sync;
-   logic [12:0]  wr_address_data;
+   logic [`TX_READ_ADDR_WIDTH-1:0]  rd_address;
+   logic [8:0]   wr_address_sync;
+   logic [`TX_WRITE_ADDR_WIDTH-1:0]  wr_address_data;
    logic 	 wren_data;
    logic 	 wren_sync;
 
@@ -138,7 +138,7 @@ module sonic_tx_circular_buffer_66 (/*AUTOARG*/
     * the entire page to be received, but wait for the 64-bit data to be received
     * before sending the block.
     */
-   assign wr_address_sync = {wr_address[12:8], wr_address[2:0]}; 
+   assign wr_address_sync = {wr_address[`TX_WRITE_ADDR_WIDTH-1:8], wr_address[2:0]}; 
    assign wr_address_data = wr_address;
    
    /*
@@ -166,7 +166,7 @@ module sonic_tx_circular_buffer_66 (/*AUTOARG*/
     * First 16 entires of every 1024 entries are empty, because 
     * they are shadowed by the sync_ring for sync_headers.
     */
-   sonic_dpram_async_128_64 data_ring (.data(data_in),
+   sonic_data_ring_128_64 data_ring (.data(data_in),
 				       .rdaddress(rd_address),
 				       .rdclock(rd_clk),
 				       .rden(1'b1),
@@ -201,7 +201,7 @@ module sonic_tx_circular_buffer_66 (/*AUTOARG*/
 							.data(rd_address),
 							.q(clock_crossed_rd_address)
 							);
-   defparam rdcounter_to_wrclock.WIDTH = 14;
+   defparam rdcounter_to_wrclock.WIDTH = `TX_READ_ADDR_WIDTH;
    
 endmodule // sonic_tx_circular_buffer_66
 

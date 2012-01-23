@@ -928,7 +928,7 @@ module sonic_top (
       .p1_write_dma_status  (p1_write_dma_status)
       );
 
-   defparam app0.AVALON_WADDR = 13,
+   defparam app0.AVALON_WADDR = 14,
      app0.CHECK_BUS_MASTER_ENA = 1,
      app0.CHECK_RX_BUFFER_CPL = 1,
      app0.CLK_250_APP = 1,
@@ -1006,7 +1006,7 @@ module sonic_top (
       .p1_write_dma_status  (p1_write_dma_status)
       );
 
-   defparam app1.AVALON_WADDR = 13,
+   defparam app1.AVALON_WADDR = 14,
      app1.CHECK_BUS_MASTER_ENA = 1,
      app1.CHECK_RX_BUFFER_CPL = 1,
      app1.CLK_250_APP = 1,
