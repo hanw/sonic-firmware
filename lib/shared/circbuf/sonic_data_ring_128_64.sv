@@ -44,7 +44,7 @@ module sonic_data_ring_128_64 (/*AUTOARG*/
     */
    
    sonic_dpram_async_32_32 ring0 (.data(data0),
-				  .rdaddress({1'b0, rdaddress[`TX_READ_ADDR_WIDTH-1:1]}),
+				  .rdaddress(rdaddress[`TX_READ_ADDR_WIDTH-1:1]),
 				  .rdclock(rdclock),
 				  .rden(rden),
 				  .wraddress(wraddress),
@@ -54,7 +54,7 @@ module sonic_data_ring_128_64 (/*AUTOARG*/
 				  );
 
    sonic_dpram_async_32_32 ring1 (.data(data1),
-				  .rdaddress({1'b0, rdaddress[`TX_READ_ADDR_WIDTH-1:1]}),
+				  .rdaddress(rdaddress[`TX_READ_ADDR_WIDTH-1:1]),
 				  .rdclock(rdclock),
 				  .rden(rden),
 				  .wraddress(wraddress),
@@ -64,7 +64,7 @@ module sonic_data_ring_128_64 (/*AUTOARG*/
 				  );
 
    sonic_dpram_async_32_32 ring2 (.data(data2),
-				  .rdaddress({1'b0, rdaddress[`TX_READ_ADDR_WIDTH-1:1]}),
+				  .rdaddress(rdaddress[`TX_READ_ADDR_WIDTH-1:1]),
 				  .rdclock(rdclock),
 				  .rden(rden),
 				  .wraddress(wraddress),
@@ -74,7 +74,7 @@ module sonic_data_ring_128_64 (/*AUTOARG*/
 				  );
 
    sonic_dpram_async_32_32 ring3 (.data(data3),
-				  .rdaddress({1'b0, rdaddress[`TX_READ_ADDR_WIDTH-1:1]}),
+				  .rdaddress(rdaddress[`TX_READ_ADDR_WIDTH-1:1]),
 				  .rdclock(rdclock),
 				  .rden(rden),
 				  .wraddress(wraddress),

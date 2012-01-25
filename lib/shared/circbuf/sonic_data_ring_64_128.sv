@@ -48,7 +48,7 @@ module sonic_data_ring_64_128 (/*AUTOARG*/
     */
    
    sonic_dpram_async_32_32 ring0 (.data(data0),
-				  .wraddress({1'b0, wraddress[`RX_WRITE_ADDR_WIDTH-1:1]}),
+				  .wraddress(wraddress[`RX_WRITE_ADDR_WIDTH-1:1]),
 				  .wrclock(wrclock),
 				  .wren(wren && ~wraddress[0]), //0b00.
 				  .rdaddress(rdaddress),
@@ -58,7 +58,7 @@ module sonic_data_ring_64_128 (/*AUTOARG*/
 				  );
 
    sonic_dpram_async_32_32 ring1 (.data(data1),
-				  .wraddress({1'b0, wraddress[`RX_WRITE_ADDR_WIDTH-1:1]}),
+				  .wraddress(wraddress[`RX_WRITE_ADDR_WIDTH-1:1]),
 				  .wrclock(wrclock),
 				  .wren(wren && ~wraddress[0]),  //0b00 
 				  .rdaddress(rdaddress),
@@ -68,7 +68,7 @@ module sonic_data_ring_64_128 (/*AUTOARG*/
 				  );
 
    sonic_dpram_async_32_32 ring2 (.data(data0),
-				  .wraddress({1'b0, wraddress[`RX_WRITE_ADDR_WIDTH-1:1]}),
+				  .wraddress(wraddress[`RX_WRITE_ADDR_WIDTH-1:1]),
 				  .wrclock(wrclock),
 				  .wren(wren && wraddress[0]),   //0b01
 				  .rdaddress(rdaddress),
@@ -78,7 +78,7 @@ module sonic_data_ring_64_128 (/*AUTOARG*/
 				  );
 
    sonic_dpram_async_32_32 ring3 (.data(data1),
-				  .wraddress({1'b0, wraddress[`RX_WRITE_ADDR_WIDTH-1:1]}),
+				  .wraddress(wraddress[`RX_WRITE_ADDR_WIDTH-1:1]),
 				  .wrclock(wrclock),
 				  .wren(wren && wraddress[0]),   //0b01. 
 				  .rdaddress(rdaddress),

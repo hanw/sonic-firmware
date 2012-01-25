@@ -438,7 +438,7 @@ module sonic_read_dma_requester_128  # (
 
    // Avalon address
    //reg [AVALON_WADDR-1:0]  ep_addr;   // Base address of the EP memeory
-   reg [TAG_EP_ADDR_WIDTH-1:0]  tx_tag_addr_offset; // max 15:0 dword
+   reg [TAG_EP_ADDR_WIDTH-1:0]  tx_tag_addr_offset; // max 15:0 dword, this is now 17:0.
                                   // If multiple are needed, this track the
                                   // EP adress offset for each tag in the TAGRAM
    // Receive signals section
