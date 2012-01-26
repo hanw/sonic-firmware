@@ -30,7 +30,7 @@ module sonic_data_ring_64_128 (/*AUTOARG*/
    wire [31:0] 			    data0, data1;
    
    assign q = {q3, q2, q1, q0};
-   assign {data0, data1} = data;
+   assign {data1, data0} = data;
    
    /*
     * 64-bit input data,
