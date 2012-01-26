@@ -31,7 +31,15 @@ module sonic_data_ring_128_64 (/*AUTOARG*/
    
    assign {data3, data2, data1, data0} = data;
 
-   assign q = (rdaddress[0] == 1'b0) ? {q1, q0} : {q3, q2};
+   /*
+    * Read Latency of dpram_async is 1 cycle.
+    */
+   reg 				    rdsel;
+   always @ (posedge rdclock) begin
+      rdsel <= rdaddress[0];
+   end   
+   
+   assign q = (rdsel == 1'b0) ? {q1, q0} : {q3, q2};
    
    /*
     * input 00 goes to ring0, 1, 2, 3.
