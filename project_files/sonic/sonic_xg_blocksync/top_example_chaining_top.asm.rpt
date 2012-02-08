@@ -1,5 +1,5 @@
 Assembler report for top_example_chaining_top
-Thu Jan 26 02:13:49 2012
+Mon Feb  6 21:22:38 2012
 Quartus II Version 11.0 Build 157 04/27/2011 Service Pack 0.01 SJ Full Version
 
 
@@ -38,7 +38,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Thu Jan 26 02:13:49 2012 ;
+; Assembler Status      ; Successful - Mon Feb  6 21:22:38 2012 ;
 ; Revision Name         ; top_example_chaining_top              ;
 ; Top-level Entity Name ; sonic_top_wrapper                     ;
 ; Family                ; Stratix IV                            ;
@@ -105,7 +105,7 @@ applicable agreement for further details.
 +----------------+---------------------------------------+
 ; Device         ; EP4S100G2F40I2                        ;
 ; JTAG usercode  ; 0xFFFFFFFF                            ;
-; Checksum       ; 0x0A1A1B07                            ;
+; Checksum       ; 0x09D78E69                            ;
 +----------------+---------------------------------------+
 
 
@@ -115,14 +115,14 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II Assembler
     Info: Version 11.0 Build 157 04/27/2011 Service Pack 0.01 SJ Full Version
-    Info: Processing started: Thu Jan 26 02:13:03 2012
+    Info: Processing started: Mon Feb  6 21:21:57 2012
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off top_example_chaining_top -c top_example_chaining_top
 Info: Writing out detailed assembly data for power analysis
 Info: Assembler is generating device programming files
 Info: Quartus II Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 884 megabytes
-    Info: Processing ended: Thu Jan 26 02:13:49 2012
-    Info: Elapsed time: 00:00:46
-    Info: Total CPU time (on all processors): 00:00:46
+    Info: Peak virtual memory: 872 megabytes
+    Info: Processing ended: Mon Feb  6 21:22:39 2012
+    Info: Elapsed time: 00:00:42
+    Info: Total CPU time (on all processors): 00:00:42
 
 

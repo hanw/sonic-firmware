@@ -161,8 +161,8 @@ module sonic_dma_prg_reg #(
    always @ (posedge clk_in) begin
       if (soft_dma_reset == 1'b1) begin
          prg_reg_DW0         <= 32'h0;
-         prg_reg_DW1         <= 32'h0;
-         prg_reg_DW2         <= 32'h0;
+         //prg_reg_DW1         <= 32'h0;
+         //prg_reg_DW2         <= 32'h0;
          prg_reg_DW3         <= 32'h0;
          prg_reg_DW1_is_zero <= 1'b1;
          dt_size             <= 16'h0;
@@ -171,8 +171,8 @@ module sonic_dma_prg_reg #(
          app_msi_num         <= 5'h0;
          app_msi_tc          <= 3'h0;
          dt_rc_last_sync     <= 1'b0;
-         dt_base_rc          <= 64'h0;
-         dt_3dw_rcadd        <= 1'b0;
+         //dt_base_rc          <= 64'h0;  //Optimized, reduced two IO-Write for each DMA.
+         //dt_3dw_rcadd        <= 1'b0;
          dt_rc_last[15:0]    <= 16'h0;
          dma_prg_rddata      <= 32'h0;
       end
@@ -197,7 +197,7 @@ module sonic_dma_prg_reg #(
           app_msi_num       <= prg_reg_DW0[24:20];
           app_msi_tc        <= prg_reg_DW0[30:28];
           dt_rc_last_sync   <= prg_reg_DW0[31];
-          dt_base_rc[63:32] <= prg_reg_DW1;
+          dt_base_rc[63:32] <= prg_reg_DW1; 
           dt_3dw_rcadd      <= (prg_reg_DW1==32'h0) ? 1'b1 : 1'b0;
           dt_base_rc[31:0]  <= prg_reg_DW2;
           dt_rc_last[15:0]  <= prg_reg_DW3[15:0];

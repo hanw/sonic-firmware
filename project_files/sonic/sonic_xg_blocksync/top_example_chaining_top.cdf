@@ -6,7 +6,7 @@ JedecChain;
 	P ActionCode(Ign)
 		Device PartName(EPM570) MfrSpec(OpMask(0));
 	P ActionCode(Cfg)
-		Device PartName(EP4S100G2F40) Path("/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/dma_rxtx_reversal/project_files/sonic/sonic_xg_blocksync/") File("top_example_chaining_top.sof") MfrSpec(OpMask(1));
+		Device PartName(EP4S100G2F40) Path("/home/hwang/sonic/projects/sonic_fpga_bugfix/pcie-refactor-debug-port1/dma_rxtx_dr/project_files/sonic/sonic_xg_blocksync/") File("top_example_chaining_top.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 
