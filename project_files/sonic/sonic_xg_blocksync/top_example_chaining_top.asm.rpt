@@ -1,6 +1,6 @@
 Assembler report for top_example_chaining_top
-Mon Feb  6 21:22:38 2012
-Quartus II Version 11.0 Build 157 04/27/2011 Service Pack 0.01 SJ Full Version
+Sun Oct 14 20:38:21 2012
+Quartus II 32-bit Version 11.1 Build 259 01/25/2012 Service Pack 2 SJ Full Version
 
 
 ---------------------
@@ -38,7 +38,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Mon Feb  6 21:22:38 2012 ;
+; Assembler Status      ; Successful - Sun Oct 14 20:38:21 2012 ;
 ; Revision Name         ; top_example_chaining_top              ;
 ; Top-level Entity Name ; sonic_top_wrapper                     ;
 ; Family                ; Stratix IV                            ;
@@ -105,7 +105,7 @@ applicable agreement for further details.
 +----------------+---------------------------------------+
 ; Device         ; EP4S100G2F40I2                        ;
 ; JTAG usercode  ; 0xFFFFFFFF                            ;
-; Checksum       ; 0x09D78E69                            ;
+; Checksum       ; 0x09BF202C                            ;
 +----------------+---------------------------------------+
 
 
@@ -113,16 +113,16 @@ applicable agreement for further details.
 ; Assembler Messages ;
 +--------------------+
 Info: *******************************************************************
-Info: Running Quartus II Assembler
-    Info: Version 11.0 Build 157 04/27/2011 Service Pack 0.01 SJ Full Version
-    Info: Processing started: Mon Feb  6 21:21:57 2012
+Info: Running Quartus II 32-bit Assembler
+    Info: Version 11.1 Build 259 01/25/2012 Service Pack 2 SJ Full Version
+    Info: Processing started: Sun Oct 14 20:37:45 2012
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off top_example_chaining_top -c top_example_chaining_top
-Info: Writing out detailed assembly data for power analysis
-Info: Assembler is generating device programming files
-Info: Quartus II Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 872 megabytes
-    Info: Processing ended: Mon Feb  6 21:22:39 2012
-    Info: Elapsed time: 00:00:42
-    Info: Total CPU time (on all processors): 00:00:42
+Info (115031): Writing out detailed assembly data for power analysis
+Info (115030): Assembler is generating device programming files
+Info: Quartus II 32-bit Assembler was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 920 megabytes
+    Info: Processing ended: Sun Oct 14 20:38:22 2012
+    Info: Elapsed time: 00:00:37
+    Info: Total CPU time (on all processors): 00:00:37
 
 
