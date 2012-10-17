@@ -40,7 +40,7 @@ set_global_assignment -name FAMILY "Stratix IV"
 set_global_assignment -name DEVICE EP4S100G2F40I2
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 10.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "13:33:23  JANUARY 26, 2011"
-set_global_assignment -name LAST_QUARTUS_VERSION "11.1 SP2"
+set_global_assignment -name LAST_QUARTUS_VERSION "11.0 SP0.01"
 set_global_assignment -name TOP_LEVEL_ENTITY sonic_top_wrapper
 set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC ON
 set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_DUPLICATION ON
