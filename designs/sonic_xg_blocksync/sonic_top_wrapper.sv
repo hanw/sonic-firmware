@@ -25,7 +25,7 @@
 module sonic_top_wrapper (
 			  // inputs:
 			  clk_200MHz,
-			  clk_644MHz,
+//			  clk_644MHz,
 			  free_100MHz,
 			  local_rstn_ext,
 			  pcie_rstn,
@@ -109,7 +109,7 @@ module sonic_top_wrapper (
    input 	   rx_serial_data_1;
    
    input 	   clk_200MHz;
-   input       clk_644MHz;
+//   input       clk_644MHz;
    input       req_compliance_push_button_n;
    input 	   free_100MHz;
    input 	   local_rstn_ext;
@@ -467,12 +467,10 @@ module sonic_top_wrapper (
 		    .locked(reconfig_clk_locked)
 		    );
 
-/*
-   pll_644 pll644 (
+   pll_644 pll_644 (
 		   .inclk0(clk_156MHz),
 		   .c0(clk_644MHz)
 		   );
-*/
    
    wire 		reset_n;
    wire 		mdc_from_the_mdio;
